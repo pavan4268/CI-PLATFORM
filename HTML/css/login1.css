@@ -1,0 +1,79 @@
+.form {
+  display: contents;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+}
+#email-txt {
+  max-width: 102px;
+  max-height: 22px;
+  /* UI Properties */
+  text-align: left;
+  letter-spacing: 0px;
+  color: #414141;
+  opacity: 1;
+}
+#email-input {
+  width: 401px;
+  height: 56px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 10px #2b64b11f;
+  border: 1px solid #2b64b1;
+  border-radius: 3px;
+  opacity: 1;
+}
+#password-label {
+  max-width: 70px;
+  max-height: 22px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #414141;
+  opacity: 1;
+}
+#password-input {
+  max-width: 401px;
+  max-height: 56px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0.97px 0.26px 3px #0000000d;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  opacity: 1;
+}
+#login-btn {
+  max-width: 401px;
+  max-height: 48px;
+  width: 100%;
+  height: auto;
+  background: #f8863400 0% 0% no-repeat padding-box;
+  border: 2px solid #f88634;
+  border-radius: 24px;
+  opacity: 1;
+}
+#forgot-password {
+  max-width: 130px;
+  max-height: 19px;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #414141;
+  opacity: 1;
+}
+#registration-link {
+  max-width: 266px;
+  max-height: 19px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #414141;
+  opacity: 1;
+}
+#privacy-policy {
+  width: 113px;
+  height: 19px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #414141;
+  opacity: 1;
+}
+#privacy-policy {
+  margin-top: 889.5px;
+  margin-left: 245px;
+}
