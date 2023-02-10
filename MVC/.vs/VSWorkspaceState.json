@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CIPlatform",
+    "\\CIPlatform\\CIPlatformWeb",
+    "\\CIPlatform\\CIPlatformWeb\\bin",
+    "\\CIPlatform\\CIPlatformWeb\\bin\\Debug",
+    "\\CIPlatform\\CIPlatformWeb\\bin\\Debug\\net6.0",
+    "\\CIPlatform\\CIPlatformWeb\\Views",
+    "\\CIPlatform\\CIPlatformWeb\\Views\\Home"
+  ],
+  "SelectedNode": "\\CIPlatform\\CIPlatformWeb\\Views\\Home\\Index.cshtml",
+  "PreviewInSolutionExplorer": false
+}
