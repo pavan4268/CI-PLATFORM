@@ -1,11 +1,15 @@
+@{
+    ViewData["Title"] = "Registration Form";
+}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forgot Password</title>
-    <link href="css/login.css" rel="stylesheet" />
+    <title>Registration</title>
+    <link href="~/css/login.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
@@ -14,9 +18,9 @@
   </head>
 
   <body>
-  <div class="content-div d-flex">
+    <div class="content-div d-flex">
       <!--Image Column-->
-      <div class="left-box col-md-8">
+      <div class="left-box col-md-8 col-12">
         <div
           id="carouselExampleCaptions"
           class="carousel slide"
@@ -48,7 +52,7 @@
             <div class="carousel-item active">
               <div class="gradient-block">
                 <img
-                  src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                  src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
                   class="d-block w-100"
                   alt="..."
                 />
@@ -73,7 +77,7 @@
             <div class="carousel-item">
               <div class="gradient-block">
                 <img
-                  src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                  src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
                   class="d-block w-100"
                   alt="..."
                 />
@@ -97,7 +101,7 @@
             <div class="carousel-item">
               <div class="gradient-block">
                 <img
-                  src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                  src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
                   class="d-block w-100"
                   alt="..."
                 />
@@ -145,21 +149,60 @@
           
         </header>
 
-        <div class="row user-input-div">
-          
-          <p class="flex-item fs-6">Forgot Password</p>
-          <p class="flex-item fs-6">
-            Enter your email address you've using for your account below and we
-            will send you a password reset link
-          </p>
-
+        <div class="row reg-div">
+          <div class="flex-item mb-3">
+            <label for="fname" class="form-label">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="fname"
+              placeholder="evan"
+            />
+          </div>
+          <div class="flex-item mb-3">
+            <label for="lname" class="form-label">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lname"
+              placeholder="donohue"
+            />
+          </div>
+          <div class="flex-item mb-3">
+            <label for="phone-no" class="form-label">Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="phone-no"
+              placeholder="123456789"
+            />
+          </div>
           <div class="flex-item mb-3">
             <label for="emailadd" class="form-label">Email address</label>
             <input
               type="email"
               class="form-control"
               id="emailadd"
-              placeholder="Enter your email address..."
+              placeholder="evan.donohue@gmail.com"
+            />
+          </div>
+          <div class="flex-item mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="************"
+            />
+          </div>
+
+          <div class="flex-item mb-3">
+            <label for="password" class="form-label">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="************"
             />
           </div>
 
@@ -167,14 +210,17 @@
             type="flex-item submit"
             class="btn btn-outline-warning mb-3"
             id="login"
-            formaction="#"
           >
-            Reset Password
+            Login
           </button>
 
-          <a href="./login_page.html" class="text-decoration-none link-dark"
-            ><p class="flex-item fs-6">Login</p></a
-          >
+                <a class="text-decoration-none link-dark" asp-controller="Home" asp-action="forgot">
+            <p class="flex-item text-center para-text">Lost your password?</p>
+          </a>
+
+          <p class="flex-item text-center para-text">
+            Already Registered?<a class="text.primary text-decoration-none" asp-controller="Home" asp-action="Index">Login Now</a>
+          </p>
         </div>
         <div class="row footer">
           <div class="d-flex justify-content-around h-50">
@@ -182,13 +228,11 @@
               <a href="#" class="text-decoration-none link-dark"
                 >Privacy Policy</a
               >
-        
+          
           </div>
-          <div class="d-flex justify-content-center">
          
-        </div>
-        </div>
       </div>
+    </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

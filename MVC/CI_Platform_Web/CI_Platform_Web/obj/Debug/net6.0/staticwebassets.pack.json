@@ -5,6 +5,442 @@
       "PackagePath": "staticwebassets\\CI_Platform_Web.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\404-Page-image.png",
+      "PackagePath": "staticwebassets\\assets\\404-Page-image.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Already-volunteered.png",
+      "PackagePath": "staticwebassets\\assets\\Already-volunteered.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Animal-welfare-&-save-birds-campaign-1.png",
+      "PackagePath": "staticwebassets\\assets\\Animal-welfare-&-save-birds-campaign-1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Animal-welfare-&-save-birds-campaign.png",
+      "PackagePath": "staticwebassets\\assets\\Animal-welfare-&-save-birds-campaign.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png",
+      "PackagePath": "staticwebassets\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png",
+      "PackagePath": "staticwebassets\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png",
+      "PackagePath": "staticwebassets\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png",
+      "PackagePath": "staticwebassets\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png",
+      "PackagePath": "staticwebassets\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-6.png",
+      "PackagePath": "staticwebassets\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity-6.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png",
+      "PackagePath": "staticwebassets\\assets\\CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png",
+      "PackagePath": "staticwebassets\\assets\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-2.png",
+      "PackagePath": "staticwebassets\\assets\\Education-Supplies-for-Every--Pair-of-Shoes-Sold-2.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png",
+      "PackagePath": "staticwebassets\\assets\\Education-Supplies-for-Every--Pair-of-Shoes-Sold.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-1.png",
+      "PackagePath": "staticwebassets\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-2.png",
+      "PackagePath": "staticwebassets\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-3.png",
+      "PackagePath": "staticwebassets\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-3.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-4.png",
+      "PackagePath": "staticwebassets\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-4.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-5.png",
+      "PackagePath": "staticwebassets\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-5.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-login.png",
+      "PackagePath": "staticwebassets\\assets\\Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Grow-Trees-On-the-path-to-environment-sustainability.png",
+      "PackagePath": "staticwebassets\\assets\\Grow-Trees-On-the-path-to-environment-sustainability.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Nourish-the-Children-in--African-country-1.png",
+      "PackagePath": "staticwebassets\\assets\\Nourish-the-Children-in--African-country-1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Nourish-the-Children-in--African-country.png",
+      "PackagePath": "staticwebassets\\assets\\Nourish-the-Children-in--African-country.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Open-Volunteering-Requests.png",
+      "PackagePath": "staticwebassets\\assets\\Open-Volunteering-Requests.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Plantation-and-Afforestation-programme-1.png",
+      "PackagePath": "staticwebassets\\assets\\Plantation-and-Afforestation-programme-1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Plantation-and-Afforestation-programme.png",
+      "PackagePath": "staticwebassets\\assets\\Plantation-and-Afforestation-programme.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Seats-left.png",
+      "PackagePath": "staticwebassets\\assets\\Seats-left.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Volunteering-Rank.png",
+      "PackagePath": "staticwebassets\\assets\\Volunteering-Rank.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Voted-Missions.png",
+      "PackagePath": "staticwebassets\\assets\\Voted-Missions.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\achieved.png",
+      "PackagePath": "staticwebassets\\assets\\achieved.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\add.png",
+      "PackagePath": "staticwebassets\\assets\\add.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\add1.png",
+      "PackagePath": "staticwebassets\\assets\\add1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\arrow.png",
+      "PackagePath": "staticwebassets\\assets\\arrow.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\bell-big.png",
+      "PackagePath": "staticwebassets\\assets\\bell-big.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\bell.png",
+      "PackagePath": "staticwebassets\\assets\\bell.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\bin.png",
+      "PackagePath": "staticwebassets\\assets\\bin.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\calender.png",
+      "PackagePath": "staticwebassets\\assets\\calender.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\cancel.png",
+      "PackagePath": "staticwebassets\\assets\\cancel.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\cancel1.png",
+      "PackagePath": "staticwebassets\\assets\\cancel1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\checked.png",
+      "PackagePath": "staticwebassets\\assets\\checked.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\cross.png",
+      "PackagePath": "staticwebassets\\assets\\cross.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\deadline.png",
+      "PackagePath": "staticwebassets\\assets\\deadline.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\doc.png",
+      "PackagePath": "staticwebassets\\assets\\doc.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\down.png",
+      "PackagePath": "staticwebassets\\assets\\down.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\drag-and-drop.png",
+      "PackagePath": "staticwebassets\\assets\\drag-and-drop.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\drop-down.png",
+      "PackagePath": "staticwebassets\\assets\\drop-down.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\eye.png",
+      "PackagePath": "staticwebassets\\assets\\eye.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\facebook.png",
+      "PackagePath": "staticwebassets\\assets\\facebook.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\filter.png",
+      "PackagePath": "staticwebassets\\assets\\filter.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\gift.png",
+      "PackagePath": "staticwebassets\\assets\\gift.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\graph.png",
+      "PackagePath": "staticwebassets\\assets\\graph.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\grid.png",
+      "PackagePath": "staticwebassets\\assets\\grid.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\heart.png",
+      "PackagePath": "staticwebassets\\assets\\heart.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\heart1.png",
+      "PackagePath": "staticwebassets\\assets\\heart1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\hours.png",
+      "PackagePath": "staticwebassets\\assets\\hours.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\image.png",
+      "PackagePath": "staticwebassets\\assets\\image.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\image1.png",
+      "PackagePath": "staticwebassets\\assets\\image1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\image2.png",
+      "PackagePath": "staticwebassets\\assets\\image2.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\img.png",
+      "PackagePath": "staticwebassets\\assets\\img.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\img1.png",
+      "PackagePath": "staticwebassets\\assets\\img1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\img11.png",
+      "PackagePath": "staticwebassets\\assets\\img11.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\img2.png",
+      "PackagePath": "staticwebassets\\assets\\img2.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\img22.png",
+      "PackagePath": "staticwebassets\\assets\\img22.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\img3.png",
+      "PackagePath": "staticwebassets\\assets\\img3.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\img33.png",
+      "PackagePath": "staticwebassets\\assets\\img33.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\info.png",
+      "PackagePath": "staticwebassets\\assets\\info.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\left.png",
+      "PackagePath": "staticwebassets\\assets\\left.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\left1.png",
+      "PackagePath": "staticwebassets\\assets\\left1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\linkedin.png",
+      "PackagePath": "staticwebassets\\assets\\linkedin.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\list.png",
+      "PackagePath": "staticwebassets\\assets\\list.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\mission.png",
+      "PackagePath": "staticwebassets\\assets\\mission.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\my-story.png",
+      "PackagePath": "staticwebassets\\assets\\my-story.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\new-message.png",
+      "PackagePath": "staticwebassets\\assets\\new-message.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\next.png",
+      "PackagePath": "staticwebassets\\assets\\next.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\organization.png",
+      "PackagePath": "staticwebassets\\assets\\organization.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\pdf.png",
+      "PackagePath": "staticwebassets\\assets\\pdf.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\pin.png",
+      "PackagePath": "staticwebassets\\assets\\pin.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\pin1.png",
+      "PackagePath": "staticwebassets\\assets\\pin1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\previous.png",
+      "PackagePath": "staticwebassets\\assets\\previous.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\right-arrow.png",
+      "PackagePath": "staticwebassets\\assets\\right-arrow.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\right-arrow1.png",
+      "PackagePath": "staticwebassets\\assets\\right-arrow1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\right-arrow2.png",
+      "PackagePath": "staticwebassets\\assets\\right-arrow2.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\right-white.png",
+      "PackagePath": "staticwebassets\\assets\\right-white.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\right.png",
+      "PackagePath": "staticwebassets\\assets\\right.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\search.png",
+      "PackagePath": "staticwebassets\\assets\\search.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\selected-star.png",
+      "PackagePath": "staticwebassets\\assets\\selected-star.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\settings.png",
+      "PackagePath": "staticwebassets\\assets\\settings.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\star-empty.png",
+      "PackagePath": "staticwebassets\\assets\\star-empty.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\star.png",
+      "PackagePath": "staticwebassets\\assets\\star.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\twitter.png",
+      "PackagePath": "staticwebassets\\assets\\twitter.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\up.png",
+      "PackagePath": "staticwebassets\\assets\\up.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\user-img-large.png",
+      "PackagePath": "staticwebassets\\assets\\user-img-large.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\user-img.png",
+      "PackagePath": "staticwebassets\\assets\\user-img.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\user.png",
+      "PackagePath": "staticwebassets\\assets\\user.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\user1.png",
+      "PackagePath": "staticwebassets\\assets\\user1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer1.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer1.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer2.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer2.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer3.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer3.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer4.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer4.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer5.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer5.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer6.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer6.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer7.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer7.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer8.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer8.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\volunteer9.png",
+      "PackagePath": "staticwebassets\\assets\\volunteer9.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\web.png",
+      "PackagePath": "staticwebassets\\assets\\web.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\xlsx.png",
+      "PackagePath": "staticwebassets\\assets\\xlsx.png"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
