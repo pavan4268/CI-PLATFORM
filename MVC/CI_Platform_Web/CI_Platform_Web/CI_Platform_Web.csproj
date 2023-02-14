@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Index - Copy.cshtml" />
+    <Content Remove="Views\Home\reset.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
   <ItemGroup>
     <None Include="Views\Home\forgot.cshtml" />
     <None Include="Views\Home\registration.cshtml" />
+    <None Include="Views\Home\reset.cshtml" />
   </ItemGroup>
 
 </Project>
