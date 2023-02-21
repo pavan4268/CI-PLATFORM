@@ -45,10 +45,10 @@
   height: 35px;
   opacity: 50%;
   align-items: center;
-  /* top: 15px; */
-  /* right: 15px; */
+  top: 15px;
+  right: 15px;
   /* left: 328px; */
-  /* position: absolute; */
+  position: absolute;
   border-radius: 100px;
 }
 .pin-img {
@@ -70,8 +70,9 @@
   max-height: 42px;
   opacity: 50%;
   border-radius: 100px;
-  left: 360px;
-  top: 100px;
+  right: 8px;
+  bottom: 59px;
+  position: absolute;
   align-items: center;
 }
 .like-img {
@@ -83,8 +84,9 @@
   max-height: 42px;
   opacity: 50%;
   border-radius: 100px;
-  left: 360px;
-  top: 150px;
+  right: 8px;
+  bottom: 10px;
+  position: absolute;
   align-items: center;
 }
 .card-body {

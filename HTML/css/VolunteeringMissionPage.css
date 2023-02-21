@@ -1,0 +1,87 @@
+#title-txt {
+  font-size: 38px;
+  max-width: 562px;
+  max-height: 98px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+#mission-detail {
+  max-width: 660px;
+  max-height: 70px;
+  font-size: 17px;
+  font-weight: 100;
+}
+.card-body {
+  max-width: 662px;
+  max-height: 685px;
+}
+.mission-period {
+  border-top: 1px solid gray;
+  position: relative;
+  border-bottom: 1px solid gray;
+}
+.period {
+  position: absolute;
+  margin-top: -14px;
+  background-color: white;
+  border-radius: 100px;
+  max-width: 200px;
+  border: 1px solid gray;
+}
+.event-logo {
+  max-width: 29px;
+  max-height: 29px;
+}
+.progress-bar {
+  background-color: coral;
+}
+.progress {
+  max-height: 7px;
+  max-width: 220px;
+}
+.ratings-like-share {
+  position: relative;
+  border-bottom: 1px solid gray;
+}
+.ratings {
+  background-color: white;
+  position: absolute;
+  bottom: -14px;
+  max-width: 200px;
+}
+.fav-button {
+  border: 2px solid gray;
+  border-radius: 100px;
+}
+.city-card {
+  max-width: 153px;
+  max-height: 130px;
+  border: 1px solid grey;
+}
+.theme-card {
+  max-width: 153px;
+  max-height: 130px;
+  border: 1px solid grey;
+}
+.date-card {
+  max-width: 153px;
+  max-height: 130px;
+  border: 1px solid grey;
+}
+.organization-card {
+  max-width: 153px;
+  max-height: 130px;
+  border: 1px solid grey;
+}
+.category {
+  font-size: 15px;
+  font-weight: 200;
+}
+.category-value {
+  font-size: 15px;
+}
+.apply-button {
+  border: 2px solid coral;
+  border-radius: 100px;
+  color: coral;
+}
