@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page-List View</title>
+    <title>Volunteering Mission Page</title>
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -150,15 +150,72 @@
       </div>
     </header>
     <!-- body of the main container starts here -->
-    <div class="container-fluid col-10">
-      <!-- dividing mission card in two parts with rows and cols -->
+    <div class="container col-10">
+      <!-- div for img-carousel and card body starts -->
       <div class="row mt-5">
         <!-- col for image carousel starts -->
-        <div class="col-5"></div>
+        <div class="col-lg-5 col-md-12 img-carousel mt-3">
+          <!-- <div class="img-carousel w-100 h-100"> -->
+          <swiper-container
+            style="
+              --swiper-navigation-color: #fff;
+              --swiper-pagination-color: #fff;
+            "
+            class="mySwiper"
+            thumbs-swiper=".mySwiper2"
+            loop="true"
+            space-between="10"
+            navigation="true"
+          >
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img1.png" />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img11.png" />
+            </swiper-slide>
+          </swiper-container>
+
+          <swiper-container
+            class="mySwiper2"
+            loop="true"
+            space-between="10"
+            slides-per-view="4"
+            free-mode="true"
+            watch-slides-progress="true"
+          >
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img1.png" />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img11.png" />
+            </swiper-slide>
+          </swiper-container>
+          <!-- </div> -->
+        </div>
         <!-- col for image carousel ends -->
         <!-- col for card body starts -->
-        <div class="col-7 mt-5">
-          <div class="card-body">
+        <div class="col-1g-7 col-md mt-5">
+          <div class="card-body container-fluid">
             <!-- mission title starts -->
             <span class="card-title" id="title-txt">
               Grow Trees On The Path To Environment Sustainability
@@ -419,6 +476,419 @@
         </div>
         <!-- col for card body ends -->
       </div>
+      <!-- div for img-carousel and card body ends -->
+      <!-- div to wrap mission-organization-comments tab and information and recently voluntered divs starts -->
+      <div class="row pb-5">
+        <!-- div containing mission-organization-comments tab starts -->
+        <div class="col-md-7 mt-5 pt-5">
+          <!-- un-ordered list for tab buttons starts here -->
+          <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
+            <!-- list class for mission div starts here -->
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="home-tab0"
+                data-mdb-toggle="tab"
+                data-mdb-target="#home0"
+                type="button"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+              >
+                Mission
+              </button>
+            </li>
+            <!-- list class for mission div ends here -->
+            <!-- list class for organization button starts here -->
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="profile-tab0"
+                data-mdb-toggle="tab"
+                data-mdb-target="#profile0"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+              >
+                Organization
+              </button>
+            </li>
+            <!-- list class for organization button ends here -->
+            <!-- list class for mission button starts here -->
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="contact-tab0"
+                data-mdb-toggle="tab"
+                data-mdb-target="#contact0"
+                type="button"
+                role="tab"
+                aria-controls="contact"
+                aria-selected="false"
+              >
+                Comments
+              </button>
+            </li>
+            <!-- list class for mission button ends here -->
+          </ul>
+          <!-- un-ordered list for tab buttons ends here -->
+          <!-- div for tab content starts here -->
+          <div class="tab-content" id="myTabContent0">
+            <!-- div for mission tab details starts here -->
+            <div
+              class="tab-pane fade show active"
+              id="home0"
+              role="tabpanel"
+              aria-labelledby="home-tab0"
+            >
+              <!-- mission details main div starts here -->
+              <div class="container mission-details">
+                <!-- mission introduction div starts -->
+                <div class="mission-introduction">
+                  <h3 class="intro-txt">Introduction</h3>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Aliquid fugit consequatur explicabo commodi quasi deleniti
+                    ea quibusdam eos eaque, voluptatum nulla perferendis saepe
+                    sit ut vel quaerat obcaecati delectus ullam aliquam unde
+                    vero! Veniam nulla dolorem consequuntur consequatur impedit
+                    architecto, temporibus neque, sunt animi nostrum
+                    voluptatibus commodi. Illo commodi omnis nemo possimus vero
+                    ducimus praesentium optio corrupti, in odit dolorem quam
+                    iste et tempore, voluptatibus beatae.
+                  </p>
+                </div>
+                <!-- mission introduction div ends -->
+                <!-- mission challenge div starts -->
+                <div class="mission-challenge">
+                  <h3 class="intro-txt">Challenge</h3>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Aliquid fugit consequatur explicabo commodi quasi deleniti
+                    ea quibusdam eos eaque, voluptatum nulla perferendis saepe
+                    sit ut vel quaerat obcaecati delectus ullam aliquam unde
+                    vero! Veniam nulla dolorem consequuntur consequatur impedit
+                    architecto, temporibus neque, sunt animi nostrum
+                    voluptatibus commodi. Illo commodi omnis nemo possimus vero
+                    ducimus praesentium optio corrupti, in odit dolorem quam
+                    iste et tempore, voluptatibus beatae.
+                  </p>
+                </div>
+                <!-- mission challenge div ends -->
+                <!-- mission documents div starts -->
+                <div class="mission-challenge">
+                  <h3 class="intro-txt">Documents</h3>
+                  <div class="container">
+                    <div class="row pl-3 pt-3">
+                      <!-- pdf button starts -->
+                      <div class="col pdf">
+                        <button class="btn docs-button text-lowercase">
+                          <img src="CI Platform Assets/pdf.png" alt="" />
+                          <span>Lorem_ipsum.pdf</span>
+                        </button>
+                      </div>
+                      <!-- pdf button ends -->
+                      <!-- docs button starts -->
+                      <div class="col doc">
+                        <button class="btn docs-button text-lowercase">
+                          <img src="CI Platform Assets/doc.png" alt="" />
+                          <span>Lorem ipsum dolor sit.doc</span>
+                        </button>
+                      </div>
+                      <!-- docs button ends -->
+                      <!-- xls button starts -->
+                      <div class="col xls">
+                        <button class="btn docs-button text-lowercase">
+                          <img src="CI Platform Assets/xlsx.png" alt="" />
+                          <span>important_doc.xls</span>
+                        </button>
+                      </div>
+                      <!-- xls button ends -->
+                    </div>
+                  </div>
+                </div>
+                <!-- mission documents div ends -->
+              </div>
+              <!-- mission details main div ends here -->
+            </div>
+            <!-- div for mission tab details ends here -->
+            <div
+              class="tab-pane fade"
+              id="profile0"
+              role="tabpanel"
+              aria-labelledby="profile-tab0"
+            >
+              Tab 2 content
+            </div>
+            <div
+              class="tab-pane fade"
+              id="contact0"
+              role="tabpanel"
+              aria-labelledby="contact-tab0"
+            >
+              Tab 3 content
+            </div>
+          </div>
+          <!-- div for tab content endss here -->
+          <!-- Tabs content -->
+        </div>
+        <!-- div containing mission-organization-comments tab ends -->
+
+        <div class="col-md mt-5 pt-5 pl-2">
+          <!-- div wrapper for information & recently volunteered starts  -->
+          <div class="container info-wrapper">
+            <!-- div containing information title starts -->
+            <div class="row container-fluid pb-3 m-0 info-div">
+              <div class="col d-flex align-content-center pt-4">
+                <h4 class="Information-txt">Information</h4>
+              </div>
+            </div>
+            <!-- div containing information title ends -->
+            <!-- main body of information starts -->
+            <!-- skills div starts -->
+            <div class="row container-fluid field pb-4 pt-3 m-0">
+              <!-- creating different divs for fields and their values starts -->
+              <div class="col-lg-2">Skills</div>
+              <div class="col-lg">Cool, Easy going, Math, Computer</div>
+              <!-- creating different divs for fields and their values ends -->
+            </div>
+            <!-- skills div ends -->
+            <!-- days div starts -->
+            <div class="row container-fluid field pb-4 pt-3 m-0">
+              <!-- creating different divs for fields and their values starts -->
+              <div class="col-lg-2">Days</div>
+              <div class="col-lg">Weekend Only</div>
+              <!-- creating different divs for fields and their values ends -->
+            </div>
+            <!-- days div ends -->
+            <!-- ratings div starts -->
+            <div class="row container-fluid field pb-4 pt-3 m-0">
+              <!-- creating different divs for fields and their values starts -->
+              <div class="col-lg-2">Ratings</div>
+              <div class="col-lg">
+                <img
+                  class="imfo-rating-star img-fluid"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <span class="rating-detail">(by 125 volunteers)</span>
+              </div>
+              <!-- creating different divs for fields and their values ends -->
+            </div>
+            <!-- ratings div ends -->
+            <!-- main body of information ends -->
+          </div>
+          <!-- div wrapper for information & recently volunteered ends  -->
+          <!-- main recently volunteered div starts here -->
+          <div class="container volunteered mt-5">
+            <h4 class="recently-volunteered-txt pt-4 pl-4 pb-2 mb-3">
+              Recently Volunteered
+            </h4>
+            <!-- main body of recently-voluntered starts here -->
+            <div class="container-fluid volunteered-main">
+              <!-- first row starts  -->
+              <div class="row pt-5 pb-5">
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer1.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer2.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer3.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+              </div>
+              <!-- first row ends -->
+              <!-- second row starts  -->
+              <div class="row pb-5">
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer4.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer5.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer6.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+              </div>
+              <!-- second row ends -->
+              <!-- third row starts  -->
+              <div class="row pb-5">
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer7.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer8.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer9.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+              </div>
+              <!-- third row ends -->
+            </div>
+            <!-- main body of recently-voluntered starts here -->
+            <!-- pagination starts -->
+            <div class="container-fluid">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue justify-content-center m-0">
+                  <li class="page-item">
+                    <a class="page-link" aria-label="Previous">
+                      <span aria-hidden="true"
+                        ><img src="CI Platform Assets/left.png" alt=""
+                      /></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link">1 - 9 of 25 Recent Volunteers</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" aria-label="Next">
+                      <span aria-hidden="true"
+                        ><img src="CI Platform Assets/right-arrow1.png" alt=""
+                      /></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- pagination ends -->
+          </div>
+          <!-- main recently volunteered div ends here -->
+        </div>
+      </div>
+      <!-- div to wrap mission-organization-comments tab and information and recently voluntered divs ends -->
     </div>
   </body>
   <script
@@ -446,4 +916,5 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 </html>

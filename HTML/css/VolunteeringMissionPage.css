@@ -11,9 +11,12 @@
   font-size: 17px;
   font-weight: 100;
 }
+.img-carousel {
+  max-height: 751px;
+}
 .card-body {
   max-width: 662px;
-  max-height: 685px;
+  /* max-height: 751px; */
 }
 .mission-period {
   border-top: 1px solid gray;
@@ -84,4 +87,96 @@
   border: 2px solid coral;
   border-radius: 100px;
   color: coral;
+}
+/* image carousel css starts */
+swiper-container {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper2 {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper2 swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper2 .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+swiper-slide img {
+  display: sw </swiper-slidek;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide img {
+  display: sw </swiper-slidek;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* image carousel css ends */
+.docs-button {
+  border: 1px solid grey;
+  border-radius: 100px;
+}
+.info-wrapper {
+  border: 1px solid grey;
+}
+.info-rating-star {
+  width: 20px;
+  height: 20px;
+}
+.rating-detail {
+  font-size: 14px;
+}
+.field {
+  border-bottom: 1px solid grey;
+}
+.info-div {
+  border-bottom: 1px solid grey;
+}
+.volunteered {
+  border: 1px solid grey;
+}
+.volunteered-main {
+  border-top: 1px grey solid;
+}
+.volunteer-img {
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
 }
