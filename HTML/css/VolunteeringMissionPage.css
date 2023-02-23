@@ -1,13 +1,13 @@
 #title-txt {
   font-size: 38px;
   max-width: 562px;
-  max-height: 98px;
+  /* max-height: 98px; */
   font-weight: 300;
   letter-spacing: 0;
 }
 #mission-detail {
   max-width: 660px;
-  max-height: 70px;
+  /* max-height: 70px; */
   font-size: 17px;
   font-weight: 100;
 }
@@ -55,6 +55,10 @@
 .fav-button {
   border: 2px solid gray;
   border-radius: 100px;
+}
+.fav-button:hover {
+  background-color: #f88634;
+  color: #fff;
 }
 .city-card {
   max-width: 153px;
@@ -123,7 +127,7 @@ swiper-slide {
 }
 
 swiper-slide img {
-  display: sw </swiper-slidek;
+  /* display: sw </swiper-slidek; */
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -143,7 +147,7 @@ swiper-slide {
 }
 
 swiper-slide img {
-  display: sw </swiper-slidek;
+  /* display: sw </swiper-slidek; */
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -180,3 +184,151 @@ swiper-slide img {
   width: 70px;
   height: 70px;
 }
+.post-btn {
+  border: 2px solid coral;
+  border-radius: 100px;
+  color: coral;
+}
+.comment-date {
+  font-size: 10px;
+}
+.past-comments {
+  max-height: 630px;
+}
+.related-mission-txt {
+  text-align: center;
+  font-weight: 200;
+}
+/* card css starts */
+.card {
+  max-width: 460px;
+}
+.card-title {
+  max-width: 353px;
+
+  font-size: 26px;
+  font-weight: 400;
+}
+.card-text {
+  font-weight: 100;
+  max-width: 395px;
+}
+
+.mission-theme {
+  margin-top: -15px;
+  text-align: center;
+  border-radius: 100px;
+  background-color: #ffffff;
+  width: 127px;
+  height: 35px;
+  justify-content: center;
+  z-index: 2;
+  align-self: center;
+  /* margin-left: 30%; */
+}
+.star-rating {
+  width: 21px;
+  height: 20px;
+}
+.theme-txt {
+  max-width: 60px;
+  max-height: 22px;
+}
+.img-button {
+  position: relative;
+}
+.city-button {
+  width: 117px;
+  height: 35px;
+  opacity: 50%;
+  align-items: center;
+  top: 15px;
+  right: 15px;
+  /* left: 328px; */
+  position: absolute;
+  border-radius: 100px;
+}
+.pin-img {
+  width: 15px;
+  height: 20px;
+}
+.city-txt {
+  width: 70px;
+  height: 19px;
+  text-align: center;
+  /* text-align: justify; */
+  letter-spacing: 0px;
+  color: #ffffff;
+  text-align: center;
+  font-size: small;
+}
+.like-button {
+  max-width: 42px;
+  max-height: 42px;
+  opacity: 50%;
+  border-radius: 100px;
+  right: 8px;
+  bottom: 59px;
+  position: absolute;
+  align-items: center;
+}
+.like-img {
+  max-width: 23px;
+  max-height: 20px;
+}
+.share-button {
+  max-width: 42px;
+  max-height: 42px;
+  opacity: 50%;
+  border-radius: 100px;
+  right: 8px;
+  bottom: 10px;
+  position: absolute;
+  align-items: center;
+}
+.card-body {
+  height: fit-content;
+}
+.apply-btn {
+  width: 133px;
+  height: 48px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 2px solid #f88634;
+  border-radius: 24px;
+  text-decoration: none;
+}
+.apply-btn-txt {
+  color: #f88634;
+}
+.mission-org {
+  font-size: 16px;
+  font-weight: 400;
+}
+.event-wrapper {
+  /* border-top: 1px solid gray; */
+  /* position: relative; */
+  border-bottom: 1px solid gray;
+}
+.event-period {
+  background-color: white;
+  border-radius: 100px;
+  max-width: 273px;
+  /* max-height: 35px; */
+  border: 1px solid gray;
+  align-self: center;
+  justify-self: center;
+  z-index: 2;
+}
+.event-active {
+  font-size: 15px;
+  font-weight: 200;
+}
+.mission-logo {
+  height: 26px;
+  width: 25px;
+}
+.event-txt {
+  font-size: 14px;
+  font-weight: 300;
+}
+/* card css ends */

@@ -5,16 +5,16 @@
 }
 .card {
   max-width: 460px;
-  max-height: 618px;
+  /* max-height: 618px; */
 }
 .card-title {
   max-width: 353px;
-  max-height: 70px;
+  /* max-height: 70px; */
 }
 .card-text {
   font-weight: 100;
   max-width: 395px;
-  max-height: 66px;
+  /* max-height: 66px; */
 }
 
 .mission-theme {
