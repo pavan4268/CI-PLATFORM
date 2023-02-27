@@ -1,4 +1,4 @@
-﻿using CI_Platform_Web.Models;
+﻿using CI_Platform.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

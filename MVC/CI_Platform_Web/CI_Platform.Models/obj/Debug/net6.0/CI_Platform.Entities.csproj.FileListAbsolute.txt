@@ -1,0 +1,14 @@
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.deps.json
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.runtimeconfig.json
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.dll
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.pdb
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.csproj.AssemblyReference.cache
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.AssemblyInfoInputs.cache
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.AssemblyInfo.cs
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.csproj.CoreCompileInputs.cache
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.dll
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\refint\CI_Platform.Entities.dll
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.pdb
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.genruntimeconfig.cache
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\ref\CI_Platform.Entities.dll
