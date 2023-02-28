@@ -12,3 +12,6 @@ C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.DataAccess\ob
 C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.DataAccess\obj\Debug\net6.0\CI_Platform.Repository.pdb
 C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.DataAccess\obj\Debug\net6.0\CI_Platform.Repository.genruntimeconfig.cache
 C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.DataAccess\obj\Debug\net6.0\ref\CI_Platform.Repository.dll
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.DataAccess\bin\Debug\net6.0\CI_Platform.Entities.dll
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.DataAccess\bin\Debug\net6.0\CI_Platform.Entities.pdb
+C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.DataAccess\obj\Debug\net6.0\CI_Platform.Repository.csproj.CopyComplete

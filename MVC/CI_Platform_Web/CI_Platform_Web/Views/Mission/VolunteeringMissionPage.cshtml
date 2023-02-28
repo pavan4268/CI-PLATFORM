@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteering Mission Page</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/VolunteeringMissionPage.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <!-- Container wrapper -->
+              <div class="container-fluid col-12">
+                <!-- Toggle button -->
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#navbarRightAlignExample"
+                  aria-controls="navbarRightAlignExample"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div
+                  class="collapse navbar-collapse"
+                  id="navbarRightAlignExample"
+                >
+                  <!-- Left links -->
+                  <ul class="navbar-nav mb-2">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#"
+                        >Stories</a
+                      >
+                    </li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <!-- Navbar dropdown -->
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Policy
+                      </a>
+                      <!-- Dropdown menu -->
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        <li>
+                          <a class="dropdown-item" href="#">Action</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">Another action</a>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                          <a class="dropdown-item" href="#"
+                            >Something else here</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+
+                  <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+                <ul class="navbar-nav">
+                  <!-- Avatar -->
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle d-flex align-items-center"
+                      href="#"
+                      id="navbarDropdownMenuLink"
+                      role="button"
+                      data-mdb-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <img
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+                        class="rounded-circle"
+                        height="22"
+                        alt="Portrait of a Woman"
+                        loading="lazy"
+                      />&nbsp; Evan Donohue
+                    </a>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="navbarDropdownMenuLink"
+                    >
+                      <li>
+                        <a class="dropdown-item" href="#">My profile</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Settings</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Logout</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <!-- Container wrapper -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- body of the main container starts here -->
+    <div class="container col-10">
+      <!-- div for img-carousel and card body starts -->
+      <div class="row mt-5">
+        <!-- col for image carousel starts -->
+        <div class="col-lg-5 col-md-12 img-carousel mt-3">
+          <!-- <div class="img-carousel w-100 h-100"> -->
+          <swiper-container
+            style="
+              --swiper-navigation-color: #fff;
+              --swiper-pagination-color: #fff;
+            "
+            class="mySwiper"
+            thumbs-swiper=".mySwiper2"
+            loop="true"
+            space-between="10"
+            navigation="true"
+          >
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img1.png" />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img11.png" />
+            </swiper-slide>
+          </swiper-container>
+
+          <swiper-container
+            class="mySwiper2"
+            loop="true"
+            space-between="10"
+            slides-per-view="4"
+            free-mode="true"
+            watch-slides-progress="true"
+          >
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img
+                src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img1.png" />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="CI Platform Assets/img11.png" />
+            </swiper-slide>
+          </swiper-container>
+          <!-- </div> -->
+        </div>
+        <!-- col for image carousel ends -->
+        <!-- col for card body starts -->
+        <div class="col-1g-7 col-md mt-5">
+          <div class="container card-body">
+            <!-- mission title starts -->
+            <div class="row">
+              <span class="card-title" id="title-txt">
+                CSR initiative stands for Coffee and Farmer Equity
+              </span>
+            </div>
+            <!-- mission title ends -->
+            <!-- mission details starts -->
+            <div class="row">
+              <p class="card-text mt-2" id="mission-detail">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Deserunt doloribus placeat, est culpa commodi corporis quod
+                rerum quisquam.
+              </p>
+            </div>
+            <!-- mission details ends -->
+            <!-- div for goal, seats, target, date starts -->
+            <div
+              class="mission-period container d-flex justify-content-center mt-5 pb-5"
+            >
+              <!-- div for mission duration -->
+              <div
+                class="period container-fluid justify-content-center d-flex align-content-center p-1"
+              >
+                <span
+                  class="period-txt justify-content-center align-content-center"
+                  >Ongoing Opportunity</span
+                >
+              </div>
+              <!-- div for mission duration ends -->
+              <!-- div containing two divs for seats and goal-or-deadline -->
+              <div class="container-fluid mt-5">
+                <div class="row">
+                  <!-- seats-availability details starts  -->
+                  <div
+                    class="col event d-flex justify-content-center align-content-center m-2"
+                  >
+                    <!-- div containing event img starts -->
+                    <div
+                      class="event-img align-content-center justify-content-center d-flex"
+                    >
+                      <img
+                        src="CI Platform Assets/Seats-left.png"
+                        class="event-logo"
+                        alt=""
+                      />
+                    </div>
+
+                    <!-- div containing event img ends -->
+                    <div
+                      class="event-details justify-content-center align-content-center"
+                    >
+                      <div
+                        class="container justify-content-center align-content-center"
+                      >
+                        <span class="event-num">10<br /></span>
+                        <span class="event-txt">Seats Left</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- seats-availability details ends -->
+                  <!-- goal or deadline details starts -->
+                  <div
+                    class="col event d-flex justify-content-center align-content-center m-2"
+                  >
+                    <!-- div containing goal-calendar img starts -->
+                    <div
+                      class="event-img align-content-center justify-content-center d-flex"
+                    >
+                      <img
+                        src="CI Platform Assets/achieved.png"
+                        class="event-logo"
+                        alt=""
+                      />
+                    </div>
+
+                    <!-- div containing goal-calendar img ends -->
+                    <div
+                      class="event-details justify-content-center align-content-center"
+                    >
+                      <div class="container goal-calendar-txt">
+                        <div
+                          class="progress p-0 w-100"
+                          role="progressbar"
+                          aria-label="Basic example"
+                          aria-valuenow="75"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        >
+                          <div class="progress-bar w-75"></div>
+                        </div>
+                        <div class="container pl-0 pt-1">
+                          <span class="event-txt">8000 Achieved</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- goal or deadline details end -->
+              </div>
+            </div>
+            <!-- div containing ratings, add to favourite and recommend to a co-worker starts here -->
+            <div
+              class="ratings-like-share container d-flex justify-content-center mt-0"
+            >
+              <!-- add to favourite and share button div starts -->
+              <div class="container pb-5 pt-5">
+                <div class="row">
+                  <!-- add to favourite button div starts -->
+                  <div
+                    class="col fav-button d-flex justify-content-center align-content-center p-2 m-1"
+                  >
+                    <!-- heart img div starts -->
+                    <div class="heart-img align-content-center">
+                      <img src="CI Platform Assets/heart1.png" alt="" />
+                    </div>
+                    <!-- heart img div ends -->
+                    <!-- add to favourite text div starts -->
+                    <div class="add-fav-txt d-flex justify-content-center pl-2">
+                      Add To Favourite
+                    </div>
+                    <!-- add to favourite text div ends -->
+                  </div>
+                  <!-- add to favourite button div ends -->
+                  <!-- recommend to a coworker button div starts -->
+                  <div
+                    class="col fav-button d-flex justify-content-center align-content-center p-2 m-1"
+                  >
+                    <!-- share user img div starts -->
+                    <div class="heart-img align-content-center">
+                      <img src="CI Platform Assets/add1.png" alt="" />
+                    </div>
+                    <!-- share user img div ends -->
+                    <!-- Recommend to a co-worker text div starts -->
+                    <div class="add-fav-txt d-flex justify-content-center pl-2">
+                      Recommend To a Co-Worker
+                    </div>
+                    <!-- Recommend to a co-worker text div ends -->
+                  </div>
+                  <!-- recommend to a co-worker button div ends -->
+                </div>
+              </div>
+              <!-- div containing ratings starts here -->
+              <div
+                class="ratings container-fluid d-flex justify-content-center align-content-center"
+              >
+                <img
+                  src="CI Platform Assets/star-empty.png"
+                  class="img-fluid star-ratings"
+                  alt=""
+                />
+                <img
+                  src="CI Platform Assets/star-empty.png"
+                  class="img-fluid star-ratings"
+                  alt=""
+                />
+                <img
+                  src="CI Platform Assets/star-empty.png"
+                  class="img-fluid star-ratings"
+                  alt=""
+                />
+                <img
+                  src="CI Platform Assets/star-empty.png"
+                  class="img-fluid star-ratings"
+                  alt=""
+                />
+                <img
+                  src="CI Platform Assets/star-empty.png"
+                  class="img-fluid star-ratings"
+                  alt=""
+                />
+              </div>
+              <!-- div containing ratings ends here -->
+            </div>
+            <!-- div containing ratings, add to favourite and recommend to a co-worker ends here -->
+            <!-- div containing city,theme,date,organization starts -->
+            <div class="container pt-5">
+              <div class="row">
+                <!-- div containing city card starts -->
+                <div class="col city-card m-1">
+                  <!-- div ccontaining pin image starts -->
+                  <div class="location-img pb-3">
+                    <img src="CI Platform Assets/pin1.png" alt="" />
+                  </div>
+                  <!-- div ccontaining pin image ends -->
+
+                  <!-- city text div starts -->
+                  <div class="category">City</div>
+                  <!-- city text div ends -->
+                  <!-- city name text div starts -->
+                  <div class="category-value">London</div>
+                  <!-- city name text div ends -->
+                </div>
+                <!-- div containing city card ends -->
+                <!-- div containing theme card starts -->
+                <div class="col theme-card m-1">
+                  <!-- div ccontaining globe image starts -->
+                  <div class="location-img pb-3">
+                    <img src="CI Platform Assets/pin1.png" alt="" />
+                  </div>
+                  <!-- div ccontaining globe image ends -->
+
+                  <!-- theme text div starts -->
+                  <div class="category">Theme</div>
+                  <!-- theme text div ends -->
+                  <!-- theme name text div starts -->
+                  <div class="category-value">Environment</div>
+                  <!-- theme name text div ends -->
+                </div>
+                <!-- div containing theme card ends -->
+                <!-- div containing Date card starts -->
+                <div class="col date-card m-1">
+                  <!-- div containing calendar image starts -->
+                  <div class="location-img pb-3">
+                    <img src="CI Platform Assets/calender.png" alt="" />
+                  </div>
+                  <!-- div ccontaining calendar image ends -->
+
+                  <!-- date text div starts -->
+                  <div class="category">Date</div>
+                  <!-- date text div ends -->
+                  <!-- date value div starts -->
+                  <div class="category-value">Ongoing Opportunity</div>
+                  <!-- date value div ends -->
+                </div>
+                <!-- div containing date card ends -->
+                <!-- div containing Organization card starts -->
+                <div class="col organization-card m-1">
+                  <!-- div containing organization image starts -->
+                  <div class="location-img pb-3">
+                    <img src="CI Platform Assets/organization.png" alt="" />
+                  </div>
+                  <!-- div ccontaining organizaton image ends -->
+
+                  <!-- organization text div starts -->
+                  <div class="category">Organization</div>
+                  <!-- organization text div ends -->
+                  <!-- organization name div starts -->
+                  <div class="category-value">CSE NEtwork</div>
+                  <!-- organization name div ends -->
+                </div>
+                <!-- div containing date card ends -->
+              </div>
+            </div>
+            <!-- div containing city,theme,date,organization ends -->
+            <!-- apply button div starts -->
+            <div class="container-fluid d-flex justify-content-center pt-4">
+              <button
+                class="btn apply-button justify-content-center"
+                type="submit"
+                aria-label="Apply Now"
+              >
+                Apply Now
+                <img src="CI Platform Assets/right-arrow.png" alt="" />
+              </button>
+            </div>
+            <!-- apply button div ends -->
+          </div>
+        </div>
+        <!-- col for card body ends -->
+      </div>
+      <!-- div for img-carousel and card body ends -->
+      <!-- div to wrap mission-organization-comments tab and information and recently voluntered divs starts -->
+      <div class="row pb-5">
+        <!-- div containing mission-organization-comments tab starts -->
+        <div class="col-md-7 mt-5 pt-5">
+          <!-- un-ordered list for tab buttons starts here -->
+          <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
+            <!-- list class for mission div starts here -->
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="home-tab0"
+                data-mdb-toggle="tab"
+                data-mdb-target="#mission"
+                type="button"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+              >
+                Mission
+              </button>
+            </li>
+            <!-- list class for mission div ends here -->
+            <!-- list class for organization button starts here -->
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="profile-tab0"
+                data-mdb-toggle="tab"
+                data-mdb-target="#organization"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+              >
+                Organization
+              </button>
+            </li>
+            <!-- list class for organization button ends here -->
+            <!-- list class for mission button starts here -->
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="contact-tab0"
+                data-mdb-toggle="tab"
+                data-mdb-target="#comments"
+                type="button"
+                role="tab"
+                aria-controls="contact"
+                aria-selected="false"
+              >
+                Comments
+              </button>
+            </li>
+            <!-- list class for mission button ends here -->
+          </ul>
+          <!-- un-ordered list for tab buttons ends here -->
+          <!-- div for tab content starts here -->
+          <div class="tab-content" id="myTabContent0">
+            <!-- div for mission tab details starts here -->
+            <div
+              class="tab-pane fade show active"
+              id="mission"
+              role="tabpanel"
+              aria-labelledby="mission-tab"
+            >
+              <!-- mission details main div starts here -->
+              <div class="container mission-details">
+                <!-- mission introduction div starts -->
+                <div class="mission-introduction">
+                  <h3 class="intro-txt">Introduction</h3>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Aliquid fugit consequatur explicabo commodi quasi deleniti
+                    ea quibusdam eos eaque, voluptatum nulla perferendis saepe
+                    sit ut vel quaerat obcaecati delectus ullam aliquam unde
+                    vero! Veniam nulla dolorem consequuntur consequatur impedit
+                    architecto, temporibus neque, sunt animi nostrum
+                    voluptatibus commodi. Illo commodi omnis nemo possimus vero
+                    ducimus praesentium optio corrupti, in odit dolorem quam
+                    iste et tempore, voluptatibus beatae.
+                  </p>
+                </div>
+                <!-- mission introduction div ends -->
+                <!-- mission challenge div starts -->
+                <div class="mission-challenge">
+                  <h3 class="intro-txt">Challenge</h3>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Quod nihil modi similique veniam delectus inventore quo
+                    fugit perferendis nulla corporis velit, incidunt doloribus?
+                    Animi ad delectus nostrum porro quod ipsum quos facilis
+                    similique.
+                  </p>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Aliquid fugit consequatur explicabo commodi quasi deleniti
+                    ea quibusdam eos eaque, voluptatum nulla perferendis saepe
+                    sit ut vel quaerat obcaecati delectus ullam aliquam unde
+                    vero! Veniam nulla dolorem consequuntur consequatur impedit
+                    architecto, temporibus neque, sunt animi nostrum
+                    voluptatibus commodi. Illo commodi omnis nemo possimus vero
+                    ducimus praesentium optio corrupti, in odit dolorem quam
+                    iste et tempore, voluptatibus beatae.
+                  </p>
+                </div>
+                <!-- mission challenge div ends -->
+                <!-- mission documents div starts -->
+                <div class="mission-challenge">
+                  <h3 class="intro-txt">Documents</h3>
+                  <div class="container">
+                    <div class="row pl-3 pt-3">
+                      <!-- pdf button starts -->
+                      <div class="col pdf">
+                        <button class="btn docs-button text-lowercase">
+                          <img src="CI Platform Assets/pdf.png" alt="" />
+                          <span>Lorem_ipsum.pdf</span>
+                        </button>
+                      </div>
+                      <!-- pdf button ends -->
+                      <!-- docs button starts -->
+                      <div class="col doc">
+                        <button class="btn docs-button text-lowercase">
+                          <img src="CI Platform Assets/doc.png" alt="" />
+                          <span>Lorem ipsum dolor sit.doc</span>
+                        </button>
+                      </div>
+                      <!-- docs button ends -->
+                      <!-- xls button starts -->
+                      <div class="col xls">
+                        <button class="btn docs-button text-lowercase">
+                          <img src="CI Platform Assets/xlsx.png" alt="" />
+                          <span>important_doc.xls</span>
+                        </button>
+                      </div>
+                      <!-- xls button ends -->
+                    </div>
+                  </div>
+                </div>
+                <!-- mission documents div ends -->
+              </div>
+              <!-- mission details main div ends here -->
+            </div>
+            <!-- div for mission tab details ends here -->
+            <div
+              class="tab-pane fade"
+              id="organization"
+              role="tabpanel"
+              aria-labelledby="organization-tab"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam,
+              optio voluptate nisi, sed nulla voluptas, temporibus incidunt
+              rerum accusantium iusto praesentium quis ea consectetur dolorem?
+              Dolorum delectus voluptate numquam mollitia quasi ipsam ut
+              suscipit ipsa maiores quas, laborum doloribus reiciendis
+              laudantium expedita similique quis totam nobis eveniet adipisci
+              quod quibusdam tempora facere iste. Iste, maxime!
+            </div>
+            <div
+              class="tab-pane fade"
+              id="comments"
+              role="tabpanel"
+              aria-labelledby="comments-tab"
+            >
+              <!-- main container consisting of all comment tab element starts -->
+              <div class="container">
+                <!-- div containing text area starts -->
+                <div class="comment-input">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="Enter your comments.."
+                  ></textarea>
+                </div>
+                <!-- div containing text area ends -->
+                <!-- div containing post button starts here -->
+                <div
+                  class="post-button d-flex align-content-center container mt-3 p-0"
+                >
+                  <button
+                    class="btn post-btn d-flex align-content-center text-lowercase"
+                  >
+                    <span class="pt-1 pb-1 pl-2 pr-2">Post Comment</span>
+                  </button>
+                </div>
+                <!-- div containing post button ends here -->
+                <!-- div containing past comments starts here -->
+                <div class="container mt-3 overflow-auto past-comments">
+                  <!-- div for an individual comment tab starts here -->
+                  <div class="container mt-3 main-comment">
+                    <div class="row">
+                      <!-- col div for img starts here -->
+                      <div class="col-lg-2 col-sm-3 pl-0">
+                        <div class="d-flex m-0 p-0">
+                          <img
+                            src="CI Platform Assets/volunteer1.png"
+                            class="img-fluid volunteer-img"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!-- col div for img ends here -->
+                      <!-- col div for wrapping volunteer details starts -->
+                      <div class="col pl-0">
+                        <div class="container pl-0 pb-3">
+                          <span class="volunteer-name d-block"
+                            >Margaret Walsh</span
+                          >
+                          <span class="comment-date"
+                            >Monday, October 21, 2019. 4:37 PM</span
+                          >
+                        </div>
+                        <div class="container pl-0">
+                          <span class="commented"
+                            >Nice Mission great opportunity for peoples</span
+                          >
+                        </div>
+                      </div>
+                      <!-- col div for wrapping volunteer details ends -->
+                    </div>
+                  </div>
+                  <!-- div for an individual comment tab ends here -->
+                  <!-- div for an individual comment tab starts here -->
+                  <div class="container mt-3 main-comment">
+                    <div class="row">
+                      <!-- col div for img starts here -->
+                      <div class="col-lg-2 col-sm-3 pl-0">
+                        <div class="d-flex m-0 p-0">
+                          <img
+                            src="CI Platform Assets/volunteer2.png"
+                            class="img-fluid volunteer-img"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!-- col div for img ends here -->
+                      <!-- col div for wrapping volunteer details starts -->
+                      <div class="col pl-0">
+                        <div class="container pl-0 pb-3">
+                          <span class="volunteer-name d-block"
+                            >Kathryn Robert</span
+                          >
+                          <span class="comment-date"
+                            >Monday, October 21, 2019. 4:37 PM</span
+                          >
+                        </div>
+                        <div class="container pl-0">
+                          <span class="commented"
+                            >Nice Mission great opportunity for peoples</span
+                          >
+                        </div>
+                      </div>
+                      <!-- col div for wrapping volunteer details ends -->
+                    </div>
+                  </div>
+                  <!-- div for an individual comment tab ends here -->
+                  <!-- div for an individual comment tab starts here -->
+                  <div class="container mt-3 main-comment">
+                    <div class="row">
+                      <!-- col div for img starts here -->
+                      <div class="col-lg-2 col-sm-3 pl-0">
+                        <div class="d-flex m-0 p-0">
+                          <img
+                            src="CI Platform Assets/volunteer3.png"
+                            class="img-fluid volunteer-img"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!-- col div for img ends here -->
+                      <!-- col div for wrapping volunteer details starts -->
+                      <div class="col pl-0">
+                        <div class="container pl-0 pb-3">
+                          <span class="volunteer-name d-block"
+                            >Charles Vigue</span
+                          >
+                          <span class="comment-date"
+                            >Monday, October 21, 2019. 4:37 PM</span
+                          >
+                        </div>
+                        <div class="container pl-0">
+                          <span class="commented"
+                            >Nice Mission great opportunity for peoples</span
+                          >
+                        </div>
+                      </div>
+                      <!-- col div for wrapping volunteer details ends -->
+                    </div>
+                  </div>
+                  <!-- div for an individual comment tab ends here -->
+                  <!-- div for an individual comment tab starts here -->
+                  <div class="container mt-3 main-comment">
+                    <div class="row">
+                      <!-- col div for img starts here -->
+                      <div class="col-lg-2 col-sm-3 pl-0">
+                        <div class="d-flex m-0 p-0">
+                          <img
+                            src="CI Platform Assets/volunteer4.png"
+                            class="img-fluid volunteer-img"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!-- col div for img ends here -->
+                      <!-- col div for wrapping volunteer details starts -->
+                      <div class="col pl-0">
+                        <div class="container pl-0 pb-3">
+                          <span class="volunteer-name d-block"
+                            >Estella Fowels</span
+                          >
+                          <span class="comment-date"
+                            >Monday, October 21, 2019. 4:37 PM</span
+                          >
+                        </div>
+                        <div class="container pl-0">
+                          <span class="commented"
+                            >Nice Mission great opportunity for peoples</span
+                          >
+                        </div>
+                      </div>
+                      <!-- col div for wrapping volunteer details ends -->
+                    </div>
+                  </div>
+                  <!-- div for an individual comment tab ends here -->
+                  <!-- div for an individual comment tab starts here -->
+                  <div class="container mt-3 main-comment">
+                    <div class="row">
+                      <!-- col div for img starts here -->
+                      <div class="col-lg-2 col-sm-3 pl-0">
+                        <div class="d-flex m-0 p-0">
+                          <img
+                            src="CI Platform Assets/volunteer5.png"
+                            class="img-fluid volunteer-img"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!-- col div for img ends here -->
+                      <!-- col div for wrapping volunteer details starts -->
+                      <div class="col pl-0">
+                        <div class="container pl-0 pb-3">
+                          <span class="volunteer-name d-block"
+                            >Raymond Pabon</span
+                          >
+                          <span class="comment-date"
+                            >Monday, October 21, 2019. 4:37 PM</span
+                          >
+                        </div>
+                        <div class="container pl-0">
+                          <span class="commented"
+                            >Nice Mission great opportunity for peoples</span
+                          >
+                        </div>
+                      </div>
+                      <!-- col div for wrapping volunteer details ends -->
+                    </div>
+                  </div>
+                  <!-- div for an individual comment tab ends here -->
+                  <!-- div for an individual comment tab starts here -->
+                  <div class="container mt-3 main-comment">
+                    <div class="row">
+                      <!-- col div for img starts here -->
+                      <div class="col-lg-2 col-sm-3 pl-0">
+                        <div class="d-flex m-0 p-0">
+                          <img
+                            src="CI Platform Assets/volunteer6.png"
+                            class="img-fluid volunteer-img"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!-- col div for img ends here -->
+                      <!-- col div for wrapping volunteer details starts -->
+                      <div class="col pl-0">
+                        <div class="container pl-0 pb-3">
+                          <span class="volunteer-name d-block">Rose Lewis</span>
+                          <span class="comment-date"
+                            >Monday, October 21, 2019. 4:37 PM</span
+                          >
+                        </div>
+                        <div class="container pl-0">
+                          <span class="commented"
+                            >Nice Mission great opportunity for peoples</span
+                          >
+                        </div>
+                      </div>
+                      <!-- col div for wrapping volunteer details ends -->
+                    </div>
+                  </div>
+                  <!-- div for an individual comment tab ends here -->
+                  <!-- div for an individual comment tab starts here -->
+                  <div class="container mt-3 main-comment">
+                    <div class="row">
+                      <!-- col div for img starts here -->
+                      <div class="col-lg-2 col-sm-3 pl-0">
+                        <div class="d-flex m-0 p-0">
+                          <img
+                            src="CI Platform Assets/volunteer7.png"
+                            class="img-fluid volunteer-img"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <!-- col div for img ends here -->
+                      <!-- col div for wrapping volunteer details starts -->
+                      <div class="col pl-0">
+                        <div class="container pl-0 pb-3">
+                          <span class="volunteer-name d-block"
+                            >Travis Steen</span
+                          >
+                          <span class="comment-date"
+                            >Monday, October 21, 2019. 4:37 PM</span
+                          >
+                        </div>
+                        <div class="container pl-0">
+                          <span class="commented"
+                            >Nice Mission great opportunity for peoples</span
+                          >
+                        </div>
+                      </div>
+                      <!-- col div for wrapping volunteer details ends -->
+                    </div>
+                  </div>
+                  <!-- div for an individual comment tab ends here -->
+                </div>
+                <!-- div containing past comments ends here -->
+              </div>
+              <!-- main container consisting of all comment tab element ends -->
+            </div>
+          </div>
+          <!-- div for tab content endss here -->
+          <!-- Tabs content -->
+        </div>
+        <!-- div containing mission-organization-comments tab ends -->
+
+        <div class="col-md mt-5 pt-5 pl-2">
+          <!-- div wrapper for information & recently volunteered starts  -->
+          <div class="container info-wrapper">
+            <!-- div containing information title starts -->
+            <div class="row container-fluid pb-3 m-0 info-div">
+              <div class="col d-flex align-content-center pt-4">
+                <h4 class="Information-txt">Information</h4>
+              </div>
+            </div>
+            <!-- div containing information title ends -->
+            <!-- main body of information starts -->
+            <!-- skills div starts -->
+            <div class="row container-fluid field pb-4 pt-3 m-0">
+              <!-- creating different divs for fields and their values starts -->
+              <div class="col-lg-2">Skills</div>
+              <div class="col-lg">Cool, Easy going, Math, Computer</div>
+              <!-- creating different divs for fields and their values ends -->
+            </div>
+            <!-- skills div ends -->
+            <!-- days div starts -->
+            <div class="row container-fluid field pb-4 pt-3 m-0">
+              <!-- creating different divs for fields and their values starts -->
+              <div class="col-lg-2">Days</div>
+              <div class="col-lg">Weekend Only</div>
+              <!-- creating different divs for fields and their values ends -->
+            </div>
+            <!-- days div ends -->
+            <!-- ratings div starts -->
+            <div class="row container-fluid field pb-4 pt-3 m-0">
+              <!-- creating different divs for fields and their values starts -->
+              <div class="col-lg-2">Ratings</div>
+              <div class="col-lg">
+                <img
+                  class="imfo-rating-star img-fluid"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <img
+                  class="imfo-rating-star"
+                  src="CI Platform Assets/selected-star.png"
+                  alt=""
+                />
+                <span class="rating-detail">(by 125 volunteers)</span>
+              </div>
+              <!-- creating different divs for fields and their values ends -->
+            </div>
+            <!-- ratings div ends -->
+            <!-- main body of information ends -->
+          </div>
+          <!-- div wrapper for information & recently volunteered ends  -->
+          <!-- main recently volunteered div starts here -->
+          <div class="container volunteered mt-5">
+            <h4 class="recently-volunteered-txt pt-4 pl-4 pb-2 mb-3">
+              Recently Volunteered
+            </h4>
+            <!-- main body of recently-voluntered starts here -->
+            <div class="container-fluid volunteered-main">
+              <!-- first row starts  -->
+              <div class="row pt-5 pb-5">
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer1.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer2.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer3.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+              </div>
+              <!-- first row ends -->
+              <!-- second row starts  -->
+              <div class="row pb-5">
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer4.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer5.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer6.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+              </div>
+              <!-- second row ends -->
+              <!-- third row starts  -->
+              <div class="row pb-5">
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer7.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer8.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-flex justify-content-center">
+                    <img
+                      src="CI Platform Assets/volunteer9.png"
+                      class="img-fluid volunteer-img"
+                      alt=""
+                    />
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <span>Andrew Johnson</span>
+                  </div>
+                </div>
+              </div>
+              <!-- third row ends -->
+            </div>
+            <!-- main body of recently-voluntered starts here -->
+            <!-- pagination starts -->
+            <div class="container-fluid">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pg-blue justify-content-center m-0">
+                  <li class="page-item">
+                    <a class="page-link" aria-label="Previous">
+                      <span aria-hidden="true"
+                        ><img src="CI Platform Assets/left.png" alt=""
+                      /></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link">1 - 9 of 25 Recent Volunteers</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" aria-label="Next">
+                      <span aria-hidden="true"
+                        ><img src="CI Platform Assets/right-arrow1.png" alt=""
+                      /></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- pagination ends -->
+          </div>
+          <!-- main recently volunteered div ends here -->
+        </div>
+      </div>
+      <!-- div to wrap mission-organization-comments tab and information and recently voluntered divs ends -->
+      <!-- div wrapping related mission starts -->
+      <div class="container related-mission-wrapper mt-5 pt-5">
+        <h2 class="related-mission-txt">Related Mission</h2>
+        <!-- card row div goes here -->
+        <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 pt-3">
+          <!-- first mission card -->
+          <div class="col p-2 d-flex">
+            <div class="card">
+              <!-- div wrapping img and buttons on it starts -->
+              <div class="img-button p-0 m-0">
+                <img
+                  class="card-img-top"
+                  src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
+                  alt="Card image cap"
+                />
+
+                <div class="city-button bg-dark d-flex pl-2">
+                  <img
+                    class="pin-img"
+                    src="CI Platform Assets/pin.png"
+                    alt=""
+                  />
+                  <span
+                    class="city-txt pb-4 align-content-center justify-content-center"
+                  >
+                    Toronto</span
+                  >
+                </div>
+                <div class="like-button bg-dark d-flex p-2 m-0">
+                  <img
+                    src="CI Platform Assets/heart.png"
+                    class="like-img d-flex"
+                    alt=""
+                  />
+                </div>
+                <div class="share-button bg-dark d-flex p-2 m-0">
+                  <img
+                    src="CI Platform Assets/user.png"
+                    class="share-img d-flex"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <!-- div wrapping img and buttons on it ends -->
+              <div class="mission-theme p-1">
+                <span class="theme-txt">Environment</span>
+              </div>
+
+              <div class="container card-body">
+                <!-- mission title starts here -->
+                <div class="row">
+                  <h5 class="card-title">
+                    Grow Trees On The Path To Environment Sustainability
+                  </h5>
+                </div>
+                <!-- mission title ends here -->
+                <!-- mission text starts here -->
+                <div class="row">
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Praesentium asperiores ex, placeat labore eum dolores?
+                  </p>
+                </div>
+                <!-- mission text starts here -->
+                <!-- mission organization and mission rating wrapper row div starts -->
+                <div class="row mt-3">
+                  <!-- mission organization col div starts -->
+                  <div class="col mission-org">Tree Canada</div>
+                  <!-- mission organization col div ends -->
+                  <!-- rating col div starts -->
+                  <div class="col mission-rating d-flex align-content-center">
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/star.png" alt="" />
+                    <img src="CI Platform Assets/star.png" alt="" />
+                  </div>
+                  <!-- rating col div ends -->
+                </div>
+                <div class="row d-flex justify-content-center mt-4">
+                  <div class="col-1 p-0">
+                    <hr />
+                  </div>
+                  <div
+                    class="col-10 event-period d-flex align-content-center justify-content-center m-0"
+                  >
+                    <span class="event-active p-2"
+                      >From 10/01/2019 To 25/02/2019</span
+                    >
+                  </div>
+                  <div class="col-1 p-0">
+                    <hr />
+                  </div>
+                </div>
+                <!-- mission organization and mission rating wrapper row div ends -->
+                <!-- mission period, seats left and deadline div starts -->
+                <div class="container event-wrapper">
+                  <!-- mission period div starts -->
+
+                  <!-- mission period div ends -->
+                  <!-- seats details and deadline wrapper div row starts here -->
+                  <div
+                    class="row pt-2 pb-3 mt-1 d-flex align-content-center justify-content-center"
+                  >
+                    <div
+                      class="col d-flex align-content-center justify-content-center pl-0"
+                    >
+                      <!-- seats img div starts -->
+                      <div
+                        class="seats-img d-flex justify-content-center align-content-center mr-2"
+                      >
+                        <img
+                          src="CI Platform Assets/Seats-left.png"
+                          class="mission-logo"
+                          alt=""
+                        />
+                      </div>
+                      <!-- seats img div ends -->
+                      <!-- div containing seats details text starts -->
+
+                      <div class="eventt">
+                        <span class="event-num d-block">10</span>
+                        <span class="event-txt">Seats Left</span>
+                      </div>
+
+                      <!-- div containing seats details text ends -->
+                    </div>
+                    <!-- deadline wrapper col div starts -->
+                    <div
+                      class="col d-flex align-content-center justify-content-center"
+                    >
+                      <!-- clock img div starts -->
+                      <div
+                        class="seats-img align-content-center justify-content-center mr-2"
+                      >
+                        <img
+                          src="CI Platform Assets/deadline.png"
+                          class="mission-logo"
+                          alt=""
+                        />
+                      </div>
+                      <!-- clock img div ends -->
+                      <!-- div containing from and to dates starts -->
+
+                      <div class="eventt">
+                        <span class="event-num d-block">09/01/2019</span>
+                        <span class="event-txt">Deadline</span>
+                      </div>
+
+                      <!-- div containing from and to dates ends -->
+                    </div>
+                    <!-- deadline wrapper col div ends -->
+                  </div>
+                  <!-- seats details and deadline wrapper div row ends here -->
+                </div>
+                <!-- mission period, seats left and deadline div ends -->
+
+                <div class="apply-btn-div d-flex p-4">
+                  <button
+                    class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center"
+                  >
+                    <span class="apply-btn-txt"
+                      >Apply&nbsp;
+                      <img src="CI Platform Assets/right-arrow.png" alt=""
+                    /></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- first mission card ends -->
+          <!-- second mission card -->
+          <div class="col p-2 d-flex">
+            <div class="card">
+              <!-- div wrapping img and buttons on it starts -->
+              <div class="img-button p-0 m-0">
+                <img
+                  class="card-img-top"
+                  src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
+                  alt="Card image cap"
+                />
+
+                <div class="city-button bg-dark d-flex pl-2">
+                  <img
+                    class="pin-img"
+                    src="CI Platform Assets/pin.png"
+                    alt=""
+                  />
+                  <span
+                    class="city-txt pb-4 align-content-center justify-content-center"
+                  >
+                    Toronto</span
+                  >
+                </div>
+                <div class="like-button bg-dark d-flex p-2 m-0">
+                  <img
+                    src="CI Platform Assets/heart.png"
+                    class="like-img d-flex"
+                    alt=""
+                  />
+                </div>
+                <div class="share-button bg-dark d-flex p-2 m-0">
+                  <img
+                    src="CI Platform Assets/user.png"
+                    class="share-img d-flex"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <!-- div wrapping img and buttons on it ends -->
+              <div class="mission-theme p-1">
+                <span class="theme-txt">Environment</span>
+              </div>
+
+              <div class="container card-body">
+                <!-- mission title starts here -->
+                <div class="row">
+                  <h5 class="card-title">
+                    Grow Trees On The Path To Environment Sustainability
+                  </h5>
+                </div>
+                <!-- mission title ends here -->
+                <!-- mission text starts here -->
+                <div class="row">
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Praesentium asperiores ex, placeat labore eum dolores?
+                  </p>
+                </div>
+                <!-- mission text starts here -->
+                <!-- mission organization and mission rating wrapper row div starts -->
+                <div class="row mt-3">
+                  <!-- mission organization col div starts -->
+                  <div class="col mission-org">Tree Canada</div>
+                  <!-- mission organization col div ends -->
+                  <!-- rating col div starts -->
+                  <div class="col mission-rating d-flex align-content-center">
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/star.png" alt="" />
+                    <img src="CI Platform Assets/star.png" alt="" />
+                  </div>
+                  <!-- rating col div ends -->
+                </div>
+                <div class="row d-flex justify-content-center mt-4">
+                  <div class="col-1 p-0">
+                    <hr />
+                  </div>
+                  <div
+                    class="col-10 event-period d-flex align-content-center justify-content-center m-0"
+                  >
+                    <span class="event-active p-2"
+                      >From 10/01/2019 To 25/02/2019</span
+                    >
+                  </div>
+                  <div class="col-1 p-0">
+                    <hr />
+                  </div>
+                </div>
+                <!-- mission organization and mission rating wrapper row div ends -->
+                <!-- mission period, seats left and deadline div starts -->
+                <div class="container event-wrapper">
+                  <!-- mission period div starts -->
+
+                  <!-- mission period div ends -->
+                  <!-- seats details and deadline wrapper div row starts here -->
+                  <div
+                    class="row pt-2 pb-3 mt-1 d-flex align-content-center justify-content-center"
+                  >
+                    <div
+                      class="col d-flex align-content-center justify-content-center pl-0"
+                    >
+                      <!-- seats img div starts -->
+                      <div
+                        class="seats-img d-flex justify-content-center align-content-center mr-2"
+                      >
+                        <img
+                          src="CI Platform Assets/Seats-left.png"
+                          class="mission-logo"
+                          alt=""
+                        />
+                      </div>
+                      <!-- seats img div ends -->
+                      <!-- div containing seats details text starts -->
+
+                      <div class="eventt">
+                        <span class="event-num d-block">10</span>
+                        <span class="event-txt">Seats Left</span>
+                      </div>
+
+                      <!-- div containing seats details text ends -->
+                    </div>
+                    <!-- deadline wrapper col div starts -->
+                    <div
+                      class="col d-flex align-content-center justify-content-center"
+                    >
+                      <!-- clock img div starts -->
+                      <div
+                        class="seats-img align-content-center justify-content-center mr-2"
+                      >
+                        <img
+                          src="CI Platform Assets/deadline.png"
+                          class="mission-logo"
+                          alt=""
+                        />
+                      </div>
+                      <!-- clock img div ends -->
+                      <!-- div containing from and to dates starts -->
+
+                      <div class="eventt">
+                        <span class="event-num d-block">09/01/2019</span>
+                        <span class="event-txt">Deadline</span>
+                      </div>
+
+                      <!-- div containing from and to dates ends -->
+                    </div>
+                    <!-- deadline wrapper col div ends -->
+                  </div>
+                  <!-- seats details and deadline wrapper div row ends here -->
+                </div>
+                <!-- mission period, seats left and deadline div ends -->
+
+                <div class="apply-btn-div d-flex p-4">
+                  <button
+                    class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center"
+                  >
+                    <span class="apply-btn-txt"
+                      >Apply&nbsp;
+                      <img src="CI Platform Assets/right-arrow.png" alt=""
+                    /></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- second mission card ends -->
+          <!-- third mission card -->
+          <div class="col p-2 d-flex">
+            <div class="card">
+              <!-- div wrapping img and buttons on it starts -->
+              <div class="img-button p-0 m-0">
+                <img
+                  class="card-img-top"
+                  src="CI Platform Assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
+                  alt="Card image cap"
+                />
+
+                <div class="city-button bg-dark d-flex pl-2">
+                  <img
+                    class="pin-img"
+                    src="CI Platform Assets/pin.png"
+                    alt=""
+                  />
+                  <span
+                    class="city-txt pb-4 align-content-center justify-content-center"
+                  >
+                    Toronto</span
+                  >
+                </div>
+                <div class="like-button bg-dark d-flex p-2 m-0">
+                  <img
+                    src="CI Platform Assets/heart.png"
+                    class="like-img d-flex"
+                    alt=""
+                  />
+                </div>
+                <div class="share-button bg-dark d-flex p-2 m-0">
+                  <img
+                    src="CI Platform Assets/user.png"
+                    class="share-img d-flex"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <!-- div wrapping img and buttons on it ends -->
+              <div class="mission-theme p-1">
+                <span class="theme-txt">Environment</span>
+              </div>
+
+              <div class="container card-body">
+                <!-- mission title starts here -->
+                <div class="row">
+                  <h5 class="card-title">
+                    Grow Trees On The Path To Environment Sustainability
+                  </h5>
+                </div>
+                <!-- mission title ends here -->
+                <!-- mission text starts here -->
+                <div class="row">
+                  <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Praesentium asperiores ex, placeat labore eum dolores?
+                  </p>
+                </div>
+                <!-- mission text starts here -->
+                <!-- mission organization and mission rating wrapper row div starts -->
+                <div class="row mt-3">
+                  <!-- mission organization col div starts -->
+                  <div class="col mission-org">Tree Canada</div>
+                  <!-- mission organization col div ends -->
+                  <!-- rating col div starts -->
+                  <div class="col mission-rating d-flex align-content-center">
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/selected-star.png" alt="" />
+                    <img src="CI Platform Assets/star.png" alt="" />
+                    <img src="CI Platform Assets/star.png" alt="" />
+                  </div>
+                  <!-- rating col div ends -->
+                </div>
+                <div class="row d-flex justify-content-center mt-4">
+                  <div class="col-1 p-0">
+                    <hr />
+                  </div>
+                  <div
+                    class="col-10 event-period d-flex align-content-center justify-content-center m-0"
+                  >
+                    <span class="event-active p-2"
+                      >From 10/01/2019 To 25/02/2019</span
+                    >
+                  </div>
+                  <div class="col-1 p-0">
+                    <hr />
+                  </div>
+                </div>
+                <!-- mission organization and mission rating wrapper row div ends -->
+                <!-- mission period, seats left and deadline div starts -->
+                <div class="container event-wrapper">
+                  <!-- mission period div starts -->
+
+                  <!-- mission period div ends -->
+                  <!-- seats details and deadline wrapper div row starts here -->
+                  <div
+                    class="row pt-2 pb-3 mt-1 d-flex align-content-center justify-content-center"
+                  >
+                    <div
+                      class="col d-flex align-content-center justify-content-center pl-0"
+                    >
+                      <!-- seats img div starts -->
+                      <div
+                        class="seats-img d-flex justify-content-center align-content-center mr-2"
+                      >
+                        <img
+                          src="CI Platform Assets/Seats-left.png"
+                          class="mission-logo"
+                          alt=""
+                        />
+                      </div>
+                      <!-- seats img div ends -->
+                      <!-- div containing seats details text starts -->
+
+                      <div class="eventt">
+                        <span class="event-num d-block">10</span>
+                        <span class="event-txt">Seats Left</span>
+                      </div>
+
+                      <!-- div containing seats details text ends -->
+                    </div>
+                    <!-- deadline wrapper col div starts -->
+                    <div
+                      class="col d-flex align-content-center justify-content-center"
+                    >
+                      <!-- clock img div starts -->
+                      <div
+                        class="seats-img align-content-center justify-content-center mr-2"
+                      >
+                        <img
+                          src="CI Platform Assets/deadline.png"
+                          class="mission-logo"
+                          alt=""
+                        />
+                      </div>
+                      <!-- clock img div ends -->
+                      <!-- div containing from and to dates starts -->
+
+                      <div class="eventt">
+                        <span class="event-num d-block">09/01/2019</span>
+                        <span class="event-txt">Deadline</span>
+                      </div>
+
+                      <!-- div containing from and to dates ends -->
+                    </div>
+                    <!-- deadline wrapper col div ends -->
+                  </div>
+                  <!-- seats details and deadline wrapper div row ends here -->
+                </div>
+                <!-- mission period, seats left and deadline div ends -->
+
+                <div class="apply-btn-div d-flex p-4">
+                  <button
+                    class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center"
+                  >
+                    <span class="apply-btn-txt"
+                      >Apply&nbsp;
+                      <img src="CI Platform Assets/right-arrow.png" alt=""
+                    /></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- third mission card ends -->
+        </div>
+        <!-- card row div ends -->
+      </div>
+      <!-- div wrapping related mission ends -->
+    </div>
+  </body>
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+  ></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+</html>

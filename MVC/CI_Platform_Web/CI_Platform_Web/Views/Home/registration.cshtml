@@ -1,7 +1,8 @@
+@using CI_Platform.Entities.Data;
 @{
     ViewData["Title"] = "Registration Form";
 }
-
+@model User
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -150,6 +151,7 @@
         </header>
 
         <div class="row reg-div">
+            <form method="post" asp-action="registration" asp-controller="Home">
           <div class="flex-item mb-3">
             <label for="fname" class="form-label">First Name</label>
             <input
@@ -198,6 +200,7 @@
 
           <div class="flex-item mb-3">
             <label for="password" class="form-label">Confirm Password</label>
+            <span></span>
             <input
               type="password"
               class="form-control"
@@ -221,6 +224,7 @@
           <p class="flex-item text-center para-text">
             Already Registered?<a class="text.primary text-decoration-none" asp-controller="Home" asp-action="Index">Login Now</a>
           </p>
+          </form>
         </div>
         <div class="row footer">
           <div class="d-flex justify-content-around h-50">

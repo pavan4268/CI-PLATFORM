@@ -19,4 +19,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CI_Platform.Models\CI_Platform.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

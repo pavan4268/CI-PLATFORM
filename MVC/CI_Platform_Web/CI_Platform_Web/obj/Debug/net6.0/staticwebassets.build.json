@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "x41hm0WB7mnxxCapWF8xWkM1VH7KW/E9zpBLAVSpbIk=",
+  "Hash": "9D0FBXxUGtSJpN7rv1YvXNozf+h8EF2p284E5ZU/smw=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -1936,6 +1936,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\VolunteeringMissionPage.css",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "css/VolunteeringMissionPage.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\VolunteeringMissionPage.css"
     },
     {
       "Identity": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\favicon.ico",

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Repository.Interface
 {
-    public interface ILoginRepository
+    public interface IRegistrationRepository
     {
-         Task<IEnumerable<User>> getuser();
-        Task<User> AuthenticateUser(string email, string password);
+        add(User user);
+        Save(User user);
     }
 }

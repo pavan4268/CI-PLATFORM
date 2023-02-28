@@ -1,7 +1,16 @@
-﻿@{
+﻿
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+@model CI_Platform.Entities.Data.ViewModels.LoginVm
+@if (TempData["alert"] != null)
+{
+    <script>
+        alert("@TempData["alert"]);
+    </script>
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,38 +140,42 @@
                 <!-- <div class="text-center">
                     <img src="../images/Assets/logo.png" />
                   </div> -->
-
-                <div class="flex-item mb-3">
-                    <label for="emailadd" class="form-label">Email address</label>
+                  <form method="post" asp-controller="Home" asp-action="Index">
+                        <div class="flex-item mb-3">
+                            <label for="emailadd" asp-for="Email" class="form-label">Email address</label>
                     
-                    <input type="email"
-                        
-                           class="form-control"
-                           id="emailadd"
-                           placeholder="evan.donohue@gmail.com" />
-                </div>
+                            <input type="email" asp-for="Email"
+                                        required
+                                   class="form-control"
+                                   id="emailadd"
+                                   placeholder="evan.donohue@gmail.com" />
+                                   <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
 
-                <div class="flex-item mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password"
-                           class="form-control"
-                           id="password"
-                           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
-                </div>
+                        <div class="flex-item mb-3">
+                            <label for="password" asp-for="Password" class="form-label">Password</label>
+                            <input type="password" asp-for="Password" required
+                
+                                   class="form-control"
+                                   id="password"
+                                   placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                                   <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
 
-                <button type="flex-item submit"
-                        class="btn btn-outline-warning mb-3"
-                        id="login">
-                    Login
-                </button>
+                        <input type="submit"
+                                class="flex-item btn btn-outline-warning mb-3"
+                                id="login" value="Login">
+                           
+                </form>
 
                 <a class="text-decoration-none link-dark" asp-controller="Home" asp-action="forgot">
-                    <p class="flex-item fs-6">Lost your password?</p>
-                </a>
+                            <p class="flex-item fs-6">Lost your password?</p>
+                        </a>
 
-                <p class="flex-item fs-6">
-                    Don't have an account?<a class="text.primary text-decoration-none" asp-controller="Home" asp-action="registration">Create an account</a>
-                </p>
+                        <p class="flex-item fs-6">
+                            Don't have an account?<a class="text.primary text-decoration-none" asp-controller="Home" asp-action="registration">Create an account</a>
+                        </p>
+                
             </div>
             <div class="row footer">
                 <div class="d-flex justify-content-around h-50">

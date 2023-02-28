@@ -1,2 +1,157 @@
-﻿body {
+#explore-txt {
+  max-width: 82px;
+  max-height: 38px;
+  text-align: left;
+}
+.card {
+  max-width: 460px;
+  /* max-height: 618px; */
+}
+.card-title {
+  max-width: 353px;
+  /* max-height: 70px; */
+}
+.card-text {
+  font-weight: 100;
+  max-width: 395px;
+  /* max-height: 66px; */
+}
+
+.mission-theme {
+  margin-top: -15px;
+  text-align: center;
+  border-radius: 100px;
+  background-color: #ffffff;
+  width: 127px;
+  height: 35px;
+  justify-content: center;
+  z-index: 2;
+  align-self: center;
+  /* margin-left: 30%; */
+}
+.star-rating {
+  width: 21px;
+  height: 20px;
+}
+.theme-txt {
+  max-width: 60px;
+  max-height: 22px;
+}
+.img-button {
+  position: relative;
+}
+.city-button {
+  width: 117px;
+  height: 35px;
+  opacity: 50%;
+  align-items: center;
+  top: 15px;
+  right: 15px;
+  /* left: 328px; */
+  position: absolute;
+  border-radius: 100px;
+}
+.pin-img {
+  width: 15px;
+  height: 20px;
+}
+.city-txt {
+  width: 70px;
+  height: 19px;
+  text-align: center;
+  /* text-align: justify; */
+  letter-spacing: 0px;
+  color: #ffffff;
+  text-align: center;
+  font-size: small;
+}
+.like-button {
+  max-width: 42px;
+  max-height: 42px;
+  opacity: 50%;
+  border-radius: 100px;
+  right: 8px;
+  bottom: 59px;
+  position: absolute;
+  align-items: center;
+}
+.like-img {
+  max-width: 23px;
+  max-height: 20px;
+}
+.share-button {
+  max-width: 42px;
+  max-height: 42px;
+  opacity: 50%;
+  border-radius: 100px;
+  right: 8px;
+  bottom: 10px;
+  position: absolute;
+  align-items: center;
+}
+.card-body {
+  height: fit-content;
+}
+.rating {
+  justify-content: flex-end;
+}
+.mission-period {
+  text-align: center;
+  border-radius: 100px;
+  background-color: #ffffff;
+  width: 273px;
+  height: 35px;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  margin-bottom: -20px;
+  z-index: 2;
+}
+.mission-period-txt {
+  width: 234px;
+  height: 20px;
+  text-align: center;
+  justify-content: center;
+  letter-spacing: 0px;
+  color: #414141;
+}
+.org-rating {
+  max-height: 22px;
+}
+.org-name {
+  max-width: 139px;
+}
+.apply-btn {
+  width: 133px;
+  height: 48px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 2px solid #f88634;
+  border-radius: 24px;
+  text-decoration: none;
+}
+.apply-btn-txt {
+  color: #f88634;
+}
+#seat-img {
+  width: 25px;
+  height: 25px;
+}
+#clock-img {
+  width: 25px;
+  height: 25px;
+}
+.seats-details {
+  max-width: 127px;
+  max-height: 45px;
+}
+.event-deadline {
+  max-width: 96px;
+  max-height: 45px;
+}
+.progress {
+  max-width: 100%;
+  max-height: 7px;
+}
+.progress-bar {
+  background-color: #f88634;
 }
