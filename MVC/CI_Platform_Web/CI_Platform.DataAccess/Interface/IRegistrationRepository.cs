@@ -9,7 +9,7 @@ namespace CI_Platform.Repository.Interface
 {
     public interface IRegistrationRepository
     {
-        add(User user);
-        Save(User user);
+        //add(User user);
+        //Save(User user);
     }
 }

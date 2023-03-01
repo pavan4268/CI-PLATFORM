@@ -5,6 +5,10 @@ using CI_Platform.Repository.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//email
+//var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+//builder.Services.AddSingleton(emailConfig);
+//email
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CiPlatformDbContext>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();    

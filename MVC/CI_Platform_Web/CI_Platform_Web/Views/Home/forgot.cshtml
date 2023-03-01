@@ -1,7 +1,7 @@
 @{
         ViewData["Title"] = "Forgot Password";
 }
-
+@model CI_Platform.Entities.Data.User
 
     <!DOCTYPE html>
     <html lang="en">
@@ -130,7 +130,7 @@
                 </header>
 
                 <div class="row user-input-div">
-
+                    <form method="post" asp-action="forgot" asp-controller="Home">
                     <p class="flex-item fs-6">Forgot Password</p>
                     <p class="flex-item fs-6">
                         Enter your email address you've using for your account below and we
@@ -141,6 +141,7 @@
                         <label for="emailadd" class="form-label">Email address</label>
                         <input type="email"
                                class="form-control"
+                               asp-for="Email"
                                id="emailadd"
                                placeholder="Enter your email address..." />
                     </div>
@@ -151,8 +152,10 @@
                             formaction="#">
                         Reset Password
                     </button>
-
+                </form>
                     <a class="text-decoration-none link-dark" asp-controller="Home" asp-action="Index"><p class="flex-item fs-6">Login</p></a>
+               
+                
                 </div>
                 <div class="row footer">
                     <div class="d-flex justify-content-around h-50">

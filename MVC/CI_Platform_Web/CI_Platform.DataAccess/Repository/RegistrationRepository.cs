@@ -18,13 +18,13 @@ namespace CI_Platform.Repository.Repository
         {
             _ciPlatformDbContext = ciPlatformDbContext;
         }
-        public void add(User user)
-        {
-            _ciPlatformDbContext.Users.Add(user);
-        }
-        public void Save(User user) 
-        {
-            _ciPlatformDbContext.SaveChanges();
-        }
+        //public void add(User user)
+        //{
+        //    _ciPlatformDbContext.Users.Add(user);
+        //}
+        //public void Save(User user) 
+        //{
+        //    _ciPlatformDbContext.SaveChanges();
+        //}
     }
 }

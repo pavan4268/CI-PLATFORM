@@ -1,8 +1,8 @@
-@using CI_Platform.Entities.Data;
+
 @{
     ViewData["Title"] = "Registration Form";
 }
-@model User
+@model CI_Platform.Entities.Data.ViewModels.RegistrationVm
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,6 +16,24 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
       rel="stylesheet"
     />
+    <script>
+        var check = function () 
+        {
+            if (document.getElementById('password').value==document.getElementById('cnfpassword').value)
+            {
+                document.getElementById('message').style.display='none';
+                
+            
+            }
+            else
+            {
+                document.getElementById('message').style.display='red';
+                document.getElementById('message').innerHTML='not matching'
+            }
+
+        }
+                                
+    </script>
   </head>
 
   <body>
@@ -153,40 +171,46 @@
         <div class="row reg-div">
             <form method="post" asp-action="registration" asp-controller="Home">
           <div class="flex-item mb-3">
-            <label for="fname" class="form-label">First Name</label>
+            <label for="fname" asp-for="FirstName" class="form-label">First Name</label>
             <input
               type="text"
               class="form-control"
               id="fname"
-              placeholder="evan"
+              asp-for="FirstName"
+              placeholder="evan" required
             />
           </div>
           <div class="flex-item mb-3">
-            <label for="lname" class="form-label">Last Name</label>
+            <label for="lname" asp-for="LastName" class="form-label">Last Name</label>
             <input
               type="text"
               class="form-control"
               id="lname"
-              placeholder="donohue"
+              asp-for="LastName"
+              placeholder="donohue" required
             />
           </div>
           <div class="flex-item mb-3">
-            <label for="phone-no" class="form-label">Phone Number</label>
+            <label for="phone-no" asp-for="PhoneNumber" class="form-label">Phone Number</label>
             <input
               type="text"
               class="form-control"
               id="phone-no"
-              placeholder="123456789"
+              asp-for="PhoneNumber"
+              placeholder="123456789" required
+              
             />
           </div>
           <div class="flex-item mb-3">
-            <label for="emailadd" class="form-label">Email address</label>
+            <label for="emailadd" asp-for ="Email" class="form-label">Email address</label>
             <input
               type="email"
               class="form-control"
               id="emailadd"
-              placeholder="evan.donohue@gmail.com"
+              asp-for="Email"
+              placeholder="evan.donohue@gmail.com" required
             />
+            <span asp-validation-for="Email" class="text-danger"></span>
           </div>
           <div class="flex-item mb-3">
             <label for="password" class="form-label">Password</label>
@@ -194,8 +218,10 @@
               type="password"
               class="form-control"
               id="password"
-              placeholder="************"
+              asp-for="Password"
+              placeholder="************" required
             />
+            <span asp-validation-for="Password" class="text-danger"></span>
           </div>
 
           <div class="flex-item mb-3">
@@ -204,17 +230,19 @@
             <input
               type="password"
               class="form-control"
-              id="password"
-              placeholder="************"
+              id="cnfpassword"
+              placeholder="************" required
+              onkeyup="check()"
             />
+            <span asp-validation-for="Password" class="text-danger"></span>
           </div>
 
           <button
-            type="flex-item submit"
-            class="btn btn-outline-warning mb-3"
+            type="submit"
+            class="btn btn-outline-warning flex-item mb-3"
             id="login"
           >
-            Login
+            Sign Up
           </button>
 
                 <a class="text-decoration-none link-dark" asp-controller="Home" asp-action="forgot">
@@ -242,6 +270,10 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
-    ></script>
+    >
+        </script>
+        
   </body>
+        
+        
 </html>
