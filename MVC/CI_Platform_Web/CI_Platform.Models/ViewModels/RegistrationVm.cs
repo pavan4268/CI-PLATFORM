@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CI_Platform.Entities.Data.ViewModels
+namespace CI_Platform.Entities.ViewModels
 {
     public class RegistrationVm
     {

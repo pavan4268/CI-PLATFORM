@@ -1,9 +1,10 @@
 ﻿using CI_Platform.Entities;
 using CI_Platform.Entities.CIPlatformDbContext;
 using CI_Platform.Entities.Data;
-using CI_Platform.Entities.Data.ViewModels;
+using CI_Platform.Entities.ViewModels;
 using CI_Platform.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Asn1.Crmf;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Xml.Linq;
@@ -50,7 +51,7 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult reset()
         {
-            return RedirectToAction("Index");
+            return View();
         }
 
         // Login 
@@ -132,7 +133,7 @@ namespace CI_Platform_Web.Controllers
                 {
                     string token = Guid.NewGuid().ToString();
                     string email = obj.Email;
-                    var link = Url.ActionLink("reset", "Home", new { Email = email, Token = token });
+                    var link = Url.ActionLink("reset", "Home", new { Email =email, Token = token });
                     MailMessage newMail = new MailMessage();
                     SmtpClient client = new SmtpClient("smtp.gmail.com");   
                     newMail.From = new MailAddress("ciplatform333@gmail.com","CI Platform");
@@ -144,8 +145,16 @@ namespace CI_Platform_Web.Controllers
                     client.Port = 587;
                     client.Credentials = new System.Net.NetworkCredential("ciplatform333@gmail.com", "jbdxshjsnfhyimnp");
                     client.Send(newMail);
-                    Console.WriteLine("Email sent to Registered User");
+                    
 
+
+                     var  data = new PasswordReset()
+                    {
+                        Email = email,
+                        Token = token
+                    };
+                    _db.PasswordResets.Add(data);
+                    _db.SaveChanges();
 
                 }
                 catch(Exception ex)
@@ -157,6 +166,25 @@ namespace CI_Platform_Web.Controllers
             return View();
         }
         //forgot password
+
+        //reset password
+        [HttpGet]
+        public IActionResult Reset(string Email, string Token)
+        {
+            ResetVm vm = new ResetVm()
+            { Email = Email, Token = Token };
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Reset(ResetVm obj)
+        {
+            
+            return View();
+        }
+      
+        //reset password
     }
 }
 //else

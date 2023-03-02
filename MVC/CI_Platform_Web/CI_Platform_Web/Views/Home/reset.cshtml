@@ -1,7 +1,7 @@
 @{
     ViewData["Title"] = "Reset Password";
 }
-
+@model CI_Platform.Entities.Data.User
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reset Password</title>
-    <link href="css/login.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/login.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
       rel="stylesheet"
@@ -143,47 +143,51 @@
         <header>
          
         </header>
+            <form method="post" asp-action="reset" asp-controller="Home">
+                <div class="row user-input-div">
+                
+                      <p class="flex-item fs-5 mt-2">New Password</p>
+                      <p class="flex-item para-text">
+                        Please enter a new password in the fields below.
+                      </p>
+                      <div class="flex-item mb-3">
+                        <label for="password" class="form-label">New Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          asp-for="Password"
+                      
+                          id="password"
+                          placeholder="************"
+                        />
+                      </div>
 
-        <div class="row user-input-div">
+                      <div class="flex-item mb-3">
+                        <label for="password" class="form-label"
+                          >Confirm New Password</label
+                        >
+                        <input
+                          type="password"
+                          
+                          class="form-control"
+                          id="password2"
+                          placeholder="************"
+                        />
+                      </div>
+
+                      <button
+                        type="flex-item submit"
+                        class="btn btn-outline-warning mb-3"
+                        id="login"
+                      >
+                        Change Password
+                      </button>
+                    </form>
+                  <a class="text-decoration-none link-dark" asp-controller="Home" asp-action="Index">
+                    <p class="flex-item fs-6">Login</p>
+                  </a>
+              </div>
         
-          <p class="flex-item fs-5 mt-2">New Password</p>
-          <p class="flex-item para-text">
-            Please enter a new password in the fields below.
-          </p>
-          <div class="flex-item mb-3">
-            <label for="password" class="form-label">New Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="************"
-            />
-          </div>
-
-          <div class="flex-item mb-3">
-            <label for="password" class="form-label"
-              >Confirm New Password</label
-            >
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder="************"
-            />
-          </div>
-
-          <button
-            type="flex-item submit"
-            class="btn btn-outline-warning mb-3"
-            id="login"
-          >
-            Change Password
-          </button>
-
-          <a class="text-decoration-none link-dark" asp-controller="Home" asp-action="Index">
-            <p class="flex-item fs-6">Login</p>
-          </a>
-        </div>
         <div class="row footer">
           <div class="d-flex justify-content-around h-50">
             <div class="footer para-text">
@@ -195,7 +199,8 @@
         
         </div>
       </div>
-    </div>
+      </div>
+    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

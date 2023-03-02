@@ -66,7 +66,7 @@ public partial class CiPlatformDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=(local);Database=CI_PlatformDB; Persist Security Info=False ;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True; Trusted_Connection=True ;Connection Timeout=30;");
+        => optionsBuilder.UseSqlServer("Data Source=(local); Database=CI_PlatformDB; Trusted_Connection=True; TrustServerCertificate = True; MultipleActiveResultSets=False;Encrypt=False;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -684,10 +684,15 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<PasswordReset>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("password_reset");
+            entity.HasKey(e => e.Token).HasName("PK_password_reset_1");
 
+            entity.ToTable("password_reset");
+
+            entity.Property(e => e.Token)
+                .HasMaxLength(191)
+                .IsUnicode(false)
+                .HasDefaultValueSql("('None')")
+                .HasColumnName("token");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -697,11 +702,6 @@ public partial class CiPlatformDbContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValueSql("('None')")
                 .HasColumnName("email");
-            entity.Property(e => e.Token)
-                .HasMaxLength(191)
-                .IsUnicode(false)
-                .HasDefaultValueSql("('None')")
-                .HasColumnName("token");
         });
 
         modelBuilder.Entity<Skill>(entity =>

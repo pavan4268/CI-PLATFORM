@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Index - Copy.cshtml" />
-    <Content Remove="Views\Home\reset.cshtml" />
+    
     
  
   </ItemGroup>

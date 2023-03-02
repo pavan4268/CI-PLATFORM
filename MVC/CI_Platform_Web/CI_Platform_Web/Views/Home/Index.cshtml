@@ -1,10 +1,11 @@
-﻿
+﻿@using CI_Platform.Entities.ViewModels;
+
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-@model CI_Platform.Entities.Data.ViewModels.LoginVm
+@model LoginVm
 @if (TempData["alert"] != null)
 {
     <script>
