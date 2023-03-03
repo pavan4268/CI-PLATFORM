@@ -18,24 +18,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
       rel="stylesheet"
     />
-    <script>
-        var check = function () 
-        {
-            if (document.getElementById('password').value==document.getElementById('cnfpassword').value)
-            {
-                document.getElementById('message').style.display='none';
-                
-            
-            }
-            else
-            {
-                document.getElementById('message').style.display='red';
-                document.getElementById('message').innerHTML='not matching'
-            }
-
-        }
-                                
-    </script>
+    
   </head>
 
   <body>
@@ -179,7 +162,7 @@
               class="form-control"
               id="fname"
               asp-for="FirstName"
-              placeholder="evan" required
+              placeholder="evan" 
             />
           </div>
           <div class="flex-item mb-3">
@@ -189,7 +172,7 @@
               class="form-control"
               id="lname"
               asp-for="LastName"
-              placeholder="donohue" required
+              placeholder="donohue" 
             />
           </div>
           <div class="flex-item mb-3">
@@ -199,7 +182,7 @@
               class="form-control"
               id="phone-no"
               asp-for="PhoneNumber"
-              placeholder="123456789" required
+              placeholder="123456789" 
               
             />
           </div>
@@ -210,7 +193,7 @@
               class="form-control"
               id="emailadd"
               asp-for="Email"
-              placeholder="evan.donohue@gmail.com" required
+              placeholder="evan.donohue@gmail.com" 
             />
             <span asp-validation-for="Email" class="text-danger"></span>
           </div>
@@ -221,7 +204,7 @@
               class="form-control"
               id="password"
               asp-for="Password"
-              placeholder="************" required
+              placeholder="************" 
             />
             <span asp-validation-for="Password" class="text-danger"></span>
           </div>
@@ -233,7 +216,7 @@
               type="password"
               class="form-control"
               id="cnfpassword"
-              placeholder="************" required
+              placeholder="************" 
               onkeyup="check()"
             />
             <span asp-validation-for="Password" class="text-danger"></span>
@@ -273,6 +256,21 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     >
+        </script>
+        <script>
+            var check = function () {
+                if (document.getElementById('password').value == document.getElementById('cnfpassword').value) {
+                    document.getElementById('message').style.display = 'none';
+
+
+                }
+                else {
+                    document.getElementById('message').style.display = 'red';
+                    document.getElementById('message').innerHTML = 'not matching'
+                }
+
+            }
+
         </script>
         
   </body>

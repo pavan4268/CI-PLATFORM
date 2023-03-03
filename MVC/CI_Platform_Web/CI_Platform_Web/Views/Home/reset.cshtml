@@ -1,8 +1,8 @@
 @{
     ViewData["Title"] = "Reset Password";
 }
-@model CI_Platform.Entities.Data.User
-
+@*@model CI_Platform.Entities.Data.User*@
+@model CI_Platform.Entities.ViewModels.ResetVm
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -143,7 +143,7 @@
         <header>
          
         </header>
-            <form method="post" asp-action="reset" asp-controller="Home">
+            <form method="post">
                 <div class="row user-input-div">
                 
                       <p class="flex-item fs-5 mt-2">New Password</p>

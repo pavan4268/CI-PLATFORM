@@ -3,11 +3,13 @@ using CI_Platform.Entities.CIPlatformDbContext;
 using CI_Platform.Entities.Data;
 using CI_Platform.Entities.ViewModels;
 using CI_Platform.Repository.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Asn1.Crmf;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Xml.Linq;
+using static System.Net.WebRequestMethods;
 
 namespace CI_Platform_Web.Controllers
 {
@@ -69,6 +71,7 @@ namespace CI_Platform_Web.Controllers
                     if (issuccess != null)
                     {
                         //TempData["success"] = "login successful";
+                        HttpContext.Session.SetString("FirstName", obj.FirstName + " " + obj.LastName);
                         return RedirectToAction("PlatformLanding", "Mission");
                     }
                     else
@@ -174,14 +177,27 @@ namespace CI_Platform_Web.Controllers
             ResetVm vm = new ResetVm()
             { Email = Email, Token = Token };
 
-            return View();
+            return View(vm);
         }
 
         [HttpPost]
         public IActionResult Reset(ResetVm obj)
         {
+            var verify = _db.PasswordResets.Any(a=> a.Email == obj.Email && a.Token == obj.Token);
+            if (verify == true)
+            {
+                var newpass = _db.Users.FirstOrDefault(a => a.Email == obj.Email);
+                newpass.Password = obj.Password;
+                _db.Users.Update(newpass);
+                _db.SaveChanges(true);
+                var tokenreset = _db.PasswordResets.Where(a => a.Token == obj.Token).FirstOrDefault();
+                _db.PasswordResets.Remove(tokenreset);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
             
-            return View();
+            return View(obj);
         }
       
         //reset password

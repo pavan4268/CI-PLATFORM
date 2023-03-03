@@ -6,6 +6,7 @@ namespace CI_Platform_Web.Controllers
     {
         public IActionResult Index()
         {
+            HttpContent.
             return View();
         }
         public IActionResult PlatformLanding()
