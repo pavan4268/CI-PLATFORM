@@ -1,3 +1,9 @@
+@{
+    var FirstName = ViewBag.FirstName;
+
+}
+@model CI_Platform.Entities.ViewModels.FilterVm
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,6 +41,7 @@
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/HomePage.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/VolunteeringMissionPage.css" />
+
   </head>
 
   <body>
@@ -111,7 +118,7 @@
                                              class="rounded-circle"
                                              height="22"
                                              alt="Portrait of a Woman"
-                                             loading="lazy" />&nbsp; @TempData["Fi"]
+                                             loading="lazy" />&nbsp; @FirstName;
                                     </a>
                                     <ul class="dropdown-menu"
                                         aria-labelledby="navbarDropdownMenuLink">
@@ -170,30 +177,11 @@
                                 <!-- Left links -->
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <!-- Navbar dropdown -->
-                                    <li class="nav-item dropdown col">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="#"
-                                           id="navbarDropdown"
-                                           role="button"
-                                           data-mdb-toggle="dropdown"
-                                           aria-expanded="false">
-                                            Country
-                                        </a>
-                                        <!-- Dropdown menu -->
-                                        <ul class="dropdown-menu"
-                                            aria-labelledby="navbarDropdown">
-                                            <li>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                   
+                                       <select id = "CountryList">
+                                           <option>---Select Country---</option>
+                                       </select>
+                                   
                                     <!-- nav-bar dropdown ends -->
                                     <!-- Navbar dropdown -->
                                     <li class="nav-item dropdown col">
@@ -208,17 +196,10 @@
                                         <!-- Dropdown menu -->
                                         <ul class="dropdown-menu"
                                             aria-labelledby="navbarDropdown">
-                                            <li>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </li>
-                                        </ul>
+                                           
+                                           
+
+                                            </ul>
                                     </li>
                                     <!-- nav-bar dropdown ends -->
                                     <!-- Navbar dropdown -->
@@ -492,7 +473,7 @@
                       class="seats-img d-flex justify-content-center align-content-center mr-2"
                     >
                       <img
-                        src="CI Platform Assets/Seats-left.png"
+                        src="~/CI Platform Assets/Seats-left.png"
                         class="mission-logo"
                         alt=""
                       />
@@ -1593,9 +1574,13 @@
         </ul>
       </nav>
     </div>
-  </body>
+    </body> 
 
   <!-- MDB -->
+    <script src = "~/lib/jquery/dist/jquery.js" asp-append-version="true"
+></script>
+  <script src = "~/js/Cascade.js" asp-append-version="true"
+></script>
   <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
@@ -1621,4 +1606,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+ 
+
+
 </html>

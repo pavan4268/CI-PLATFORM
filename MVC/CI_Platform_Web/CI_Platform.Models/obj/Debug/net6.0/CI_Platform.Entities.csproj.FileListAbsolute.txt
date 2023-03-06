@@ -12,3 +12,17 @@ C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\De
 C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.pdb
 C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.genruntimeconfig.cache
 C:\Users\PAVAN\Desktop\CI Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\ref\CI_Platform.Entities.dll
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.deps.json
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.runtimeconfig.json
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.dll
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\bin\Debug\net6.0\CI_Platform.Entities.pdb
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.csproj.AssemblyReference.cache
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.AssemblyInfoInputs.cache
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.AssemblyInfo.cs
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.csproj.CoreCompileInputs.cache
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.dll
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\refint\CI_Platform.Entities.dll
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.pdb
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\CI_Platform.Entities.genruntimeconfig.cache
+D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform.Models\obj\Debug\net6.0\ref\CI_Platform.Entities.dll

@@ -66,13 +66,13 @@ public partial class CiPlatformDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(local); Database=CI_PlatformDB; Trusted_Connection=True; TrustServerCertificate = True; MultipleActiveResultSets=False;Encrypt=False;");
+        => optionsBuilder.UseSqlServer("Data Source=PCA221\\SQL2019;DataBase=CI_PLatformDB;User ID=sa;Password=tatva123; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Admin>(entity =>
         {
-            entity.HasKey(e => e.AdminId).HasName("PK__admin__43AA4141E7091042");
+            entity.HasKey(e => e.AdminId).HasName("PK__admin__43AA4141A8C42E3F");
 
             entity.ToTable("admin");
 
@@ -109,7 +109,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Banner>(entity =>
         {
-            entity.HasKey(e => e.BannerId).HasName("PK__banner__10373C34AFEDD8F7");
+            entity.HasKey(e => e.BannerId).HasName("PK__banner__10373C34677EE1F2");
 
             entity.ToTable("banner");
 
@@ -139,7 +139,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<City>(entity =>
         {
-            entity.HasKey(e => e.CityId).HasName("PK__city__031491A8DA85C4F7");
+            entity.HasKey(e => e.CityId).HasName("PK__city__031491A8ECECF1A5");
 
             entity.ToTable("city");
 
@@ -171,7 +171,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<CmsPage>(entity =>
         {
-            entity.HasKey(e => e.CmsPageId).HasName("PK__cms_page__B46D5B52AA62A95F");
+            entity.HasKey(e => e.CmsPageId).HasName("PK__cms_page__B46D5B522F9C2380");
 
             entity.ToTable("cms_page");
 
@@ -205,7 +205,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Comment>(entity =>
         {
-            entity.HasKey(e => e.CommentId).HasName("PK__comment__E7957687D3C70B8F");
+            entity.HasKey(e => e.CommentId).HasName("PK__comment__E7957687C62B36D0");
 
             entity.ToTable("comment");
 
@@ -245,7 +245,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Country>(entity =>
         {
-            entity.HasKey(e => e.CountryId).HasName("PK__country__7E8CD055EECAFF2F");
+            entity.HasKey(e => e.CountryId).HasName("PK__country__7E8CD05504B130FF");
 
             entity.ToTable("country");
 
@@ -274,7 +274,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<FavoriteMission>(entity =>
         {
-            entity.HasKey(e => e.FavoriteMissionId).HasName("PK__favorite__B4CF3312C0503559");
+            entity.HasKey(e => e.FavoriteMissionId).HasName("PK__favorite__B4CF3312AB083AE5");
 
             entity.ToTable("favorite_mission");
 
@@ -309,7 +309,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<GoalMission>(entity =>
         {
-            entity.HasKey(e => e.GoalMissionId).HasName("PK__goal_mis__358E02C7A0A88DA3");
+            entity.HasKey(e => e.GoalMissionId).HasName("PK__goal_mis__358E02C7543FCE7D");
 
             entity.ToTable("goal_mission");
 
@@ -343,7 +343,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Mission>(entity =>
         {
-            entity.HasKey(e => e.MissionId).HasName("PK__mission__B5419AB2C8C7A16D");
+            entity.HasKey(e => e.MissionId).HasName("PK__mission__B5419AB2C9C8B688");
 
             entity.ToTable("mission");
 
@@ -365,6 +365,9 @@ public partial class CiPlatformDbContext : DbContext
             entity.Property(e => e.DeletedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("deleted_at");
+            entity.Property(e => e.Description)
+                .HasColumnType("text")
+                .HasColumnName("description");
             entity.Property(e => e.EndDate)
                 .HasColumnType("datetime")
                 .HasColumnName("end_date");
@@ -417,7 +420,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<MissionApplication>(entity =>
         {
-            entity.HasKey(e => e.MissionApplicationId).HasName("PK__mission___DF92838A10B7E060");
+            entity.HasKey(e => e.MissionApplicationId).HasName("PK__mission___DF92838A3BE6F52C");
 
             entity.ToTable("mission_application");
 
@@ -459,7 +462,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<MissionDocument>(entity =>
         {
-            entity.HasKey(e => e.MissionDocumentId).HasName("PK__mission___E80E0CC8A327CA65");
+            entity.HasKey(e => e.MissionDocumentId).HasName("PK__mission___E80E0CC8682584AA");
 
             entity.ToTable("mission_document");
 
@@ -499,7 +502,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<MissionInvite>(entity =>
         {
-            entity.HasKey(e => e.MissionInviteId).HasName("PK__mission___A97ED158EF48E208");
+            entity.HasKey(e => e.MissionInviteId).HasName("PK__mission___A97ED15891DD8AFA");
 
             entity.ToTable("mission_invite");
 
@@ -542,7 +545,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<MissionMedium>(entity =>
         {
-            entity.HasKey(e => e.MissionMediaId).HasName("PK__mission___848A78E867282935");
+            entity.HasKey(e => e.MissionMediaId).HasName("PK__mission___848A78E8C5EEB3C7");
 
             entity.ToTable("mission_media");
 
@@ -585,7 +588,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<MissionRating>(entity =>
         {
-            entity.HasKey(e => e.MissionRatingId).HasName("PK__mission___320E5172C779C3A2");
+            entity.HasKey(e => e.MissionRatingId).HasName("PK__mission___320E5172A0C224B3");
 
             entity.ToTable("mission_rating");
 
@@ -623,7 +626,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<MissionSkill>(entity =>
         {
-            entity.HasKey(e => e.MissionSkillId).HasName("PK__mission___82712008931FDB91");
+            entity.HasKey(e => e.MissionSkillId).HasName("PK__mission___8271200879B27E1A");
 
             entity.ToTable("mission_skill");
 
@@ -658,7 +661,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<MissionTheme>(entity =>
         {
-            entity.HasKey(e => e.MissionThemeId).HasName("PK__mission___4925C5AC3F54072B");
+            entity.HasKey(e => e.MissionThemeId).HasName("PK__mission___4925C5AC5E7BBC8F");
 
             entity.ToTable("mission_theme");
 
@@ -684,7 +687,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<PasswordReset>(entity =>
         {
-            entity.HasKey(e => e.Token).HasName("PK_password_reset_1");
+            entity.HasKey(e => e.Token).HasName("PK__password__CA90DA7BE111B046");
 
             entity.ToTable("password_reset");
 
@@ -706,7 +709,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Skill>(entity =>
         {
-            entity.HasKey(e => e.SkillId).HasName("PK__skill__FBBA8379B6904CF4");
+            entity.HasKey(e => e.SkillId).HasName("PK__skill__FBBA8379216BB1CE");
 
             entity.ToTable("skill");
 
@@ -732,7 +735,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Story>(entity =>
         {
-            entity.HasKey(e => e.StoryId).HasName("PK__story__66339C5619B3CB3F");
+            entity.HasKey(e => e.StoryId).HasName("PK__story__66339C56F7605801");
 
             entity.ToTable("story");
 
@@ -782,7 +785,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<StoryInvite>(entity =>
         {
-            entity.HasKey(e => e.StoryInviteId).HasName("PK__story_in__04497867C769798A");
+            entity.HasKey(e => e.StoryInviteId).HasName("PK__story_in__0449786796B8D769");
 
             entity.ToTable("story_invite");
 
@@ -825,7 +828,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<StoryMedium>(entity =>
         {
-            entity.HasKey(e => e.StoryMediaId).HasName("PK__story_me__29BD053CBA6CF28D");
+            entity.HasKey(e => e.StoryMediaId).HasName("PK__story_me__29BD053C79451CEA");
 
             entity.ToTable("story_media");
 
@@ -861,7 +864,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Timesheet>(entity =>
         {
-            entity.HasKey(e => e.TimesheetId).HasName("PK__timeshee__7BBF5068FBFD72A4");
+            entity.HasKey(e => e.TimesheetId).HasName("PK__timeshee__7BBF506849C98809");
 
             entity.ToTable("timesheet");
 
@@ -909,7 +912,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__user__B9BE370F6C3BE9F6");
+            entity.HasKey(e => e.UserId).HasName("PK__user__B9BE370F64679600");
 
             entity.ToTable("user");
 
@@ -994,7 +997,7 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<UserSkill>(entity =>
         {
-            entity.HasKey(e => e.UserSkillId).HasName("PK__user_ski__FD3B576B8BAE0769");
+            entity.HasKey(e => e.UserSkillId).HasName("PK__user_ski__FD3B576BD733ECBC");
 
             entity.ToTable("user_skill");
 

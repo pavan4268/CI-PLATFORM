@@ -13,7 +13,7 @@ public partial class Timesheet
 
     public TimeSpan? Time { get; set; }
 
-    public int? Action { get; set; }
+    public long? Action { get; set; }
 
     public DateTime DateVolunteered { get; set; }
 

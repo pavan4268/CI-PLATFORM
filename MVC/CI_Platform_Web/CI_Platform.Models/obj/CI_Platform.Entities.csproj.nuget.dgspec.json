@@ -1,20 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj": {}
+    "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj": {
+    "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj",
+        "projectUniqueName": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj",
         "projectName": "CI_Platform.Entities",
-        "projectPath": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj",
-        "packagesPath": "C:\\Users\\PAVAN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PAVAN\\Desktop\\CI Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\obj\\",
+        "projectPath": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\CI_Platform.Entities.csproj",
+        "packagesPath": "C:\\Users\\pca221\\.nuget\\packages\\",
+        "outputPath": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform.Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PAVAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pca221\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -75,8 +80,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -85,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
