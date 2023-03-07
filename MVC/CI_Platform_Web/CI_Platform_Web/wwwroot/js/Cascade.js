@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
-    alert('ok');
+    
     GetCountry();
+    GetMissionThemes();
+    GetMissionSkillList();
     $('#CountryList').change(function () {
         var id = $(this).val();
         $('#CityList').empty();
@@ -24,6 +26,29 @@ function GetCountry(){
         success: function (result) {
             $.each(result, function (i, data) {
                 $('#CountryList').append('<Option value=' + data.countryId + '>' + data.name + '</Option>');
+            });
+        }
+    });
+}
+
+function GetMissionThemes() {
+    $.ajax({
+        url: '/Mission/Theme',
+        success: function (result) {
+            $.each(result, function (i, data) {
+                $('#MissionThemeList').append('<Option value=' + data.missionThemeId + '>' + data.title + '</Option>');
+            });
+        }
+    });
+}
+
+
+function GetMissionSkillList() {
+    $.ajax({
+        url: '/Mission/Skills',
+        success: function (result) {
+            $.each(result, function (i, data) {
+                $('#MissionSkillList').append('<Option value=' + data.skillId + '>' + data.skillName + '</Option>');
             });
         }
     });

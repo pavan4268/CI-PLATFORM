@@ -13,6 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CiPlatformDbContext>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();    
 builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
+builder.Services.AddScoped<IMissionCard, MissionCard>();
 
 var app = builder.Build();
 
