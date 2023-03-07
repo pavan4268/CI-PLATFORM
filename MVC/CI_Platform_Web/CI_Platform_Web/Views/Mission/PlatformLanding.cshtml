@@ -385,11 +385,11 @@
         </div>
       </div>
 
-      @*<div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 pt-3">*@
-          <div class = "container d-flex">
+      <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 pt-3 justify-content-center">
+         
         <!-- first mission card -->
         @foreach(var card in Model){
-        <div class="col card p-2 d-flex">
+        <div class="col card p-2 m-2 d-flex">
           
             <!-- div wrapping img and buttons on it starts -->
             <div class="img-button p-0 m-0">
@@ -430,7 +430,7 @@
             <div class="container card-body">
               <!-- mission title starts here -->
               <div class="row">
-                <h5 class="card-title">
+                <h5 class="card-title" id="missiontitle">
                   @card.Title
                 </h5>
               </div>
@@ -465,7 +465,7 @@
                   class="col-10 event-period d-flex align-content-center justify-content-center m-0"
                 >
                   <span class="event-active p-2"
-                    >@card.StartDate + @card.EndDate</span
+                    >@card.StartDate - @card.EndDate</span
                   >
                 </div>
                 <div class="col-1 p-0">
