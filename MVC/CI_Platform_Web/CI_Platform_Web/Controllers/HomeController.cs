@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
 
+
 namespace CI_Platform_Web.Controllers
 {
     public class HomeController : Controller
@@ -19,15 +20,17 @@ namespace CI_Platform_Web.Controllers
         //private readonly ILoginRepository _loginuser;
         //private readonly IRegistrationRepository _registration;
         private readonly CiPlatformDbContext _db;
+        private readonly IHttpContextAccessor _contextAccessor;
         //public HomeController(ILogger<HomeController> logger)
         //{
         //    _logger = logger;
         //}
-        public HomeController(/*ILoginRepository loginuser, *//*IRegistrationRepository registration,*/ CiPlatformDbContext db)
+        public HomeController(/*ILoginRepository loginuser, *//*IRegistrationRepository registration,*/ CiPlatformDbContext db, IHttpContextAccessor contextAccessor)
         {
             //_loginuser = loginuser;
             //_registration = registration;
             _db = db;
+            _contextAccessor = contextAccessor;
         }
 
 
@@ -56,6 +59,17 @@ namespace CI_Platform_Web.Controllers
             return View();
         }
 
+
+        //logout
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("FirstName");
+            return RedirectToAction("Index");
+        }
+
+        //logout
+
         // Login 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -67,11 +81,14 @@ namespace CI_Platform_Web.Controllers
                 {
                     var a = obj.Email;
                     var b = obj.Password;
+                    //var firstname = obj.FirstName;
+                    //var lastname = obj.LastName;    
+                    //var name = firstname + " " + lastname;    
                     var issuccess = _db.Users.FirstOrDefault(c => c.Email == a && c.Password == b);
                     if (issuccess != null)
                     {
                         //TempData["success"] = "login successful";
-                        HttpContext.Session.SetString("FirstName", obj.FirstName + " " + obj.LastName);
+                        _contextAccessor.HttpContext.Session.SetString("FirstName", issuccess.FirstName + " " + issuccess.LastName);
                         return RedirectToAction("PlatformLanding", "Mission");
                     }
                     else
@@ -201,7 +218,14 @@ namespace CI_Platform_Web.Controllers
         }
       
         //reset password
+
+       
     }
+                //logout
+
+               
+
+                //logout
 }
 //else
 //                {

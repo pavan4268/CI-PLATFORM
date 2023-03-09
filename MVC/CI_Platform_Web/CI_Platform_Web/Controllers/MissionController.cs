@@ -56,15 +56,13 @@ namespace CI_Platform_Web.Controllers
        
         public IActionResult PlatformLanding()
         {
-            //if (HttpContext.Session.GetString("FirstName") != null)
-            //{
-            //    ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
-            //    return View(ViewBag);   
-            //}
 
-            var cardmodel = _missionCard.GetMissions();
-            return View(cardmodel);
-           
+            if (HttpContext.Session.GetString("FirstName") != null)
+            {
+                var cardmodel = _missionCard.GetMissions();
+                return View(cardmodel);
+            }
+            return RedirectToAction("Index" , "Home");
         }
        
    

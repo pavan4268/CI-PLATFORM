@@ -53,3 +53,24 @@ function GetMissionSkillList() {
         }
     });
 }
+
+
+
+
+//$(document).ready(function () {
+
+//    $('input[type=checkbox][id=countrylist]').change(function () {
+//        var selectCountry = $('input[type=checkbox][id=countrylist]:checked').map(function () {
+//            return $(this).val();
+//        }).get();
+
+//        if (selectCountry.length > 0) {
+//            $('.card').hide();
+//            $.each(selectCountry, function (index, value) {
+//                $('.card:contains("' + value + '")').show();
+//            });
+//        } else {
+//            $('.card').show();
+//        }
+//    });
+//});
