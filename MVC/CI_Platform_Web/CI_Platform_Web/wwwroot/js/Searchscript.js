@@ -1,4 +1,4 @@
-﻿alert("ok");
+﻿
 var input = document.querySelector('#myInput');/*to find input*/
 var cards = document.querySelectorAll('.card');/*return all cards*/
 var cardTitle = document.querySelectorAll('#missiontitle');/*to fetch mision titles*/
@@ -32,3 +32,7 @@ function search() {
         //}
     }
 }
+
+
+
+

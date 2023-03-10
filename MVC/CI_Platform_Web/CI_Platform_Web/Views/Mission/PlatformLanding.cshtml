@@ -41,6 +41,7 @@
     />
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/HomePage.css" rel="stylesheet" />
+    <link rel="stylesheet" href = "~/css/HomePageListView.css" />
     <link rel="stylesheet" href="~/css/VolunteeringMissionPage.css" />
     
   </head>
@@ -71,7 +72,7 @@
           </p>
         </div>
 
-        <div class="col-6 p-0 m-0 d-flex justify-content-end">
+        <div class="col p-0 m-0 d-flex justify-content-end align-content-center">
           <!-- Sorting drop down -->
 
           <div class="dropdown p-0 mr-4">
@@ -96,61 +97,22 @@
 
           <!-- list and grid view start -->
 
-          <div
-            class="btn-group btn-group-toggle h-75 justify-content-center"
-            data-toggle="buttons"
-          >
-            <label class="btn active">
-              <input
-                type="radio"
-                name="options"
-                id="option1"
-                autocomplete="off"
-                checked
-              />
+         <div class = " d-flex column-gap-2 justify-content-end">
+             <a onclick="gridview()">
+                 <img src ="~/assets/grid.png">
+             </a>
+              <a onclick="listview()">
+                 <img src ="~/assets/list.png">
+             </a>
 
-              <!-- grid img -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-grid"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"
-                />
-              </svg>
-
-              <!-- grid img over -->
-            </label>
-            <label class="btn">
-              <input
-                type="radio"
-                name="options"
-                id="option2"
-                autocomplete="off"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-list"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-            </label>
-          </div>
+         </div>
         </div>
       </div>
+      
+      @*grid view container starts here*@
 
-      <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 pt-3 justify-content-center" id="gridviewcontainer">
+      <div id = "gridviewcontainer">
+      <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 pt-3 justify-content-center">
          
         <!-- first mission card -->
         @foreach(var card in Model){
@@ -315,6 +277,8 @@
         </div>
         }
         </div>
+        </div>
+        
         <!-- first mission card ends -->
         <!--  -->
        
@@ -444,13 +408,208 @@
           </div>
         </div>*@
 
-        <!-- third mission card -->
+       @* <!-- third mission card -->
         <!-- second mission row -->
         <!-- third mission row -->
 
         
        
-        <!-- Third Mission card -->
+        <!-- Third Mission card -->*@
+
+
+        @*list view div starts*@
+
+        <div class="container" id="listviewcontainer" style = "display:none">
+
+            <div class="card-list mb-3" style="max-width: 100%">
+                <div class="row g-0 d-flex">
+                  <div class="col-md-4 col-xl-3 mr-2" id="image-div">
+                    <img
+                      src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+                      class="rounded-start w-100 h-100"
+                      alt="..."
+                    />
+                    <div class="city-button bg-dark d-flex pl-2">
+                      <img class="pin-img" src="~/assets/pin.png" alt="" />
+                      <span
+                        class="city-txt pb-4 align-content-center justify-content-center"
+                      >
+                        Toronto</span
+                      >
+                    </div>
+                    <div
+                      class="like-buttonn p-2 justify-content-center bg-dark d-flex m-0 align-items-center ms-auto"
+                    >
+                      <img
+                        class="d-flex like-img"
+                        src="~/assets/heart.png"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="share-buttonn p-2 justify-content-center bg-dark d-flex m-0 align-items-center ms-auto"
+                    >
+                      <img
+                        class="d-flex like-img"
+                        src="~/assets/user.png"
+                        alt=""
+                      />
+                    </div>
+                    <div class="mission-theme-list p-1">
+                      <span class="theme-txt">Environment</span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <div class="upper-content d-flex">
+                        <div class="city-button-list d-flex mr-4">
+                          <img
+                            class="pin-img d-flex"
+                            src="~/assets/pin1.png"
+                            alt=""
+                          />
+                          <span
+                            class="city-txt-list pb-4 align-content-center justify-content-center"
+                          >
+                            &nbsp; Toronto</span
+                          >
+                        </div>
+                        <div class="city-button-list d-flex">
+                          <img
+                            class="pin-img d-flex"
+                            src="~/assets/pin1.png"
+                            alt=""
+                          />
+                          <span
+                            class="city-txt-list pb-4 align-content-center justify-content-center"
+                          >
+                            &nbsp; Environment</span
+                          >
+                        </div>
+
+                        <div class="org-name-list d-flex col">
+                          <img
+                            class="pin-img d-flex"
+                            src="~/assets/organization.png"
+                            alt=""
+                          />&nbsp; Tree Canada
+                        </div>
+
+                        <div class="rating d-flex col">
+                          <img
+                            class="img-fluid star-rating"
+                            src="~/assets/selected-star.png"
+                            alt=""
+                          />
+                          <img
+                            class="img-fluid star-rating"
+                            src="~/assets/selected-star.png"
+                            alt=""
+                          />
+                          <img
+                            class="img-fluid star-rating"
+                            src="~/assets/selected-star.png"
+                            alt=""
+                          />
+                          <img
+                            class="img-fluid star-rating"
+                            src="~/assets/star.png"
+                            alt=""
+                          />
+                          <img
+                            class="img-fluid star-rating"
+                            src="~/assets/star.png"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <h5 class="card-title-list">
+                        Grow Trees On The Path To Environment Sustainability
+                      </h5>
+                      <p class="card-text-list">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Praesentium asperiores ex, placeat labore eum dolores?
+                      </p>
+                      <div class="col d-flex">
+                        <div class="seats d-flex align-items-center col-3">
+                          <div class="seats-img">
+                            <img
+                              src="~/assets/Seats-left.png"
+                              class="img-fluid"
+                              id="seat-img"
+                              alt=""
+                            />
+                          </div>
+                          <div class="seats-details pl-2">
+                            <span class="d-block seat-num">10</span>
+                            <span class="seats-txt">Seats Left</span>
+                          </div>
+                        </div>
+                        <div class="date d-flex align-items-center col-3">
+                          <div class="clock-img">
+                            <img
+                              src="~/assets/hours.png"
+                              id="clock-img"
+                              alt=""
+                            />
+                          </div>
+                          <div class="event-deadline pl-2">
+                            <span class="d-block d-date">09/01/2019</span>
+                            <span class="deadline-txt">Deadline</span>
+                          </div>
+                        </div>
+                        <div class="claendar d-flex align-items-center col-3">
+                          <div class="calendar-img">
+                            <img
+                              src="~/assets/calender.png"
+                              id="clock-img"
+                              alt=""
+                            />
+                          </div>
+                          <div class="mission-period-list pl-2">
+                            <span class="d-block d-date">From 10/01/2019</span>
+                            <span class="deadline-txt">Until 25/01/2019</span>
+                          </div>
+                        </div>
+                        <div class="skills-list d-flex align-items-center col-2">
+                          <div class="skills-img">
+                            <img
+                              src="~/assets/calender.png"
+                              id="clock-img"
+                              alt=""
+                            />
+                          </div>
+                          <div class="mission-period-list pl-2">
+                            <span class="d-block d-date">Skills</span>
+                            <span class="deadline-txt">Botany</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="details-btn align-content-center d-flex w-100 p-0">
+                        <button class="view-details-btn ms-auto">
+                          <a
+                            class="text-decoration-none view-details-link d-flex p-1"
+                            href="#"
+                          >
+                            <span class="view-details-txt"
+                              >View Details &nbsp;<img
+                                src="~/assets/right-arrow.png"
+                                alt=""
+                            /></span>
+                          </a>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+       </div>
+
+        </div>
+
+
+       @* list view div ends*@
+
       
       </div>
       <nav aria-label="Page navigation example">
@@ -474,16 +633,15 @@
           <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
       </nav>
-    </div>
+    @*</div>*@
   
-    </body> 
+    
 
   <!-- MDB -->
     <script src = "~/lib/jquery/dist/jquery.js" asp-append-version="true"
 ></script>
   <script src = "~/js/Cascade.js" asp-append-version="true"
 ></script>
- <script src = "~/js/Searchscript.js"></script>
 
   <script
     type="text/javascript"
@@ -511,6 +669,23 @@
     crossorigin="anonymous"
   ></script>
  
-
+ <script src = "~/js/Searchscript.js"></script>
+ <script>
+// var listview = document.getElementById("listviewcontainer");
+//listview.style.display = "none";
+function gridview(){
+    var listview = document.getElementById("listviewcontainer");
+    var gridview = document.getElementById("gridviewcontainer");
+    ////listview.style.display = "none!important";
+    gridview.style.display = "block";
+}
+function listview(){
+    var listview = document.getElementById("listviewcontainer");
+    var gridview = document.getElementById("gridviewcontainer");
+    listview.style.display = "block";
+    gridview.style.display = "none";
+}
+ </script>
+ </body> 
 
 </html>
