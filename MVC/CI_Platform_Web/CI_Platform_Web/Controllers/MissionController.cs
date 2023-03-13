@@ -54,13 +54,28 @@ namespace CI_Platform_Web.Controllers
 
 
        
-        public IActionResult PlatformLanding()
+        public IActionResult PlatformLanding(int pg=1)
         {
 
             if (HttpContext.Session.GetString("FirstName") != null)
             {
                 var cardmodel = _missionCard.GetMissions();
-                return View(cardmodel);
+
+                const int pagesize = 3;
+                if (pg < 1)
+                {
+                    pg = 1;
+                }
+
+                int recsCount = cardmodel.Count();
+                 var pager = new Pager(recsCount,pg,pagesize);
+                int recSkip = (pg - 1) * pagesize;
+                var data = cardmodel.Skip(recSkip).Take(pager.PageSize).ToList();
+                this.ViewBag.Pager = pager;
+                return View(data);
+
+
+                //return View(cardmodel);
             }
             return RedirectToAction("Index" , "Home");
         }

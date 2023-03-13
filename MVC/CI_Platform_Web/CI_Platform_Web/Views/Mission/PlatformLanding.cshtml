@@ -1,6 +1,14 @@
 @using CI_Platform.Entities.ViewModels
 @{
     var FirstName = ViewBag.FirstName;
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+
 
 }
 @model List<MissionVm>
@@ -54,9 +62,9 @@
     <div class="container-fluid col-10">
       <!-- Sorting, grid view and list view -->
 
-      <div class="row m-0 p-0 pt-5 container-fluid align-content-center">
-        <div class="col-6 d-flex align-items-center p-0">
-          <p class="container pt-2 p-0">
+      <div class="row d-flex  pb-0 pt-5 mx-lg-5 align-content-center">
+        <div class="col-lg-6 col d-flex align-items-center p-0 m-0">
+          <p class="cont pt-2 p-0">
             <span style="max-width: 82px; max-height: 38px; font-weight: 100"
               >Explore
             </span>
@@ -421,14 +429,19 @@
 
         <div class="container" id="listviewcontainer" style = "display:none">
 
+
+
+            @*card div starts herree*@
             <div class="card-list mb-3" style="max-width: 100%">
                 <div class="row g-0 d-flex">
+                    @*image section div starts here*@
                   <div class="col-md-4 col-xl-3 mr-2" id="image-div">
                     <img
                       src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
                       class="rounded-start w-100 h-100"
                       alt="..."
                     />
+                    @*city div starts here*@
                     <div class="city-button bg-dark d-flex pl-2">
                       <img class="pin-img" src="~/assets/pin.png" alt="" />
                       <span
@@ -437,6 +450,8 @@
                         Toronto</span
                       >
                     </div>
+                    @*city div ends here*@
+                    @*add to favourite div starts here*@
                     <div
                       class="like-buttonn p-2 justify-content-center bg-dark d-flex m-0 align-items-center ms-auto"
                     >
@@ -446,6 +461,8 @@
                         alt=""
                       />
                     </div>
+                    @*add to favourite div ends here*@
+                    @*recommend to a co-worker div starts*@
                     <div
                       class="share-buttonn p-2 justify-content-center bg-dark d-flex m-0 align-items-center ms-auto"
                     >
@@ -455,14 +472,20 @@
                         alt=""
                       />
                     </div>
+                    @*recommend to a co-worker div ends*@
+                    @*mission theme div starts*@
                     <div class="mission-theme-list p-1">
                       <span class="theme-txt">Environment</span>
                     </div>
+                    @*mission theme div ends*@
                   </div>
-
+                  @*image section div ends here*@
+                  @*card details div starts here*@
                   <div class="col-md-8">
                     <div class="card-body">
+                        @*div containing city, organization, theme and rating details starts*@
                       <div class="upper-content d-flex">
+                          @*city div starts*@
                         <div class="city-button-list d-flex mr-4">
                           <img
                             class="pin-img d-flex"
@@ -475,6 +498,8 @@
                             &nbsp; Toronto</span
                           >
                         </div>
+                        @*city div ends*@
+                        @*theme div starts*@
                         <div class="city-button-list d-flex">
                           <img
                             class="pin-img d-flex"
@@ -487,7 +512,8 @@
                             &nbsp; Environment</span
                           >
                         </div>
-
+                        @*theme div ends*@
+                        @*organization div starts*@
                         <div class="org-name-list d-flex col">
                           <img
                             class="pin-img d-flex"
@@ -495,7 +521,8 @@
                             alt=""
                           />&nbsp; Tree Canada
                         </div>
-
+                        @*organization div ends*@
+                        @*rating div starts*@
                         <div class="rating d-flex col">
                           <img
                             class="img-fluid star-rating"
@@ -523,15 +550,25 @@
                             alt=""
                           />
                         </div>
+                        @*rating div ends*@
                       </div>
+                      @*div containing city, organization, theme and rating details ends*@
+
+
+                      @*mission title starts*@
                       <h5 class="card-title-list">
                         Grow Trees On The Path To Environment Sustainability
                       </h5>
+                      @*mission title ends*@
+                      @*mission short description starts*@
                       <p class="card-text-list">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                         Praesentium asperiores ex, placeat labore eum dolores?
                       </p>
+                      @*mission short description ends*@
+                      @*div wrappiing date, seats, skills and deadline starts here *@
                       <div class="col d-flex">
+                          @*seats div starts*@
                         <div class="seats d-flex align-items-center col-3">
                           <div class="seats-img">
                             <img
@@ -546,6 +583,8 @@
                             <span class="seats-txt">Seats Left</span>
                           </div>
                         </div>
+                        @*seats div ends*@
+                        @*deadline div starts here*@
                         <div class="date d-flex align-items-center col-3">
                           <div class="clock-img">
                             <img
@@ -559,6 +598,8 @@
                             <span class="deadline-txt">Deadline</span>
                           </div>
                         </div>
+                        @*deadline div ends here*@
+                        @*mission period div starts*@
                         <div class="claendar d-flex align-items-center col-3">
                           <div class="calendar-img">
                             <img
@@ -572,6 +613,8 @@
                             <span class="deadline-txt">Until 25/01/2019</span>
                           </div>
                         </div>
+                        @*mission period div ends*@
+                        @*skills div starts*@
                         <div class="skills-list d-flex align-items-center col-2">
                           <div class="skills-img">
                             <img
@@ -585,7 +628,10 @@
                             <span class="deadline-txt">Botany</span>
                           </div>
                         </div>
+                        @*skills div ends*@
                       </div>
+                      @*div wrappiing date, seats, skills and deadline ends here *@
+                      @*apply button div starts here*@
                       <div class="details-btn align-content-center d-flex w-100 p-0">
                         <button class="view-details-btn ms-auto">
                           <a
@@ -600,10 +646,13 @@
                           </a>
                         </button>
                       </div>
+                      @*apply button div ends here*@
                     </div>
                   </div>
+                  @*card details div ends here*@
             </div>
        </div>
+       @*card div ends here*@
 
         </div>
 
@@ -612,27 +661,65 @@
 
       
       </div>
+
+
+      @*pagination starts*@
       <nav aria-label="Page navigation example">
+          @if (pager.TotalPages > 0)
+            {
         <ul
           class="pagination d-flex align-content-center justify-content-center"
         >
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                @if(pager.CurrentPage > 1)
+                {
+                    <li class = "page-item">
+                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "1">First</a>
+                    </li>
+                    <li class = "page-item">
+                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.CurrentPage - 1)">Previous</a>
+                    </li>
+                }
+
+
+
+
+           @*
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
+          </li>*@
+                @for(var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                   
+                <li class="page-item @(pge == pager.CurrentPage ?  "active" : "")"><a class="page-link" asp-controller="Mission" asp-action = "PlatformLanding" asp-route-pg="@pge">@pge</a></li>
+          
+                }
+
+
+                @if(pager.CurrentPage < pager.TotalPages)
+                {
+                    <li class = "page-item">
+                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.CurrentPage + 1)">Next</a>
+                    </li>
+                    <li class = "page-item">
+                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.TotalPages)">Last</a>
+                    </li>
+                }
+
+         @* <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>*@
+
+          
         </ul>
+         }
       </nav>
+      @*pagination ends*@
     @*</div>*@
   
     
