@@ -27,14 +27,14 @@ namespace CI_Platform.Repository.Repository
             var themes = _db.MissionThemes.ToList();
             var goalMissions = _db.GoalMissions.ToList();
             var missionRatings = _db.MissionRatings.ToList();
-
+            
             foreach (var mission in missions)
             {
                 City city = _db.Cities.Where(e => e.CityId == mission.CityId).FirstOrDefault();
                 MissionTheme missionTheme = _db.MissionThemes.Where(e => e.MissionThemeId == mission.ThemeId).FirstOrDefault();
                 string[] startdatetime = mission.StartDate.ToString().Split(' ');
                 string[] enddatetime = mission.EndDate.ToString().Split(' ');
-
+                
                 if (city != null)
                 {
                     var cardview = new MissionVm
@@ -49,7 +49,13 @@ namespace CI_Platform.Repository.Repository
                         Img = "~/assets/Grow-Trees-On-the-path-to-environment-sustainability.png",
                         Rating = 3,
                         NumberOfSeats = 10,
-                        Deadline = enddatetime[0]
+                        Deadline = enddatetime[0],
+                        CreatedAt = mission.CreatedAt,
+                        MissionType = mission.MissionType,
+                        Seats = (int)mission.TotalSeats,
+                        
+                        AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count(),
+
                     };
                     getmissions.Add(cardview);
                 }

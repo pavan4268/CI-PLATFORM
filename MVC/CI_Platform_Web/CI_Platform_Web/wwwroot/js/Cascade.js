@@ -16,6 +16,18 @@
             }
         });
     });
+    //$('#searchButton'.on("click", function () {
+    //    var inputvalue = $("#InputField").val();
+    //    $.ajax({
+    //        url: controller / IDBTransaction
+    //        data: { controller_parameter: inputvalue }
+    //        success: function (result) {
+
+    //        }
+    //    })
+    //})
+
+    //})
 
 });
 
@@ -74,3 +86,39 @@ function GetMissionSkillList() {
 //        }
 //    });
 //});
+
+
+// sorting js goes here
+document.getElementById("selectsort").addEventListener("change", function () {
+
+    sortFunction(document.getElementById("selectsort").value);
+
+});
+function sortFunction(sortvalue) {
+    let url = window.location.href;
+    let seprator = url.indexOf('?') !== -1 ? '&' : '?';
+    if (url.includes("sortby=")) {
+        url = url.replace(/sortby=([^&]*)/, 'sortby=' + sortvalue);
+    }
+    else {
+        url += seprator + 'sortby=' + sortvalue;
+    }
+    window.location.href = url;
+}
+// sorting js ends here
+
+
+//search script goes here
+
+//var debounceTimer;
+
+//function debounce(func , delay) {
+//    clearTimeout(debounceTimer);
+//    debounceTimer = setTimeout(func , delay);
+//}
+
+//document.getElementById("myInput").addEventListener("input", function () {
+
+//})
+
+//search script ends here

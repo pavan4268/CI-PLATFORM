@@ -29,5 +29,13 @@ namespace CI_Platform.Entities.ViewModels
         public int NumberOfSeats { get; set; }
 
         public string Deadline { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public int Seats { get; set; }
+
+        public int AvailableSeats { get; set; }
+
+        public string MissionType { get; set; }
     }
 }
