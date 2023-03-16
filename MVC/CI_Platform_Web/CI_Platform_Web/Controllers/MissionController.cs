@@ -12,15 +12,17 @@ namespace CI_Platform_Web.Controllers
     {
         private readonly CiPlatformDbContext _db;
         private readonly IMissionCard _missionCard;
+        private readonly IVolunteerMissionCard _volunteerMissionCard;
 
        
 
        
 
-        public MissionController(CiPlatformDbContext db, IMissionCard missionCard)
+        public MissionController(CiPlatformDbContext db, IMissionCard missionCard, IVolunteerMissionCard volunteerMissionCard)
         {
             _db = db;
             _missionCard = missionCard;
+            _volunteerMissionCard = volunteerMissionCard;
         }
 
         //filter dropdowns
@@ -202,11 +204,12 @@ namespace CI_Platform_Web.Controllers
 
 
 
-        public IActionResult VolunteeringMissionPage(int? id)
+        public IActionResult VolunteeringMissionPage(long? id)
         {
             var missionid = _db.Missions.FirstOrDefault(x=>x.MissionId == id);
             ViewBag.missionid = id;
-            return View();  
+            var mission = _volunteerMissionCard.GetMission(id);
+            return View(mission);  
         }
        
    

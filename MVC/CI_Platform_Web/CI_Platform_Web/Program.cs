@@ -15,7 +15,7 @@ builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
 builder.Services.AddScoped<IMissionCard, MissionCard>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+builder.Services.AddScoped<IVolunteerMissionCard, VolunteerMissionCard>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Entities.ViewModels
 {
-    public class MissionVm
+    public class VolunteerMissionVm
     {
         public string Title { get; set; } = null!;
 
@@ -39,5 +39,7 @@ namespace CI_Platform.Entities.ViewModels
         public string MissionType { get; set; }
 
         public long MissionId { get; set; }
+
+        public string SkillName { get; set; }
     }
 }

@@ -53,6 +53,7 @@ namespace CI_Platform.Repository.Repository
                         CreatedAt = mission.CreatedAt,
                         MissionType = mission.MissionType,
                         Seats = (int)mission.TotalSeats,
+                        MissionId = mission.MissionId,
                         
                         AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count(),
 

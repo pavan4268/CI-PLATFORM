@@ -322,7 +322,7 @@
                     <!-- div containing seats details text starts -->
 
                     <div class="eventt">
-                      <span class="event-num d-block">@card.NumberOfSeats</span>
+                      <span class="event-num d-block">@card.AvailableSeats</span>
                       <span class="event-txt">Seats Left</span>
                     </div>
 
@@ -371,7 +371,7 @@
                 <button
                   class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
                 >
-                  <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission"
+                  <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
                     >Apply&nbsp;
                     <img src="~/assets/right-arrow.png" alt=""
                   /></a>
@@ -675,7 +675,7 @@
                             />
                           </div>
                           <div class="seats-details pl-2">
-                            <span class="d-block seat-num">10</span>
+                            <span class="d-block seat-num">@card.AvailableSeats</span>
                             <span class="seats-txt">Seats Left</span>
                           </div>
                         </div>
@@ -729,18 +729,20 @@
                       @*div wrappiing date, seats, skills and deadline ends here *@
                       @*apply button div starts here*@
                       <div class="details-btn align-content-center d-flex w-100 p-0">
-                        <button class="view-details-btn ms-auto">
-                          <a
-                            class="text-decoration-none view-details-link d-flex p-1"
-                            href="#"
-                          >
-                            <span class="view-details-txt"
-                              >View Details &nbsp;<img
-                                src="~/assets/right-arrow.png"
-                                alt=""
-                            /></span>
-                          </a>
-                        </button>
+                        
+                            <button class="view-details-btn ms-auto">
+                              <a
+                                class="text-decoration-none view-details-link d-flex p-1"
+                                asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
+                              >
+                                <span class="view-details-txt"
+                                  >View Details &nbsp;<img
+                                    src="~/assets/right-arrow.png"
+                                    alt=""
+                                /></span>
+                              </a>
+                            </button>
+                        
                       </div>
                       @*apply button div ends here*@
                     </div>
