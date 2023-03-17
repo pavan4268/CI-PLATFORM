@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CI_Platform.Entities.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,5 +42,9 @@ namespace CI_Platform.Entities.ViewModels
         public long MissionId { get; set; }
 
         public string SkillName { get; set; }
+
+        public List<Mission> RelatedMissionList { get; set; }
+
+        public int? RatedbyUsers { get; set; } 
     }
 }
