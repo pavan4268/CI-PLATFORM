@@ -207,11 +207,59 @@ namespace CI_Platform_Web.Controllers
         public IActionResult VolunteeringMissionPage(long? id)
         {
             var missionid = _db.Missions.FirstOrDefault(x=>x.MissionId == id);
+            var email = HttpContext.Session.GetString("Email");
             ViewBag.missionid = id;
             var mission = _volunteerMissionCard.GetMission(id);
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            ViewBag.UserId = userid;
             return View(mission);  
         }
-       
-   
+        [HttpPost]
+        public JsonResult AddToFavourite(long? id , long UserId)
+        {
+            var favouriteMission = _db.FavoriteMissions.ToList();
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            ViewBag.UserId = userid;
+
+            //ViewBag.userid = UserId;
+            //var user = _db.Users.FirstOrDefault(x=>x.Email==Email);
+            var favMission = favouriteMission.Where(t => t.MissionId == id && t.UserId == UserId).SingleOrDefault();
+            
+            if (favMission == null)
+            {
+                FavoriteMission favourite = new FavoriteMission();
+                favourite.UserId = userid;
+                favourite.MissionId = (long)id;
+                _db.FavoriteMissions.Add(favourite);
+                _db.SaveChanges();
+
+            }
+            else
+            {
+                _db.FavoriteMissions.Remove(favMission);
+                _db.SaveChanges();
+            }
+            return new JsonResult(favouriteMission);
+        }
+
+        [HttpPost]
+        public JsonResult DisplayComments(long? id, long UserId, string CommentText)
+        {
+            var comments = _db.Comments.ToList();
+            var commentsDisplay = comments.Where(t => t.MissionId == id).ToList();
+            Comment comment = new Comment();
+            comment.MissionId = (long)id;
+            comment.UserId = UserId;
+            comment.CommentText = CommentText;
+            _db.Comments.Add(comment);
+            _db.SaveChanges();
+            
+            return new JsonResult(commentsDisplay);
+        }
+
+
+
     }
 }

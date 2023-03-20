@@ -1,7 +1,7 @@
 @using CI_Platform.Entities.ViewModels
 @{
     var id = ViewBag.missionid;
-    
+    var userId = ViewBag.UserId;
 }
 @model List<VolunteerMissionVm>
 
@@ -220,9 +220,8 @@
               <div class="container pb-5 pt-5">
                 <div class="row">
                   <!-- add to favourite button div starts -->
-                  <div
-                    class="col fav-button d-flex justify-content-center align-content-center p-2 m-1"
-                  >
+                  
+                  <div class="col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="fav-div" onclick="AddToFavourite(@userId, @id)">
                     <!-- heart img div starts -->
                     <div class="heart-img align-content-center">
                       <img src="~/assets/heart1.png" alt="" />
@@ -234,6 +233,7 @@
                     </div>
                     <!-- add to favourite text div ends -->
                   </div>
+                  
                   <!-- add to favourite button div ends -->
                   <!-- recommend to a coworker button div starts -->
                   <div
@@ -565,6 +565,7 @@
                     class="form-control"
                     rows="5"
                     placeholder="Enter your comments.."
+                    id = "Comment-to-post"
                   ></textarea>
                 </div>
                 <!-- div containing text area ends -->
@@ -573,7 +574,7 @@
                   class="post-button d-flex align-content-center container mt-3 p-0"
                 >
                   <button
-                    class="btn post-btn d-flex align-content-center text-lowercase"
+                    class="btn post-btn d-flex align-content-center text-lowercase" onclick="PostComment(@userId, @id)"
                   >
                     <span class="pt-1 pb-1 pl-2 pr-2">Post Comment</span>
                   </button>
@@ -1254,8 +1255,13 @@
     </div>
     </div>
     }
-    
+    //<script src="~/js/Cascade.js"></script>
+
+     <script src = "~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    <script src = "~/js/Cascade.js" asp-append-version="true"></script>
+  
   </body>
+  
   <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"

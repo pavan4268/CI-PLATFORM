@@ -23,17 +23,25 @@ namespace CI_Platform.Repository.Repository
 
         public List<VolunteerMissionVm> GetMission(long? id)
         {
+            
             var getmissions = new List<VolunteerMissionVm>();
             var getmission = new VolunteerMissionVm();
+            
             var mission = _db.Missions.Where(x=>x.MissionId == id).SingleOrDefault();
             var cities = _db.Cities.ToList();
             var themes = _db.MissionThemes.ToList();
             var goalMissions = _db.GoalMissions.ToList();
             var missionRatings = _db.MissionRatings.ToList();
-            var missionapplication = _db.MissionApplications.ToList();
+            var missionapplication = _db.MissionApplications.Where(x=>x.MissionId==mission.MissionId).ToList();
             var missionskill = _db.MissionSkills.ToList();
             //var skills = _db.Skills.ToList();
             var missionrating = _db.MissionRatings.ToList();
+            //for displaying comments
+            var comments = _db.Comments.ToList();
+            var displaycomments = comments.Where(x=>x.MissionId==mission.MissionId).ToList();
+            //var users = _db.Users.FirstOrDefault(t=>t.Email==Email);
+            
+            
 
 
             City city = _db.Cities.Where(e => e.CityId == mission.CityId).FirstOrDefault();
@@ -53,14 +61,16 @@ namespace CI_Platform.Repository.Repository
             //for related mission
             //var missionl = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId == id).SingleOrDefault();
             var relatedmissions = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId != mission.MissionId && (t.City.Name == city.Name || t.Country.Name == country.Name || t.Theme.Title == missionTheme.Title)).ToList();
-            
+
             // for related mission end
-
-
+            
+            //for recent volunteers
+            
             
            
 
             
+                
                 getmission.Title = mission.Title;
                 getmission.ShortDescription = mission.ShortDescription;
                 getmission.OrganizationName = mission.OrganizationName;
@@ -91,6 +101,7 @@ namespace CI_Platform.Repository.Repository
             //    relatedmissions = relatedmissions.Where(x => x.Theme.Title == missionl.Theme.Title).ToList();
             //}
             getmission.RelatedMissionList = relatedmissions;
+            getmission.PostedComments = displaycomments;
             
             getmissions.Add(getmission);
 

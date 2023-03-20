@@ -46,5 +46,11 @@ namespace CI_Platform.Entities.ViewModels
         public List<Mission> RelatedMissionList { get; set; }
 
         public int? RatedbyUsers { get; set; } 
+
+        public IEnumerable<User> users { get; set; }
+
+        public List<Comment> PostedComments { get; set; }
+
+        public string CommentText { get; set; } 
     }
 }

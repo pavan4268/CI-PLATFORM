@@ -122,3 +122,44 @@ function sortFunction(sortvalue) {
 //})
 
 //search script ends here
+
+
+//add to fav ajax call
+/*document.getElementById("fav-div").addEventListener("click", AddToFavourite());*/
+function AddToFavourite(userid, missionid) {
+    $.ajax
+        ({
+            method: 'Post',
+            url: '/Mission/AddToFavourite',
+            data: {
+                UserId : userid,
+                id : missionid
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        });
+}
+
+
+//post comment ajax call
+function PostComment(userid, missionid) {
+    var comment = document.getElementById("Comment-to-post").value;
+
+    $.ajax
+        ({
+            method: 'Post',
+            url: '/Mission/DisplayComments',
+            data: {
+                UserId: userid,
+                id: missionid,
+                CommentText : comment
+                
+            },
+            success: function (result) {
+                console.log(result);
+                
+            }
+
+        });
+}

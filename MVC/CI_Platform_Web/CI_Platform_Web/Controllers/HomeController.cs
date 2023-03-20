@@ -89,6 +89,8 @@ namespace CI_Platform_Web.Controllers
                     {
                         //TempData["success"] = "login successful";
                         _contextAccessor.HttpContext.Session.SetString("FirstName", issuccess.FirstName + " " + issuccess.LastName);
+                        _contextAccessor.HttpContext.Session.SetString("UserId" , issuccess.UserId.ToString());
+                        _contextAccessor.HttpContext.Session.SetString("Email" , issuccess.Email);
                         return RedirectToAction("PlatformLanding", "Mission");
                     }
                     else
