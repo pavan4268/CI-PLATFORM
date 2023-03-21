@@ -47,10 +47,14 @@ namespace CI_Platform.Entities.ViewModels
 
         public int? RatedbyUsers { get; set; } 
 
-        public IEnumerable<User> users { get; set; }
+        public List<User> users { get; set; }
 
-        public List<Comment> PostedComments { get; set; }
+        public List<CommentsVm> PostedComments { get; set; }
 
         public string CommentText { get; set; } 
+
+        public string UserName { get; set; }
+
+        public List<RecentVolunteersVm> RecentVolunteers { get; set; }
     }
 }

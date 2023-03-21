@@ -583,6 +583,7 @@
                 <!-- div containing past comments starts here -->
                 <div class="container mt-3 overflow-auto past-comments">
                   <!-- div for an individual comment tab starts here -->
+                  @foreach(var comment in data.PostedComments){
                   <div class="container mt-3 main-comment">
                     <div class="row">
                       <!-- col div for img starts here -->
@@ -600,224 +601,25 @@
                       <div class="col pl-0">
                         <div class="container pl-0 pb-3">
                           <span class="volunteer-name d-block"
-                            >Margaret Walsh</span
+                            >@comment.UserName</span
                           >
                           <span class="comment-date"
-                            >Monday, October 21, 2019. 4:37 PM</span
+                            >@comment.CreatedAt</span
                           >
                         </div>
                         <div class="container pl-0">
                           <span class="commented"
-                            >Nice Mission great opportunity for peoples</span
+                            >@comment.CommentText</span
                           >
                         </div>
                       </div>
                       <!-- col div for wrapping volunteer details ends -->
                     </div>
                   </div>
+                  }
                   <!-- div for an individual comment tab ends here -->
-                  <!-- div for an individual comment tab starts here -->
-                  <div class="container mt-3 main-comment">
-                    <div class="row">
-                      <!-- col div for img starts here -->
-                      <div class="col-lg-2 col-sm-3 pl-0">
-                        <div class="d-flex m-0 p-0">
-                          <img
-                            src="~/assets/volunteer2.png"
-                            class="img-fluid volunteer-img"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <!-- col div for img ends here -->
-                      <!-- col div for wrapping volunteer details starts -->
-                      <div class="col pl-0">
-                        <div class="container pl-0 pb-3">
-                          <span class="volunteer-name d-block"
-                            >Kathryn Robert</span
-                          >
-                          <span class="comment-date"
-                            >Monday, October 21, 2019. 4:37 PM</span
-                          >
-                        </div>
-                        <div class="container pl-0">
-                          <span class="commented"
-                            >Nice Mission great opportunity for peoples</span
-                          >
-                        </div>
-                      </div>
-                      <!-- col div for wrapping volunteer details ends -->
-                    </div>
-                  </div>
-                  <!-- div for an individual comment tab ends here -->
-                  <!-- div for an individual comment tab starts here -->
-                  <div class="container mt-3 main-comment">
-                    <div class="row">
-                      <!-- col div for img starts here -->
-                      <div class="col-lg-2 col-sm-3 pl-0">
-                        <div class="d-flex m-0 p-0">
-                          <img
-                            src="~/assets/volunteer3.png"
-                            class="img-fluid volunteer-img"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <!-- col div for img ends here -->
-                      <!-- col div for wrapping volunteer details starts -->
-                      <div class="col pl-0">
-                        <div class="container pl-0 pb-3">
-                          <span class="volunteer-name d-block"
-                            >Charles Vigue</span
-                          >
-                          <span class="comment-date"
-                            >Monday, October 21, 2019. 4:37 PM</span
-                          >
-                        </div>
-                        <div class="container pl-0">
-                          <span class="commented"
-                            >Nice Mission great opportunity for peoples</span
-                          >
-                        </div>
-                      </div>
-                      <!-- col div for wrapping volunteer details ends -->
-                    </div>
-                  </div>
-                  <!-- div for an individual comment tab ends here -->
-                  <!-- div for an individual comment tab starts here -->
-                  <div class="container mt-3 main-comment">
-                    <div class="row">
-                      <!-- col div for img starts here -->
-                      <div class="col-lg-2 col-sm-3 pl-0">
-                        <div class="d-flex m-0 p-0">
-                          <img
-                            src="~/assets/volunteer4.png"
-                            class="img-fluid volunteer-img"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <!-- col div for img ends here -->
-                      <!-- col div for wrapping volunteer details starts -->
-                      <div class="col pl-0">
-                        <div class="container pl-0 pb-3">
-                          <span class="volunteer-name d-block"
-                            >Estella Fowels</span
-                          >
-                          <span class="comment-date"
-                            >Monday, October 21, 2019. 4:37 PM</span
-                          >
-                        </div>
-                        <div class="container pl-0">
-                          <span class="commented"
-                            >Nice Mission great opportunity for peoples</span
-                          >
-                        </div>
-                      </div>
-                      <!-- col div for wrapping volunteer details ends -->
-                    </div>
-                  </div>
-                  <!-- div for an individual comment tab ends here -->
-                  <!-- div for an individual comment tab starts here -->
-                  <div class="container mt-3 main-comment">
-                    <div class="row">
-                      <!-- col div for img starts here -->
-                      <div class="col-lg-2 col-sm-3 pl-0">
-                        <div class="d-flex m-0 p-0">
-                          <img
-                            src="~/assets/volunteer5.png"
-                            class="img-fluid volunteer-img"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <!-- col div for img ends here -->
-                      <!-- col div for wrapping volunteer details starts -->
-                      <div class="col pl-0">
-                        <div class="container pl-0 pb-3">
-                          <span class="volunteer-name d-block"
-                            >Raymond Pabon</span
-                          >
-                          <span class="comment-date"
-                            >Monday, October 21, 2019. 4:37 PM</span
-                          >
-                        </div>
-                        <div class="container pl-0">
-                          <span class="commented"
-                            >Nice Mission great opportunity for peoples</span
-                          >
-                        </div>
-                      </div>
-                      <!-- col div for wrapping volunteer details ends -->
-                    </div>
-                  </div>
-                  <!-- div for an individual comment tab ends here -->
-                  <!-- div for an individual comment tab starts here -->
-                  <div class="container mt-3 main-comment">
-                    <div class="row">
-                      <!-- col div for img starts here -->
-                      <div class="col-lg-2 col-sm-3 pl-0">
-                        <div class="d-flex m-0 p-0">
-                          <img
-                            src="~/assets/volunteer6.png"
-                            class="img-fluid volunteer-img"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <!-- col div for img ends here -->
-                      <!-- col div for wrapping volunteer details starts -->
-                      <div class="col pl-0">
-                        <div class="container pl-0 pb-3">
-                          <span class="volunteer-name d-block">Rose Lewis</span>
-                          <span class="comment-date"
-                            >Monday, October 21, 2019. 4:37 PM</span
-                          >
-                        </div>
-                        <div class="container pl-0">
-                          <span class="commented"
-                            >Nice Mission great opportunity for peoples</span
-                          >
-                        </div>
-                      </div>
-                      <!-- col div for wrapping volunteer details ends -->
-                    </div>
-                  </div>
-                  <!-- div for an individual comment tab ends here -->
-                  <!-- div for an individual comment tab starts here -->
-                  <div class="container mt-3 main-comment">
-                    <div class="row">
-                      <!-- col div for img starts here -->
-                      <div class="col-lg-2 col-sm-3 pl-0">
-                        <div class="d-flex m-0 p-0">
-                          <img
-                            src="~/assets/volunteer7.png"
-                            class="img-fluid volunteer-img"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <!-- col div for img ends here -->
-                      <!-- col div for wrapping volunteer details starts -->
-                      <div class="col pl-0">
-                        <div class="container pl-0 pb-3">
-                          <span class="volunteer-name d-block"
-                            >Travis Steen</span
-                          >
-                          <span class="comment-date"
-                            >Monday, October 21, 2019. 4:37 PM</span
-                          >
-                        </div>
-                        <div class="container pl-0">
-                          <span class="commented"
-                            >Nice Mission great opportunity for peoples</span
-                          >
-                        </div>
-                      </div>
-                      <!-- col div for wrapping volunteer details ends -->
-                    </div>
-                  </div>
-                  <!-- div for an individual comment tab ends here -->
+                  
+                  
                 </div>
                 <!-- div containing past comments ends here -->
               </div>
@@ -910,125 +712,22 @@
             <!-- main body of recently-voluntered starts here -->
             <div class="container-fluid volunteered-main">
               <!-- first row starts  -->
-              <div class="row pt-5 pb-5">
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer1.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
+              <div class="row row-cols-3 pt-5 pb-5">
+                  @foreach(var recent in data.RecentVolunteers){
+                    <div class="col">
+                      <div class="d-flex justify-content-center">
+                        <img
+                          src="~/assets/volunteer1.png"
+                          class="img-fluid volunteer-img"
+                          alt=""
+                        />
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <span>@recent.UserName</span>
+                      </div>
+                    </div>
+                  }
                 </div>
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer2.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer3.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-              </div>
-              <!-- first row ends -->
-              <!-- second row starts  -->
-              <div class="row pb-5">
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer4.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer5.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer6.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-              </div>
-              <!-- second row ends -->
-              <!-- third row starts  -->
-              <div class="row pb-5">
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer7.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer8.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <img
-                      src="~/assets/volunteer9.png"
-                      class="img-fluid volunteer-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <span>Andrew Johnson</span>
-                  </div>
-                </div>
-              </div>
-              <!-- third row ends -->
             </div>
             <!-- main body of recently-voluntered starts here -->
             <!-- pagination starts -->
@@ -1078,172 +777,172 @@
                             {
                                 
 
-          <div class="col p-2 d-flex">
-            <div class="card">
-              <!-- div wrapping img and buttons on it starts -->
-              <div class="img-button p-0 m-0">
-                <img
-                  class="card-img-top"
-                  src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
-                  alt="Card image cap"
-                />
+                              <div class="col p-2 d-flex">
+                                <div class="card">
+                                  <!-- div wrapping img and buttons on it starts -->
+                                  <div class="img-button p-0 m-0">
+                                    <img
+                                      class="card-img-top"
+                                      src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
+                                      alt="Card image cap"
+                                    />
 
-                <div class="city-button bg-dark d-flex pl-2">
-                  <img
-                    class="pin-img"
-                    src="~/assets/pin.png"
-                    alt=""
-                  />
-                  <span
-                    class="city-txt pb-4 align-content-center justify-content-center"
-                  >
-                    @card.City.Name</span
-                  >
-                </div>
-                <div class="like-button bg-dark d-flex p-2 m-0">
-                  <img
-                    src="~/assets/heart.png"
-                    class="like-img d-flex"
-                    alt=""
-                  />
-                </div>
-                <div class="share-button bg-dark d-flex p-2 m-0">
-                  <img
-                    src="~/assets/user.png"
-                    class="share-img d-flex"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <!-- div wrapping img and buttons on it ends -->
-              <div class="mission-theme p-1">
-                <span class="theme-txt">@card.Theme.Title</span>
-              </div>
+                                    <div class="city-button bg-dark d-flex pl-2">
+                                      <img
+                                        class="pin-img"
+                                        src="~/assets/pin.png"
+                                        alt=""
+                                      />
+                                      <span
+                                        class="city-txt pb-4 align-content-center justify-content-center"
+                                      >
+                                        @card.City.Name</span
+                                      >
+                                    </div>
+                                    <div class="like-button bg-dark d-flex p-2 m-0">
+                                      <img
+                                        src="~/assets/heart.png"
+                                        class="like-img d-flex"
+                                        alt=""
+                                      />
+                                    </div>
+                                    <div class="share-button bg-dark d-flex p-2 m-0">
+                                      <img
+                                        src="~/assets/user.png"
+                                        class="share-img d-flex"
+                                        alt=""
+                                      />
+                                    </div>
+                                  </div>
+                                  <!-- div wrapping img and buttons on it ends -->
+                                  <div class="mission-theme p-1">
+                                    <span class="theme-txt">@card.Theme.Title</span>
+                                  </div>
 
-              <div class="container card-body">
-                <!-- mission title starts here -->
-                <div class="row">
-                  <h5 class="card-title">
-                    @card.Title
-                  </h5>
-                </div>
-                <!-- mission title ends here -->
-                <!-- mission text starts here -->
-                <div class="row">
-                  <p class="card-text">
-                   @card.ShortDescription
-                  </p>
-                </div>
-                <!-- mission text starts here -->
-                <!-- mission organization and mission rating wrapper row div starts -->
-                <div class="row mt-3">
-                  <!-- mission organization col div starts -->
-                  <div class="col mission-org">@card.OrganizationName</div>
-                  <!-- mission organization col div ends -->
-                  <!-- rating col div starts -->
-                  <div class="col mission-rating d-flex align-content-center">
-                    <img src="~/assets/selected-star.png" alt="" />
-                    <img src="~/assets/selected-star.png" alt="" />
-                    <img src="~/assets/selected-star.png" alt="" />
-                    <img src="~/assets/star.png" alt="" />
-                    <img src="~/assets/star.png" alt="" />
-                  </div>
-                  <!-- rating col div ends -->
-                </div>
-                <div class="row d-flex justify-content-center mt-4">
-                  <div class="col-1 p-0">
-                    <hr />
-                  </div>
-                  <div
-                    class="col-10 event-period d-flex align-content-center justify-content-center m-0"
-                  >
-                    <span class="event-active p-2"
-                      >@card.StartDate - @card.EndDate</span
-                    >
-                  </div>
-                  <div class="col-1 p-0">
-                    <hr />
-                  </div>
-                </div>
-                <!-- mission organization and mission rating wrapper row div ends -->
-                <!-- mission period, seats left and deadline div starts -->
-                <div class="container event-wrapper">
-                  <!-- mission period div starts -->
+                                  <div class="container card-body">
+                                    <!-- mission title starts here -->
+                                    <div class="row">
+                                      <h5 class="card-title">
+                                        @card.Title
+                                      </h5>
+                                    </div>
+                                    <!-- mission title ends here -->
+                                    <!-- mission text starts here -->
+                                    <div class="row">
+                                      <p class="card-text">
+                                       @card.ShortDescription
+                                      </p>
+                                    </div>
+                                    <!-- mission text starts here -->
+                                    <!-- mission organization and mission rating wrapper row div starts -->
+                                    <div class="row mt-3">
+                                      <!-- mission organization col div starts -->
+                                      <div class="col mission-org">@card.OrganizationName</div>
+                                      <!-- mission organization col div ends -->
+                                      <!-- rating col div starts -->
+                                      <div class="col mission-rating d-flex align-content-center">
+                                        <img src="~/assets/selected-star.png" alt="" />
+                                        <img src="~/assets/selected-star.png" alt="" />
+                                        <img src="~/assets/selected-star.png" alt="" />
+                                        <img src="~/assets/star.png" alt="" />
+                                        <img src="~/assets/star.png" alt="" />
+                                      </div>
+                                      <!-- rating col div ends -->
+                                    </div>
+                                    <div class="row d-flex justify-content-center mt-4">
+                                      <div class="col-1 p-0">
+                                        <hr />
+                                      </div>
+                                      <div
+                                        class="col-10 event-period d-flex align-content-center justify-content-center m-0"
+                                      >
+                                        <span class="event-active p-2"
+                                          >@card.StartDate - @card.EndDate</span
+                                        >
+                                      </div>
+                                      <div class="col-1 p-0">
+                                        <hr />
+                                      </div>
+                                    </div>
+                                    <!-- mission organization and mission rating wrapper row div ends -->
+                                    <!-- mission period, seats left and deadline div starts -->
+                                    <div class="container event-wrapper">
+                                      <!-- mission period div starts -->
 
-                  <!-- mission period div ends -->
-                  <!-- seats details and deadline wrapper div row starts here -->
-                  <div
-                    class="row pt-2 pb-3 mt-1 d-flex align-content-center justify-content-center"
-                  >
-                    <div
-                      class="col d-flex align-content-center justify-content-center pl-0"
-                    >
-                      <!-- seats img div starts -->
-                      <div
-                        class="seats-img d-flex justify-content-center align-content-center mr-2"
-                      >
-                        <img
-                          src="~/assets/Seats-left.png"
-                          class="mission-logo"
-                          alt=""
-                        />
-                      </div>
-                      <!-- seats img div ends -->
-                      <!-- div containing seats details text starts -->
+                                      <!-- mission period div ends -->
+                                      <!-- seats details and deadline wrapper div row starts here -->
+                                      <div
+                                        class="row pt-2 pb-3 mt-1 d-flex align-content-center justify-content-center"
+                                      >
+                                        <div
+                                          class="col d-flex align-content-center justify-content-center pl-0"
+                                        >
+                                          <!-- seats img div starts -->
+                                          <div
+                                            class="seats-img d-flex justify-content-center align-content-center mr-2"
+                                          >
+                                            <img
+                                              src="~/assets/Seats-left.png"
+                                              class="mission-logo"
+                                              alt=""
+                                            />
+                                          </div>
+                                          <!-- seats img div ends -->
+                                          <!-- div containing seats details text starts -->
 
-                      <div class="eventt">
-                        <span class="event-num d-block"></span>
-                        <span class="event-txt">Seats Left</span>
-                      </div>
+                                          <div class="eventt">
+                                            <span class="event-num d-block"></span>
+                                            <span class="event-txt">Seats Left</span>
+                                          </div>
 
-                      <!-- div containing seats details text ends -->
-                    </div>
-                    <!-- deadline wrapper col div starts -->
-                    <div
-                      class="col d-flex align-content-center justify-content-center"
-                    >
-                      <!-- clock img div starts -->
-                      <div
-                        class="seats-img align-content-center justify-content-center mr-2"
-                      >
-                        <img
-                          src="~/assets/deadline.png"
-                          class="mission-logo"
-                          alt=""
-                        />
-                      </div>
-                      <!-- clock img div ends -->
-                      <!-- div containing from and to dates starts -->
+                                          <!-- div containing seats details text ends -->
+                                        </div>
+                                        <!-- deadline wrapper col div starts -->
+                                        <div
+                                          class="col d-flex align-content-center justify-content-center"
+                                        >
+                                          <!-- clock img div starts -->
+                                          <div
+                                            class="seats-img align-content-center justify-content-center mr-2"
+                                          >
+                                            <img
+                                              src="~/assets/deadline.png"
+                                              class="mission-logo"
+                                              alt=""
+                                            />
+                                          </div>
+                                          <!-- clock img div ends -->
+                                          <!-- div containing from and to dates starts -->
 
-                      <div class="eventt">
-                        <span class="event-num d-block">@card.EndDate</span>
-                        <span class="event-txt">Deadline</span>
-                      </div>
+                                          <div class="eventt">
+                                            <span class="event-num d-block">@card.EndDate</span>
+                                            <span class="event-txt">Deadline</span>
+                                          </div>
 
-                      <!-- div containing from and to dates ends -->
-                    </div>
-                    <!-- deadline wrapper col div ends -->
-                  </div>
-                  <!-- seats details and deadline wrapper div row ends here -->
-                </div>
-                <!-- mission period, seats left and deadline div ends -->
+                                          <!-- div containing from and to dates ends -->
+                                        </div>
+                                        <!-- deadline wrapper col div ends -->
+                                      </div>
+                                      <!-- seats details and deadline wrapper div row ends here -->
+                                    </div>
+                                    <!-- mission period, seats left and deadline div ends -->
 
-                <div class="apply-btn-div d-flex p-4">
+                                    <div class="apply-btn-div d-flex p-4">
                 
-                  <button
-                    class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center"
-                  >
-                    <a asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId" class="apply-btn-txt"
-                      >Apply&nbsp;
-                      <img src="~/assets/right-arrow.png" alt=""
-                    /></a>
-                  </button>
+                                      <button
+                                        class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center"
+                                      >
+                                        <a asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId" class="apply-btn-txt"
+                                          >Apply&nbsp;
+                                          <img src="~/assets/right-arrow.png" alt=""
+                                        /></a>
+                                      </button>
                   
-                </div>
-              </div>
-            </div>
-          </div>
-                           }
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            }
                         }
                     }
                 }

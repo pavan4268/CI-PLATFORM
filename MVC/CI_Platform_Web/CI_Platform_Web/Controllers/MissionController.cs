@@ -203,7 +203,7 @@ namespace CI_Platform_Web.Controllers
         }
 
 
-
+        //volunteer mission page
         public IActionResult VolunteeringMissionPage(long? id)
         {
             var missionid = _db.Missions.FirstOrDefault(x=>x.MissionId == id);
@@ -215,6 +215,8 @@ namespace CI_Platform_Web.Controllers
             ViewBag.UserId = userid;
             return View(mission);  
         }
+
+        //Add to favourite
         [HttpPost]
         public JsonResult AddToFavourite(long? id , long UserId)
         {
@@ -244,6 +246,8 @@ namespace CI_Platform_Web.Controllers
             return new JsonResult(favouriteMission);
         }
 
+
+        //Comments
         [HttpPost]
         public JsonResult DisplayComments(long? id, long UserId, string CommentText)
         {

@@ -36,12 +36,43 @@ namespace CI_Platform.Repository.Repository
             var missionskill = _db.MissionSkills.ToList();
             //var skills = _db.Skills.ToList();
             var missionrating = _db.MissionRatings.ToList();
+
+
+
             //for displaying comments
+
             var comments = _db.Comments.ToList();
-            var displaycomments = comments.Where(x=>x.MissionId==mission.MissionId).ToList();
-            //var users = _db.Users.FirstOrDefault(t=>t.Email==Email);
+            var displaycomments = comments.Where(x => x.MissionId == mission.MissionId).ToList();
             
-            
+            List<CommentsVm> viewcomments = new List<CommentsVm>();
+            foreach (var comment in displaycomments)
+            {
+                CommentsVm singlecomment = new CommentsVm();
+                var user = _db.Users.Where(x=>x.UserId == comment.UserId).FirstOrDefault();
+                singlecomment.UserName = user.FirstName+ " " + user.LastName;
+                singlecomment.CommentText = comment.CommentText;
+                singlecomment.CreatedAt = comment.CreatedAt;
+                viewcomments.Add(singlecomment);
+            }
+            getmission.PostedComments = viewcomments;
+
+            //for displaying comments ends
+
+
+            //for recent volunteers
+
+            List<RecentVolunteersVm> recentVolunteer = new List<RecentVolunteersVm>();
+            foreach (var volunteer in missionapplication)
+            {
+                RecentVolunteersVm recentParticipant = new RecentVolunteersVm();
+                var recentuser = _db.Users.Where(x=>x.UserId==volunteer.UserId).FirstOrDefault();
+                recentParticipant.UserName = recentuser.FirstName + " " + recentuser.LastName;
+                recentParticipant.AppliedAt = volunteer.CreatedAt;
+                recentVolunteer.Add(recentParticipant);
+            }
+            getmission.RecentVolunteers = recentVolunteer;
+
+            //for recent volunteers ends
 
 
             City city = _db.Cities.Where(e => e.CityId == mission.CityId).FirstOrDefault();
@@ -61,16 +92,16 @@ namespace CI_Platform.Repository.Repository
             //for related mission
             //var missionl = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId == id).SingleOrDefault();
             var relatedmissions = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId != mission.MissionId && (t.City.Name == city.Name || t.Country.Name == country.Name || t.Theme.Title == missionTheme.Title)).ToList();
-
+            getmission.RelatedMissionList = relatedmissions;
             // for related mission end
-            
-            //for recent volunteers
-            
-            
-           
 
             
-                
+
+
+
+
+            
+
                 getmission.Title = mission.Title;
                 getmission.ShortDescription = mission.ShortDescription;
                 getmission.OrganizationName = mission.OrganizationName;
@@ -87,27 +118,14 @@ namespace CI_Platform.Repository.Repository
                 getmission.RatedbyUsers = (int)ratingcount;
 
 
-            // code for related missions goes here
-            //if (relatedmissions.Any(x => x.City.Name == missionl.City.Name))
-            //{
-            //    relatedmissions = relatedmissions.Where(x=>x.City.Name == missionl.City.Name).ToList();
-            //}
-            //else if (relatedmissions.Any(x => x.Country.Name == missionl.Country.Name))
-            //{
-            //    relatedmissions = relatedmissions.Where(x=>x.Country.Name == missionl.Country.Name).ToList();
-            //}
-            //else if (relatedmissions.Any(x=>x.Theme.Title == missionl.Theme.Title))
-            //{
-            //    relatedmissions = relatedmissions.Where(x => x.Theme.Title == missionl.Theme.Title).ToList();
-            //}
-            getmission.RelatedMissionList = relatedmissions;
-            getmission.PostedComments = displaycomments;
+           
+            
             
             getmissions.Add(getmission);
 
 
 
-            //code for related missions ends here
+           
 
 
 
