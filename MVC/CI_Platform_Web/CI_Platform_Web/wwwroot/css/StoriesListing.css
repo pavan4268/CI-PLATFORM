@@ -1,0 +1,104 @@
+.srch-bar {
+  border: none;
+}
+.card {
+  max-width: 460px;
+}
+.card-title {
+  max-width: 353px;
+
+  font-size: 26px;
+  font-weight: 400;
+}
+.card-text {
+  font-weight: 100;
+  max-width: 395px;
+}
+.mission-theme {
+  margin-top: -15px;
+  text-align: center;
+  border-radius: 100px;
+  background-color: #ffffff;
+  /* width: 127px; */
+  /* height: 35px; */
+  justify-content: center;
+  z-index: 2;
+  align-self: center;
+  /* margin-left: 30%; */
+}
+.theme-txt {
+  max-width: 60px;
+  max-height: 22px;
+  font-weight: 200;
+}
+.img-wrapper {
+  max-width: 100%;
+  position: relative;
+}
+.banner-img {
+  max-height: 300px;
+  object-fit: cover;
+  filter: brightness(40%);
+}
+.img-hover-content {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.img-txt {
+  text-align: center;
+  color: gainsboro;
+}
+.story-details-btn {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+
+  border-radius: 100px;
+}
+.banner-hover-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* .img-wrapper:hover > .banner-img {
+  filter: brightness(40%);
+}
+.img-wrapper:hover .banner-hover-content {
+  display: flex;
+} */
+.commenter-img {
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+}
+.commenter-name {
+  font-size: 13px;
+  font-weight: 200;
+}
+.view-details-btn {
+  border: #ffffff solid 1px;
+  background-color: transparent;
+  color: #ffffff;
+  border-radius: 100px;
+
+  /* display: none; */
+}
+.img-button {
+  position: relative;
+}
+.story-img-hover {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.img-button:hover > .card-img-top {
+  filter: brightness(40%);
+}
+.img-button:hover > .story-img-hover {
+  display: flex;
+}

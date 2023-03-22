@@ -56,7 +56,7 @@ namespace CI_Platform_Web.Controllers
 
 
        
-        public IActionResult PlatformLanding(string sortby,string searchquery, int pg=1)
+        public IActionResult PlatformLanding(string sortby/*,string searchquery*/, int pg=1)
         {
 
             if (HttpContext.Session.GetString("FirstName") != null)

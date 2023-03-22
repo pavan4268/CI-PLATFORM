@@ -16,6 +16,7 @@
   <ItemGroup>
     <Content Remove="Views\Home\Index - Copy.cshtml" />
     <Content Remove="Views\Mission\HomePageListView.cshtml" />
+   
     
     
  
@@ -34,6 +35,7 @@
     <None Include="Views\Mission\HomePageListView.cshtml" />
     <None Include="Views\Mission\PlatformLanding.cshtml" />
     <None Include="Views\Mission\VolunteeringMissionPage.cshtml" />
+    <None Include="Views\Story\StoriesListing.cshtml" />
   </ItemGroup>
 
  

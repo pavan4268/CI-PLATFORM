@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteering Mission Page</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/ShareYourStory.css" rel="stylesheet" />
+    
+  </head>
+  
+  <body>
+      <partial name="_OnlyHeader" />
+      @*main div starts here*@
+      <div class="container col-10">
+          <h1 class="share-title pt-5" style="font-weight:100">Share Your Story</h1>
+         @*div wrapping select mission, story title and date starts*@
+          <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 main-select-div d-flex ps-2">
+               @*select mission main div starts here*@
+              <div class="selectiondiv col p-0 m-0 mt-4 pe-5">
+                  <label class="selectdiv-title" for="mission-select">Select Mission</label><br />
+                  <select class="mission-select w-100 mt-2" id="mission-select" style="height:38px">
+                      <option>Select Your Mission</option>
+                      <option>Option2</option>
+                  </select>
+              </div>
+               @*select mission main div ends here*@
+               @*story details main div starts here*@
+              <div class="story-details-div col p-0 m-0 mt-4 pe-5">
+                  <label class="story-title" for="storydesc">My Story title</label><br />
+                  <input type="text" class="story-title w-100 mt-2" id="storydesc" style="height:38px" placeholder="Enter Story Title">
+              </div>
+              @*story details main div ends here*@
+              @*date selection main div starts here*@
+              <div class="date-selection-div col p-0 m-0 mt-4 pe-xl-2 pe-5">
+                  <label class="selectdiv-title" for="date-select">Date</label><br />
+                  <input type="date" class="date-in w-100 mt-2" id="date-select" style="height:38px" placeholder="Date">
+              </div>
+              @*date selection main div starts here*@
+          </div>
+         @*div wrapping select mission, story title and date ends*@
+         @*story description div starts here*@
+         <div class="story-details-main-div p-0 m-0 pt-3 mt-3">
+             <label class="my-story-txt p-0 m-0" for="story-description">My Story</label>
+             <div class="texteditor w-100" style="margin-top:5px">
+                 <div id="editor">Enter Your Story</div>
+             </div>
+         </div>
+         @*story description div ends here*@
+         <div class="video-main-div pt-3 mt-3">
+             <label class="video-url-txt"for="video-url">Enter Video URL</label>
+             <input type="url" class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>
+         </div>
+      </div>
+      @*main div ends here*@
+       <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+           
+    </script>
+  </body>
+   <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+  ></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+  </html>

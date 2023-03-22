@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nDMI0WEw60qDJhY7kMhNxSGkhsQMIVZjMiKklLBf700=",
+  "Hash": "42U8Qkq1FgqLqt1wjnQ7GBFjCcwWzoJo8Oy1zHkOgcE=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -1938,6 +1938,23 @@
       "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\ShareYourStory.css",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "css/ShareYourStory.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\ShareYourStory.css"
+    },
+    {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\site.css",
       "SourceId": "CI_Platform_Web",
       "SourceType": "Discovered",
@@ -1953,6 +1970,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\StoriesListing.css",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "css/StoriesListing.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\StoriesListing.css"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\VolunteeringMissionPage.css",
