@@ -55,6 +55,7 @@
 .fav-button {
   border: 2px solid gray;
   border-radius: 100px;
+  height:59px;
 }
 .fav-button:hover {
   background-color: #f88634;
@@ -330,5 +331,11 @@ swiper-slide img {
 .event-txt {
   font-size: 14px;
   font-weight: 300;
+}
+.add-fav {
+    border:none;
+    box-shadow:none;
+    height:fit-content;
+    width:fit-content;
 }
 /* card css ends */

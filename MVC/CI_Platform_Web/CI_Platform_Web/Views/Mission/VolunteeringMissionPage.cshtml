@@ -2,6 +2,7 @@
 @{
     var id = ViewBag.missionid;
     var userId = ViewBag.UserId;
+    var applied = ViewBag.ApplyValue;
 }
 @model List<VolunteerMissionVm>
 
@@ -39,6 +40,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/VolunteeringMissionPage.css" rel="stylesheet" />
   </head>
@@ -220,8 +222,8 @@
               <div class="container pb-5 pt-5">
                 <div class="row">
                   <!-- add to favourite button div starts -->
-                  
-                  <div class="col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="fav-div" onclick="AddToFavourite(@userId, @id)">
+                 
+                 @* <div class="col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="fav-div" onclick="AddToFavourite(@userId, @id)">
                     <!-- heart img div starts -->
                     <div class="heart-img align-content-center">
                       <img src="~/assets/heart1.png" alt="" />
@@ -232,12 +234,26 @@
                       Add To Favourite
                     </div>
                     <!-- add to favourite text div ends -->
-                  </div>
+                  </div>*@
                   
+                  <div class="col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="fav-div" onclick="AddToFavourite(@userId, @id)">
+                      <button type="button" class="col btn add-fav">
+                      @if (@data.IsFavourite)
+                      {
+                          <i class="bi bi-heart-fill"></i><span style="margin-left:10px">Added to favorite</span>
+                      }
+                      else
+                      {
+                         <i class="bi bi-heart"></i><span style="margin-left:10px">Add to favorite</span>
+                      }
+                        </button>
+                  </div>
+                 
+                 
                   <!-- add to favourite button div ends -->
                   <!-- recommend to a coworker button div starts -->
                   <div
-                    class="col fav-button d-flex justify-content-center align-content-center p-2 m-1"
+                    class="col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="share-btn" onclick="Share()"
                   >
                     <!-- share user img div starts -->
                     <div class="heart-img align-content-center">
@@ -248,8 +264,26 @@
                     <div class="add-fav-txt d-flex justify-content-center pl-2">
                       Recommend To a Co-Worker
                     </div>
-                    <!-- Recommend to a co-worker text div ends -->
+                    
+                                        <!-- Recommend to a co-worker text div ends -->
                   </div>
+                  <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Share To</h4>
+                                        <button type="button" class="close bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body" style="max-height: 600px;overflow-y: scroll;">
+                                        <table class="border-0" style="width:50%;margin:auto;">
+                                            
+
+
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                   <!-- recommend to a co-worker button div ends -->
                 </div>
               </div>
@@ -770,7 +804,7 @@
           <!-- first mission card -->
                 @{
                     int i = 0;
-                    foreach(var card in data.RelatedMissionList)
+                    foreach(var card in data.RelatedMissions)
                     {
                         {
                             if (i < 3)
@@ -796,7 +830,7 @@
                                       <span
                                         class="city-txt pb-4 align-content-center justify-content-center"
                                       >
-                                        @card.City.Name</span
+                                        @card.CityName</span
                                       >
                                     </div>
                                     <div class="like-button bg-dark d-flex p-2 m-0">
@@ -816,28 +850,28 @@
                                   </div>
                                   <!-- div wrapping img and buttons on it ends -->
                                   <div class="mission-theme p-1">
-                                    <span class="theme-txt">@card.Theme.Title</span>
+                                    <span class="theme-txt">@card.MissionTheme</span>
                                   </div>
 
                                   <div class="container card-body">
                                     <!-- mission title starts here -->
                                     <div class="row">
                                       <h5 class="card-title">
-                                        @card.Title
+                                        @card.MissionTitle
                                       </h5>
                                     </div>
                                     <!-- mission title ends here -->
                                     <!-- mission text starts here -->
                                     <div class="row">
                                       <p class="card-text">
-                                       @card.ShortDescription
+                                       @card.MissionDescription
                                       </p>
                                     </div>
                                     <!-- mission text starts here -->
                                     <!-- mission organization and mission rating wrapper row div starts -->
                                     <div class="row mt-3">
                                       <!-- mission organization col div starts -->
-                                      <div class="col mission-org">@card.OrganizationName</div>
+                                      <div class="col mission-org">@card.MissionOrganization</div>
                                       <!-- mission organization col div ends -->
                                       <!-- rating col div starts -->
                                       <div class="col mission-rating d-flex align-content-center">
@@ -857,7 +891,7 @@
                                         class="col-10 event-period d-flex align-content-center justify-content-center m-0"
                                       >
                                         <span class="event-active p-2"
-                                          >@card.StartDate - @card.EndDate</span
+                                          >From @card.StartDate - Until @card.EndDate</span
                                         >
                                       </div>
                                       <div class="col-1 p-0">
@@ -891,7 +925,7 @@
                                           <!-- div containing seats details text starts -->
 
                                           <div class="eventt">
-                                            <span class="event-num d-block"></span>
+                                            <span class="event-num d-block">@card.SeatsLeft</span>
                                             <span class="event-txt">Seats Left</span>
                                           </div>
 
@@ -915,7 +949,7 @@
                                           <!-- div containing from and to dates starts -->
 
                                           <div class="eventt">
-                                            <span class="event-num d-block">@card.EndDate</span>
+                                            <span class="event-num d-block">@card.Deadline</span>
                                             <span class="event-txt">Deadline</span>
                                           </div>
 

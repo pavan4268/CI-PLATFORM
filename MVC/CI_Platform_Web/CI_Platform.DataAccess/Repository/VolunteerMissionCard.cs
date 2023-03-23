@@ -21,7 +21,7 @@ namespace CI_Platform.Repository.Repository
             _db = db;
         }
 
-        public List<VolunteerMissionVm> GetMission(long? id)
+        public List<VolunteerMissionVm> GetMission(long? id, long? userid)
         {
             
             var getmissions = new List<VolunteerMissionVm>();
@@ -33,10 +33,28 @@ namespace CI_Platform.Repository.Repository
             var goalMissions = _db.GoalMissions.ToList();
             var missionRatings = _db.MissionRatings.ToList();
             var missionapplication = _db.MissionApplications.Where(x=>x.MissionId==mission.MissionId).ToList();
-            var missionskill = _db.MissionSkills.ToList();
+            var missionskill = _db.MissionSkills.Where(x=>x.MissionId==mission.MissionId).ToList();
+           
+            foreach(var skill in missionskill)
+            {
+                var user = _db.Skills.Where(x => x.SkillId == skill.SkillId).SingleOrDefault();
+            }
             //var skills = _db.Skills.ToList();
             var missionrating = _db.MissionRatings.ToList();
 
+            //for add to favourites
+            
+            var favourite = _db.FavoriteMissions.Where(x=>x.UserId==userid && x.MissionId==mission.MissionId).FirstOrDefault();
+            if (favourite != null)
+            {
+                getmission.IsFavourite = true;
+            }
+            else
+            {
+                getmission.IsFavourite = false;
+            }
+
+            //for add to favourites
 
 
             //for displaying comments
@@ -91,8 +109,32 @@ namespace CI_Platform.Repository.Repository
 
             //for related mission
             //var missionl = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId == id).SingleOrDefault();
-            var relatedmissions = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId != mission.MissionId && (t.City.Name == city.Name || t.Country.Name == country.Name || t.Theme.Title == missionTheme.Title)).ToList();
-            getmission.RelatedMissionList = relatedmissions;
+            //var relatedmission = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId != mission.MissionId && (t.City.Name == city.Name || t.Country.Name == country.Name || t.Theme.Title == missionTheme.Title)).ToList();
+            //getmission.RelatedMissionList = relatedmission;
+            List<RelatedMissionsVm> relatedmissions = new List<RelatedMissionsVm>();
+            var relatedmissionlist = _db.Missions.Where(x=> x.MissionId!=mission.MissionId && (x.CityId==mission.CityId || x.CountryId==mission.CountryId || x.ThemeId==mission.ThemeId)).ToList();
+            foreach(var relatedmission in relatedmissionlist)
+            {
+                RelatedMissionsVm relMissions = new RelatedMissionsVm();
+                var cityname = _db.Cities.Where(x => x.CityId == relatedmission.CityId).SingleOrDefault();
+                var themename = _db.MissionThemes.Where(x => x.MissionThemeId == relatedmission.ThemeId).SingleOrDefault();
+                string[] startdate = relatedmission.StartDate.ToString().Split(' ');
+                string[] enddate = relatedmission.EndDate.ToString().Split(' ');
+                relMissions.MissionTitle = relatedmission.Title;
+                relMissions.MissionDescription = relatedmission.ShortDescription;
+                relMissions.CityName = cityname.Name;
+                relMissions.MissionTheme = themename.Title;
+                relMissions.MissionOrganization = relatedmission.OrganizationName;
+                relMissions.SeatsLeft = (int)(relatedmission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == relatedmission.MissionId).Count());
+                relMissions.StartDate = startdate[0];
+                relMissions.EndDate = enddate[0];
+                relMissions.Deadline = startdate[0];
+                relMissions.MissionType = relatedmission.MissionType;
+                relMissions.MissionId = relatedmission.MissionId;
+
+                relatedmissions.Add(relMissions);
+            }
+            getmission.RelatedMissions = relatedmissions;
             // for related mission end
 
             

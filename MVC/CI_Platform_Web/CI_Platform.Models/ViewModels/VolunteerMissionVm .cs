@@ -43,7 +43,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public string SkillName { get; set; }
 
-        public List<Mission> RelatedMissionList { get; set; }
+        
 
         public int? RatedbyUsers { get; set; } 
 
@@ -56,5 +56,10 @@ namespace CI_Platform.Entities.ViewModels
         public string UserName { get; set; }
 
         public List<RecentVolunteersVm> RecentVolunteers { get; set; }
+
+        public bool IsFavourite { get; set; }
+
+        public List<RelatedMissionsVm> RelatedMissions { get; set; }
+        
     }
 }

@@ -37,6 +37,8 @@ namespace CI_Platform.Repository.Repository
                 storycard.PublishedAt = (DateTime)story.PublishedAt;
                 stories.Add(storycard);
             }
+
+            
             
             
             

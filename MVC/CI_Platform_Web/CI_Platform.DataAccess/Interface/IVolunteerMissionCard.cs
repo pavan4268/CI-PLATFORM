@@ -9,6 +9,6 @@ namespace CI_Platform.Repository.Interface
 {
     public interface IVolunteerMissionCard
     {
-        public List<VolunteerMissionVm> GetMission(long? id);
+        public List<VolunteerMissionVm> GetMission(long? id, long? userid);
     }
 }

@@ -209,10 +209,11 @@ namespace CI_Platform_Web.Controllers
             var missionid = _db.Missions.FirstOrDefault(x=>x.MissionId == id);
             var email = HttpContext.Session.GetString("Email");
             ViewBag.missionid = id;
-            var mission = _volunteerMissionCard.GetMission(id);
             string user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
             ViewBag.UserId = userid;
+            var mission = _volunteerMissionCard.GetMission(id, userid);
+           
             return View(mission);  
         }
 
@@ -231,6 +232,8 @@ namespace CI_Platform_Web.Controllers
             
             if (favMission == null)
             {
+                var applyValue = 0;
+                ViewBag.ApplyValue = applyValue;
                 FavoriteMission favourite = new FavoriteMission();
                 favourite.UserId = userid;
                 favourite.MissionId = (long)id;
@@ -240,6 +243,8 @@ namespace CI_Platform_Web.Controllers
             }
             else
             {
+                
+                
                 _db.FavoriteMissions.Remove(favMission);
                 _db.SaveChanges();
             }

@@ -76,10 +76,31 @@
              </div>
          </div>
          @*story description div ends here*@
+         @*video url div starts here*@
          <div class="video-main-div pt-3 mt-3">
              <label class="video-url-txt"for="video-url">Enter Video URL</label>
              <input type="url" class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>
          </div>
+         @*video url div ends here*@
+         @*drag and drop starts here*@
+
+         <div class="row" style="margin-top:15px">
+
+             <label>Upload your Photos</label>
+             <div class="upload__box mt-2">
+
+                 <div class="upload__btn-box">
+
+                     <label class="upload__btn">
+                      <img src="~/images/drag-and-drop.png">
+                      <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                     </label>
+                 </div>
+                     <div class="upload__img-wrap"></div>
+             </div>
+         </div>
+
+         @*drag and drop ends here*@
       </div>
       @*main div ends here*@
        <script>

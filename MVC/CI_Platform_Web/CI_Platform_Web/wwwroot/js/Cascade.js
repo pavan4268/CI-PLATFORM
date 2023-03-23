@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿const { error } = require("jquery");
+
+$(document).ready(function () {
     
     GetCountry();
     GetMissionThemes();
@@ -28,7 +30,7 @@
     //})
 
     //})
-
+   
 });
 
 
@@ -135,8 +137,18 @@ function AddToFavourite(userid, missionid) {
                 UserId : userid,
                 id : missionid
             },
-            success: function (data) {
-                console.log(data);
+            success: function (Response) {
+                if (Response) {
+                    $(".add-fav i").addClass("bi-heart-fill");
+                    $(".add-fav i").removeClass("bi-heart");
+                }
+                else {
+                    $(".add-fav i").addClass("bi-heart");
+                    $(".add-fav i").removeClass("bi-heart-fill");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
             }
         });
 }
@@ -162,4 +174,14 @@ function PostComment(userid, missionid) {
             }
 
         });
+}
+
+function Share() {
+    console.log("share btn clicked");
+    $('#Modal').modal('show');
+}
+
+function CloseModal() {
+    $('#modalshare').modal('hide');
+    console.log("clicked");
 }
