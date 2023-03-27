@@ -9,7 +9,7 @@
         pageNo = pager.CurrentPage;
     }
 
-
+    var numberofmissions = ViewBag.NumberofMissions;
 }
 @model List<MissionVm>
 
@@ -75,7 +75,7 @@
                 letter-spacing: NaNpx;
                 font-weight: 400;
               "
-              >72 Missions</span
+              >@numberofmissions Missions</span
             >
           </p>
         </div>

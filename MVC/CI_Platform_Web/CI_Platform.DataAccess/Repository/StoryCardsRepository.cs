@@ -45,5 +45,27 @@ namespace CI_Platform.Repository.Repository
             
             return stories;
         }
+
+        public ShareStoryVm GetUserMissions(long userid)
+        {
+            
+            ShareStoryVm shareStoryVm = new ShareStoryVm();
+            List<StoryMissionListVm> userMissions = new List<StoryMissionListVm>();
+            var appliedmissions = _db.MissionApplications.Where(x=>x.UserId == userid).ToList();
+            foreach (var appliedmission in appliedmissions)
+            {
+                var mission = _db.Missions.Where(x=> x.MissionId==appliedmission.MissionId).FirstOrDefault();
+                StoryMissionListVm item = new StoryMissionListVm();
+                item.MissionId = appliedmission.MissionId;
+                item.MissionName = mission.Title;
+                userMissions.Add(item);
+
+            }
+            shareStoryVm.UserAppliedMissions = userMissions;
+            
+            return shareStoryVm;
+        }
+
+
     }
 }

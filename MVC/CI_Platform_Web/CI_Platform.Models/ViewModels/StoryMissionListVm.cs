@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Entities.ViewModels
 {
-    public class MissionSkillsVm
+    public class StoryMissionListVm
     {
+        public string MissionName { get; set; }
 
-        public string SkillName { get; set; }
-
+        public long MissionId { get; set; }
     }
 }

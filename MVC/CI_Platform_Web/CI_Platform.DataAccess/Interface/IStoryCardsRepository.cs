@@ -10,5 +10,7 @@ namespace CI_Platform.Repository.Interface
     public interface IStoryCardsRepository
     {
         public List<StoryListingVm> GetStories();
+
+        public ShareStoryVm GetUserMissions(long userid);
     }
 }

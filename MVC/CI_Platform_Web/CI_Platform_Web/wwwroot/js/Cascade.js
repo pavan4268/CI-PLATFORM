@@ -185,3 +185,5 @@ function CloseModal() {
     $('#modalshare').modal('hide');
     console.log("clicked");
 }
+
+

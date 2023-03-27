@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using CI_Platform.Entities.ViewModels;
+@model ShareStoryVm
+@{
+    var draftedstory = ViewBag.DraftedStory;
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,8 +40,11 @@
       crossorigin="anonymous"
     />
     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/ShareYourStory.css" rel="stylesheet" />
+    
     
   </head>
   
@@ -49,8 +59,15 @@
               <div class="selectiondiv col p-0 m-0 mt-4 pe-5">
                   <label class="selectdiv-title" for="mission-select">Select Mission</label><br />
                   <select class="mission-select w-100 mt-2" id="mission-select" style="height:38px">
-                      <option>Select Your Mission</option>
-                      <option>Option2</option>
+                    @foreach(var mission in Model.UserAppliedMissions)
+                    {
+                        
+                        
+                            <option value="@mission.MissionId">@mission.MissionName</option>
+                        
+                    }
+                    @*<option>Select Your Mission</option>
+                      <option>Option2</option>*@
                   </select>
               </div>
                @*select mission main div ends here*@
@@ -79,28 +96,42 @@
          @*video url div starts here*@
          <div class="video-main-div pt-3 mt-3">
              <label class="video-url-txt"for="video-url">Enter Video URL</label>
-             <input type="url" class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>
+             <input type="url"@* pattern="https?://(www\.)?youtube\.com.*" *@class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>
          </div>
          @*video url div ends here*@
          @*drag and drop starts here*@
 
-         <div class="row" style="margin-top:15px">
-
-             <label>Upload your Photos</label>
-             <div class="upload__box mt-2">
-
-                 <div class="upload__btn-box">
-
-                     <label class="upload__btn">
-                      <img src="~/images/drag-and-drop.png">
+        <div class="row" style="margin-top:15px">
+            <label>Upload your Photos</label>
+            <div class="upload__box mt-2">
+                  <div class="upload__btn-box">
+                    <label class="upload__btn">
+                      <img src="~/assets/drag-and-drop.png">
                       <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
-                     </label>
-                 </div>
-                     <div class="upload__img-wrap"></div>
-             </div>
-         </div>
+                    </label>
+                  </div>
+                  <div class="upload__img-wrap"></div>
+            </div>
+        </div>
 
          @*drag and drop ends here*@
+
+         @*cancel, save and submit button wrapper div starts here*@
+
+         <div class="button-wrapper d-flex mt-3 pt-3">
+             <div class="col cancel-btn-div">
+                 <a asp-action="StoriesListing" asp-controller="Story"><button class="btn cancel-btn" >Cancel</button></a>
+             </div>
+
+             <div class="col save-submit d-flex justify-content-end">
+                 
+                     <button class="btn me-3 save-btn" onclick="Save()">Save</button>
+                     <button class="btn submit-btn" type="submit">Submit</button>
+             </div>
+             
+         </div>
+
+         @*cancel, save and submit button wrapper div ends here*@
       </div>
       @*main div ends here*@
        <script>
@@ -114,6 +145,8 @@
             });
            
     </script>
+    
+    <script src="~/js/JavaScript.js"></script>
   </body>
    <script
     type="text/javascript"

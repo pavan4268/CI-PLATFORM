@@ -114,6 +114,7 @@ namespace CI_Platform_Web.Controllers
 
                     //}
                     int recsCount1 = data.Count();
+                    
                     var pager1 = new Pager(recsCount1, pg, pagesize);
                     int recSkip1 = (pg - 1) * pagesize;
                     var sortdata = data.Skip(recSkip1).Take(pager1.PageSize).ToList();
@@ -121,6 +122,7 @@ namespace CI_Platform_Web.Controllers
                     return View(sortdata);
                     //sorting logic ends here
                 }
+                ViewBag.NumberofMissions = recsCount;
                 return View(data1);
 
                 
