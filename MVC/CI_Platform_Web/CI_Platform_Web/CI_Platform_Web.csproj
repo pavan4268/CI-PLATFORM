@@ -61,4 +61,10 @@
     <ProjectReference Include="..\CI_Platform.Models\CI_Platform.Entities.csproj" />
   </ItemGroup>
 
+ 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\storyImages\" />
+  </ItemGroup>
+
 </Project>

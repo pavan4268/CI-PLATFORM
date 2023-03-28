@@ -1,5 +1,7 @@
 ﻿// for dag and drop
 
+
+
 jQuery(document).ready(function () {
     ImgUpload();
 
@@ -81,20 +83,68 @@ function ImgUpload() {
 //}
 //for drag and drop
 
-function Save() {
+//function Save() {
+//    var missionid = $("#mission-select").find(":selected").val();
+//    console.log(missionid);
+//    var storytitle = $("#storydesc").val();
+//    console.log(storytitle);
+//    var date = $("#date-select").val();
+//    console.log(date);
+//    var text = $(".ck-blurred p").text();
+//    console.log(text);
+//    var url = $("#video-url").val();
+//    console.log(url);
+//    var img = $("#storyimg").val();
+//    console.log(img);
+//    $.ajax({
+//        type: 'Post',
+//        url: '/Story/Save',
+//        data: {
+//            "missionid": missionid,
+//            "StoryTitle": storytitle,
+//            "Date": date,
+//            "StoryDescription": text
+//        },
+//        success: function result() {
+//            console.log(result);
+//        }
+//    })
+
+    //$.ajax({
+    //    url: '/Story/SavedData',
+    //    data: { "missionid": missionid },
+    //    success: function (response) {
+    //        console.log(response);
+    //        $("#storydesc").val(response.title);
+            //const date = response.createdAt;
+            //console.log(date);
+            //const newdate = new Date(date);
+            //const year = newdate.getFullYear();
+            //const month = ("0" + (newdate.getMonth() + 1)).slice(-2);
+            //const day = ("0" + newdate.getDate()).slice(-2);
+            //console.log(year);
+            //console.log(month);
+            //console.log(newdate);
+            //const dateinput = document.getElementById("date-select");
+            //const formattedDate = `${year}-${month}-${day}`;
+            //dateinput.value = formattedDate;
+            
+            
+    //        console.log(formattedDate);
+
+            
+            
+            
+    //    }
+    //})
+
+//}
+
+function getSavedData() {
     var missionid = $("#mission-select").find(":selected").val();
     console.log(missionid);
-    var storytitle = $("#storydesc").val();
-    console.log(storytitle);
-    var date = $("#date-select").val();
-    console.log(date);
-    var text = $(".ck-blurred p").text();
-    console.log(text);
-    var url = $("#video-url").val();
-    console.log(url);
-
     $.ajax({
-        url: '/Story/SavedData',
+        url: "/Story/DraftedData",
         data: { "missionid": missionid },
         success: function (response) {
             console.log(response);
@@ -109,16 +159,11 @@ function Save() {
             console.log(month);
             console.log(newdate);
             const dateinput = document.getElementById("date-select");
-            const formattedDate = `${day}-${month}-${year}`;
-            dateinput.val = formattedDate;
+            const formattedDate = `${year}-${month}-${day}`;
+            dateinput.value = formattedDate;
+            $(".ck-blurred").text(response.description);
+            console.log(response.description);
             
-            $("date-select").val(date);
-            console.log(formattedDate);
-
-            
-            
-            /*$("#date-select").val(string.ToString("dd / MM / yyyy"));*/
         }
     })
-
 }

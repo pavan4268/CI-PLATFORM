@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public List<StoryMissionListVm> UserAppliedMissions { get; set; }
 
+        
 
     }
 }

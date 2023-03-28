@@ -52,13 +52,14 @@
       <partial name="_OnlyHeader" />
       @*main div starts here*@
       <div class="container col-10">
+          <form method="post" id="storyForm">
           <h1 class="share-title pt-5" style="font-weight:100">Share Your Story</h1>
          @*div wrapping select mission, story title and date starts*@
           <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 main-select-div d-flex ps-2">
                @*select mission main div starts here*@
               <div class="selectiondiv col p-0 m-0 mt-4 pe-5">
                   <label class="selectdiv-title" for="mission-select">Select Mission</label><br />
-                  <select class="mission-select w-100 mt-2" id="mission-select" style="height:38px">
+                  <select asp-for="@Model.MissionId" class="mission-select w-100 mt-2" id="mission-select" onchange="getSavedData()" style="height:38px">
                     @foreach(var mission in Model.UserAppliedMissions)
                     {
                         
@@ -73,41 +74,45 @@
                @*select mission main div ends here*@
                @*story details main div starts here*@
               <div class="story-details-div col p-0 m-0 mt-4 pe-5">
-                  <label class="story-title" for="storydesc">My Story title</label><br />
-                  <input type="text" class="story-title w-100 mt-2" id="storydesc" style="height:38px" placeholder="Enter Story Title">
+                  <label class="story-title" asp-for="@Model.StoryTitle" for="storydesc">My Story title</label><br />
+                  <input type="text" asp-for="@Model.StoryTitle" class="story-title w-100 mt-2" id="storydesc" style="height:38px" placeholder="Enter Story Title">
               </div>
               @*story details main div ends here*@
               @*date selection main div starts here*@
               <div class="date-selection-div col p-0 m-0 mt-4 pe-xl-2 pe-5">
-                  <label class="selectdiv-title" for="date-select">Date</label><br />
-                  <input type="date" class="date-in w-100 mt-2" id="date-select" style="height:38px" placeholder="Date">
+                  <label class="selectdiv-title" asp-for="@Model.Date" for="date-select">Date</label><br />
+                  <input type="date" asp-for="@Model.Date" class="date-i w-100 mt-2" id="date-select" style="height:38px" placeholder="Date">
               </div>
               @*date selection main div starts here*@
           </div>
          @*div wrapping select mission, story title and date ends*@
          @*story description div starts here*@
-         <div class="story-details-main-div p-0 m-0 pt-3 mt-3">
-             <label class="my-story-txt p-0 m-0" for="story-description">My Story</label>
+
+
+        @* <div class="story-details-main-div p-0 m-0 pt-3 mt-3">
+             <label class="my-story-txt p-0 m-0" asp-for="@Model.StoryDesctiption" for="story-description">My Story</label>
              <div class="texteditor w-100" style="margin-top:5px">
-                 <div id="editor">Enter Your Story</div>
+                 <textarea asp-for="@Model.StoryDesctiption" id="editor">Enter Your Story</textarea>
              </div>
-         </div>
+         </div>*@
+
+
          @*story description div ends here*@
          @*video url div starts here*@
          <div class="video-main-div pt-3 mt-3">
-             <label class="video-url-txt"for="video-url">Enter Video URL</label>
-             <input type="url"@* pattern="https?://(www\.)?youtube\.com.*" *@class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>
+             <label class="video-url-txt" asp-for="@Model.VideoUrl" for="video-url">Enter Video URL</label>
+             <input type="url" asp-for="@Model.VideoUrl" class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>
          </div>
          @*video url div ends here*@
          @*drag and drop starts here*@
-
+        @* <form method="post" asp-action="Save" asp-controller="Story">*@
         <div class="row" style="margin-top:15px">
             <label>Upload your Photos</label>
             <div class="upload__box mt-2">
                   <div class="upload__btn-box">
                     <label class="upload__btn">
                       <img src="~/assets/drag-and-drop.png">
-                      <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                      <input type="file" multiple name="storyimg" id="img-upload" data-max_length="20" class="upload__inputfile">
                     </label>
                   </div>
                   <div class="upload__img-wrap"></div>
@@ -125,16 +130,17 @@
 
              <div class="col save-submit d-flex justify-content-end">
                  
-                     <button class="btn me-3 save-btn" onclick="Save()">Save</button>
+                     <button type = "submit" class="btn me-3 save-btn" onclick="formSubmit()">Save</button>
+                     
                      <button class="btn submit-btn" type="submit">Submit</button>
              </div>
              
          </div>
-
+         </form>
          @*cancel, save and submit button wrapper div ends here*@
       </div>
       @*main div ends here*@
-       <script>
+       @*<script>
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {
@@ -144,7 +150,7 @@
                 console.error(error);
             });
            
-    </script>
+    </script>*@
     
     <script src="~/js/JavaScript.js"></script>
   </body>
