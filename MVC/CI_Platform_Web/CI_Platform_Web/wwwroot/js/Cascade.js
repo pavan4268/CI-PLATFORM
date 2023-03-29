@@ -1,4 +1,4 @@
-﻿const { error } = require("jquery");
+﻿
 
 $(document).ready(function () {
     

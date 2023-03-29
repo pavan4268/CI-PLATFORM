@@ -2,6 +2,7 @@
 @model ShareStoryVm
 @{
     var draftedstory = ViewBag.DraftedStory;
+    var nomissionselected = ViewBag.SelectMission;
 }
 
 
@@ -11,7 +12,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Volunteering Mission Page</title>
+    <title>Share Your Story</title>
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -52,7 +53,7 @@
       <partial name="_OnlyHeader" />
       @*main div starts here*@
       <div class="container col-10">
-          <form method="post" id="storyForm">
+          <form method="post" enctype = "multipart/form-data">
           <h1 class="share-title pt-5" style="font-weight:100">Share Your Story</h1>
          @*div wrapping select mission, story title and date starts*@
           <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 main-select-div d-flex ps-2">
@@ -60,6 +61,7 @@
               <div class="selectiondiv col p-0 m-0 mt-4 pe-5">
                   <label class="selectdiv-title" for="mission-select">Select Mission</label><br />
                   <select asp-for="@Model.MissionId" class="mission-select w-100 mt-2" id="mission-select" onchange="getSavedData()" style="height:38px">
+                      <option value=null>Select a Mission</option>
                     @foreach(var mission in Model.UserAppliedMissions)
                     {
                         
@@ -70,6 +72,10 @@
                     @*<option>Select Your Mission</option>
                       <option>Option2</option>*@
                   </select>
+                  @if(nomissionselected!=null){
+
+                      <span class=text-danger>@nomissionselected</span>
+                  }
               </div>
                @*select mission main div ends here*@
                @*story details main div starts here*@
@@ -89,12 +95,12 @@
          @*story description div starts here*@
 
 
-        @* <div class="story-details-main-div p-0 m-0 pt-3 mt-3">
+         <div class="story-details-main-div p-0 m-0 pt-3 mt-3">
              <label class="my-story-txt p-0 m-0" asp-for="@Model.StoryDesctiption" for="story-description">My Story</label>
              <div class="texteditor w-100" style="margin-top:5px">
-                 <textarea asp-for="@Model.StoryDesctiption" id="editor">Enter Your Story</textarea>
+                 <textarea asp-for="@Model.StoryDesctiption" id="editor" placeholder="Enter story Details"></textarea>
              </div>
-         </div>*@
+         </div>
 
 
          @*story description div ends here*@
@@ -112,7 +118,7 @@
                   <div class="upload__btn-box">
                     <label class="upload__btn">
                       <img src="~/assets/drag-and-drop.png">
-                      <input type="file" multiple name="storyimg" id="img-upload" data-max_length="20" class="upload__inputfile">
+                      <input type="file" multiple asp-for="Storyimg" id="input-image" class="upload__inputfile" accept = "image/jpeg, image/png, image/jpg">
                     </label>
                   </div>
                   <div class="upload__img-wrap"></div>
@@ -120,7 +126,7 @@
         </div>
 
          @*drag and drop ends here*@
-
+          @*data-max_length="20"*@
          @*cancel, save and submit button wrapper div starts here*@
 
          <div class="button-wrapper d-flex mt-3 pt-3">
@@ -140,7 +146,7 @@
          @*cancel, save and submit button wrapper div ends here*@
       </div>
       @*main div ends here*@
-       @*<script>
+       <script>
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {
@@ -150,7 +156,7 @@
                 console.error(error);
             });
            
-    </script>*@
+    </script>
     
     <script src="~/js/JavaScript.js"></script>
   </body>

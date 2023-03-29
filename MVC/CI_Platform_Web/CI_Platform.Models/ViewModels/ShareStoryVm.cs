@@ -25,6 +25,8 @@ namespace CI_Platform.Entities.ViewModels
 
         public List<StoryMissionListVm> UserAppliedMissions { get; set; }
 
+        public List<IFormFile>? Storyimg { get; set; }
+
         
 
     }

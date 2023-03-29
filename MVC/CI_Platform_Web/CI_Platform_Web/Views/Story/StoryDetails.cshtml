@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Story Details</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/StoryDetails.css" rel="stylesheet">
+    
+    
+    
+  </head>
+
+  <body>
+
+      <partial name="_OnlyHeader" />
+
+      <div class="container col-10 main">
+
+          <div class="row mt-5">
+        <!-- col for image carousel starts -->
+            <div class="col-lg-5 col-md-12 img-carousel mt-3">
+              <!-- <div class="img-carousel w-100 h-100"> -->
+              <swiper-container
+                style="
+                  --swiper-navigation-color: #fff;
+                  --swiper-pagination-color: #fff;
+                "
+                class="mySwiper"
+                thumbs-swiper=".mySwiper2"
+                loop="true"
+                space-between="10"
+                navigation="true"
+              >
+                <swiper-slide>
+                  <img
+                    src="~/assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img
+                    src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img1.png" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img11.png" />
+                </swiper-slide>
+              </swiper-container>
+
+              <swiper-container
+                class="mySwiper2"
+                loop="true"
+                space-between="10"
+                slides-per-view="4"
+                free-mode="true"
+                watch-slides-progress="true"
+              >
+                <swiper-slide>
+                  <img
+                    src="~/assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img
+                    src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img1.png" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img11.png" />
+                </swiper-slide>
+              </swiper-container>
+              <!-- </div> -->
+            </div>
+
+            <div class="col-lg-7 col mt-5">
+                <div class="row ps-5 mt-3">
+                    @*div containing volunteer image and name starts here*@
+                    <div class="col volunteer-wrapper">
+                        <div class="user-img-div">
+                            <img src="~/assets/volunteer2.png" class="user-img" />
+                        </div>
+                        
+                        <span class="user-name">Charles Vigue</span>
+                    </div>
+                    @*div containing volunteer image and name ends here*@
+                </div>
+            </div>
+           </div>
+
+      </div>
+      
+
+      <script src="~/js/JavaScript.js"></script>
+  </body>
+   <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+  ></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+</html>

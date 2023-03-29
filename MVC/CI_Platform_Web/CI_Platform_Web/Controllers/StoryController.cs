@@ -43,6 +43,11 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+        public IActionResult StoryDetails()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Submit(long missionId, string StoryTitle, DateTime Date, string StoryDescription)
         {
@@ -75,7 +80,20 @@ namespace CI_Platform_Web.Controllers
         {
             string user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
-            var saveddata = _db.Stories.FirstOrDefault(x=> x.MissionId == missionid && x.UserId== userid);
+            //ShareStoryVm draftedData = new ShareStoryVm();
+            var saveddata = _db.Stories.FirstOrDefault(x=> x.MissionId == missionid && x.UserId== userid && x.Status=="DRAFT");
+            //var savedmedia = _db.StoryMedia.Where(x => x.StoryId == saveddata.StoryId).ToList();
+            //foreach(var media in savedmedia)
+            //{
+            //    if (media.Type == "video")
+            //    {
+            //        draftedData.VideoUrl = media.Path;
+            //    }
+            //    else
+            //    {
+            //        draftedData.ImagePath = media.Path;
+            //    }
+            //}
             return new JsonResult(saveddata);
 
 
@@ -83,99 +101,73 @@ namespace CI_Platform_Web.Controllers
 
 
         [HttpPost]
-        public IActionResult ShareYourStory(ShareStoryVm obj, List<IFormFile> storyimg)
+        public IActionResult ShareYourStory(ShareStoryVm obj)
         {
             string user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
-            var savecondition = _db.Stories.Where(x => x.MissionId == obj.MissionId && (x.UserId == (long)userid)).FirstOrDefault();
-            if(savecondition == null)
+            if (obj.MissionId != 0 && obj.MissionId != null)
             {
-                Story story = new Story();
                
-                story.MissionId = obj.MissionId;
-                story.UserId = userid;
-                story.Status = "DRAFT";
-                story.Title = obj.StoryTitle;
-                story.Description = obj.StoryDesctiption;
-                story.CreatedAt = obj.Date;
-                _db.Stories.Add(story);
-                _db.SaveChanges(true);
-                
-
-
-                //for images input
-
-                //try
-                //{
-                //    if(storyimg.Count > 0)
-                //    {
-                //        foreach(var img in storyimg)
-                //        {
-                //            string filename = img.FileName;
-                //            filename = Path.GetFileName(filename);
-                //            string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot//storyImages");
-
-                //            var stream = new FileStream(uploadpath, FileMode.Create);
-                //            img.CopyToAsync(stream);
-                //        }
-                //        ViewBag.Message = "Total " + storyimg.Count.ToString() + "Images Uploaded Sucessfully";
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-
-                //}
-
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                if (storyimg != null)
+                var savecondition = _db.Stories.Where(x => x.MissionId == obj.MissionId && x.UserId == (long)userid && (x.Status!= "PUBLISHED" && x.Status!="DECLINED")).FirstOrDefault();
+                if (savecondition == null)
                 {
-                    foreach (var img in storyimg)
+                    Story story = new Story();
+
+                    story.MissionId = obj.MissionId;
+                    story.UserId = userid;
+                    story.Status = "DRAFT";
+                    story.Title = obj.StoryTitle;
+                    story.Description = obj.StoryDesctiption;
+                    story.CreatedAt = obj.Date;
+                    _db.Stories.Add(story);
+                    _db.SaveChanges(true);
+
+                    //image input
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    if (obj.Storyimg != null)
                     {
-                        StoryMedium storyMedia = new StoryMedium();
-                        storyMedia.StoryId = story.StoryId;
-                        string fileName = Guid.NewGuid().ToString();
-                        var uploads = Path.Combine(wwwRootPath, @"assets/storyImages");
-                        var extension = Path.GetExtension(img.FileName);
-
-                        using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        foreach (var img in obj.Storyimg)
                         {
-                            img.CopyTo(filestream);
+                            StoryMedium storyMedia = new StoryMedium();
+                            storyMedia.StoryId = story.StoryId;
+                            string fileName = Guid.NewGuid().ToString();
+                            var uploads = Path.Combine(wwwRootPath, @"assets\storyImages");
+                            var extension = Path.GetExtension(img.FileName);
+
+                            using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                            {
+                                img.CopyTo(filestream);
+                            }
+                            storyMedia.Type = extension;
+                            storyMedia.Path = @"\assets\storyImages\" + fileName + extension;
+                            _db.Add(storyMedia);
+                            _db.SaveChanges(true);
                         }
-                        storyMedia.Type = extension;
-                        storyMedia.Path = @"assets/storyImages" + fileName + extension;
-                        _db.Add(storyMedia);
-                        _db.SaveChanges(true);
                     }
+                    //image input
+
+                    obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
+                    obj.StoryTitle = null;
+                    return View(obj);
                 }
+                else if (savecondition.Status == "DRAFT")
+                {
+                    ViewBag.DraftedStory = savecondition;
 
 
-                //for images input
-
-
-
-
-
-                obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
-                obj.StoryTitle = null;
-                return View(obj);
+                    savecondition.Title = obj.StoryTitle;
+                    savecondition.Description = obj.StoryDesctiption;
+                    savecondition.CreatedAt = obj.Date;
+                    _db.Stories.Update(savecondition);
+                    _db.SaveChanges(true);
+                    obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
+                    //obj.StoryTitle = null;
+                    return View(obj);
+                }
+               
             }
-            else if(savecondition.Status == "DRAFT")
-            {
-                ViewBag.DraftedStory = savecondition;
-                
-                
-                savecondition.Title = obj.StoryTitle;
-                savecondition.Description = obj.StoryDesctiption;
-                savecondition.CreatedAt = obj.Date;
-                _db.Stories.Update(savecondition);
-                _db.SaveChanges(true);
-                obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
-                obj.StoryTitle = null;
-                return View(obj);
-            }
+            ViewBag.SelectMission = "Please Select a Mission";
             obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
-            obj.StoryTitle = null;
-            
             return View(obj);
             
             

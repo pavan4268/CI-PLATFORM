@@ -148,21 +148,24 @@ function getSavedData() {
         data: { "missionid": missionid },
         success: function (response) {
             console.log(response);
-            $("#storydesc").val(response.title);
-            const date = response.createdAt;
-            console.log(date);
-            const newdate = new Date(date);
-            const year = newdate.getFullYear();
-            const month = ("0" + (newdate.getMonth() + 1)).slice(-2);
-            const day = ("0" + newdate.getDate()).slice(-2);
-            console.log(year);
-            console.log(month);
-            console.log(newdate);
-            const dateinput = document.getElementById("date-select");
-            const formattedDate = `${year}-${month}-${day}`;
-            dateinput.value = formattedDate;
-            $(".ck-blurred").text(response.description);
-            console.log(response.description);
+            if (response != null) {
+                $("#storydesc").val(response.title);
+                const date = response.createdAt;
+                console.log(date);
+                const newdate = new Date(date);
+                const year = newdate.getFullYear();
+                const month = ("0" + (newdate.getMonth() + 1)).slice(-2);
+                const day = ("0" + newdate.getDate()).slice(-2);
+                console.log(year);
+                console.log(month);
+                console.log(newdate);
+                const dateinput = document.getElementById("date-select");
+                const formattedDate = `${year}-${month}-${day}`;
+                dateinput.value = formattedDate;
+                $("#editor").html(response.description);
+                console.log(response.description);
+            }
+            
             
         }
     })
