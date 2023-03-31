@@ -78,6 +78,10 @@ namespace CI_Platform.Repository.Repository
             details.WhyIVolunteer = user.WhyIVolunteer;
             details.StoryDescription = story.Description;
             details.StoryTitle = story.Title;
+            details.MissionId = story.MissionId;
+            var users = _db.Users.ToList();
+            details.users = users;
+            details.StoryId = stroyid;
             //story.views = story.views + 1;
             //_db.Stories.Update(story);
             return details;

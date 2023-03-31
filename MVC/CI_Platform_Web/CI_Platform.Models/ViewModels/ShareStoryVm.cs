@@ -27,6 +27,8 @@ namespace CI_Platform.Entities.ViewModels
 
         public List<IFormFile>? Storyimg { get; set; }
 
+        public List<VideoListVm> VideoList { get; set; }
+
         
 
     }

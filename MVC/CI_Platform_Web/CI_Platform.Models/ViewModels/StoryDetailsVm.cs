@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CI_Platform.Entities.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,11 @@ namespace CI_Platform.Entities.ViewModels
         public string Username { get; set; }
 
         public string WhyIVolunteer { get; set; }
+
+        public long MissionId { get; set; }
+
+        public List<User> users { get; set; }
+
+        public long StoryId { get; set; }
     }
 }

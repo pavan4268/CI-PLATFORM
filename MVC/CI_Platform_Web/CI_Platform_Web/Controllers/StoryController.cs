@@ -3,10 +3,7 @@ using CI_Platform.Entities.CIPlatformDbContext;
 using CI_Platform.Entities.Data;
 using CI_Platform.Entities.ViewModels;
 using CI_Platform.Repository.Interface;
-
-
-
-
+using System.Net.Mail;
 
 namespace CI_Platform_Web.Controllers
 {
@@ -42,12 +39,58 @@ namespace CI_Platform_Web.Controllers
             return View(usermissions);
         }
 
+        
+
 
         public IActionResult StoryDetails(long storyid)
         {
             var story = _storyCards.GetStoryDetails(storyid);
             return View(story);
         }
+
+        [HttpPost]
+        public bool StoryDetails(long storyid, List<string> selecteduser)
+        {
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            var currentuser = _db.Users.FirstOrDefault(x=> x.UserId == userid);
+            var usertomail = _db.Users.Where(x=>selecteduser.Contains(x.UserId.ToString())).ToList();
+            if (usertomail != null)
+            {
+                foreach(var users in usertomail)
+                {
+                    try
+                    {
+                       
+                        string email = users.Email;
+                        var link = "<a href=\"https://localhost:5001/Story/StoryDetails?storyid=" + storyid + "\">Story Link</a>";
+                        MailMessage newMail = new MailMessage();
+                        SmtpClient client = new SmtpClient("smtp.gmail.com");
+                        newMail.From = new MailAddress("ciplatform333@gmail.com", "CI Platform");
+                        newMail.To.Add(email);
+                        newMail.Subject = "Reset Password Link";
+                        newMail.IsBodyHtml = true;
+                        newMail.Body =currentuser.FirstName+" " +currentuser.LastName + "Recommended you the below story<br><br><br>" + link;
+                        client.EnableSsl = true;
+                        client.Port = 587;
+                        client.Credentials = new System.Net.NetworkCredential("ciplatform333@gmail.com", "jbdxshjsnfhyimnp");
+                        client.Send(newMail);
+
+
+
+                       
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
 
         [HttpPost]
         public IActionResult Submit(long missionId, string StoryTitle, DateTime Date, string StoryDescription)
@@ -82,20 +125,34 @@ namespace CI_Platform_Web.Controllers
             string user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
             //ShareStoryVm draftedData = new ShareStoryVm();
+            ShareStoryVm draftdata = new ShareStoryVm();
             var saveddata = _db.Stories.FirstOrDefault(x=> x.MissionId == missionid && x.UserId== userid && x.Status=="DRAFT");
-            //var savedmedia = _db.StoryMedia.Where(x => x.StoryId == saveddata.StoryId).ToList();
-            //foreach(var media in savedmedia)
-            //{
-            //    if (media.Type == "video")
-            //    {
-            //        draftedData.VideoUrl = media.Path;
-            //    }
-            //    else
-            //    {
-            //        draftedData.ImagePath = media.Path;
-            //    }
-            //}
-            return new JsonResult(saveddata);
+            if(saveddata != null)
+            {
+                draftdata.StoryTitle = saveddata.Title;
+                draftdata.StoryDesctiption = saveddata.Description;
+                draftdata.Date = saveddata.CreatedAt;
+
+                var savedmedia = _db.StoryMedia.Where(x => x.StoryId == saveddata.StoryId).ToList();
+                List<VideoListVm> videopaths = new List<VideoListVm>();
+                foreach (var media in savedmedia)
+                {
+                    var video = new VideoListVm();
+                    if (media.Type == "video")
+                    {
+                        video.VideoPath = media.Path;
+                        videopaths.Add(video);
+                    }
+                    //else
+                    //{
+                    //    draftedData.ImagePath = media.Path;
+                    //}
+                }
+                draftdata.VideoList = videopaths;
+
+                return new JsonResult(draftdata);
+            }
+            else { return new JsonResult(null); }
 
 
         }
@@ -109,9 +166,10 @@ namespace CI_Platform_Web.Controllers
             if (obj.MissionId != 0 && obj.MissionId != null)
             {
                
-                var savecondition = _db.Stories.Where(x => x.MissionId == obj.MissionId && x.UserId == (long)userid && (x.Status!= "PUBLISHED" && x.Status!="DECLINED")).FirstOrDefault();
+                var savecondition = _db.Stories.Where(x => x.MissionId == obj.MissionId && x.UserId == (long)userid && x.Status=="DRAFT").FirstOrDefault();
                 if (savecondition == null)
                 {
+                    
                     Story story = new Story();
 
                     story.MissionId = obj.MissionId;
@@ -148,32 +206,39 @@ namespace CI_Platform_Web.Controllers
                         }
                     }
                     //image input
-                    //if(obj.VideoUrl != null)
-                    //{
-                    //    string[] videopath = obj.VideoUrl.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-                    //    if(videopath.Length <= 20)
-                    //    {
-                    //        foreach (var v in videopath)
-                    //        {
-                    //            StoryMedium video = new StoryMedium();
-                    //            video.StoryId = story.StoryId;
-                    //            video.Type = "video";
-                    //            video.Path = v;
-                    //            _db.StoryMedia.Add(video);
-                    //            _db.SaveChanges();
-                    //        }
-                    //    }
-                       
-                    //}
+
+                    //video url input
+                    if (obj.VideoUrl != null)
+                    {
+                        string[] videopath = obj.VideoUrl.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                        if (videopath.Length <= 20)
+                        {
+                            foreach (var v in videopath)
+                            {
+                                StoryMedium video = new StoryMedium();
+                                video.StoryId = story.StoryId;
+                                video.Type = "video";
+                                video.Path = v;
+                                _db.StoryMedia.Add(video);
+                                _db.SaveChanges();
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.MaxVideo = "Cannot upload more than 20 Url";
+                        }
+
+                    }
+                    // video url input
                     obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
-                    obj.StoryTitle = null;
+                    
                     return View(obj);
                 }
-                else if (savecondition.Status == "DRAFT")
+                else if (savecondition != null)
                 {
                     ViewBag.DraftedStory = savecondition;
 
-
+                    
                     savecondition.Title = obj.StoryTitle;
                     savecondition.Description = obj.StoryDesctiption;
                     savecondition.CreatedAt = obj.Date;

@@ -3,6 +3,7 @@
 @{
     var draftedstory = ViewBag.DraftedStory;
     var nomissionselected = ViewBag.SelectMission;
+    var maxvideos = ViewBag.MaxVideo;
 }
 
 
@@ -108,8 +109,12 @@
          <div class="video-main-div pt-3 mt-3">
              <label class="video-url-txt" asp-for="@Model.VideoUrl" for="video-url">Enter Video URL</label>
              @*<input type="url" asp-for="@Model.VideoUrl" class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>*@
-             <textarea class="form-control"  asp-for="@Model.VideoUrl" rows="3" placeholder="enter video url"></textarea>
-         </div>
+             <textarea class="form-control"  asp-for="@Model.VideoUrl" rows="3" placeholder="enter video url" id="videourl"></textarea>
+                @if(maxvideos != null)
+                {
+                    <span class="text-danger">@maxvideos</span>
+                }
+            </div>
          @*video url div ends here*@
          @*drag and drop starts here*@
         @* <form method="post" asp-action="Save" asp-controller="Story">*@
@@ -138,8 +143,12 @@
              <div class="col save-submit d-flex justify-content-end">
                  
                      <button type = "submit" class="btn me-3 save-btn" onclick="formSubmit()">Save</button>
+                     <button class="btn submit-btn" type="submit" id="submit-btn" disabled>Submit</button>
                      
-                     <button class="btn submit-btn" type="submit">Submit</button>
+                   
+                         
+                    
+
              </div>
              
          </div>

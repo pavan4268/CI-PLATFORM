@@ -149,8 +149,9 @@ function getSavedData() {
         success: function (response) {
             console.log(response);
             if (response != null) {
-                $("#storydesc").val(response.title);
-                const date = response.createdAt;
+                document.getElementById("submit-btn").disabled = false;
+                $("#storydesc").val(response.storyTitle);
+                const date = response.date;
                 console.log(date);
                 const newdate = new Date(date);
                 const year = newdate.getFullYear();
@@ -162,11 +163,52 @@ function getSavedData() {
                 const dateinput = document.getElementById("date-select");
                 const formattedDate = `${year}-${month}-${day}`;
                 dateinput.value = formattedDate;
-                $("#editor").html(response.description);
-                console.log(response.description);
+                //$("#editor").html(response.description);
+                //console.log(response.description);
+                var videolist = response.videoList;
+                console.log(videolist);
+                const textarea = document.getElementById('videourl');
+                for (var i = 0; i < videolist.length; i++) {
+                    
+                    textarea.value += videolist[i].videoPath + '\n';
+                }
             }
+            else {
+                var inputs = document.querySelectorAll("input");
+                
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].value = '';
+                    document.getElementById("submit-btn").disabled = true;
+                }
+                document.getElementById("videourl").value = '';
+            }
+
+            
             
             
         }
     })
+}
+
+
+function recommend(sid) {
+    var selecteduser = [];
+    $('#recommendtocoworker input:checkbox[id=rectoid]:checked').each(function () {
+        selecteduser.push($(this).val());
+    })
+    console.log(selecteduser);
+    if (selecteduser != null) {
+        $.ajax({
+            method: 'POST',
+            url: '/Story/StoryDetails',
+            data: {
+                "storyid": sid,
+                "selecteduser": selecteduser
+
+            },
+            success: function (response) {
+                console.log('mail sent');
+            }
+        })
+    }
 }
