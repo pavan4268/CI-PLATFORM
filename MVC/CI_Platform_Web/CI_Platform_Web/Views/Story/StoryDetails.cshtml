@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using CI_Platform.Entities.ViewModels
+
+@model StoryDetailsVm
+
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -116,15 +121,78 @@
                         <div class="user-img-div">
                             <img src="~/assets/volunteer2.png" class="user-img" />
                         </div>
+                        <div class="name-views-wrapper d-flex justify-content-between">
+                            <span class="user-name p-1">@Model.Username</span>
+                            <span class="views-count p-1">12000 views</span>
+                        </div>
                         
-                        <span class="user-name">Charles Vigue</span>
                     </div>
                     @*div containing volunteer image and name ends here*@
+                    
                 </div>
+                @*why i volunteer div starts here*@
+                <div class="row mt-5 ps-5">
+                    <span class="why-i-volunteer-div">
+                       @* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim                                         veniam.<br><br>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo                                        inventore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br><br>
+                            Ut enim ad minim veniam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque                                 ipsa quae ab illo inventore.</p>*@
+                            @Model.WhyIVolunteer
+                    </span>
+                </div>
+                @*why i volunteer div ends here*@
+                @*recommend to a co-worker and open mission wrapper div starts here*@
+                <div class="row mt-3 ps-5 d-flex column-gap-3">
+                    <div class="dropdown col" id="recommend-div">
+                        <button class="btn dropdown-toggle" id="recommend-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/assets/add1.png" />
+                            Recommend To a Co-worker
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                    </div>
+                    <div class="mission-btn-div col">
+                        <button class="btn" id="mission-btn" type="button">Open Mission </button>
+                    </div>
+                </div>
+                @*recommend to a co-worker and open mission wrapper div ends here*@
             </div>
            </div>
 
+           @*story title div starts here*@
+           <div class="row story-title-div pb-3 mt-4"><span class="story-title">@*Grow trees on the path of environment sustainiblity*@@Model.StoryTitle</span></div>
+           @*story title div ends here*@
+           <div class="row story-description-div mt-3 mb-5">
+               <span class="story-description">
+                  @* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                   </p>
+                   <p>
+                       Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non                                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                   </p>
+                   <p>We use these technologies for a number of purposes, such as:
+                       <ul>
+                           <li>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain.</li>
+                           <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque excepturi sint occaecati                                     cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi
+                           </li>
+                           <li>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized</li>
+                           <li>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain.</li>
+                           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
+                       </ul>
+                   </p>
+                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse                           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est                               laborum.
+                   </p>*@
+                   @Model.StoryDescription
+               </span>
+           </div>
+           <div class="footer pt-3">
+               <a>privacy policy</a>
+           </div>
       </div>
+     
+      
+          
       
 
       <script src="~/js/JavaScript.js"></script>

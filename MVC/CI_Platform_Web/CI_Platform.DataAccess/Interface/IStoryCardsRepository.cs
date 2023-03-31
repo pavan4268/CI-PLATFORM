@@ -12,5 +12,7 @@ namespace CI_Platform.Repository.Interface
         public List<StoryListingVm> GetStories();
 
         public ShareStoryVm GetUserMissions(long userid);
+
+        public StoryDetailsVm GetStoryDetails(long stroyid);
     }
 }

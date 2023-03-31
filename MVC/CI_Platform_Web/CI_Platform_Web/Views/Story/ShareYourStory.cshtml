@@ -107,7 +107,8 @@
          @*video url div starts here*@
          <div class="video-main-div pt-3 mt-3">
              <label class="video-url-txt" asp-for="@Model.VideoUrl" for="video-url">Enter Video URL</label>
-             <input type="url" asp-for="@Model.VideoUrl" class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>
+             @*<input type="url" asp-for="@Model.VideoUrl" class="video-path w-100 mt-2" id="video-url" style="height:38px" placeholder="Enter your url"/>*@
+             <textarea class="form-control"  asp-for="@Model.VideoUrl" rows="3" placeholder="enter video url"></textarea>
          </div>
          @*video url div ends here*@
          @*drag and drop starts here*@

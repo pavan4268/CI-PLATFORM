@@ -35,6 +35,7 @@ namespace CI_Platform.Repository.Repository
                 storycard.UserName = user.FirstName + " " + user.LastName;
                 storycard.MissionTheme = theme.Title;
                 storycard.PublishedAt = (DateTime)story.PublishedAt;
+                storycard.Storyid = story.StoryId;
                 stories.Add(storycard);
             }
 
@@ -66,6 +67,21 @@ namespace CI_Platform.Repository.Repository
             return shareStoryVm;
         }
 
+        public StoryDetailsVm GetStoryDetails(long stroyid)
+        {
+            StoryDetailsVm details = new StoryDetailsVm();
+            
+            var story = _db.Stories.Where(x=> x.StoryId == stroyid).FirstOrDefault();
+            var user = _db.Users.FirstOrDefault(x => x.UserId == story.UserId);
+            var username = user.FirstName + " " + user.LastName;
+            details.Username = username;
+            details.WhyIVolunteer = user.WhyIVolunteer;
+            details.StoryDescription = story.Description;
+            details.StoryTitle = story.Title;
+            //story.views = story.views + 1;
+            //_db.Stories.Update(story);
+            return details;
+        }
 
     }
 }

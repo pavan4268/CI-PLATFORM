@@ -43,9 +43,10 @@ namespace CI_Platform_Web.Controllers
         }
 
 
-        public IActionResult StoryDetails()
+        public IActionResult StoryDetails(long storyid)
         {
-            return View();
+            var story = _storyCards.GetStoryDetails(storyid);
+            return View(story);
         }
 
         [HttpPost]
@@ -119,6 +120,7 @@ namespace CI_Platform_Web.Controllers
                     story.Title = obj.StoryTitle;
                     story.Description = obj.StoryDesctiption;
                     story.CreatedAt = obj.Date;
+
                     _db.Stories.Add(story);
                     _db.SaveChanges(true);
 
@@ -140,12 +142,29 @@ namespace CI_Platform_Web.Controllers
                             }
                             storyMedia.Type = extension;
                             storyMedia.Path = @"\assets\storyImages\" + fileName + extension;
+                            
                             _db.Add(storyMedia);
                             _db.SaveChanges(true);
                         }
                     }
                     //image input
-
+                    //if(obj.VideoUrl != null)
+                    //{
+                    //    string[] videopath = obj.VideoUrl.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                    //    if(videopath.Length <= 20)
+                    //    {
+                    //        foreach (var v in videopath)
+                    //        {
+                    //            StoryMedium video = new StoryMedium();
+                    //            video.StoryId = story.StoryId;
+                    //            video.Type = "video";
+                    //            video.Path = v;
+                    //            _db.StoryMedia.Add(video);
+                    //            _db.SaveChanges();
+                    //        }
+                    //    }
+                       
+                    //}
                     obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
                     obj.StoryTitle = null;
                     return View(obj);
@@ -174,5 +193,7 @@ namespace CI_Platform_Web.Controllers
         }
 
        
+
+        
     }
 }

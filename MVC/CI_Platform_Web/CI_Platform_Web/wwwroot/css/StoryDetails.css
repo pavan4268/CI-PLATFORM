@@ -163,3 +163,41 @@ swiper-slide img {
     height: 100px;
     border-radius: 100px;
 }
+
+.views-count{
+    
+    border: solid 1px;
+    border-radius:100px;
+}
+
+#recommend-dropdown {
+    border: solid 1px;
+    border-radius: 100px;
+    height: 60px;
+    width: 360px;
+}
+
+
+#mission-btn{
+    height:60px;
+    width:250px;
+    color:orange;
+    border: solid 1px;
+    border-color: orange;
+    box-shadow:none;
+    border-radius:100px;
+}
+
+.story-title{
+    font-size:22px;
+}
+
+.story-title-div{
+    border-bottom:solid 1px;
+    border-bottom-color: dimgray;
+}
+
+.footer{
+    border-top: solid 1px;
+    border-top-color:gray;
+}

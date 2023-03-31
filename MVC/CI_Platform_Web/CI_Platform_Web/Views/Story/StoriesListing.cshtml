@@ -112,7 +112,7 @@
                         alt="Card image cap"
                       />
                       <div class="story-img-hover">
-                          <a asp-action="StoryDetails" asp-controller="Story">
+                          <a asp-action="StoryDetails" asp-controller="Story" asp-route-storyid=@card.Storyid>
                         <button class="view-details-btn">
                           View Details
                           <svg

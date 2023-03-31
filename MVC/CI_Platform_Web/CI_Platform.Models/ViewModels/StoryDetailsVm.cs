@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Entities.ViewModels
 {
-    public class StoryListingVm
+    public class StoryDetailsVm
     {
-        public string MissionTheme { get; set; }
-
         public string StoryTitle { get; set; }
 
         public string StoryDescription { get; set; }
 
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
-        public DateTime PublishedAt { get; set; }
-
-        public long Storyid { get; set; }
+        public string WhyIVolunteer { get; set; }
     }
 }
