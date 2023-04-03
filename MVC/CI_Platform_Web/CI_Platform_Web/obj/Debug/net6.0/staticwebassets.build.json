@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VnA11DD/HdZ15dcHg7SnTWzvkdpWcatptr9UvE2odEY=",
+  "Hash": "tfz9JxLNWGqwLhXFAAyRV3bqsQqy3jsKBNNtZ5an6xc=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -2174,6 +2174,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\StoryDetails.css"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\UserProfile.css",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "css/UserProfile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UserProfile.css"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\VolunteeringMissionPage.css",

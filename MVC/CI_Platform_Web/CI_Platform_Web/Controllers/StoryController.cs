@@ -48,6 +48,13 @@ namespace CI_Platform_Web.Controllers
             return View(story);
         }
 
+
+
+
+
+
+
+
         [HttpPost]
         public bool StoryDetails(long storyid, List<string> selecteduser)
         {
@@ -92,12 +99,17 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+
+
+
+
+
         [HttpPost]
-        public IActionResult Submit(long missionId, string StoryTitle, DateTime Date, string StoryDescription)
+        public IActionResult Submit(ShareStoryVm item)
         {
             string user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
-            var submitcondition = _db.Stories.Where(x => x.MissionId == missionId && x.UserId == (long)userid && x.Status=="DRAFT").FirstOrDefault();
+            var submitcondition = _db.Stories.Where(x => x.MissionId == item.MissionId && x.UserId == (long)userid && x.Status=="DRAFT").FirstOrDefault();
             if (submitcondition != null)
             {
 
@@ -109,16 +121,78 @@ namespace CI_Platform_Web.Controllers
                 //story.CreatedAt = Date;
                 //_db.Stories.Add(story);
                 submitcondition.Status = "PENDING";
-                submitcondition.Title = StoryTitle;
-                submitcondition.Description = StoryDescription;
-                submitcondition.CreatedAt = Date;
+                submitcondition.Title = item.StoryTitle;
+                submitcondition.Description = item.StoryDesctiption;
+                submitcondition.CreatedAt = item.Date;
+                var storymedia = _db.StoryMedia.Where(x => x.StoryId == submitcondition.StoryId).ToList();
+                if(storymedia != null)
+                {
+                    _db.StoryMedia.RemoveRange(storymedia);
+                    _db.SaveChanges();
+                }
+                //image input
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (item.Storyimg != null)
+                {
+                    foreach (var img in item.Storyimg)
+                    {
+                        StoryMedium storyMedia = new StoryMedium();
+                        storyMedia.StoryId = submitcondition.StoryId;
+                        string fileName = Guid.NewGuid().ToString();
+                        var uploads = Path.Combine(wwwRootPath, @"assets\storyImages");
+                        var extension = Path.GetExtension(img.FileName);
+
+                        using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        {
+                            img.CopyTo(filestream);
+                        }
+                        storyMedia.Type = extension;
+                        storyMedia.Path = @"\assets\storyImages\" + fileName + extension;
+
+                        _db.Add(storyMedia);
+                        _db.SaveChanges(true);
+                    }
+                }
+                //image input
+
+
+                //video url input
+                if (item.VideoUrl != null)
+                {
+                    string[] videopath = item.VideoUrl.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                    if (videopath.Length <= 20)
+                    {
+                        foreach (var v in videopath)
+                        {
+                            StoryMedium video = new StoryMedium();
+                            video.StoryId = submitcondition.StoryId;
+                            video.Type = "video";
+                            video.Path = v;
+                            _db.StoryMedia.Add(video);
+                            _db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.MaxVideo = "Cannot upload more than 20 Url";
+                    }
+
+                }
+                // video url input
                 _db.Stories.Update(submitcondition);
                 _db.SaveChanges();
                 return RedirectToAction("ShareYourStory");
             }
-            return View();
+            return View(item);
            
         }
+
+
+
+
+
+
+
 
         public JsonResult DraftedData(long missionid)
         {
@@ -156,6 +230,12 @@ namespace CI_Platform_Web.Controllers
 
 
         }
+
+
+
+
+
+
 
 
         [HttpPost]
@@ -234,6 +314,10 @@ namespace CI_Platform_Web.Controllers
                     
                     return View(obj);
                 }
+
+
+
+
                 else if (savecondition != null)
                 {
                     ViewBag.DraftedStory = savecondition;
@@ -242,6 +326,63 @@ namespace CI_Platform_Web.Controllers
                     savecondition.Title = obj.StoryTitle;
                     savecondition.Description = obj.StoryDesctiption;
                     savecondition.CreatedAt = obj.Date;
+                    var savedmedia = _db.StoryMedia.Where(x=> x.StoryId == savecondition.StoryId).ToList();
+                    if (savedmedia != null)
+                    {
+                        _db.StoryMedia.RemoveRange(savedmedia);
+                        _db.SaveChanges();
+                    }
+
+                    //image input
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    if (obj.Storyimg != null)
+                    {
+                        foreach (var img in obj.Storyimg)
+                        {
+                            StoryMedium storyMedia = new StoryMedium();
+                            storyMedia.StoryId = savecondition.StoryId;
+                            string fileName = Guid.NewGuid().ToString();
+                            var uploads = Path.Combine(wwwRootPath, @"assets\storyImages");
+                            var extension = Path.GetExtension(img.FileName);
+
+                            using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                            {
+                                img.CopyTo(filestream);
+                            }
+                            storyMedia.Type = extension;
+                            storyMedia.Path = @"\assets\storyImages\" + fileName + extension;
+
+                            _db.Add(storyMedia);
+                            _db.SaveChanges(true);
+                        }
+                    }
+                    //image input
+
+                    //video url input
+                    if (obj.VideoUrl != null)
+                    {
+                        string[] videopath = obj.VideoUrl.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                        if (videopath.Length <= 20)
+                        {
+                            foreach (var v in videopath)
+                            {
+                                StoryMedium video = new StoryMedium();
+                                video.StoryId = savecondition.StoryId;
+                                video.Type = "video";
+                                video.Path = v;
+                                _db.StoryMedia.Add(video);
+                                _db.SaveChanges();
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.MaxVideo = "Cannot upload more than 20 Url";
+                        }
+
+                    }
+                    // video url input
+
+
                     _db.Stories.Update(savecondition);
                     _db.SaveChanges(true);
                     obj.UserAppliedMissions = _storyCards.GetUserMissions(userid).UserAppliedMissions;
