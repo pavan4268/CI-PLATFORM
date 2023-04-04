@@ -17,6 +17,7 @@ builder.Services.AddScoped<IMissionCard, MissionCard>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IVolunteerMissionCard, VolunteerMissionCard>();
 builder.Services.AddScoped<IStoryCardsRepository, StoryCardsRepository>();
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

@@ -39,3 +39,12 @@
     border-radius: 100px;
     box-shadow: none;
 }
+.change-pass-btn {
+    color: #F88634;
+    width: 189px;
+    height: 48px;
+    border: solid 1px;
+    border-color: #F88634;
+    border-radius: 100px;
+    box-shadow: none;
+}

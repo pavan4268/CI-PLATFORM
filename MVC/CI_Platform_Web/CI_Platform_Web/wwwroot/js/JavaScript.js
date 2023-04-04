@@ -236,3 +236,46 @@ $(document).ready(function () {
 
 
 //profile picture change on frontend part
+
+
+function getcities() {
+    var countryid = $("#country-dropdown").find(":selected").val();
+    $('#city-dropdown').empty();
+    $('#city-dropdown').append('<Option>Enter Your City</Option>');
+    console.log(countryid);
+    $.ajax({
+        url: '/User/GetCities',
+        data: { countryid: countryid },
+        success: function (result) {
+            $.each(result, function (i, data) {
+
+                $('#city-dropdown').append('<Option value =' + data.cityId + '>' + data.name + '</Option>');
+            });
+        }
+    })
+}
+
+
+function changepass() {
+    var cpass = document.getElementById("cpass").value;
+    var newpass = document.getElementById("newpass").value;
+    var cnfpass = document.getElementById("cnfpass").value;
+    if (newpass != cnfpass) {
+        alert("New Password and Confirm Password do not Match.");
+    }
+    else {
+        $.ajax({
+            type: 'POST',
+            url: '/User/ChangePassword',
+            data: {
+                cpass: cpass,
+                newpass : newpass
+            },
+            success: function (response) {
+                if (response == null) {
+                    document.getElementById("passerror").style.display = "block";
+                }
+            }
+        });
+    }
+}
