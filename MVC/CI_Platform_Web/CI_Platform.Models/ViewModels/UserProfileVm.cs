@@ -42,6 +42,12 @@ namespace CI_Platform.Entities.ViewModels
 
         public string? LinkedIn { get; set; }
 
+        public List<Skill> Allskills { get; set; }
+
+        public List<UserSkillsVm> UserSkills { get; set; }
+
+        public string? Avatar { get; set; }
+
         //[Required(ErrorMessage ="Please Enter Current Password.")]
         //public string? CurrentPassword { get; set; }
 

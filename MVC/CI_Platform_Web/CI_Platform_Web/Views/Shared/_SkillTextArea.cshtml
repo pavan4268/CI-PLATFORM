@@ -1,0 +1,17 @@
+﻿@using CI_Platform.Entities.ViewModels
+
+@model UserProfileVm
+<div class="col skills-div" style="height:189px; overflow:auto;">
+                                <ul class="myskills" style="list-style-type:none;">
+                                    @foreach(var skill in Model.UserSkills){
+                                        <li>@skill.Skillname</li>
+                                    }
+                                   @* <li>Management</li>
+                                    <li>Plumbing</li>
+                                    <li>Teaching</li>
+                                    <li>MS Office</li>
+                                    <li>Maths</li>
+                                    <li>Cooking</li>
+                                    <li>Management</li>*@
+                                </ul>
+                            </div>

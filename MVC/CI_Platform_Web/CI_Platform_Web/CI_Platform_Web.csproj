@@ -64,6 +64,7 @@
  
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\UserAvatar\" />
     <Folder Include="wwwroot\assets\storyImages\" />
   </ItemGroup>
 

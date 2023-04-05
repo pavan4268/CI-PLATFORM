@@ -40,6 +40,21 @@ namespace CI_Platform.Repository.Repository
                 userdetails.CountryId = currentuser.CountryId;
                 userdetails.cities = _db.Cities.Where(x => x.CountryId == userdetails.CountryId).ToList();
                 userdetails.CityId = currentuser.CityId;
+                userdetails.Allskills = _db.Skills.ToList();
+                userdetails.Avatar = currentuser.Avatar;
+                var userskills = _db.UserSkills.Where(x=>x.UserId==userid).ToList();
+                //var example = _db.UserSkills.Include(m=>m.
+                List<UserSkillsVm> userskillslist = new List<UserSkillsVm>();
+                foreach(var user in userskills)
+                {
+                    UserSkillsVm skill = new UserSkillsVm();
+                    skill.SkillId = user.SkillId;
+                    var skillname = _db.Skills.FirstOrDefault(x=>x.SkillId==skill.SkillId);
+                    skill.Skillname = skillname.SkillName;
+                    skill.UserSkillId = user.UserSkillId;
+                    userskillslist.Add(skill);
+                }
+                userdetails.UserSkills = userskillslist;
                 return userdetails;
             }
             return null;

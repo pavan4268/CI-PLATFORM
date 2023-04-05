@@ -4,6 +4,7 @@
 
 jQuery(document).ready(function () {
     ImgUpload();
+    $("#country-dropdown").change();
 
 //    Title();
 //    $('#mission-select').on('change', function () {
@@ -241,7 +242,7 @@ $(document).ready(function () {
 function getcities() {
     var countryid = $("#country-dropdown").find(":selected").val();
     $('#city-dropdown').empty();
-    $('#city-dropdown').append('<Option>Enter Your City</Option>');
+    //$('#city-dropdown').append('<Option>Enter Your City</Option>');
     console.log(countryid);
     $.ajax({
         url: '/User/GetCities',
@@ -257,6 +258,7 @@ function getcities() {
 
 
 function changepass() {
+    document.getElementById("passerror").style.display = "none";
     var cpass = document.getElementById("cpass").value;
     var newpass = document.getElementById("newpass").value;
     var cnfpass = document.getElementById("cnfpass").value;
@@ -272,10 +274,66 @@ function changepass() {
                 newpass : newpass
             },
             success: function (response) {
-                if (response == null) {
+                if (response == true) {
+                    $("#change-pass-cancel").click();
+                    alert("Password updated sucessfully.");
+                }
+                else {
                     document.getElementById("passerror").style.display = "block";
                 }
             }
         });
     }
+}
+
+
+function addskill() {
+    var skilltoadd = document.getElementById("allskills");
+    var addedskill = document.getElementById("userskills");
+    for (var i = 0; i < skilltoadd.options.length; i++) {
+        if (skilltoadd.options[i].selected) {
+            var exists = false;
+            for (var j = 0; j < addedskill.options.length; j++) {
+                if (addedskill.options[j].value == skilltoadd.options[i].value) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                $("#userskills").append('<option value ="' + skilltoadd.options[i].value + '">' + skilltoadd.options[i].text + '</option>');
+            }
+        }
+    }
+}
+
+
+function removeskill() {
+    var remove = document.getElementById("userskills");
+    for (var i = remove.options.length - 1; i >= 0; i--) {
+        if (remove.options[i].selected) {
+            remove.options[i].remove();
+        }
+    }
+}
+
+function saveskills() {
+    var skillslist = [];
+    var selected = document.getElementById("userskills");
+    for (var i = 0; i < selected.options.length;i++) {
+        
+            skillslist.push(selected.options[i].value);
+        
+        
+    }
+    console.log(skillslist);
+    $.ajax({
+        type: 'post',
+        url: '/User/SaveUserSkills',
+        data: { skillid: skillslist },
+        success: function (result) {
+            console.log(result);
+            $("#closemodal").click();
+            $("#uzer-skills").html(result);
+        }
+    })
 }
