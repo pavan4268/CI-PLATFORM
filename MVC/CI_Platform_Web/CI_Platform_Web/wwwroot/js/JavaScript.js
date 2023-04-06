@@ -256,6 +256,43 @@ function getcities() {
     })
 }
 
+//password modal js
+
+//password validations
+
+const passwordInput = document.getElementById("newpass");
+const passwordError = document.getElementById("password-validation");
+
+
+passwordInput.addEventListener('input', () =>
+{
+    const password = passwordInput.value;
+
+    //minimum length
+    if (password.length < 6) {
+        passwordError.textContent = 'Password must be atleast 6 characters long';
+        return;
+    }
+    //minimum length
+
+
+    //character validations
+    const uppercaseRegex = /[A-Z]/;
+    const lowercaseRegex = /[a-z]/;
+    const numberRegex = /[0-9]/;
+    const specialRegex = /[$@$!%*?&]/;
+
+    if (!uppercaseRegex.test(password) || !lowercaseRegex.test(password) || !numberRegex.test(password) || !specialRegex.test(password)) {
+        passwordError.textContent = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+        return;
+    }
+    //character validations
+    passwordError.textContent = ''; // Clear error message if validation passes
+
+});
+
+//password validations
+
 
 function changepass() {
     document.getElementById("passerror").style.display = "none";
@@ -285,7 +322,7 @@ function changepass() {
         });
     }
 }
-
+//password modal js
 
 function addskill() {
     var skilltoadd = document.getElementById("allskills");
@@ -337,3 +374,62 @@ function saveskills() {
         }
     })
 }
+
+
+function getuserskills() {
+    $("#userskills").empty();
+    $("#allskills option:selected").prop("selected", false);
+    $.ajax({
+        url: '/User/GetUserSkills',
+        success: function (result) {
+            console.log(result);
+            $.each(result, function (i, data) {
+                $("#userskills").append('<Option value =' + data.skillId + '>' + data.skillName + '</Option>');
+            });
+        }
+    });
+}
+
+
+//function getcities() {
+//    var countryid = $("#country-dropdown").find(":selected").val();
+//    $('#city-dropdown').empty();
+//    //$('#city-dropdown').append('<Option>Enter Your City</Option>');
+//    console.log(countryid);
+//    $.ajax({
+//        url: '/User/GetCities',
+//        data: { countryid: countryid },
+//        success: function (result) {
+//            $.each(result, function (i, data) {
+
+//                $('#city-dropdown').append('<Option value =' + data.cityId + '>' + data.name + '</Option>');
+//            });
+//        }
+//    })
+//}
+
+//linkedin url pattern validation function
+
+const linkedinUrlRegex = /^(https?:\/\/)?([\w]+\.)?linkedin\.com\/.*$/i;
+
+function validateLinkedinUrl(input) {
+    return linkedinUrlRegex.test(input);
+}
+
+//linkedin url pattern validation function
+
+
+//onsubmit validations
+
+const submitButton = document.getElementById("form-submit");
+submitButton.addEventListener('click', (event) => {
+    var linkedInUrlInput = document.getElementById("linkedin");
+    var linkedInUrl = linkedInUrlInput.value.trim();
+    if (!validateLinkedinUrl(linkedInUrl)) {
+        event.preventDefault();
+        alert('Please Enter a valid LinkedIn Url.');
+        linkedInUrlInput.focus();
+    }
+});
+
+//onsubmit validations

@@ -63,7 +63,7 @@ namespace CI_Platform.Repository.Repository
 
             }
             shareStoryVm.UserAppliedMissions = userMissions;
-            
+            shareStoryVm.Date = DateTime.Now;
             return shareStoryVm;
         }
 

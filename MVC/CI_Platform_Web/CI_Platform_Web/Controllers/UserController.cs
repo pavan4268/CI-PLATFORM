@@ -4,6 +4,7 @@ using CI_Platform.Entities.Data;
 using CI_Platform.Entities.ViewModels;
 using CI_Platform.Repository.Interface;
 using System.Net.Mail;
+using Microsoft.EntityFrameworkCore;
 
 namespace CI_Platform_Web.Controllers
 {
@@ -34,15 +35,27 @@ namespace CI_Platform_Web.Controllers
         public JsonResult GetCities(long countryid)
         {
             var cities = _db.Cities.Where(x=> x.CountryId == countryid).ToList();
-            return new JsonResult(cities);
+            return new JsonResult(cities);  
+        }
+
+
+        public IActionResult GetUserSkills()
+        {
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+
+            var userskills = _db.UserSkills.Where(x => x.UserId == userid).Include(x => x.Skill).ToList();
+            var skills = userskills.Select(us => new { SkillId = us.SkillId, SkillName = us.Skill.SkillName });
+            return new JsonResult(skills);
         }
 
         [HttpPost]
         public IActionResult UserProfile(UserProfileVm obj, IFormFile image)
         {
-            if(image != null)
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            if (image != null)
             {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
+                
 
                 string fileName = Guid.NewGuid().ToString();
                 var uploads = Path.Combine(wwwRootPath, @"assets\UserAvatar");
@@ -60,6 +73,10 @@ namespace CI_Platform_Web.Controllers
             }
             string user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
+            //if (!ModelState.IsValid)
+            //{
+            //    return RedirectToAction("UserProfile");
+            //}
             if (obj != null)
             {
                 var userupdate = _db.Users.FirstOrDefault(x => x.UserId == userid);
@@ -76,6 +93,12 @@ namespace CI_Platform_Web.Controllers
                 
                 if(obj.Avatar != null)
                 {
+                    var imagepath = userupdate.Avatar;
+                    var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\UserAvatar\" + imagepath));
+                    if (System.IO.File.Exists(filepath))
+                    {
+                        System.IO.File.Delete(filepath);
+                    }
                     userupdate.Avatar = obj.Avatar;
                 }
                 _db.Users.Update(userupdate);

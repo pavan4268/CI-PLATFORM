@@ -87,10 +87,12 @@ namespace CI_Platform_Web.Controllers
                     var issuccess = _db.Users.FirstOrDefault(c => c.Email == a && c.Password == b);
                     if (issuccess != null)
                     {
+                        
                         //TempData["success"] = "login successful";
                         _contextAccessor.HttpContext.Session.SetString("FirstName", issuccess.FirstName + " " + issuccess.LastName);
                         _contextAccessor.HttpContext.Session.SetString("UserId" , issuccess.UserId.ToString());
                         _contextAccessor.HttpContext.Session.SetString("Email" , issuccess.Email);
+                        _contextAccessor.HttpContext.Session.SetString("Avtaar", issuccess.Avatar);
                         return RedirectToAction("PlatformLanding", "Mission");
                     }
                     else

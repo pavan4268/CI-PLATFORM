@@ -33,7 +33,7 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult ShareYourStory()
         {
-            string user = HttpContext.Session.GetString("UserId");
+            string? user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
             var usermissions = _storyCards.GetUserMissions(userid);
             return View(usermissions);
@@ -58,7 +58,7 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public bool StoryDetails(long storyid, List<string> selecteduser)
         {
-            string user = HttpContext.Session.GetString("UserId");
+            string? user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
             var currentuser = _db.Users.FirstOrDefault(x=> x.UserId == userid);
             var usertomail = _db.Users.Where(x=>selecteduser.Contains(x.UserId.ToString())).ToList();
@@ -75,7 +75,7 @@ namespace CI_Platform_Web.Controllers
                         SmtpClient client = new SmtpClient("smtp.gmail.com");
                         newMail.From = new MailAddress("ciplatform333@gmail.com", "CI Platform");
                         newMail.To.Add(email);
-                        newMail.Subject = "Reset Password Link";
+                        newMail.Subject ="Story Recommended by " + currentuser.FirstName + " " + currentuser.LastName ;
                         newMail.IsBodyHtml = true;
                         newMail.Body =currentuser.FirstName+" " +currentuser.LastName + "Recommended you the below story<br><br><br>" + link;
                         client.EnableSsl = true;
@@ -107,8 +107,8 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult Submit(ShareStoryVm item)
         {
-            string user = HttpContext.Session.GetString("UserId");
-            long userid = long.Parse(user);
+            string? user = HttpContext.Session.GetString("UserId");
+            long? userid = long.Parse(user);
             var submitcondition = _db.Stories.Where(x => x.MissionId == item.MissionId && x.UserId == (long)userid && x.Status=="DRAFT").FirstOrDefault();
             if (submitcondition != null)
             {
@@ -196,8 +196,8 @@ namespace CI_Platform_Web.Controllers
 
         public JsonResult DraftedData(long missionid)
         {
-            string user = HttpContext.Session.GetString("UserId");
-            long userid = long.Parse(user);
+            string? user = HttpContext.Session.GetString("UserId");
+            long? userid = long.Parse(user);
             //ShareStoryVm draftedData = new ShareStoryVm();
             ShareStoryVm draftdata = new ShareStoryVm();
             var saveddata = _db.Stories.FirstOrDefault(x=> x.MissionId == missionid && x.UserId== userid && x.Status=="DRAFT");
@@ -241,7 +241,7 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult ShareYourStory(ShareStoryVm obj)
         {
-            string user = HttpContext.Session.GetString("UserId");
+            string? user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
             if (obj.MissionId != 0 && obj.MissionId != null)
             {
