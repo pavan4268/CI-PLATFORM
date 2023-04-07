@@ -48,3 +48,19 @@
     border-radius: 100px;
     box-shadow: none;
 }
+
+.footer {
+    border-top: solid 1px;
+    border-top-color: gray;
+}
+
+.privacy {
+    text-decoration: none;
+    color: #414141;
+    font-family: NotoSans-Light;
+}
+
+    .privacy:hover {
+        text-decoration: none;
+        color: #414141;
+    }

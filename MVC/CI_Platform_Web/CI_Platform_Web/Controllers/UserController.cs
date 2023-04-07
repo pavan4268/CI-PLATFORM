@@ -31,6 +31,12 @@ namespace CI_Platform_Web.Controllers
             return View(userdetails);
         }
 
+        public IActionResult PrivacyPolicy()
+        {
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            return View();
+        }
 
         public JsonResult GetCities(long countryid)
         {
@@ -48,6 +54,13 @@ namespace CI_Platform_Web.Controllers
             var skills = userskills.Select(us => new { SkillId = us.SkillId, SkillName = us.Skill.SkillName });
             return new JsonResult(skills);
         }
+
+
+
+
+
+
+
 
         [HttpPost]
         public IActionResult UserProfile(UserProfileVm obj, IFormFile image)
@@ -109,6 +122,12 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+
+
+
+
+
+
         [HttpPost]
         public bool ChangePassword(string cpass, string newpass)
         {
@@ -127,6 +146,11 @@ namespace CI_Platform_Web.Controllers
             return false;
             
         }
+
+
+
+
+
 
         [HttpPost]
         public IActionResult SaveUserSkills(long[] skillid)

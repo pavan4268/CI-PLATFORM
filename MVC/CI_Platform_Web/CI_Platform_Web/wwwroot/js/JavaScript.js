@@ -252,6 +252,7 @@ function getcities() {
 
                 $('#city-dropdown').append('<Option value =' + data.cityId + '>' + data.name + '</Option>');
             });
+            $("#city-dropdown").val('@Model.CityId');
         }
     })
 }

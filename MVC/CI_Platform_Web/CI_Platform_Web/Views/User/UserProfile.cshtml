@@ -52,7 +52,7 @@
 
         @*main body starts*@
 
-        <div class="container main-div">
+        <div class="container main-div mb-5">
             @*user profile img and change password wrapper div starts*@
             <form method="post" class="d-flex justify-content-center mt-5" enctype = "multipart/form-data">
             <div class="user-img-wrapper" style="border:solid 1px;border-color:gray ; width:330px; height:315px;">
@@ -262,13 +262,7 @@
                                      @foreach(var skill in Model.UserSkills){
                                         <li>@skill.Skillname</li>
                                     }
-                                    @*<li>Management</li>
-                                    <li>Plumbing</li>
-                                    <li>Teaching</li>
-                                    <li>MS Office</li>
-                                    <li>Maths</li>
-                                    <li>Cooking</li>
-                                    <li>Management</li>*@
+                                    
                                 </ul>
                             </div>
                             </div>
@@ -338,10 +332,28 @@
                 
             </div>
             </form>
+
+
+
+
+            
+
+
+
             @*main form div ends here*@
         </div>
 
         @*main body ends*@
+
+        @*footer content*@
+
+            <div class="footer pt-3 pb-3">
+                <div class="container">
+                    <a class="privacy" asp-action="PrivacyPolicy" asp-controller="User"><span>privacy policy</span></a>
+                </div>
+               
+           </div>
+           @*footer content*@
         <script src="~/js/JavaScript.js"></script>
     </body>
 
