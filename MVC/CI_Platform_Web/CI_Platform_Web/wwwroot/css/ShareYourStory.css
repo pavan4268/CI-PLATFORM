@@ -1,10 +1,25 @@
-.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+/*.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
     height: 200px;
 }
 
 .ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable, .ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
     height: 200px;
+}*/
+
+*.tox-notifications-container {
+    display: none !important;
 }
+
+.tox-statusbar__text-container {
+    display: none !important;
+}
+
+.tox.tox-tinymce {
+    height: 271px !important;
+}
+
+
+/*/**/
 /*drag and drop css*/
 
 html * {

@@ -76,7 +76,7 @@
                                         <img src="~/assets/UserAvatar/@_contextAccessor.HttpContext.Session.GetString("Avtaar")"
                                              class="rounded-circle"
                                              height="22"
-                                             alt="Portrait of a Woman"
+                                             alt="User Image"
                                              loading="lazy" />&nbsp; @_contextAccessor.HttpContext.Session.GetString("FirstName")
                                     </a>
                                     <ul class="dropdown-menu"
@@ -85,7 +85,7 @@
                                             <a class="dropdown-item"  asp-action="UserProfile" asp-controller="User">My profile</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">Settings</a>
+                                            <a class="dropdown-item" asp-action="VolunteeringTimesheet" asp-controller="User">Volunteering Timesheet</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" asp-action = "Logout" asp-controller = "Home">Logout</a>

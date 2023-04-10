@@ -38,6 +38,11 @@ namespace CI_Platform_Web.Controllers
             return View();
         }
 
+        public IActionResult VolunteeringTimesheet()
+        {
+            return View();
+        }
+
         public JsonResult GetCities(long countryid)
         {
             var cities = _db.Cities.Where(x=> x.CountryId == countryid).ToList();
@@ -173,6 +178,26 @@ namespace CI_Platform_Web.Controllers
             }
             var userskills = _userProfile.GetUserDetails(userid);
             return PartialView("_SkillTextArea", userskills);
+        }
+
+
+
+        [HttpPost]
+        public bool ContactUs(string? Subject, string? Message)
+        {
+            string user = HttpContext.Session.GetString("UserId");
+            if(user != null)
+            {
+                long userid = long.Parse(user);
+                ContactU item = new ContactU();
+                item.UserId = userid;
+                item.Subject = Subject;
+                item.Message = Message;
+                _db.ContactUs.Add(item);
+                _db.SaveChanges(true);
+                return true;
+            }
+            return false;
         }
     }
 }

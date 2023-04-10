@@ -42,6 +42,7 @@ namespace CI_Platform.Repository.Repository
                 userdetails.CityId = currentuser.CityId;
                 userdetails.Allskills = _db.Skills.ToList();
                 userdetails.Avatar = currentuser.Avatar;
+                userdetails.Email = currentuser.Email;
                 var userskills = _db.UserSkills.Where(x=>x.UserId==userid).ToList();
                 //var example = _db.UserSkills.Include(m=>m.
                 List<UserSkillsVm> userskillslist = new List<UserSkillsVm>();

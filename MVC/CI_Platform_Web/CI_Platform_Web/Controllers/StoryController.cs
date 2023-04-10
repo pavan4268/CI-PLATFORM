@@ -246,7 +246,7 @@ namespace CI_Platform_Web.Controllers
             if (obj.MissionId != 0 && obj.MissionId != null)
             {
                
-                var savecondition = _db.Stories.Where(x => x.MissionId == obj.MissionId && x.UserId == (long)userid && x.Status=="DRAFT").FirstOrDefault();
+                var savecondition = _db.Stories.Where(x => x.MissionId == obj.MissionId && x.UserId == userid && x.Status=="DRAFT").FirstOrDefault();
                 if (savecondition == null)
                 {
                     

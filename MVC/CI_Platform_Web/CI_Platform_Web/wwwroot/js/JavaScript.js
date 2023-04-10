@@ -10,6 +10,14 @@ jQuery(document).ready(function () {
 //    $('#mission-select').on('change', function () {
 //        Title();
 //    })
+    $('#editor').summernote({
+        height: 200, // set the height of the editor
+        toolbar: [
+            // add formatting options to the toolbar
+            ['style', ['bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'underline']]
+        ]
+    });
+
 });
 
 function ImgUpload() {
@@ -164,11 +172,12 @@ function getSavedData() {
                 const dateinput = document.getElementById("date-select");
                 const formattedDate = `${year}-${month}-${day}`;
                 dateinput.value = formattedDate;
-                //$("#editor").html(response.description);
-                //console.log(response.description);
+                
+                tinymce.get('editor').setContent(response.storyDesctiption);
                 var videolist = response.videoList;
                 console.log(videolist);
                 const textarea = document.getElementById('videourl');
+                
                 for (var i = 0; i < videolist.length; i++) {
                     
                     textarea.value += videolist[i].videoPath + '\n';
@@ -178,10 +187,22 @@ function getSavedData() {
                 var inputs = document.querySelectorAll("input");
                 
                 for (var i = 0; i < inputs.length; i++) {
-                    inputs[i].value = '';
+                    inputs[i].value = null;
                     document.getElementById("submit-btn").disabled = true;
                 }
                 document.getElementById("videourl").value = '';
+                var today = new Date();
+                var day = today.getDate();
+                var month = today.getMonth() + 1; // Add 1 to month because January is 0
+                var year = today.getFullYear();
+
+                // Format the date as YYYY-MM-DD
+                var formattedDate = year + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
+
+                // Set the formatted date as the value of the input field
+                document.getElementById("date-select").value = formattedDate;
+                document.getElementById("editor").value = null;
+                
             }
 
             
@@ -252,11 +273,11 @@ function getcities() {
 
                 $('#city-dropdown').append('<Option value =' + data.cityId + '>' + data.name + '</Option>');
             });
-            $("#city-dropdown").val('@Model.CityId');
+            
         }
     })
 }
-
+//$("#city-dropdown").val('');
 //password modal js
 
 //password validations
@@ -434,3 +455,30 @@ submitButton.addEventListener('click', (event) => {
 });
 
 //onsubmit validations
+
+
+//contact us details post
+
+function SaveMessage() {
+    var subject = document.getElementById("contact-subject").value;
+    var message = document.getElementById("contact-message").value;
+    $.ajax({
+        type: 'post',
+        url: '/User/ContactUs',
+        data: {
+            Subject: subject,
+            Message: message
+        },
+        success: function (response) {
+            if (response == true) {
+                $("#contact-us-close").click();
+                alert('Message Sent Sucessfully');
+            }
+            else {
+                alert('Please Login once Again');
+            }
+        }
+    });
+}
+
+//contact us details post

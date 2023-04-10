@@ -1,0 +1,163 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteeing Timesheet</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    
+    </head>
+
+
+
+    <body>
+
+        <partial name="_OnlyHeader" />
+
+        <div class="container main-div mt-5">
+            @*volunteering timesheet title starts*@
+
+            <div class="row mb-5"><h1 style="font-weight:200;">Volunteering Timesheet</h1></div>
+
+            @*volunteering timesheet title ends*@
+
+            @*timesheets div starts*@
+
+            <div class="row">
+                @*timesheet div by hours*@
+                <div class="col">
+                    <div class="timesheet-wrapper mt-2 pb-2 pt-5 ps-3" style="border:solid 1px; border-color:gray; height:455px;">
+                        <div class="sheet-title-div mb-4"><span class="sheet-title" style="color:#414141; font-size:16px;">Volunteering Hours</span></div>
+                        <div class="timesheet-list-div">
+                            <table class="table time-based">
+                                <thead>
+                                    <tr>
+                                        <th>Mission</th>
+                                        <th>Date</th>
+                                        <th>Hours</th>
+                                        <th>Minutes</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Environment Conservation</td>
+                                        <td>22/02/2022</td>
+                                        <td>1h</td>
+                                        <td>30min</td>
+                                        <td>
+                                            <div class="icons-div d-flex justify-content-end">
+                                                <div class="edit-icon-div pe-2">
+                                                    <img src="~/assets/editing.png" />
+                                                </div>
+
+                                                <div class="delete-icon-div pe-4">
+                                                    <img src ="~/assets/bin.png" />
+                                                </div>
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                @*timesheet div by hour ends*@
+
+                @*timesheet div by goal*@
+
+                <div class="col">
+                    <div class="timesheet-wrapper mt-2 pb-2 pt-5 ps-3" style="border:solid 1px; border-color:gray; height:455px;">
+                        <div class="sheet-title-div mb-4"><span class="sheet-title" style="color:#414141; font-size:16px;">Volunteering Goals</span></div>
+                        <div class="timesheet-list-div">
+                            <table class="table time-based">
+                                <thead>
+                                    <tr>
+                                        <th>Mission</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Plantation Programme</td>
+                                        <td>22/02/2022</td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="icons-div d-flex justify-content-end">
+                                                <div class="edit-icon-div pe-2">
+                                                    <img src="~/assets/editing.png" />
+                                                </div>
+
+                                                <div class="delete-icon-div pe-4">
+                                                    <img src ="~/assets/bin.png" />
+                                                </div>
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Environment Programme</td>
+                                        <td>22/01/2022</td>
+                                        <td>1</td>
+                                        <td>
+                                            <div class="icons-div d-flex justify-content-end">
+                                                <div class="edit-icon-div pe-2">
+                                                    <img src="~/assets/editing.png" />
+                                                </div>
+
+                                                <div class="delete-icon-div pe-4">
+                                                    <img src ="~/assets/bin.png" />
+                                                </div>
+                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                @*timesheet div by goal ends*@
+            </div>
+
+            @*timesheet div ends*@
+        </div>
+
+    </body>
+</html>

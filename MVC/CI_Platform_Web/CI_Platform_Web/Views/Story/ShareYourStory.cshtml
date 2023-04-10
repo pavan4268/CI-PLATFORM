@@ -41,7 +41,22 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>
+    @*<script src="https://cdn.ckeditor.com/ckeditor5/35.3.0/classic/ckeditor.js"></script>*@
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+                tinymce.init({
+                selector: 'textarea#editor',
+                //statusbar: false,
+                skin: 'bootstrap',
+                plugins: 'lists, link, image, media',
+                toolbar: ' bold italic strikethrough | superscript subscript removeformat ',
+                menubar: false,
+                });
+            </script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
@@ -98,9 +113,16 @@
 
          <div class="story-details-main-div p-0 m-0 pt-3 mt-3">
              <label class="my-story-txt p-0 m-0" asp-for="@Model.StoryDesctiption" for="story-description">My Story</label>
-             <div class="texteditor w-100" style="margin-top:5px">
+             @*<div class="texteditor w-100" style="margin-top:5px">
                  <textarea asp-for="@Model.StoryDesctiption" id="editor" placeholder="Enter story Details"></textarea>
-             </div>
+             </div>*@
+              <div class="form-group" style="margin-top:5px;">
+                  <textarea asp-for = "@Model.StoryDesctiption" id = "editor" placeholder = "Write your Story here!!!"></textarea>
+                 @* <span asp-validation-for="Description" class="text-danger"></span>*@
+              </div>
+                                     
+
+                 
          </div>
 
 
@@ -137,7 +159,7 @@
 
          <div class="button-wrapper d-flex mt-3 pt-3">
              <div class="col cancel-btn-div">
-                 <a asp-action="StoriesListing" asp-controller="Story"><button class="btn cancel-btn" >Cancel</button></a>
+                 @*<a asp-action="StoriesListing" asp-controller="Story">*@<button asp-action="StoriesListing" asp-controller="Story" class="btn cancel-btn" >Cancel</button>@*</a>*@
              </div>
 
              <div class="col save-submit d-flex justify-content-end">
@@ -156,7 +178,7 @@
          @*cancel, save and submit button wrapper div ends here*@
       </div>
       @*main div ends here*@
-       <script>
+       @*<script>
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {
@@ -166,7 +188,7 @@
                 console.error(error);
             });
            
-    </script>
+    </script>*@
     
     <script src="~/js/JavaScript.js"></script>
   </body>

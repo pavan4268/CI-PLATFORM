@@ -60,7 +60,22 @@
     font-family: NotoSans-Light;
 }
 
-    .privacy:hover {
+.privacy:hover {
         text-decoration: none;
         color: #414141;
-    }
+}
+
+.contact-us-save {
+    color: #F88634;
+    width: 109px;
+    height: 48px;
+    border: solid 1px;
+    border-color: #F88634;
+    border-radius: 100px;
+    box-shadow: none;
+}
+
+.contact-us-btn{
+    text-transform:initial !important;
+    box-shadow:none;
+}

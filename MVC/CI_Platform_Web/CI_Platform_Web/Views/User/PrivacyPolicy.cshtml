@@ -40,11 +40,11 @@
 
 
     <style>
-      ol {
+      .num {
         counter-reset: item;
       }
       
-      li:before {
+      .sub-num:before {
         content: counters(item, ".") " ";
         counter-increment: item;
       }
@@ -126,11 +126,11 @@
                                 <ol>
                                     <li>
                                         But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain.
-                                        <ol>
-                                            <li>
+                                        <ol class="num">
+                                            <li class="sub-num">
                                                  On the other hand, we denounce with righteous indignation and dislike men who are so beguiled.
                                             </li>
-                                            <li>
+                                            <li class="sub-num">
                                                 On the other hand, we denounce with righteous indignation and dislike men who are so beguiled.
                                             </li>
                                         </ol>

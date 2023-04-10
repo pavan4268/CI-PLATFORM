@@ -16,6 +16,8 @@ namespace CI_Platform.Entities.ViewModels
         [Required(ErrorMessage = "Surname is Required.")]
         public string? Surname { get; set; }
 
+        public string? Email { get; set; }
+
         public string? EmployeeId { get; set; }
 
         public string? Manager { get; set; }
