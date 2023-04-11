@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "I33G/l0bHy3jLnYX1li34nn6Qmvf7SkMXr2oEpNzt1g=",
+  "Hash": "9II5tvfWKUfnfJNzZxQIlJIemmUcCuHlPPv/lzmPvM4=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -2293,6 +2293,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\StoryDetails.css"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\TimeSheet.css",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "css/TimeSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\TimeSheet.css"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\UserProfile.css",

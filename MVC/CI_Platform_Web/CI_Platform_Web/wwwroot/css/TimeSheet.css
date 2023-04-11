@@ -1,0 +1,30 @@
+﻿.add-timesheet-btn {
+    color: #F88634;
+    width: 109px;
+    height: 48px;
+    border: solid 1px;
+    border-color: #F88634;
+    border-radius: 100px;
+    box-shadow: none;
+}
+.timesheet-cancel {
+    width: 119px;
+    height: 48px;
+    box-shadow: none;
+    border: solid 1px;
+    border-color: #757575;
+    border-radius: 100px;
+}
+.timesheet-submit {
+    color: #F88634;
+    width: 109px;
+    height: 48px;
+    border: solid 1px;
+    border-color: #F88634;
+    border-radius: 100px;
+    box-shadow: none;
+}
+.timesheet-edit{
+    border:none;
+    background-color:transparent;
+}

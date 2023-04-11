@@ -199,5 +199,44 @@ namespace CI_Platform_Web.Controllers
             }
             return false;
         }
+
+        //<--------------------------------------------------------------volunteer page----------------------------------------------------->
+
+
+        public JsonResult GetUserTimeMissions(int Type)
+        {
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            var userapplied = _db.MissionApplications.Where(x => x.UserId == userid).ToList();
+            List<StoryMissionListVm> missions = new List<StoryMissionListVm>();
+            foreach(var item in userapplied)
+            {
+                var missionname = _db.Missions.Where(x=> x.MissionId==item.MissionId).FirstOrDefault();
+                if(Type == 0)
+                {
+                    if (missionname != null && missionname.MissionType == "Time")
+                    {
+                        StoryMissionListVm obj = new StoryMissionListVm();
+                        obj.MissionId = missionname.MissionId;
+                        obj.MissionName = missionname.Title;
+                        missions.Add(obj);
+                    }
+                }
+                else
+                {
+                    if (missionname != null && missionname.MissionType == "Goal")
+                    {
+                        StoryMissionListVm obj = new StoryMissionListVm();
+                        obj.MissionId = missionname.MissionId;
+                        obj.MissionName = missionname.Title;
+                        missions.Add(obj);
+                    }
+                }
+                
+            }
+            return new JsonResult(missions);
+        }
+
+
     }
 }

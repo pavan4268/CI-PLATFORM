@@ -10,14 +10,7 @@ jQuery(document).ready(function () {
 //    $('#mission-select').on('change', function () {
 //        Title();
 //    })
-    $('#editor').summernote({
-        height: 200, // set the height of the editor
-        toolbar: [
-            // add formatting options to the toolbar
-            ['style', ['bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'underline']]
-        ]
-    });
-
+    
 });
 
 function ImgUpload() {
@@ -482,3 +475,54 @@ function SaveMessage() {
 }
 
 //contact us details post
+
+
+//<------------------------------------------------TImesheet Section Js---------------------------------------------------------------------------------------------->
+
+function gettimemissions(mtype) {
+    if (mtype == 0) {
+        $("#time-mission-dropdown").empty()
+        $("#time-mission-dropdown").append('<Option value =' + null + '>Please Select A Mission</Option>');
+    }
+    else {
+        $("#goal-mission-dropdown").empty()
+        $("#goal-mission-dropdown").append('<Option value =' + null + '>Please Select A Mission</Option>');
+    }
+    
+    $.ajax({
+        type: 'get',
+        url: '/User/GetUserTimeMissions',
+        data: { Type: mtype },
+        success: function (result) {
+            console.log(result);
+            if (mtype == 0) {
+                $.each(result, function (i, data) {
+
+                    $("#time-mission-dropdown").append('<Option value =' + data.missionId + '>' + data.missionName + '</Option>');
+                });
+            }
+            else {
+                $.each(result, function (i, data) {
+
+                    $("#goal-mission-dropdown").append('<Option value =' + data.missionId + '>' + data.missionName + '</Option>');
+                });
+            }
+        }
+    });
+}
+
+
+function sendtimebasedsheet() {
+    /*if(document.getElementById(""))*/
+    console.log($("#time-mission-dropdown").val());
+    var optionvalue = $("#time-mission-dropdown").val();
+    if (optionvalue == "null") {
+        alert('please select a mission');
+    }
+    var hrs = $("#add-hrs").val();
+    var mins = $("#add-mins").val();
+    var message = $("#add-message").val();
+    var date = $("#add-date").val();
+    console.log(date);
+    
+}
