@@ -253,7 +253,7 @@ $(document).ready(function () {
 //profile picture change on frontend part
 
 
-function getcities() {
+function getcities(cityid) {
     var countryid = $("#country-dropdown").find(":selected").val();
     $('#city-dropdown').empty();
     //$('#city-dropdown').append('<Option>Enter Your City</Option>');
@@ -263,8 +263,8 @@ function getcities() {
         data: { countryid: countryid },
         success: function (result) {
             $.each(result, function (i, data) {
-
-                $('#city-dropdown').append('<Option value =' + data.cityId + '>' + data.name + '</Option>');
+                var selected = (data.cityId == cityid) ? 'selected' : '';
+                $('#city-dropdown').append('<Option value ="' + data.cityId +'" ' + selected + '>' + data.name + '</Option>');
             });
             
         }
@@ -514,15 +514,42 @@ function gettimemissions(mtype) {
 
 function sendtimebasedsheet() {
     /*if(document.getElementById(""))*/
-    console.log($("#time-mission-dropdown").val());
-    var optionvalue = $("#time-mission-dropdown").val();
-    if (optionvalue == "null") {
-        alert('please select a mission');
-    }
-    var hrs = $("#add-hrs").val();
-    var mins = $("#add-mins").val();
-    var message = $("#add-message").val();
-    var date = $("#add-date").val();
-    console.log(date);
+    //console.log($("#time-mission-dropdown").val());
+    //var optionvalue = $("#time-mission-dropdown").val();
+    //if (optionvalue == "null") {
+    //    alert('please select a mission');
+    //}
     
+    var formdata = $("#add-time-data").serialize();
+    console.log(formdata);
+    $.ajax({
+        type: 'post',
+        url: '/User/AddTimeData',
+        data: formdata,
+        success: function (response) {
+            if (response == "") {
+                $("#add-time-error").empty();
+                $("#time-add-close").click();
+                alert("Data Added Sucessfully");
+            }
+            else {
+                document.getElementById("add-time-error").style.color = "red";
+                document.getElementById("add-time-error").innerHTML = response;
+            }
+        }
+    });
+    
+}
+
+
+function sendgoalbasedsheet() {
+    var formdata = $("#sendgoalsheet").serialize();
+    $.ajax({
+        type: 'post',
+        url: '/User/AddGoalData',
+        data: formdata,
+        success: function (response) {
+            alert("data sent successfully");
+        }
+    });
 }

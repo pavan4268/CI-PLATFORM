@@ -83,6 +83,43 @@ namespace CI_Platform.Repository.Repository
         //}
 
 
+        public TimesheetVm GetTimesheets(long userid)
+        {
+            TimesheetVm timesheetVm = new TimesheetVm();
+            var usertimesheets = _db.Timesheets.Where(x=>x.UserId==userid).ToList();
+            List<TimeBasedVm> timelist = new List<TimeBasedVm>();
+            List<GoalBasedVm> goallist = new List<GoalBasedVm>();
+            foreach(var timesheet in usertimesheets)
+            {
+                var missiondetails = _db.Missions.FirstOrDefault(x=>x.MissionId==timesheet.MissionId);
+                if (missiondetails.MissionType == "Time")
+                {
+                    TimeBasedVm obj = new TimeBasedVm();
+                    obj.MissionId = missiondetails.MissionId;
+                    obj.MissionName = missiondetails.Title;
+                    obj.DateVolunteered = timesheet.DateVolunteered;
+                    obj.Date = timesheet.DateVolunteered.ToString("dd-MM-yyyy");
+                    obj.TimesheetId = timesheet.TimesheetId;
+                    obj.Time = timesheet.Time;
+                    timelist.Add(obj);
+                }
+                else
+                {
+                    GoalBasedVm obj = new GoalBasedVm();
+                    obj.MissionId = missiondetails.MissionId;
+                    obj.MissionName = missiondetails.Title;
+                    obj.DateVolunteered = timesheet.DateVolunteered;
+                    obj.Date = timesheet.DateVolunteered.ToString("dd-MM-yyyy");
+                    obj.TimesheetId = timesheet.TimesheetId;
+                    obj.Action = timesheet.Action;
+                    goallist.Add(obj);
+                }
+            }
+            timesheetVm.TimeBasedSheets = timelist;
+            timesheetVm.GoalBasedSheets = goallist;
+            return timesheetVm;
+        }
+
 
     }
 }

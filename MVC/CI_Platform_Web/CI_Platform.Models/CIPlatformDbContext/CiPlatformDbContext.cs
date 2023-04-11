@@ -906,14 +906,12 @@ public partial class CiPlatformDbContext : DbContext
 
         modelBuilder.Entity<Timesheet>(entity =>
         {
-            entity.HasKey(e => e.TimesheetId).HasName("PK__timeshee__7BBF506849C98809");
+            entity.HasKey(e => e.TimesheetId).HasName("PK__timeshee__7BBF506889E931BF");
 
             entity.ToTable("timesheet");
 
             entity.Property(e => e.TimesheetId).HasColumnName("timesheet_id");
-            entity.Property(e => e.Action)
-                .HasDefaultValueSql("('None')")
-                .HasColumnName("action");
+            entity.Property(e => e.Action).HasColumnName("action");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
@@ -935,9 +933,7 @@ public partial class CiPlatformDbContext : DbContext
                 .IsUnicode(false)
                 .HasDefaultValueSql("('PENDING')")
                 .HasColumnName("status");
-            entity.Property(e => e.Time)
-                .HasDefaultValueSql("('None')")
-                .HasColumnName("time");
+            entity.Property(e => e.Time).HasColumnName("time");
             entity.Property(e => e.UpdatedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");

@@ -205,7 +205,7 @@
                         </div>
                         <div class="col country-div mt-3">
                             <label class="required">Country</label><br />
-                            <select class="city-dropdown w-100" id="country-dropdown" onchange="getcities()" style="height:38px;" required asp-for="@Model.CountryId">
+                            <select class="city-dropdown w-100" id="country-dropdown" onchange="getcities(@Model.CityId)" style="height:38px;" required asp-for="@Model.CountryId">
                                 <option value=null>Enter Your Country</option>
                                 @foreach(var country in Model.countries)
                                 {

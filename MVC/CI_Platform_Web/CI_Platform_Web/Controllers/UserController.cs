@@ -40,7 +40,10 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult VolunteeringTimesheet()
         {
-            return View();
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            var timesheets = _userProfile.GetTimesheets(userid);
+            return View(timesheets);
         }
 
         public JsonResult GetCities(long countryid)
@@ -236,6 +239,63 @@ namespace CI_Platform_Web.Controllers
             }
             return new JsonResult(missions);
         }
+
+
+
+        [HttpPost]
+        public string AddTimeData(long missionidAdd, string timeDateAdd, int timeHrsAdd, int timeMinsAdd, string timeMsgAdd)
+        {
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            DateTime entereddate = DateTime.Parse(timeDateAdd);
+            var umission = _db.Missions.FirstOrDefault(x => x.MissionId == missionidAdd);
+            if (umission != null)
+            {
+                string error = "";
+                if (entereddate < umission.StartDate)
+                {
+                    error = "Please select a date after the start date of the mission";
+                }
+                else if(entereddate > umission.EndDate)
+                {
+                    error = "Please select the date before the end date of the mission";
+                }
+                else if(entereddate == DateTime.Today)
+                {
+                    error = "Please select a date before today's date";
+                }
+                else
+                {
+                    Timesheet obj = new Timesheet();
+                    obj.UserId = userid;
+                    obj.MissionId = umission.MissionId;
+                    TimeSpan time = TimeSpan.FromHours(timeHrsAdd) + TimeSpan.FromMinutes(timeMinsAdd);
+                    obj.Time = time;
+                    obj.Notes = timeMsgAdd;
+                    obj.DateVolunteered = entereddate;
+                    
+                    
+                    _db.Timesheets.Add(obj);
+                    _db.SaveChanges(true);
+                }
+                return error;
+            }
+            string missionerror = "Please Select a mission";
+            return missionerror;
+        }
+
+
+
+
+        //[HttpPost]
+        //public string AddTimeData(long goalMisssionIdAdd, string goalDateAdd, int goalActionsAdd, string goalMsgAdd)
+        //{
+        //    string user = HttpContext.Session.GetString("UserId");
+        //    long userid = long.Parse(user);
+        //    DateTime entereddate = DateTime.Parse(goalDateAdd);
+        //    var umission = _db.Missions.FirstOrDefault(x => x.MissionId == goalMisssionIdAdd);
+        //}
+
 
 
     }
