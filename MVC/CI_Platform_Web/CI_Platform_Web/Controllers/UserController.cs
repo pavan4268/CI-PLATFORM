@@ -217,7 +217,7 @@ namespace CI_Platform_Web.Controllers
                 var missionname = _db.Missions.Where(x=> x.MissionId==item.MissionId).FirstOrDefault();
                 if(Type == 0)
                 {
-                    if (missionname != null && missionname.MissionType == "Time")
+                    if (missionname != null && missionname.MissionType == "Time" && missionname.StartDate < DateTime.Today)
                     {
                         StoryMissionListVm obj = new StoryMissionListVm();
                         obj.MissionId = missionname.MissionId;
@@ -227,7 +227,7 @@ namespace CI_Platform_Web.Controllers
                 }
                 else
                 {
-                    if (missionname != null && missionname.MissionType == "Goal")
+                    if (missionname != null && missionname.MissionType == "Goal" && missionname.StartDate < DateTime.Today)
                     {
                         StoryMissionListVm obj = new StoryMissionListVm();
                         obj.MissionId = missionname.MissionId;
@@ -256,13 +256,21 @@ namespace CI_Platform_Web.Controllers
                 {
                     error = "Please select a date after the start date of the mission";
                 }
-                else if(entereddate > umission.EndDate)
+                else if (entereddate > umission.EndDate)
                 {
                     error = "Please select the date before the end date of the mission";
                 }
-                else if(entereddate == DateTime.Today)
+                else if (entereddate == DateTime.Today)
                 {
                     error = "Please select a date before today's date";
+                }
+                else if (timeHrsAdd < 0 || timeHrsAdd > 24)
+                {
+                    error = "Please Select Hours Between 0 to 24";
+                }
+                else if (timeMinsAdd < 0 || timeMinsAdd > 60)
+                {
+                    error = "Please Select Minutes Between 0 to 60";
                 }
                 else
                 {
@@ -273,8 +281,8 @@ namespace CI_Platform_Web.Controllers
                     obj.Time = time;
                     obj.Notes = timeMsgAdd;
                     obj.DateVolunteered = entereddate;
-                    
-                    
+
+
                     _db.Timesheets.Add(obj);
                     _db.SaveChanges(true);
                 }
@@ -287,14 +295,156 @@ namespace CI_Platform_Web.Controllers
 
 
 
-        //[HttpPost]
-        //public string AddTimeData(long goalMisssionIdAdd, string goalDateAdd, int goalActionsAdd, string goalMsgAdd)
-        //{
-        //    string user = HttpContext.Session.GetString("UserId");
-        //    long userid = long.Parse(user);
-        //    DateTime entereddate = DateTime.Parse(goalDateAdd);
-        //    var umission = _db.Missions.FirstOrDefault(x => x.MissionId == goalMisssionIdAdd);
-        //}
+        [HttpPost]
+        public string AddGoalData(long goalMissionIdAdd, string goalDateAdd, int goalActionsAdd, string goalMsgAdd)
+        {
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            DateTime entereddate = DateTime.Parse(goalDateAdd);
+            var umission = _db.Missions.FirstOrDefault(x => x.MissionId == goalMissionIdAdd);
+            
+            if(umission != null)
+            {
+                
+                 string error = "";
+                if (entereddate < umission.StartDate)
+                {
+                    error = "Please select a date after the start date of the mission";
+                }
+                else if(entereddate > umission.EndDate)
+                {
+                    error = "Please select the date before the end date of the mission";
+                }
+                else if(entereddate == DateTime.Today)
+                {
+                    error = "Please select a date before today's date";
+                }
+     
+                else
+                {
+                    Timesheet item = new Timesheet();
+                    item.UserId = userid;
+                    item.MissionId = umission.MissionId;
+                    item.DateVolunteered = entereddate;
+                    item.Action = goalActionsAdd;
+                    item.Notes = goalMsgAdd;
+                    _db.Timesheets.Add(item);
+                    _db.SaveChanges();
+                    return error;
+                }
+                
+            }
+            string missionerror = "Please Select a Mission";
+            return missionerror;
+        }
+
+
+        public JsonResult GetTimeEdit(long timesheetid)
+        {
+            var details = _userProfile.EditTimeSheet(timesheetid);
+            return new JsonResult(details);
+        }
+
+        public JsonResult GetGoalEdit(long timesheetid)
+        {
+            var details = _userProfile.EditGoalTimeSheet(timesheetid);
+            return new JsonResult(details);
+        }
+
+
+
+
+        [HttpPost]
+        public string EditTimeData(string timeEditDate, int timeEditHours, int timeEditMins, string timeEditMessage, long timeEditId)
+        {
+            var editmission = _db.Timesheets.FirstOrDefault(x=> x.TimesheetId == timeEditId);
+            DateTime entereddate = DateTime.Parse(timeEditDate);
+            var mission = _db.Missions.FirstOrDefault(x=> x.MissionId == editmission.MissionId);
+            string error = "";
+            if (entereddate < mission.StartDate)
+            {
+                error = "Please select a date after the start date of the mission";
+            }
+            else if (entereddate > mission.EndDate)
+            {
+                error = "Please select the date before the end date of the mission";
+            }
+            else if (entereddate == DateTime.Today)
+            {
+                error = "Please select a date before today's date";
+            }
+            else if (timeEditHours < 0 || timeEditHours > 24)
+            {
+                error = "Please Select Hours Between 0 to 24";
+            }
+            else if (timeEditMins < 0 || timeEditMins > 60)
+            {
+                error = "Please Select Minutes Between 0 to 60";
+            }
+            else
+            {
+                TimeSpan time = TimeSpan.FromHours(timeEditHours) + TimeSpan.FromMinutes(timeEditMins);
+                editmission.Time = time;
+                editmission.Notes = timeEditMessage;
+                editmission.DateVolunteered = entereddate;
+
+
+                _db.Timesheets.Update(editmission);
+                _db.SaveChanges(true);
+            }
+            return error;
+        }
+
+
+        [HttpPost]
+        public string EditGoalData(string goalEditDate, int goalEditAction , string goalEditMessage, long goalTimesheetId)
+        {
+            var editmission = _db.Timesheets.FirstOrDefault(x=> x.TimesheetId == goalTimesheetId);
+            DateTime entereddate = DateTime.Parse(goalEditDate);
+            var mission = _db.Missions.FirstOrDefault(x=>x.MissionId == editmission.MissionId);
+            string error = "";
+            if (entereddate < mission.StartDate)
+            {
+                error = "Please select a date after the start date of the mission";
+            }
+            else if (entereddate > mission.EndDate)
+            {
+                error = "Please select the date before the end date of the mission";
+            }
+            else if (entereddate == DateTime.Today)
+            {
+                error = "Please select a date before today's date";
+            }
+
+            else
+            {
+                
+                editmission.DateVolunteered = entereddate;
+                editmission.Action = goalEditAction;
+                editmission.Notes = goalEditMessage;
+                _db.Timesheets.Update(editmission);
+                _db.SaveChanges();
+                
+            }
+            return error;
+        }
+
+
+        [HttpPost]
+        public string TimeDelete(long timesheetid)
+        {
+            var delete = _db.Timesheets.FirstOrDefault(x=>x.TimesheetId==timesheetid);
+            string result = "";
+            if(delete != null)
+            {
+                _db.Timesheets.Remove(delete);
+                _db.SaveChanges();
+                result = "Timesheet Deleted Successfully";
+                return result;
+            }
+            result = "Some Error Occured";
+            return result;
+        }
 
 
 

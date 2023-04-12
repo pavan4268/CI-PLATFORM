@@ -121,5 +121,34 @@ namespace CI_Platform.Repository.Repository
         }
 
 
+        public TimeBasedVm EditTimeSheet(long timesheetid)
+        {
+            var editdetails = _db.Timesheets.FirstOrDefault(x=> x.TimesheetId == timesheetid);
+            TimeBasedVm obj = new TimeBasedVm();
+            obj.TimesheetId = editdetails.TimesheetId;
+            obj.MissionId= editdetails.MissionId;
+            var missionname = _db.Missions.FirstOrDefault(x=> x.MissionId == editdetails.MissionId);
+            obj.MissionName = missionname.Title;
+            obj.DateVolunteered = editdetails.DateVolunteered;
+            obj.Time = editdetails.Time;
+            obj.Notes = editdetails.Notes;
+            return obj;
+        }
+
+
+        public GoalBasedVm EditGoalTimeSheet(long timesheetid)
+        {
+            var editdetails = _db.Timesheets.FirstOrDefault(x=> x.TimesheetId == timesheetid);
+            GoalBasedVm obj = new GoalBasedVm();
+            obj.TimesheetId= editdetails.TimesheetId;
+            obj.MissionId = editdetails.MissionId;
+            var missionname = _db.Missions.FirstOrDefault(x=> x.MissionId==editdetails.MissionId);
+            obj.MissionName = missionname.Title;
+            obj.DateVolunteered = editdetails.DateVolunteered;
+            obj.Action = editdetails.Action;
+            obj.Notes= editdetails.Notes;
+            return obj;
+        }
+
     }
 }

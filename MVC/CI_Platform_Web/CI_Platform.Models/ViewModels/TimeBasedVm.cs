@@ -20,7 +20,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public DateTime DateVolunteered { get; set; }
 
-        public string Date { get; set; }
+        public string? Date { get; set; }
 
         public string? Notes { get; set; }
 

@@ -147,13 +147,14 @@
                                         <td>@timebased.Date</td>
                                         <td>@timebased.Time.GetValueOrDefault().Hours h</td>
                                         <td>@timebased.Time.GetValueOrDefault().Minutes min</td>
+                                        @*<td class="d-none" id-"time-hidden">@timebased.TimesheetId</td>*@
                                         <td>
                                             <div class="icons-div d-flex justify-content-end">
                                                 <div class="edit-icon-div pe-2">
                                                     
-                                                    @*timesheet add modal begins*@
+                                                    @*timesheet edit modal begins*@
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="timesheet-edit" data-toggle="modal" data-target="#TimesheetEditModal">
+                                                    <button type="button" class="timesheet-edit" onclick="timebasededit(@timebased.TimesheetId)" data-toggle="modal" data-target="#TimesheetEditModal">
                                                       <img src="~/assets/editing.png" />
                                                     </button>
 
@@ -163,56 +164,68 @@
                                                         <div class="modal-content">
                                                           <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLongTitle">Please input below Volunteering Hours</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <button type="button" class="close" id="time-edit-close" data-dismiss="modal" aria-label="Close">
                                                               <span aria-hidden="true">&times;</span>
                                                             </button>
                                                           </div>
+                                                          <form id="edit-time-data">
                                                           <div class="modal-body">
                                                             <div class="container timesheet-hours-modal">
+                                                                <span id="time-edit-error"></span>
                                                                 <div class="row">
                                                                     <div class="col">
                                                                         <label>Mission</label><br />
-                                                                        <select class="mission-select w-100" style="height:38px;" disabled>
-                                                                            <option>Faith Community fellowship</option>
+                                                                        <select class="mission-select w-100" id="timeEditSelect" name="timeEditSelect" style="height:38px;" disabled>
+                                                                            
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col">
                                                                         <label>Date Volunteered</label><br />
-                                                                        <input class="w-100" type="text" onfocus="(this.type = 'date')" onblur="(this.type='text')" placeholder="Select Date" style="height:38px;" />
+                                                                        <input class="w-100" type="date" id="timeEditDate" name="timeEditDate" style="height:38px;" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col">
                                                                         <label>Hours</label><br />
-                                                                        <input class="w-100" type="number" min="0" max="23" style="height:38px;" placeholder="Enter Spent hours" />
+                                                                        <input class="w-100" type="number" id="timeEditHours" name="timeEditHours" min="0" max="23" style="height:38px;" placeholder="Enter Spent hours" />
                                                                     </div>
                                                                     <div class="col ps-3">
                                                                         <label>Minutes</label><br />
-                                                                        <input class="w-100" type="number" min="0" max="59" style="height:38px;" placeholder="Enter Minutes Spent" />
+                                                                        <input class="w-100" type="number" id="timeEditMins" name="timeEditMins" min="0" max="59" style="height:38px;" placeholder="Enter Minutes Spent" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col">
                                                                         <label>Message</label><br />
-                                                                        <textarea class="w-100" rows="4" placeholder="Enter Your Message"></textarea>
+                                                                        <textarea class="w-100" id="timeEditMessage" name="timeEditMessage" rows="4" placeholder="Enter Your Message"></textarea>
                                                                     </div>
                                                                 </div>
+                                                                @*hidden input for timesheetid*@<input hidden name="timeEditId" id="time-edit-hidden" >
                                                             </div>
                                                           </div>
                                                           <div class="modal-footer">
                                                             <button type="button" class="btn timesheet-cancel" data-dismiss="modal">Cancel</button>
-                                                            <button type="button" class="btn timesheet-submit">Submit</button>
+                                                            <button type="button" class="btn timesheet-submit" onclick="timebasededitsave()">Submit</button>
                                                           </div>
+                                                          </form>
                                                         </div>
                                                       </div>
                                                     </div>
-                                                    @*timesheet modal ends*@
+                                                    @*timesheet edit modal ends*@
                                                 </div>
 
                                                 <div class="delete-icon-div pe-4">
-                                                    <img src ="~/assets/bin.png" />
+                                                    
+                                                    @*timesheet delete modal starts here*@
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="timesheet-delete" onclick="timebaseddelete(@timebased.TimesheetId)" @*data-toggle="modal" data-target="#timebaseddelete"*@>
+                                                      <img src ="~/assets/bin.png" />
+                                                    </button>
+
+                                                    
+                                                    @*timesheet delete modal ends here*@
                                                 </div>
                                                 
                                             </div>
@@ -244,13 +257,14 @@
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLongTitle">Please input below Volunteering Goals</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" id="goal-add-close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <form id="sendgoalsheet">
                                   <div class="modal-body">
-                                    <div class="container timesheet-hours-modal">
+                                    <div class="container timesheet-goal-modal">
+                                        <span id="add-goal-error"></span>
                                         <div class="row">
                                             <div class="col">
                                                 <label>Mission</label><br />
@@ -300,33 +314,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*<tr>
-                                        <td>Plantation Programme</td>
-                                        <td>22/02/2022</td>
-                                        <td>0</td>
-                                        <td>
-                                            <div class="icons-div d-flex justify-content-end">
-                                                <div class="edit-icon-div pe-2">
-                                                    <img src="~/assets/editing.png" />
-                                                </div>
-
-                                                <div class="delete-icon-div pe-4">
-                                                    <img src ="~/assets/bin.png" />
-                                                </div>
-                                                
-                                            </div>
-                                        </td>
-                                    </tr>*@
-                                    <tr>
-                                        <td>Environment Programme</td>
-                                        <td>22/01/2022</td>
-                                        <td>1</td>
+                                    @foreach(var goalbased in Model.GoalBasedSheets){
+                                        <tr>
+                                        <td>@goalbased.MissionName</td>
+                                        <td>@goalbased.Date</td>
+                                        <td>@goalbased.Action</td>
                                         <td>
                                             <div class="icons-div d-flex justify-content-end">
                                                 <div class="edit-icon-div pe-2">
                                                     @*timesheet add modal begins*@
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="timesheet-edit" data-toggle="modal" data-target="#TimesheetEditGoalsModal">
+                                                    <button type="button" class="timesheet-edit" onclick="goalbasededit(@goalbased.TimesheetId)" data-toggle="modal" data-target="#TimesheetEditGoalsModal">
                                                       <img src="~/assets/editing.png" />
                                                     </button>
 
@@ -336,44 +334,48 @@
                                                         <div class="modal-content">
                                                           <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLongTitle">Please input below Volunteering Hours</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <button type="button" class="close" id="goal-edit-close" data-dismiss="modal" aria-label="Close">
                                                               <span aria-hidden="true">&times;</span>
                                                             </button>
                                                           </div>
+                                                          <form id="edit-goal-data">
                                                           <div class="modal-body">
                                                             <div class="container timesheet-hours-modal">
+                                                                <span id="goal-edit-error"></span>
                                                                 <div class="row">
                                                                     <div class="col">
                                                                         <label>Mission</label><br />
-                                                                        <select class="mission-select w-100" style="height:38px;" disabled>
-                                                                            <option>Faith Community fellowship</option>
+                                                                        <select class="mission-select w-100" id="goal-edit-select" style="height:38px;" disabled>
+                                                                            
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col">
                                                                         <label>Actions</label><br />
-                                                                        <input class="w-100" type="number" placeholder="Enter Actions" style="height:38px;" />
+                                                                        <input class="w-100" type="number" id="goal-edit-action" name="goalEditAction" placeholder="Enter Actions" style="height:38px;" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col">
                                                                         <label>Date Volunteered</label><br />
-                                                                        <input class="w-100" type="text" onfocus="(this.type = 'date')" onblur="(this.type='text')" placeholder="Select Date" style="height:38px;" />
+                                                                        <input class="w-100" type="date" id="goal-edit-date" name="goalEditDate" style="height:38px;" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col">
                                                                         <label>Message</label><br />
-                                                                        <textarea class="w-100" rows="4" placeholder="Enter Your Message"></textarea>
+                                                                        <textarea class="w-100" rows="4" id="goal-edit-message" name="goalEditMessage" placeholder="Enter Your Message"></textarea>
                                                                     </div>
                                                                 </div>
+                                                                <input name="goalTimesheetId" id="goal-edit-timesheetid" hidden >
                                                             </div>
                                                           </div>
                                                           <div class="modal-footer">
                                                             <button type="button" class="btn timesheet-cancel" data-dismiss="modal">Cancel</button>
-                                                            <button type="button" class="btn timesheet-submit">Submit</button>
+                                                            <button type="button" class="btn timesheet-submit" onclick="goalbasededitsave()">Submit</button>
                                                           </div>
+                                                          </form>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -387,6 +389,8 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    }
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -426,4 +430,10 @@
     crossorigin="anonymous"
   ></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+  @*to define the moment.js which helps in spliting timespan response from json result*@
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+ @*to define the moment.js which helps in spliting timespan response from json result*@
 </html>

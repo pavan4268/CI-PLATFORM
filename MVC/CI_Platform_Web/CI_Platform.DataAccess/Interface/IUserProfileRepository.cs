@@ -10,7 +10,12 @@ namespace CI_Platform.Repository.Interface
     public interface IUserProfileRepository
     {
         public UserProfileVm GetUserDetails(long userid);
+
         public TimesheetVm GetTimesheets(long userid);
+
+        public TimeBasedVm EditTimeSheet(long timesheetid);
+
+        public GoalBasedVm EditGoalTimeSheet(long timesheetid);
         //public UserProfileVm UpdateUser(UserProfileVm obj, long userid);
     }
 }
