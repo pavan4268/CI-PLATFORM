@@ -202,7 +202,7 @@
                                                                         <textarea class="w-100" id="timeEditMessage" name="timeEditMessage" rows="4" placeholder="Enter Your Message"></textarea>
                                                                     </div>
                                                                 </div>
-                                                                @*hidden input for timesheetid*@<input hidden name="timeEditId" id="time-edit-hidden" >
+                                                                
                                                             </div>
                                                           </div>
                                                           <div class="modal-footer">
@@ -220,7 +220,7 @@
                                                     
                                                     @*timesheet delete modal starts here*@
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="timesheet-delete" onclick="timebaseddelete(@timebased.TimesheetId)" @*data-toggle="modal" data-target="#timebaseddelete"*@>
+                                                    <button type="button" class="timesheet-delete" onclick="confirmdelete(@timebased.TimesheetId)" @*data-toggle="modal" data-target="#timebaseddelete"*@>
                                                       <img src ="~/assets/bin.png" />
                                                     </button>
 
@@ -383,7 +383,9 @@
                                                 </div>
 
                                                 <div class="delete-icon-div pe-4">
-                                                    <img src ="~/assets/bin.png" />
+                                                    <button type="button" class="timesheet-delete" onclick="confirmdelete(@goalbased.TimesheetId)" @*data-toggle="modal" data-target="#timebaseddelete"*@>
+                                                      <img src ="~/assets/bin.png" />
+                                                    </button>
                                                 </div>
                                                 
                                             </div>

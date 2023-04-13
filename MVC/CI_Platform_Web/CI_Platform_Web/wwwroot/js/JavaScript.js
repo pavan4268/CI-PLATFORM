@@ -533,6 +533,7 @@ function sendtimebasedsheet() {
                 $("#add-time-error").html("");
                 $("#time-add-close").click();
                 alert("Data Added Sucessfully");
+                location.reload();
             }
             else {
                 document.getElementById("add-time-error").style.color = "red";
@@ -555,6 +556,7 @@ function sendgoalbasedsheet() {
                 $("#add-goal-error").html("");
                 $("#goal-add-close").click();
                 alert("Data Added Successfully");
+                location.reload();
             }
             else {
                 document.getElementById("add-goal-error").style.color = "red";
@@ -678,7 +680,36 @@ function timebaseddelete(id) {
         data: { timesheetid: id },
         success: function (response) {
             alert(response);
-            $("#time-delete-close").click();
+            
+            location.reload();
         }
     })
+}
+
+function confirmdelete(timesheetid) {
+    if (confirm("Are You Sure You Want To Delete The Timesheet?")) {
+        timebaseddelete(timesheetid);
+    }
+}
+
+
+function goalbaseddelete(id) {
+    $.ajax({
+        type: 'post',
+        url: '/User/GoalDelete',
+        data: { timesheetid: id },
+        success: function (response) {
+            alert(response);
+
+            location.reload();
+        }
+    })
+}
+
+
+
+function confirmgoaldelete(timesheetid) {
+    if (confirm("Are You Sure You Want To Delete The Timesheet?")) {
+        goalbaseddelete(timesheetid);
+    }
 }

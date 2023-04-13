@@ -448,5 +448,23 @@ namespace CI_Platform_Web.Controllers
 
 
 
+        [HttpPost]
+        public string GoalDelete(long timesheetid)
+        {
+            var delete = _db.Timesheets.FirstOrDefault(x => x.TimesheetId == timesheetid);
+            string result = "";
+            if (delete != null)
+            {
+                _db.Timesheets.Remove(delete);
+                _db.SaveChanges();
+                result = "Timesheet Deleted Successfully";
+                return result;
+            }
+            result = "Some Error Occured";
+            return result;
+        }
+
+
+
     }
 }

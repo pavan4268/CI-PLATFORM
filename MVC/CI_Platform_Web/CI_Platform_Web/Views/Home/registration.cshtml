@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Registration Form";
+    var emailexists = TempData["emailexists"];
 }
 @model RegistrationVm
 
@@ -164,6 +165,7 @@
               asp-for="FirstName"
               placeholder="evan" 
             />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
           </div>
           <div class="flex-item mb-3">
             <label for="lname" asp-for="LastName" class="form-label">Last Name</label>
@@ -174,11 +176,12 @@
               asp-for="LastName"
               placeholder="donohue" 
             />
+            <span asp-validation-for="LastName" class="text-danger"></span>
           </div>
           <div class="flex-item mb-3">
             <label for="phone-no" asp-for="PhoneNumber" class="form-label">Phone Number</label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               maxlength="10"
               id="phone-no"
@@ -186,6 +189,7 @@
               placeholder="123456789" 
               
             />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
           </div>
           <div class="flex-item mb-3">
             <label for="emailadd" asp-for ="Email" class="form-label">Email address</label>
@@ -197,6 +201,10 @@
               placeholder="evan.donohue@gmail.com" 
             />
             <span asp-validation-for="Email" class="text-danger"></span>
+                        @if(emailexists != null)
+                        {
+                            <span class="text-danger">@emailexists</span>
+                        }
           </div>
           <div class="flex-item mb-3">
             <label for="password" class="form-label">Password</label>
@@ -212,7 +220,7 @@
 
           <div class="flex-item mb-3">
             <label for="password" class="form-label">Confirm Password</label>
-            <span></span>
+            <span id="message"></span>
             <input
               type="password"
               class="form-control"
@@ -220,7 +228,7 @@
               placeholder="************" 
               onkeyup="check()"
             />
-            <span asp-validation-for="Password" class="text-danger"></span>
+            
           </div>
 
           <button
@@ -266,10 +274,13 @@
 
                 }
                 else {
-                    document.getElementById('message').style.display = 'red';
+                    document.getElementById('message').style.color = 'red';
                     document.getElementById('message').innerHTML = 'not matching'
                 }
 
+            }
+
+            
             }
 
         </script>

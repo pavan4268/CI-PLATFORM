@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Asn1.Crmf;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Mail;
 using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
@@ -112,33 +113,37 @@ namespace CI_Platform_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var data = new User()
+                var existsuser = _db.Users.FirstOrDefault(c => c.Email == obj.Email);
+                if(existsuser == null)
                 {
-                    FirstName = obj.FirstName,
-                    LastName = obj.LastName,
-                    PhoneNumber = obj.PhoneNumber,
-                    Email = obj.Email,
-                    Password = obj.Password,
-                    Avatar = "None",
-                    //WhyIVolunteer = "None",
-                    //EmployeeId = "None",
-                    //Department = "None",
-                    //ProfileText = "None",
-                    //LinkedInUrl = "None",
-                    //Title = "None",
-                    //UpdatedAt = DateTime.Now,
-                    //DeletedAt = DateTime.Now,
-                    CityId = 2,
-                    CountryId = 3,
-                };
-                _db.Users.Add(data);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                    var data = new User()
+                    {
+                        FirstName = obj.FirstName,
+                        LastName = obj.LastName,
+                        PhoneNumber = obj.PhoneNumber,
+                        Email = obj.Email,
+                        Password = obj.Password,
+                        Avatar = "None",
+                        //WhyIVolunteer = "None",
+                        //EmployeeId = "None",
+                        //Department = "None",
+                        //ProfileText = "None",
+                        //LinkedInUrl = "None",
+                        //Title = "None",
+                        //UpdatedAt = DateTime.Now,
+                        //DeletedAt = DateTime.Now,
+                        CityId = 2,
+                        CountryId = 3,
+                    };
+                    _db.Users.Add(data);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                TempData["emailexists"] = "Email Already Exists!";
+                return View();
+                
             }
-            else 
-            {
-                ModelState.AddModelError("Email", "Email Already exists");
-            }
+            TempData["emailexists"] = "Some Error Occured";
 
             return View();
         }
