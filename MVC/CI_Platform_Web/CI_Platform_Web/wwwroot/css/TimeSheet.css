@@ -32,3 +32,6 @@
     border: none;
     background-color: transparent;
 }
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 0!important;
+}

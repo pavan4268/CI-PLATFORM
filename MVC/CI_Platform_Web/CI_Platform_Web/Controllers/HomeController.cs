@@ -94,6 +94,7 @@ namespace CI_Platform_Web.Controllers
                         _contextAccessor.HttpContext.Session.SetString("UserId" , issuccess.UserId.ToString());
                         _contextAccessor.HttpContext.Session.SetString("Email" , issuccess.Email);
                         _contextAccessor.HttpContext.Session.SetString("Avtaar", issuccess.Avatar);
+                       
                         return RedirectToAction("PlatformLanding", "Mission");
                     }
                     else

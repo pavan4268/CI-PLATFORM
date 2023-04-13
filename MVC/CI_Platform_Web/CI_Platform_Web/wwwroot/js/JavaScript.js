@@ -1,6 +1,5 @@
 ﻿// for dag and drop
 
-const { post } = require("jquery");
 
 
 
@@ -12,8 +11,58 @@ jQuery(document).ready(function () {
 //    $('#mission-select').on('change', function () {
 //        Title();
 //    })
-    
+
+    $('#timetable').DataTable({
+        "paging": false,
+        "info": false,
+        "searching": false,
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
+        "columnDefs": [
+            { "orderable": true, "targets": [1, 2] },
+            { "orderable": false, "targets": [0, 3, 4] }
+        ],
+        "order": [],
+        "scrollY": "300px",
+        "scrollCollapse": false,
+    });
+
+
+    $('#goaltable').DataTable({
+        "paging": false,
+        "info": false,
+        "searching": false,
+        "columns": [
+            null,
+            null,
+            null,
+            null
+        ],
+        "columnDefs": [
+            { "orderable": true, "targets": [1, 2] },
+            { "orderable": false, "targets": [0, 3] }
+        ],
+        "order": [],
+        "scrollY": "300px",
+        "scrollCollapse": false,
+    });
+
+
 });
+
+
+
+
+
+
+
+
+
 
 function ImgUpload() {
     var imgWrap = "";

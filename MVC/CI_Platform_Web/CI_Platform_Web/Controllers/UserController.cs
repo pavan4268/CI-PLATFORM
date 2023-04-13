@@ -58,6 +58,17 @@ namespace CI_Platform_Web.Controllers
             string user = HttpContext.Session.GetString("UserId");
             long userid = long.Parse(user);
 
+            //var abc =(from us in _db.UserSkills.Where(x=> x.UserId == userid)
+            //         from s in _db.Skills.Where(x => x.SkillId == us.SkillId)
+            //         select new
+            //         {
+            //             SkillId = s.SkillId,
+            //             SkillName = s.SkillName
+            //         }).ToList();
+
+                    
+                
+
             var userskills = _db.UserSkills.Where(x => x.UserId == userid).Include(x => x.Skill).ToList();
             var skills = userskills.Select(us => new { SkillId = us.SkillId, SkillName = us.Skill.SkillName });
             return new JsonResult(skills);
