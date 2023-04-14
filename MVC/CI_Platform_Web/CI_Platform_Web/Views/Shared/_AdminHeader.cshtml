@@ -1,0 +1,51 @@
+﻿@inject IHttpContextAccessor _contextAccessor;
+
+<header>
+        <!-- container consisting both nav rows starts here -->
+        <div class="admin-nav-wrapper m-0 p-0">
+            <!-- first nav row starts here -->
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <!-- Container wrapper -->
+                        <div class="container-fluid col-12">
+                            <div class="date-time-wrapper ps-2">
+                                <span id="current-date"></span>
+                            </div>
+                            <ul class="navbar-nav">
+                                <!-- Avatar -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center"
+                                       href="#"
+                                       id="navbarDropdownMenuLink"
+                                       role="button"
+                                       data-mdb-toggle="dropdown"
+                                       aria-expanded="false">
+                                       
+                                        <img src="~/assets/UserAvatar/@_contextAccessor.HttpContext.Session.GetString("Avtaar")"
+                                             class="rounded-circle"
+                                             height="22"
+                                             alt="User Image"
+                                             loading="lazy" />&nbsp; @_contextAccessor.HttpContext.Session.GetString("FirstName")
+                                    </a>
+                                    <ul class="dropdown-menu"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="UserProfile" asp-controller="User">My profile</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="VolunteeringTimesheet" asp-controller="User">Volunteering Timesheet</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action = "Logout" asp-controller = "Home">Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Container wrapper -->
+                    </nav>
+                </div>
+            </div>
+            </div>
+            </header>

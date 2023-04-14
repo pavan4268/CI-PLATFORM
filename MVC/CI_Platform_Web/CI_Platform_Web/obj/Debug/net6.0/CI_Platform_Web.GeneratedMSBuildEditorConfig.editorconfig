@@ -15,8 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\CI Platform\CI-Platform\MVC\CI_Platform_Web\CI_Platform_Web
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Admin/AdminCMSHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5DTVNIb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Admin/AdminHomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Ib21lUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Admin/AdminUserHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Vc2VySG9tZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Home/forgot.cshtml]
@@ -51,6 +59,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_AdminHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkhlYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -65,6 +81,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_SkillTextArea.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ta2lsbFRleHRBcmVhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_UserAdminHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Vc2VyQWRtaW5Ib21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_ValidationScriptsPartial.cshtml]

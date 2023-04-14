@@ -1,7 +1,8 @@
 ﻿.sidebar {
-    max-width: 350px;
+    max-width: 350px !important;
     height: 100vh;
     background-color: #F88634;
+    
 }
 .nav-text {
     font-size: 16px;
@@ -31,4 +32,23 @@
 #item-icon-active {
     font-size: x-large;
     color: #F88634;
+}
+
+.add-object-btn {
+    color: #F88634;
+    width: 109px;
+    height: 48px;
+    border: solid 1px;
+    border-color: #F88634;
+    border-radius: 100px;
+    box-shadow: none;
+    background-color:transparent;
+}
+.object-edit {
+    border: none;
+    background-color: transparent;
+}
+.object-delete {
+    border: none;
+    background-color: transparent;
 }

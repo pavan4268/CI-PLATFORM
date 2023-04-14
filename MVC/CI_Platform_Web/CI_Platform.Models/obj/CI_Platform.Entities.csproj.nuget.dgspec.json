@@ -69,6 +69,10 @@
               "target": "Package",
               "version": "[7.0.3, )"
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
             "NHibernate": {
               "target": "Package",
               "version": "[5.4.1, )"

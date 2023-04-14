@@ -18,6 +18,8 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IVolunteerMissionCard, VolunteerMissionCard>();
 builder.Services.AddScoped<IStoryCardsRepository, StoryCardsRepository>();
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IAdminUserRepository, AdminUserRepository>();
+builder.Services.AddScoped<IAdminCMSRepository, AdminCMSRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

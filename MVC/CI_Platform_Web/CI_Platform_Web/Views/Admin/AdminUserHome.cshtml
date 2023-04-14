@@ -1,0 +1,65 @@
+﻿@using CI_Platform.Entities.ViewModels
+@model List<AdminUserDisplayVm>
+@{
+    ViewData["Title"] = "Admin-User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
+                    <h3 style="font-weight:400;">User</h3>
+                </div>
+                <div class="search-add-wrapper d-flex justify-content-between mt-3 p-2">
+                    <div class="search-wrapper d-flex align-content-center p-2 w-25" style="border:solid 1px;">
+                        <i class="bi bi-search"></i>
+                        <input type="search" class="ps-2" placeholder="Search" style="border:none;" />
+                    </div>
+                    <button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>
+                </div>
+                <div class="object-table mt-4">
+                    <table class="table">
+                        <thead style="height:80px;">
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Employee Id</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                                <th style="text-align:end"><span class="pe-2">Action</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var user in Model){
+                                <tr>
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                <td>@user.EmployeeId</td>
+                                <td>@user.Department</td>
+                                @if(user.Status == 1){
+                                    <td><span class="text-success">Active</span></td>
+                                }
+                                else{
+                                    <td><span class="text-warning">In-Active</span></td>
+                                }
+                                <td>
+                                    <div class="icons-div d-flex justify-content-end">
+                                        <div class="edit-icon-div">
+                                            <button type="button" class="object-edit">
+                                                <img src="~/assets/editing.png" />
+                                            </button>
+                                        </div>
+                                        <div class="delete-icon-div">
+                                            <button type="button" class="object-delete">
+                                                <img src ="~/assets/bin.png" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+
