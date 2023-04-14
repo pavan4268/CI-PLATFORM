@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CI_Platform.Repository.Repository
 {
-    public class AdminMissionRepository
+    public class AdminMissionRepository:IAdminMissionRepository
     {
         private readonly CiPlatformDbContext _db;
 
@@ -22,10 +22,20 @@ namespace CI_Platform.Repository.Repository
         }
 
 
-        //public List<AdminMissionDisplayVm> GetMissions()
-        //{
-        //    List<AdminMissionDisplayVm> missionList = new List<AdminMissionDisplayVm>();
-        //    IEnumerable<Mission> missions = _db.Missions.ToList();
-        //}
+        public List<AdminMissionDisplayVm> GetMissions()
+        {
+            List<AdminMissionDisplayVm> missionList = new List<AdminMissionDisplayVm>();
+            IEnumerable<Mission> missions = _db.Missions.ToList();
+            foreach(Mission mission in missions)
+            {
+                AdminMissionDisplayVm vm = new AdminMissionDisplayVm();
+                vm.EndDate = mission.EndDate;
+                vm.StartDate = mission.StartDate;
+                vm.Title = mission.Title;
+                vm.MissionType = mission.MissionType;
+                missionList.Add(vm);
+            }
+            return missionList;
+        }
     }
 }

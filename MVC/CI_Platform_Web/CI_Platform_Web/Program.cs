@@ -20,6 +20,10 @@ builder.Services.AddScoped<IStoryCardsRepository, StoryCardsRepository>();
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IAdminUserRepository, AdminUserRepository>();
 builder.Services.AddScoped<IAdminCMSRepository, AdminCMSRepository>();
+builder.Services.AddScoped<IAdminMissionRepository, AdminMissionRepository>();
+builder.Services.AddScoped<IAdminMissionThemeRepository, AdminMissionThemeRepository>();
+builder.Services.AddScoped<IAdminMissionSkillsRepository, AdminMissionSkillsRepository>();
+builder.Services.AddScoped<IAdminMissionApplicationRepository, AdminMissionApplicationRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

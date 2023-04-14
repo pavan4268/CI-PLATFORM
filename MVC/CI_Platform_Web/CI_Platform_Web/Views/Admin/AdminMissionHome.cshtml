@@ -1,0 +1,57 @@
+﻿@using CI_Platform.Entities.ViewModels
+@model List<AdminMissionDisplayVm>
+@{
+    ViewData["Title"] = "AdminMissionHome";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
+                    <h3 style="font-weight:400;">Mission</h3>
+                </div>
+                <div class="search-add-wrapper d-flex justify-content-between mt-3 p-2">
+                    <div class="search-wrapper d-flex align-content-center p-2 w-25" style="border:solid 1px;">
+                        <i class="bi bi-search"></i>
+                        <input type="search" class="ps-2" placeholder="Search" style="border:none;" />
+                    </div>
+                    <button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>
+                </div>
+                <div class="object-table mt-4">
+                    <table class="table">
+                        <thead style="height:80px;">
+                            <tr>
+                                <th>Mission Title</th>
+                                <th>Mission Type</th>
+                                <th>StartDate</th>
+                                <th>EndDate</th>
+                                <th style="text-align:end"><span class="pe-2">Action</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(AdminMissionDisplayVm mission in Model){
+                                <tr>
+                                <td>@mission.Title</td>
+                                <td>@mission.MissionType</td>
+                                <td>@mission.StartDate</td>
+                                <td>@mission.EndDate</td>
+                                
+                                <td>
+                                    <div class="icons-div d-flex justify-content-end">
+                                        <div class="edit-icon-div">
+                                            <button type="button" class="object-edit">
+                                                <img src="~/assets/editing.png" />
+                                            </button>
+                                        </div>
+                                        <div class="delete-icon-div">
+                                            <button type="button" class="object-delete">
+                                                <img src ="~/assets/bin.png" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+
