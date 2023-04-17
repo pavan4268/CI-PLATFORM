@@ -12,6 +12,7 @@ namespace CI_Platform_Web.Controllers
     {
 
         private readonly CiPlatformDbContext _db;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IAdminUserRepository _adminUserRepository;
         private readonly IAdminCMSRepository _adminCMSRepository;
         private  readonly IAdminMissionRepository _adminMissionRepository;
@@ -19,9 +20,10 @@ namespace CI_Platform_Web.Controllers
         private readonly IAdminMissionSkillsRepository _adminMissionSkillsRepository;
         private readonly IAdminMissionApplicationRepository _adminMissionApplicationRepository;
 
-        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository)
+        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment)
         {
             _db = db;
+            _hostEnvironment = webHostEnvironment;
             _adminUserRepository = adminUserRepository;
             _adminCMSRepository = adminCMSRepository;
             _adminMissionRepository = adminMissionRepository;
@@ -33,7 +35,7 @@ namespace CI_Platform_Web.Controllers
 
 
 
-
+        //<--------------------------------------------------------------------User----------------------------------------------------------------------------->
 
         public IActionResult AdminUserHome()
         {
@@ -42,6 +44,93 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+
+
+
+        public IActionResult AdminUserAdd()
+        {
+            AdminUserCreateVm vm = _adminUserRepository.Getcountry();
+            
+            return View(vm);
+        }
+
+
+
+
+
+        [HttpPost]
+        public IActionResult AdminUserAdd(AdminUserCreateVm obj, IFormFile? image)
+        {
+            if(image != null)
+            {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(wwwRootPath, @"assets\UserAvatar");
+                var extension = Path.GetExtension(image.FileName);
+
+                using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    image.CopyTo(filestream);
+                }
+
+                obj.Avatar = fileName + extension;
+
+                //_adminUserRepository.AddUser(obj);
+                //return RedirectToAction("AdminUserHome");
+            }
+            
+            
+
+            _adminUserRepository.AddUser(obj);
+            //ModelState.AddModelError("EmployeeId", "Enter unique emp id");
+            //return View(obj);
+            return RedirectToAction("AdminUserHome");
+
+        }
+
+
+
+
+        public JsonResult GetCities(long countryid)
+        {
+            List<City> cities = _adminUserRepository.GetCities(countryid);
+            return new JsonResult(cities);
+        }
+
+
+
+        public IActionResult AdminUserEdit(long userid)
+        {
+            AdminUserCreateVm userdetails = _adminUserRepository.GetUser(userid);
+            return View(userdetails);
+        }
+
+        [HttpPost]
+        public IActionResult AdminUserEdit(AdminUserCreateVm obj, long userid, IFormFile image)
+        {
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString();
+            var uploads = Path.Combine(wwwRootPath, @"assets\UserAvatar");
+            var extension = Path.GetExtension(image.FileName);
+
+            using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+            {
+                image.CopyTo(filestream);
+            }
+
+            obj.Avatar = fileName + extension;
+            obj.UserId = userid;
+            _adminUserRepository.EditUser(obj);
+            return RedirectToAction("AdminUserHome");
+        }
+
+        
+        public IActionResult AdminUserDelete(long userid)
+        {
+            _adminUserRepository.DeleteUser(userid);
+            return RedirectToAction("AdminUserHome");
+        }
+        //<---------------------------------------------------------------------------CMS------------------------------------------------------------------------>
         public IActionResult AdminCMSHome()
         {
             List<AdminCMSDisplayVm> cmspages = _adminCMSRepository.GetCms();

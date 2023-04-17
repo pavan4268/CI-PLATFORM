@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TYeXIV2a6/XJOSuP2EW7cmNd8+t8nadQiHaIVVrTsD0=",
+  "Hash": "zPSZcYgU+PvX0MeyGfGEkL1twu0aIIlQnw4YLj1Hirs=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -1885,6 +1885,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\UserAvatar\\5de5ce8c-5687-4324-8907-5fa864cf4152.png"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\UserAvatar\\903cfa11-13e1-41d8-9327-689455505524.png",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/UserAvatar/903cfa11-13e1-41d8-9327-689455505524.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\UserAvatar\\903cfa11-13e1-41d8-9327-689455505524.png"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\UserAvatar\\9f6a3eec-e79c-4f64-89d9-c9ffd438db6f.png",

@@ -1,0 +1,111 @@
+﻿@using CI_Platform.Entities.ViewModels
+@model AdminUserCreateVm
+@{
+    ViewData["Title"] = "AdminUserAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
+    <h3 style="font-weight:400;">Add User</h3>
+</div>
+<form method="post" enctype = "multipart/form-data">
+<div class="add-user-div m-3">
+    <div class="img-div pt-4 d-flex justify-content-center align-content-center">
+        <img id="user-profile" src="~/assets/volunteer1.png" style="width:180px; height:180px; border-radius:100px;" />
+        <div class="upload-div">
+            @*<i class="fas fa-camera-rotate fa-lg upload-button"></i>*@
+            <i class="bi bi-camera upload-button"></i>
+                        
+            <input class="file-upload d-none" type="file" name="image" accept="image/*" />
+        </div>
+    </div>
+    <div class="row name-surname column-gap-2">
+                        <div class="col name-div mt-3">
+                            <label class="required">First Name</label><br />
+                            <input type="text" style="width:100%; height:38px;" placeholder="Enter Your Name" asp-for="FirstName" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col surname-div mt-3">
+                            <label class="required">Last Name</label><br />
+                            <input type="text" style="width:100%; height:38px;" placeholder="Enter Your Surname" asp-for="LastName"/>
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+   </div>
+   <div class="row email-password-div mt-2 column-gap-2">
+                        <div class="col employee-div mt-3">
+                            <label class="required">Email</label><br />
+                            <input type="email" style="width:100%; height:38px;" placeholder="Enter Your Email Id" asp-for="Email"/>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="col surname-div mt-3">
+                            <label class="required">Password</label><br />
+                            <input type="password" style="width:100%; height:38px;" placeholder="Enter Your Password" asp-for="Password"/>
+                            <span asp-validation-for="Password"></span>
+                        </div>
+   </div>
+   <div class="row employee-department-div mt-2 column-gap-2">
+                        <div class="col employee-div mt-3">
+                            <label>Employee ID</label><br />
+                            <input type="text" style="width:100%; height:38px;" placeholder="Enter Your Employee ID" asp-for="EmployeeId"/>
+                        </div>
+                        <div class="col surname-div mt-3">
+                            <label>Department</label><br />
+                            <input type="text" style="width:100%; height:38px;" placeholder="Enter Your Department" asp-for="Department"/>
+                        </div>
+   </div>
+   <div class="row city-country column-gap-2">
+                        <div class="col city-div mt-3">
+                            <label class="required">City</label><br />
+                            <select class="city-dropdown w-100" id="city-dropdown" style="height:38px;" asp-for="CityId">
+                                @*<option value=null>Enter your City</option>*@
+                                
+                                
+                            </select>
+                            <span asp-validation-for="@Model.CityId"></span>
+
+                        </div>
+                        <div class="col country-div mt-3">
+                            <label class="required">Country</label><br />
+                            <select class="city-dropdown w-100" id="country-dropdown" onchange="getcities(@Model.CityId)" style="height:38px;" asp-for="CountryId">
+                                <option value=null>Enter Your Country</option>
+                                @foreach(var country in Model.Countries)
+                                {
+                                    <option value = "@country.CountryId" >@country.Name</option>
+                                }
+                                
+                            </select>
+                            <span asp-validation-for="CountryId" class="text-danger"></span>
+                        </div>
+   </div>
+   <div class="row myprofile-div mt-4">
+                        <div class="col profile-div">
+                            <label class="required">My Profile</label><br />
+                        <textarea style="height:120px; width:100%;" placeholder="Enter Your Comments..." required asp-for="ProfileText"></textarea>
+                        <span asp-validation-for="ProfileText" class="text-danger"></span>
+                        </div>
+    </div>
+
+    <div class="row status-phone-div">
+        <div class="col status-div mt-3">
+            <label class="required">Status</label><br />
+        <select class="city-dropdown w-100" id="country-dropdown" style="height:38px;" required asp-for="Status">
+                                <option value=1>Active</option>
+                                <option value=0>InActive</option>
+                               
+                                
+       </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="col phone-div mt-3">
+            <label class="required">Phone Number</label><br />
+                            <input type="number" style="width:100%; height:38px;" placeholder="Enter Your Phone Number" asp-for="PhoneNumber"/>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        
+    </div>
+    <div class="container w-100 pb-3 mt-4 d-flex justify-content-end">
+                        <button class="submit-btn btn" id="form-submit" type="submit">Save</button>
+    </div>
+</div>
+</form>
+

@@ -1,8 +1,12 @@
-﻿.sidebar {
+﻿
+.sidebar {
     max-width: 350px !important;
-    height: 100vh;
+    height:100vh;
     background-color: #F88634;
     
+}
+.sidebar-content-wrapper{
+    height:100%;
 }
 .nav-text {
     font-size: 16px;
@@ -52,3 +56,19 @@
     border: none;
     background-color: transparent;
 }
+
+
+/*User*/
+.required::after {
+    content: "*";
+}
+.submit-btn {
+    color: #F88634;
+    width: 109px;
+    height: 48px;
+    border: solid 1px;
+    border-color: #F88634;
+    border-radius: 100px;
+    box-shadow: none;
+}
+
