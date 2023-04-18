@@ -118,6 +118,18 @@ namespace CI_Platform_Web.Controllers
                 image.CopyTo(filestream);
             }
 
+            //delete existing user avatar if present
+            User? edituser = _db.Users.FirstOrDefault(user => user.UserId == userid);
+            if(edituser != null && edituser.Avatar!=null)
+            {
+                string imagepath = edituser.Avatar;
+                var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\UserAvatar\" + imagepath));
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
+            }
+            //delete existing user avatar if present
             obj.Avatar = fileName + extension;
             obj.UserId = userid;
             _adminUserRepository.EditUser(obj);
@@ -125,12 +137,23 @@ namespace CI_Platform_Web.Controllers
         }
 
         
-        public IActionResult AdminUserDelete(long userid)
+        public string AdminUserDelete(long userid)
         {
-            _adminUserRepository.DeleteUser(userid);
-            return RedirectToAction("AdminUserHome");
+            string result = "";
+
+            string? response = _adminUserRepository.DeleteUser(userid);
+            if(response != "")
+            {
+                result = response;
+                return result;
+            }
+            return result;
+            
         }
         //<---------------------------------------------------------------------------CMS------------------------------------------------------------------------>
+
+
+        #region CMS
         public IActionResult AdminCMSHome()
         {
             List<AdminCMSDisplayVm> cmspages = _adminCMSRepository.GetCms();
@@ -138,6 +161,71 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+
+
+
+
+        #region CMS ADD
+        public IActionResult AdminCMSAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminCMSAdd(AdminCMSCreateVm obj)
+        {
+            _adminCMSRepository.AddCMS(obj);
+            return RedirectToAction("AdminCMSHome");
+        }
+        #endregion
+
+
+
+
+
+        #region CMS EDIT
+        public IActionResult AdminCMSEdit(long cmspageid)
+        {
+            AdminCMSCreateVm cms = _adminCMSRepository.GetCMSDetails(cmspageid);
+            if (cms != null)
+            {
+                return View(cms);
+            }
+            return View();
+        }
+
+        
+        [HttpPost]
+        public IActionResult AdminCMSEdit(AdminCMSCreateVm obj)
+        {
+            //obj.CmsPageId = cmspageid;
+            string? response = _adminCMSRepository.SaveEditData(obj);
+            if (response != null)
+            {
+                return RedirectToAction("AdminCMSHome");
+            }
+            return View(obj);
+        }
+        #endregion
+
+        public string AdminCMSDelete(long cmspageid)
+        {
+            string result = "";
+            string? response = _adminCMSRepository.DeleteCMS(cmspageid);
+            if(response != null)
+            {
+                result = response;
+                return result;
+            }
+            return result;
+        }
+        #endregion
+
+
+
+
+
+        //<---------------------------------------------------------------------------Mission------------------------------------------------------------------------>
         public IActionResult AdminMissionHome()
         {
             List<AdminMissionDisplayVm> missions = _adminMissionRepository.GetMissions();

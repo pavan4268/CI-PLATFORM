@@ -149,15 +149,19 @@ namespace CI_Platform.Repository.Repository
             }
         }
 
-        public void DeleteUser(long userid)
+        public string DeleteUser(long userid)
         {
-            User deleteuser = _db.Users.Find(userid);
+            string reply = "";
+            User? deleteuser = _db.Users.Find(userid);
             if (deleteuser != null)
             {
                 deleteuser.DeletedAt = DateTime.Now;
                 _db.Update(deleteuser);
                 _db.SaveChanges();
+                reply = "User Deleted Sucessfully";
+                return reply;
             }
+            return reply;
 
         }
         

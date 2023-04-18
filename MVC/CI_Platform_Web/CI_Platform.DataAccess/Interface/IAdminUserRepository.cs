@@ -22,6 +22,6 @@ namespace CI_Platform.Repository.Interface
 
         public void EditUser(AdminUserCreateVm obj);
 
-        public void DeleteUser(long userid);
+        public string DeleteUser(long userid);
     }
 }

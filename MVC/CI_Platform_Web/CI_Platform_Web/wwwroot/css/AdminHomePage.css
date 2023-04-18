@@ -47,6 +47,11 @@
     border-radius: 100px;
     box-shadow: none;
     background-color:transparent;
+    text-decoration:none
+}
+.add-object-btn:hover {
+    text-decoration: none;
+    color: #F88634;
 }
 .object-edit {
     border: none;
@@ -72,3 +77,22 @@
     box-shadow: none;
 }
 
+.modal-delete-btn {
+    width: 119px;
+    height: 48px;
+    box-shadow: none;
+    border: solid 1px;
+    border-color: #757575;
+    border-radius: 100px;
+    text-decoration: none;
+    color: #757575;
+}
+
+.obj-delete-cancel {
+    width: 119px;
+    height: 48px;
+    box-shadow: none;
+    border: solid 1px;
+    border-color: #757575;
+    border-radius: 100px;
+}
