@@ -1,0 +1,83 @@
+﻿@using CI_Platform.Entities.ViewModels
+@model AdminMissionSkillsCreateVm
+@{
+    ViewData["Title"] = "AdminMissionSkillsEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <style>
+                .cancel-btn {
+                    width: 119px;
+                    height: 48px;
+                    /*box-shadow: none;*/
+                    border: solid 1px;
+                    border-color: #757575;
+                    border-radius: 100px;
+                    text-decoration:none;
+                    color:#757575;
+                }
+                .cancel-btn:hover{
+                    color:#757575;
+                    text-decoration:none;
+                    border:none;
+                }
+                .save-theme-btn {
+                    color: #F88634;
+                    width: 109px;
+                    height: 48px;
+                    border: solid 1px;
+                    border-color: #F88634;
+                    border-radius: 100px;
+                    box-shadow: none;
+                    /*text-decoration:none;*/
+                }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <div class="cms-add-main-div pb-5" style="border:solid 1px; border-color:#D9D9D9;">
+
+            <div class="title-div p-0 m-0 w-100" style="height:65px; border-bottom:solid 1px; background-color:#F8F9FC; border-bottom-color:#E8E8E8;">
+                <div class="p-3">
+                    <span style="font-size:22px;font-weight:400;">Edit</span>
+                </div>
+            
+            </div>
+
+
+            <div class="title-input-wrapper pe-0 ps-3 mt-4 me-0">
+                <label>Skill Name</label><br />
+                <input type="text" class="form-control" value="@Model.SkillName" placeholder="Enter Skill Name" asp-for="SkillName" />
+            </div>
+
+
+
+            <div class="status-input-wrapper pe-0 ps-3 mt-4 me-0">
+                <label>Status</label><br />
+                <select class="city-dropdown w-100 form-control" value="@Model.Status" id="status-dropdown" required asp-for="Status">
+                                <option value=1>Active</option>
+                                <option value=0>InActive</option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+        <div class="button-wrapper d-flex justify-content-end mt-4">
+            <a class="cancel-btn d-flex justify-content-center me-3" asp-controller="Admin" asp-action="AdminMissionSkillsHome">
+                <div class="pt-2">
+                    <span>Cancel</span>
+                </div>
+            </a>
+            @*<a class="save-cms-btn d-flex justify-content-center" asp-controller="Admin" asp-action="AdminCMSHome">
+                <div class="pt-2">
+                    <span>Save</span>
+                </div>
+            </a>*@
+            <button class="save-theme-btn btn" type="submit">Save</button>
+        </div>
+    </form>
+</body>
+

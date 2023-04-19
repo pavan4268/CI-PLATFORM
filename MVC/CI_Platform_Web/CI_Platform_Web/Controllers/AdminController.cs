@@ -233,12 +233,75 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+
+        //<------------------------------------------------------------------------Mission Theme---------------------------------------------------------------------->
+
+        #region Mission Theme
         public IActionResult AdminMissionThemeHome()
         {
             List<AdminMissionThemeDisplayVm> themes = _adminMissionThemeRepository.GetMissionThemes();
             return View(themes);
         }
 
+        #region Theme Add
+        public IActionResult AdminMissionThemeAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminMissionThemeAdd(AdminMissionThemeCreateVm obj)
+        {
+           string response =  _adminMissionThemeRepository.AddTheme(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                return View(obj);
+            }
+            return RedirectToAction("AdminMissionThemeHome");
+        }
+        #endregion
+
+        #region Theme Edit
+        public IActionResult AdminMissionThemeEdit(long themeid)
+        {
+            AdminMissionThemeCreateVm vm =_adminMissionThemeRepository.GetTheme(themeid);
+            if (vm != null)
+            {
+                return View(vm);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminMissionThemeEdit(AdminMissionThemeCreateVm obj)
+        {
+            string? response = _adminMissionThemeRepository.EditTheme(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                return View(obj);
+            }
+            return RedirectToAction("AdminMissionThemeHome");
+        }
+        #endregion
+
+        public string AdminMissionThemeDelete(long themeid)
+        {
+            string? reply = string.Empty;
+            string? response = _adminMissionThemeRepository.DeleteTheme(themeid);
+            if (string.IsNullOrEmpty(response))
+            {
+                //reply = string.Empty;
+                return reply;
+            }
+            reply = response;
+            return reply;
+        }
+
+        #endregion
+
+        //<------------------------------------------------------------------------Mission Skills---------------------------------------------------------------------->
+
+        #region Mission Skill
 
         public IActionResult AdminMissionSkillsHome()
         {
@@ -246,18 +309,93 @@ namespace CI_Platform_Web.Controllers
             return View(skills);
         }
 
+        #region Mission Skills Add
+        public IActionResult AdminMissionSkillsAdd()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult AdminMissionSkillsAdd(AdminMissionSkillsCreateVm obj)
+        {
+            string? response = _adminMissionSkillsRepository.AddSkill(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                return View(obj);
+            }
+            return RedirectToAction("AdminMissionSkillsHome");
+        }
+        #endregion
+
+
+        #region Mission Skills Edit
+        public IActionResult AdminMissionSkillsEdit(long skillid)
+        {
+            AdminMissionSkillsCreateVm getskill = _adminMissionSkillsRepository.GetSkills(skillid);
+            if (getskill != null)
+            {
+                return View(getskill);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminMissionSkillsEdit(AdminMissionSkillsCreateVm obj)
+        {
+            string? response = _adminMissionSkillsRepository.EditSkill(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                return View(obj);
+            }
+            return RedirectToAction("AdminMissionSkillsHome");
+        }
+
+        #endregion
+
+        public string AdminMissionSkillsDelete(long skillid)
+        {
+            string? reply = string.Empty;
+            string response = _adminMissionSkillsRepository.DeleteSkill(skillid);
+            if (string.IsNullOrEmpty(response))
+            {
+                return reply;
+            }
+            reply = response;
+            return reply;
+        }
+
+
+        #endregion  
+
+        //<------------------------------------------------------------------------Mission Application---------------------------------------------------------------------->
         public IActionResult AdminMissionApplicationHome()
         {
             List<AdminMissionApplicationDisplayVm> applications = _adminMissionApplicationRepository.GetMissionApplications();
             return View(applications);
         }
-        //public IActionResult UserHomePage()
-        //{
-        //    List<AdminUserDisplay> userdetails = _adminUserRepository.GetUsers();
-        //    return PartialView("_UserAdminHome", userdetails);
-        //}
+        
+        public IActionResult AdminApplicationApprove(long applicationid)
+        {
+            string response = _adminMissionApplicationRepository.ApproveApplication(applicationid);
+            if (string.IsNullOrEmpty(response))
+            {
+                ViewBag.Message = "An Error occured";
+                return RedirectToAction("AdminMissionApplicationHome");
 
+            }
+            ViewBag.Message = response;
+            return RedirectToAction("AdminMissionApplicationHome");
+        }
+
+        public IActionResult AdminApplicationDecline(long applicationid)
+        {
+            string response = _adminMissionApplicationRepository.DeclineApplication(applicationid);
+            if (string.IsNullOrEmpty(response))
+            {
+                return RedirectToAction("AdminMissionApplicationHome");
+            }
+            return RedirectToAction("AdminMissionApplicationHome");
+        }
         
     }
 }

@@ -13,13 +13,14 @@
                         <i class="bi bi-search"></i>
                         <input type="search" class="ps-2" placeholder="Search" style="border:none;" />
                     </div>
-                    <button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>
+                    @*<button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>*@
+                    <a class="add-object-btn d-flex justify-content-center pt-2" asp-controller="Admin" asp-action="AdminMissionSkillsAdd"><i class="bi bi-plus"></i>&nbsp;Add</a>
                 </div>
                 <div class="object-table mt-4">
                     <table class="table">
                         <thead style="height:80px;">
                             <tr>
-                                <th>Mission</th>
+                                
                                 <th>Skill Name</th>
                                 <th>Status</th>
                                 <th style="text-align:end"><span class="pe-2">Action</span></th>
@@ -28,7 +29,7 @@
                         <tbody>
                             @foreach(AdminMissionSkillsDisplayVm skills in Model){
                                 <tr>
-                                <td>@skills.MissionName</td>
+                                
                                 <td>@skills.SkillName</td>
                                 @if(skills.Status == 1){
                                     <td><span class="text-success">Active</span></td>
@@ -39,14 +40,43 @@
                                 <td>
                                     <div class="icons-div d-flex justify-content-end">
                                         <div class="edit-icon-div">
-                                            <button type="button" class="object-edit">
+                                            @*<button type="button" class="object-edit">
                                                 <img src="~/assets/editing.png" />
-                                            </button>
+                                            </button>*@
+                                            <a class="btn object-edit" asp-controller="Admin" asp-action="AdminMissionSkillsEdit" asp-route-skillid="@skills.SkillId">
+                                                <img src="~/assets/editing.png" />
+                                            </a>
                                         </div>
                                         <div class="delete-icon-div">
-                                            <button type="button" class="object-delete">
+                                            @*<button type="button" class="object-delete">
                                                 <img src ="~/assets/bin.png" />
+                                            </button>*@
+                                            <button type="button" class="btn object-delete" onclick="getskillid(@skills.SkillId)" data-toggle="modal" data-target="#exampleModalCenter">
+                                              <img src ="~/assets/bin.png" />
                                             </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete</h5>
+                                                    <button type="button" id="del-modal-close" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <input type="number" id="skillid" hidden>
+                                                    Are You Sure You Want to delete this item?
+                                                    
+                                                  </div>
+                                                  <div class="modal-footer d-flex justify-content-center">
+                                                      <button type="button" class="btn obj-delete-cancel" data-dismiss="modal">Cancel</button>
+                                                      <a class="btn pt-2 modal-delete-btn" onclick="deleteTheme()">Delete</a>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -57,3 +87,33 @@
                     </table>
                 </div>
 
+                <script>
+                    function getskillid(id){
+                        document.getElementById("skillid").value = id;
+
+                    }
+
+
+                    function deleteTheme(){
+                        var skillid = $("#skillid").val();
+                        $.ajax({
+                            url:'/Admin/AdminMissionSkillsDelete',
+                            data:{skillid:skillid},
+                            success: function (result){
+                                if(result != ""){
+                                    $("#del-modal-close").click();
+                                setTimeout(function(){
+                                alert(result);
+                                },1500)//
+                                setTimeout(function(){
+                                location.reload();
+                                },2000)
+                                
+                                
+                                }
+                                //alert(result);
+                            }
+                        })
+                    }
+
+                </script>

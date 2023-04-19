@@ -3,7 +3,15 @@
 @{
     ViewData["Title"] = "AdminMissionApplicationHome";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
 }
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        alert("@ViewBag.Message");    
+    </script>
+}
+
 
 <div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
                     <h3 style="font-weight:400;">Mission Application</h3>
@@ -40,14 +48,22 @@
                                 <td>
                                     <div class="icons-div d-flex justify-content-end">
                                         <div class="edit-icon-div">
-                                            <button type="button" class="object-edit">
-                                                <img src="~/assets/editing.png" />
-                                            </button>
+                                            @*<button type="button" class="object-edit">
+                                                <i class="bi bi-check-circle" style="color:green; font-size:x-large"></i>
+                                                
+                                            </button>*@
+                                            <a class="object-edit" asp-controller="Admin" asp-action="AdminApplicationApprove" asp-route-applicationid="@obj.MissionApplicationId">
+                                                <i class="bi bi-check-circle" style="color:green; font-size:x-large"></i>
+                                                
+                                            </a>
                                         </div>
                                         <div class="delete-icon-div">
-                                            <button type="button" class="object-delete">
-                                                <img src ="~/assets/bin.png" />
-                                            </button>
+                                            @*<button type="button" class="object-delete">
+                                                <i class="bi bi-x-circle" style="color:red; font-size:x-large"></i>
+                                            </button>*@
+                                            <a class="object-delete" asp-controller="Admin" asp-action="AdminApplicationDecline" asp-route-applicationid="@obj.MissionApplicationId">
+                                                <i class="bi bi-x-circle" style="color:red; font-size:x-large"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </td>

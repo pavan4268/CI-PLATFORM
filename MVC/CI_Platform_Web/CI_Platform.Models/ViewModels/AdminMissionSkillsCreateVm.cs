@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Entities.ViewModels
 {
-    public class AdminMissionSkillsDisplayVm
+    public class AdminMissionSkillsCreateVm
     {
-        //public long MissionId { get; set; }
-
-        //public string? MissionName { get; set; }
-
         public long SkillId { get; set; }
 
         public string? SkillName { get; set; }

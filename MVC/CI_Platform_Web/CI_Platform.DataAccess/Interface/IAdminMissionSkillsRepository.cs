@@ -10,5 +10,13 @@ namespace CI_Platform.Repository.Interface
     public interface IAdminMissionSkillsRepository
     {
         public List<AdminMissionSkillsDisplayVm> GetMissionSkills();
+
+        public string AddSkill(AdminMissionSkillsCreateVm obj);
+
+        public AdminMissionSkillsCreateVm GetSkills(long skillid);
+
+        public string EditSkill(AdminMissionSkillsCreateVm obj);
+
+        public string DeleteSkill(long skillid);
     }
 }

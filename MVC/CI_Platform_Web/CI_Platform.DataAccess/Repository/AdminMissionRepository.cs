@@ -25,12 +25,13 @@ namespace CI_Platform.Repository.Repository
         public List<AdminMissionDisplayVm> GetMissions()
         {
             List<AdminMissionDisplayVm> missionList = new List<AdminMissionDisplayVm>();
-            IEnumerable<Mission> missions = _db.Missions.ToList();
+            List<Mission> missions = _db.Missions.ToList();
             foreach(Mission mission in missions)
             {
                 AdminMissionDisplayVm vm = new AdminMissionDisplayVm();
-                vm.EndDate = mission.EndDate;
-                vm.StartDate = mission.StartDate;
+                vm.EndDate = mission.EndDate?.ToString("dd-MM-yyyy");
+                vm.MissionId = mission.MissionId;
+                vm.StartDate = mission.StartDate?.ToString("dd-MM-yyyy");
                 vm.Title = mission.Title;
                 vm.MissionType = mission.MissionType;
                 missionList.Add(vm);

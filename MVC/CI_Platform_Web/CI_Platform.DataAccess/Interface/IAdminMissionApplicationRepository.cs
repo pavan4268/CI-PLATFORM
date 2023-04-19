@@ -10,5 +10,9 @@ namespace CI_Platform.Repository.Interface
     public interface IAdminMissionApplicationRepository
     {
         public List<AdminMissionApplicationDisplayVm> GetMissionApplications();
+
+        public string ApproveApplication(long applicationid);
+
+        public string DeclineApplication(long applicationid);
     }
 }

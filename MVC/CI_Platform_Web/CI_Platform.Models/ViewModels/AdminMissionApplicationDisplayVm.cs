@@ -8,6 +8,8 @@ namespace CI_Platform.Entities.ViewModels
 {
     public class AdminMissionApplicationDisplayVm
     {
+        public long MissionApplicationId { get; set; }
+
         public string? MissionName { get; set; }
 
         public string? UserName { get; set; }
@@ -16,6 +18,6 @@ namespace CI_Platform.Entities.ViewModels
 
         public long UserId { get; set; }
 
-        public DateTime AppliedAt { get; set; }
+        public string? AppliedAt { get; set; }
     }
 }

@@ -10,5 +10,13 @@ namespace CI_Platform.Repository.Interface
     public interface IAdminMissionThemeRepository
     {
         public List<AdminMissionThemeDisplayVm> GetMissionThemes();
+
+        public string AddTheme(AdminMissionThemeCreateVm obj);
+
+        public string EditTheme(AdminMissionThemeCreateVm obj);
+
+        public AdminMissionThemeCreateVm GetTheme(long themeid);
+
+        public string DeleteTheme(long themeid);
     }
 }
