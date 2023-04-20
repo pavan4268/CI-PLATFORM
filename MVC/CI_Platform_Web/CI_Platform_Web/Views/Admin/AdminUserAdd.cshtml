@@ -40,7 +40,7 @@
                         <div class="col surname-div mt-3">
                             <label class="required">Password</label><br />
                             <input type="password" style="width:100%; height:38px;" placeholder="Enter Your Password" asp-for="Password"/>
-                            <span asp-validation-for="Password"></span>
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
    </div>
    <div class="row employee-department-div mt-2 column-gap-2">
@@ -61,7 +61,7 @@
                                 
                                 
                             </select>
-                            <span asp-validation-for="@Model.CityId"></span>
+                            <span asp-validation-for="@Model.CityId" class="text-danger"></span>
 
                         </div>
                         <div class="col country-div mt-3">
@@ -109,3 +109,8 @@
 </div>
 </form>
 
+ @section scripts{
+@{
+<partial name="_ValidationScriptsPartial" />
+}
+}

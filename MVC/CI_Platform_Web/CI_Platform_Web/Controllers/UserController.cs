@@ -263,11 +263,11 @@ namespace CI_Platform_Web.Controllers
             if (umission != null)
             {
                 string error = "";
-                if (entereddate < umission.StartDate)
+                if (entereddate > umission.StartDate)
                 {
                     error = "Please select a date after the start date of the mission";
                 }
-                else if (entereddate > umission.EndDate)
+                else if (entereddate < umission.EndDate)
                 {
                     error = "Please select the date before the end date of the mission";
                 }

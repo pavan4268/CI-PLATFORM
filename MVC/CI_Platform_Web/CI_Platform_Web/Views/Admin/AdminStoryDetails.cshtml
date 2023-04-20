@@ -1,0 +1,184 @@
+﻿@using CI_Platform.Entities.ViewModels
+@model AdminStoryDetailsVm
+@{
+    ViewData["Title"] = "AdminStoryDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container col-10 main">
+
+          <div class="row mt-5">
+              @if(Model.ImagePaths.Count==0 && Model.VideoURLs.Count==0){
+                  <div class="col-lg-5 col-md-12 img-carousel mt-3" style="max-height:751px;">
+              <!-- <div class="img-carousel w-100 h-100"> -->
+              <swiper-container
+                style="
+                  --swiper-navigation-color: #fff;
+                  --swiper-pagination-color: #fff;
+                "
+                class="mySwiper"
+                thumbs-swiper=".mySwiper2"
+                loop="true"
+                space-between="10"
+                navigation="true"
+              >
+                <swiper-slide>
+                  <img
+                    src="~/assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img
+                    src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img1.png" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img11.png" />
+                </swiper-slide>
+              </swiper-container>
+
+              <swiper-container
+                class="mySwiper2"
+                loop="true"
+                space-between="10"
+                slides-per-view="4"
+                free-mode="true"
+                watch-slides-progress="true"
+              >
+                <swiper-slide>
+                  <img
+                    src="~/assets/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img
+                    src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+                  />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img1.png" />
+                </swiper-slide>
+                <swiper-slide>
+                  <img src="~/assets/img11.png" />
+                </swiper-slide>
+              </swiper-container>
+              <!-- </div> -->
+            </div>
+              }
+              else{
+                  <!-- col for image carousel starts -->
+            <div class="col-lg-5 col-md-12 img-carousel mt-3" style="max-height:751px;">
+              <!-- <div class="img-carousel w-100 h-100"> -->
+              <swiper-container
+                style="
+                  --swiper-navigation-color: #fff;
+                  --swiper-pagination-color: #fff;
+                "
+                class="mySwiper"
+                thumbs-swiper=".mySwiper2"
+                loop="true"
+                space-between="10"
+                navigation="true"
+              >
+              @foreach(string img in Model.ImagePaths){
+                  <swiper-slide>
+                  <img
+                    src="@img"
+                  />
+                </swiper-slide>
+              }
+               
+              </swiper-container>
+
+              <swiper-container
+                class="mySwiper2"
+                loop="true"
+                space-between="10"
+                slides-per-view="4"
+                free-mode="true"
+                watch-slides-progress="true"
+              >
+              @foreach(string img in Model.ImagePaths){
+                  <swiper-slide>
+                  <img
+                    src="@img"
+                  />
+                </swiper-slide>
+              }
+               
+              </swiper-container>
+              <!-- </div> -->
+            </div>
+              }
+        
+
+            <div class="col-lg-7 col mt-5">
+                <div class="row mt-3">
+                    @*div containing volunteer image and name starts here*@
+                    <div class="col volunteer-wrapper">
+                        <div class="user-img-div d-flex justify-content-center">
+                            <img src="~/assets/UserAvatar/@Model.UserImage" class="user-img" />
+                        </div>
+                        <div class="name-views-wrapper d-flex justify-content-center">
+                            <span class="user-name p-1">@Model.UserName</span>
+                            
+                        </div>
+                        
+                    </div>
+                    @*div containing volunteer image and name ends here*@
+                    <div class="col">
+                        <span class="why-i-volunteer-div" style="text-align:center">
+                       
+                            <h3>@Model.MissionTitle</h3>
+                    </span>
+                    </div>    
+                </div>
+                @*why i volunteer div starts here*@
+                
+                @*<div class="row mt-5 ps-5">
+                    <span class="why-i-volunteer-div" style="text-align:center">
+                       
+                            <h3>@Model.MissionTitle</h3>
+                    </span>
+                </div>*@
+                @*why i volunteer div ends here*@
+                @*recommend to a co-worker and open mission wrapper div starts here*@
+                <div class="row mt-5 d-flex container justify-content-center pt-5 ps-5">
+                    <div class="col">
+                        <a class="btn btn-outline-success">Publish</a>
+                        
+                    </div>
+                    <div class="col">
+                        
+                        <a class="btn btn-outline-danger">Decline</a>
+                       
+                    </div>
+                    <div class="col">
+                        
+                        <a class="btn btn-outline-secondary">Delete</a>
+                    </div>
+                    
+                </div>
+                @*recommend to a co-worker and open mission wrapper div ends here*@
+            </div>
+           </div>
+
+           @*story title div starts here*@
+           <div class="row story-title-div pb-3 mt-4"><span class="story-title">@*Grow trees on the path of environment sustainiblity*@<h5>@Model.Title</h5></span></div>
+           @*story title div ends here*@
+           <div class="row story-description-div mt-3 mb-5">
+               <span class="story-description">
+                 
+                   @Html.Raw(Model.StoryDescrription)
+               </span>
+           </div>
+
+      </div>
+
+
+
+
+      <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>

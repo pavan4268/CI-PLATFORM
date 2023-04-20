@@ -19,8 +19,9 @@ namespace CI_Platform_Web.Controllers
         private readonly IAdminMissionThemeRepository _adminMissionThemeRepository;
         private readonly IAdminMissionSkillsRepository _adminMissionSkillsRepository;
         private readonly IAdminMissionApplicationRepository _adminMissionApplicationRepository;
+        private readonly IAdminStoryRepository _adminStoryRepository;
 
-        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment)
+        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment, IAdminStoryRepository adminStoryRepository)
         {
             _db = db;
             _hostEnvironment = webHostEnvironment;
@@ -30,6 +31,7 @@ namespace CI_Platform_Web.Controllers
             _adminMissionThemeRepository = adminMissionThemeRepository;
             _adminMissionSkillsRepository = adminMissionSkillsRepository;
             _adminMissionApplicationRepository = adminMissionApplicationRepository;
+            _adminStoryRepository = adminStoryRepository;
         }
 
 
@@ -365,9 +367,12 @@ namespace CI_Platform_Web.Controllers
         }
 
 
-        #endregion  
+        #endregion
 
-        //<------------------------------------------------------------------------Mission Application---------------------------------------------------------------------->
+        //<------------------------------------------------------------------------Mission Application------------------------------------------------------------------>
+
+        #region Mission Application
+
         public IActionResult AdminMissionApplicationHome()
         {
             List<AdminMissionApplicationDisplayVm> applications = _adminMissionApplicationRepository.GetMissionApplications();
@@ -396,6 +401,23 @@ namespace CI_Platform_Web.Controllers
             }
             return RedirectToAction("AdminMissionApplicationHome");
         }
-        
+
+
+        #endregion
+
+
+        //<--------------------------------------------------------------------------------Story------------------------------------------------------------------------>
+
+        public IActionResult AdminStoryHome()
+        {
+            List<AdminStoryDisplayVm>? stories = _adminStoryRepository.GetStories();
+            return View(stories);
+        }
+
+        public IActionResult AdminStoryDetails(long storyid)
+        {
+            AdminStoryDetailsVm details = _adminStoryRepository.GetDetails(storyid);
+            return View(details);
+        }
     }
 }

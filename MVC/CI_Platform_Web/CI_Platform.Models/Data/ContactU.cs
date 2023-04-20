@@ -20,5 +20,4 @@ public partial class ContactU
     public DateTime? DeletedAt { get; set; }
 
     public virtual User User { get; set; } = null!;
-
 }

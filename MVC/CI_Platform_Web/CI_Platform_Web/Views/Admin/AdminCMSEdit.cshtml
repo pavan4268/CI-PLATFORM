@@ -80,12 +80,14 @@
             <div class="description-input-wrapper pe-0 ps-3 mt-4 me-0">
                 <label>Description</label>
                 <textarea asp-for = "Description" id = "editor" placeholder = "Write your Description Here" value="@Model.Description"></textarea>
+                
             </div>
 
 
             <div class="slug-input-wrapper pe-0 ps-3 mt-4 me-0">
                 <label class="required">Slug</label><br />
                 <input type="text" class="form-control" placeholder="Enter Slug Details" value="@Model.Slug" asp-for="Slug" />
+                <span asp-validation-for="Slug" class="text-danger"></span>
             </div>
 
 
@@ -118,3 +120,8 @@
 </body>
 
 
+@section scripts{
+@{
+<partial name="_ValidationScriptsPartial" />
+}
+}

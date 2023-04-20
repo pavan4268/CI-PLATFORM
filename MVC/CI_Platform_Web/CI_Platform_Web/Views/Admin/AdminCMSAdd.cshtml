@@ -86,6 +86,7 @@
             <div class="slug-input-wrapper pe-0 ps-3 mt-4 me-0">
                 <label class="required">Slug</label><br />
                 <input type="text" class="form-control" placeholder="Enter Slug Details" asp-for="Slug" />
+                <span asp-validation-for="Slug" class="text-danger"></span>
             </div>
 
 
@@ -116,3 +117,9 @@
         </div>
     </form>
 </body>
+
+@section scripts{
+@{
+<partial name="_ValidationScriptsPartial" />
+}
+}

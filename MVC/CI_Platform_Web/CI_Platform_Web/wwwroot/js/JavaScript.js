@@ -3,14 +3,15 @@
 
 
 
-jQuery(document).ready(function () {
+
+$(document).ready(function () {
     ImgUpload();
     $("#country-dropdown").change();
 
-//    Title();
-//    $('#mission-select').on('change', function () {
-//        Title();
-//    })
+    Title();
+    $('#mission-select').on('change', function () {
+        Title();
+    })
 
     $('#timetable').DataTable({
         "paging": false,
@@ -305,6 +306,7 @@ $(document).ready(function () {
 
 
 function getcities(cityid) {
+    
     var countryid = $("#country-dropdown").find(":selected").val();
     $('#city-dropdown').empty();
     //$('#city-dropdown').append('<Option>Enter Your City</Option>');
@@ -313,6 +315,7 @@ function getcities(cityid) {
         url: '/User/GetCities',
         data: { countryid: countryid },
         success: function (result) {
+            console.log(result)
             $.each(result, function (i, data) {
                 var selected = (data.cityId == cityid) ? 'selected' : '';
                 $('#city-dropdown').append('<Option value ="' + data.cityId +'" ' + selected + '>' + data.name + '</Option>');
@@ -361,12 +364,33 @@ passwordInput.addEventListener('input', () =>
 
 
 function changepass() {
-    document.getElementById("passerror").style.display = "none";
+    
+    document.getElementById("passerror").value = "";
+    document.getElementById("password-validation").value = "";
+    document.getElementById("pass-match").value = "";
     var cpass = document.getElementById("cpass").value;
     var newpass = document.getElementById("newpass").value;
     var cnfpass = document.getElementById("cnfpass").value;
+    const password = newpass;
+    const uppercaseRegex = /[A-Z]/;
+    const lowercaseRegex = /[a-z]/;
+    const numberRegex = /[0-9]/;
+    const specialRegex = /[$@$!%*?&]/;
+
+    if (cpass == "") {
+        $("#passerror").textContent = "Please Enter the Current Password";
+        return;
+    }
+    if (password.length < 6) {
+        passwordError.textContent = 'Password must be atleast 6 characters long';
+        return;
+    }
+    if (!uppercaseRegex.test(password) || !lowercaseRegex.test(password) || !numberRegex.test(password) || !specialRegex.test(password)) {
+        passwordError.textContent = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+        return;
+    }
     if (newpass != cnfpass) {
-        alert("New Password and Confirm Password do not Match.");
+        $("#pass-match").textContent="New Password and Confirm Password do not Match.";
     }
     else {
         $.ajax({
@@ -382,7 +406,9 @@ function changepass() {
                     alert("Password updated sucessfully.");
                 }
                 else {
-                    document.getElementById("passerror").style.display = "block";
+                    $("pass-error")
+                    $("pass-error").textContent = "Current Password is Wrong";
+                    //document.getElementById("passerror").style.display = "block";
                 }
             }
         });
