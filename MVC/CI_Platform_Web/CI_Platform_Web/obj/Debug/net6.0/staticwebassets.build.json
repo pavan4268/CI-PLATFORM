@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GhKxDvQ0z7WGS9aQ98sdcOmZ6Rnbo87erH+CJIL+8iw=",
+  "Hash": "GiB58Jsih484gf6KUlzbK8dei6M+vFo4u63Jjp1BrTs=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -2210,6 +2210,23 @@
       "OriginalItemSpec": "wwwroot\\css\\AdminHomePage.css"
     },
     {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\AdminMission.css",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "css/AdminMission.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\AdminMission.css"
+    },
+    {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\css\\bootstrap.min.css",
       "SourceId": "CI_Platform_Web",
       "SourceType": "Discovered",
@@ -2412,6 +2429,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\js\\AdminMission.js",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "js/AdminMission.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\AdminMission.js"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\js\\AdminPages.js",

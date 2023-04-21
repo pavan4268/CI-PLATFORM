@@ -235,6 +235,12 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+        public IActionResult AdminMissionAdd()
+        {
+            AdminMissionCreateVm vm = _adminMissionRepository.FillDropDown();
+            return View(vm);
+        }
+
 
         //<------------------------------------------------------------------------Mission Theme---------------------------------------------------------------------->
 
@@ -419,5 +425,55 @@ namespace CI_Platform_Web.Controllers
             AdminStoryDetailsVm details = _adminStoryRepository.GetDetails(storyid);
             return View(details);
         }
+
+        public IActionResult ApproveStory(long storyid)
+        {
+            
+            string? response = _adminStoryRepository.StoryApprove(storyid);
+            if (string.IsNullOrEmpty(response))
+            {
+                return RedirectToAction("AdminStoryHome");
+            }
+            
+            return RedirectToAction("AdminStoryHome");
+        }
+
+        public IActionResult DeclineStory(long storyid)
+        {
+            string? response = _adminStoryRepository.StoryDecline(storyid);
+            if (string.IsNullOrEmpty(response))
+            {
+                return RedirectToAction("AdminStoryHome");
+            }
+            return RedirectToAction("AdminStoryHome");
+        }
+
+
+        public string DeleteStory(long storyid)
+        {
+            string? reply = "";
+            string? response = _adminStoryRepository.StoryDelete(storyid);
+            if (string.IsNullOrEmpty(response))
+            {
+                return reply;
+            }
+            reply = response;
+            return reply;
+        }
+
+        public IActionResult ViewDelete(long storyid)
+        {
+            string? response = _adminStoryRepository.StoryDelete(storyid);
+            if (string.IsNullOrEmpty(response))
+            {
+                return RedirectToAction("AdminStoryHome");
+            }
+            return RedirectToAction("AdminStoryHome");
+        }
+
+
+
+
+
     }
 }

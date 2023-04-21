@@ -13,6 +13,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public string? Title { get; set; }
 
+        
         public string? Description { get; set; }
 
         [Required(ErrorMessage ="Slug Cannot be Empty.")]

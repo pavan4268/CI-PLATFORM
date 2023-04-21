@@ -197,21 +197,34 @@ namespace CI_Platform_Web.Controllers
 
 
         [HttpPost]
-        public bool ContactUs(string? Subject, string? Message)
+        public string ContactUs(string? Subject, string? Message)
         {
+            string reply = "";
+            if (Subject == null)
+            {
+                reply = "Please Enter a Subject";
+                return reply;
+            }
+            if(Message == null)
+            {
+                reply = "Please Enter a Message";
+                return reply;
+            }
             string user = HttpContext.Session.GetString("UserId");
             if(user != null)
             {
                 long userid = long.Parse(user);
                 ContactU item = new ContactU();
+
                 item.UserId = userid;
                 item.Subject = Subject;
                 item.Message = Message;
                 _db.ContactUs.Add(item);
                 _db.SaveChanges(true);
-                return true;
+                return reply;
             }
-            return false;
+            reply = "User Not Found";
+            return reply;
         }
 
         //<--------------------------------------------------------------volunteer page----------------------------------------------------->
@@ -318,11 +331,11 @@ namespace CI_Platform_Web.Controllers
             {
                 
                  string error = "";
-                if (entereddate < umission.StartDate)
+                if (entereddate > umission.StartDate)
                 {
                     error = "Please select a date after the start date of the mission";
                 }
-                else if(entereddate > umission.EndDate)
+                else if(entereddate < umission.EndDate)
                 {
                     error = "Please select the date before the end date of the mission";
                 }
@@ -372,11 +385,11 @@ namespace CI_Platform_Web.Controllers
             DateTime entereddate = DateTime.Parse(timeEditDate);
             var mission = _db.Missions.FirstOrDefault(x=> x.MissionId == editmission.MissionId);
             string error = "";
-            if (entereddate < mission.StartDate)
+            if (entereddate > mission.StartDate)
             {
                 error = "Please select a date after the start date of the mission";
             }
-            else if (entereddate > mission.EndDate)
+            else if (entereddate < mission.EndDate)
             {
                 error = "Please select the date before the end date of the mission";
             }
@@ -414,11 +427,11 @@ namespace CI_Platform_Web.Controllers
             DateTime entereddate = DateTime.Parse(goalEditDate);
             var mission = _db.Missions.FirstOrDefault(x=>x.MissionId == editmission.MissionId);
             string error = "";
-            if (entereddate < mission.StartDate)
+            if (entereddate > mission.StartDate)
             {
                 error = "Please select a date after the start date of the mission";
             }
-            else if (entereddate > mission.EndDate)
+            else if (entereddate < mission.EndDate)
             {
                 error = "Please select the date before the end date of the mission";
             }

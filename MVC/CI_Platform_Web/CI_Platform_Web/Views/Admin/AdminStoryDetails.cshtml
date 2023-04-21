@@ -148,12 +148,12 @@
                 @*recommend to a co-worker and open mission wrapper div starts here*@
                 <div class="row mt-5 d-flex container justify-content-center pt-5 ps-5">
                     <div class="col">
-                        <a class="btn btn-outline-success">Publish</a>
+                        <a class="btn btn-outline-success" asp-controller="Admin" asp-action="ApproveStory" asp-route-storyid="@Model.StoryId">Publish</a>
                         
                     </div>
                     <div class="col">
                         
-                        <a class="btn btn-outline-danger">Decline</a>
+                        <a class="btn btn-outline-danger" asp-controller="Admin" asp-action="DeclineStory" asp-route-storyid="@Model.StoryId">Decline</a>
                        
                     </div>
                     <div class="col">

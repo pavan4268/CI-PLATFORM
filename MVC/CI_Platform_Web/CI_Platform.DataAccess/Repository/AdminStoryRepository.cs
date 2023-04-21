@@ -78,10 +78,60 @@ namespace CI_Platform.Repository.Repository
             return vm;
         }
 
-        //public string StoryApprove(long storyid)
-        //{
+        public string StoryApprove(long storyid)
+        {
+            string? reply = "";
+            Story? approvestory = _db.Stories.FirstOrDefault(story=>story.StoryId == storyid);
+            if(approvestory != null)
+            {
+                approvestory.Status = "PUBLISHED";
+                approvestory.UpdatedAt = DateTime.Now;
+                approvestory.PublishedAt = DateTime.Now;
+                _db.Stories.Update(approvestory);
+                _db.SaveChanges();
+                return reply;
+            }
+            reply = "Unable to Approve Story";
+            return reply;
+        }
 
-        //}
+        public string StoryDecline(long storyid)
+        {
+            string? reply = "";
+            Story? declinestory = _db.Stories.FirstOrDefault(story=>story.StoryId==storyid);
+            if(declinestory != null)
+            {
+                declinestory.Status = "DECLINED";
+                declinestory.UpdatedAt = DateTime.Now;
+                _db.Stories.Update(declinestory);
+                _db.SaveChanges(true);
+                return reply;
+
+            }
+            reply = "Unable to Decline Story";
+            return reply;
+        }
+
+        public string StoryDelete(long storyid)
+        {
+            string? reply = "";
+            Story? deletestory = _db.Stories.FirstOrDefault(story=>story.StoryId==storyid);
+            if(deletestory != null)
+            {
+                deletestory.DeletedAt = DateTime.Now;
+                _db.Stories.Update(deletestory);
+                _db.SaveChanges();
+                return reply;
+
+            }
+            reply = "Unable to Delete Story";
+            return reply;
+        }
+
+
+
+
 
     }
+
 }

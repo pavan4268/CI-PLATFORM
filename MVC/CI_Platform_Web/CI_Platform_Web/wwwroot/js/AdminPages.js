@@ -1,8 +1,28 @@
 ﻿jQuery(document).ready(function () {
 
+    $('#Admin-table').DataTable({
+        "info": false,
+        "bLengthChange": false,
+        "ordering": false,
+        /*dom: '<"top"l<"custom-item">f>t<"bottom"ip>',*/
+        "search": {
+            search: $('#my-search').val()
+        },
+        "pagingType": 'full_numbers',
+        "pageLength": 8,
+        language: {
+            oPaginate: {
+                sNext: '<i class="bi bi-chevron-right"></i>',
+                sPrevious: '<i class="bi bi-chevron-left"></i>',
+                sFirst: '<i class="bi bi-chevron-double-left"></i>',
+                sLast: '<i class="bi bi-chevron-double-right"></i>'
+            },
+            'search': '',
+            searchPlaceholder: "Search"
+        }
+    });
 
-
-
+    
 
 });
 

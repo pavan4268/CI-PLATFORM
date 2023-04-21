@@ -38,5 +38,14 @@ namespace CI_Platform.Repository.Repository
             }
             return missionList;
         }
+
+
+        public AdminMissionCreateVm FillDropDown()
+        {
+            AdminMissionCreateVm vm = new AdminMissionCreateVm();
+            List<Country>? Countries = _db.Countries.ToList();
+            vm.Countries = Countries;
+            return vm;
+        }
     }
 }

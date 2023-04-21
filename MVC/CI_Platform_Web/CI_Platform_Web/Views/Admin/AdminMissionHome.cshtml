@@ -13,10 +13,11 @@
                         <i class="bi bi-search"></i>
                         <input type="search" class="ps-2" placeholder="Search" style="border:none;" />
                     </div>
-                    <button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>
+                    @*<button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>*@
+                    <a class="add-object-btn d-flex justify-content-center pt-2" asp-controller="Admin" asp-action="AdminMissionAdd"><i class="bi bi-plus"></i>&nbsp;Add</a>
                 </div>
                 <div class="object-table mt-4">
-                    <table class="table">
+                    <table class="table" id="Admin-table">
                         <thead style="height:80px;">
                             <tr>
                                 <th>Mission Title</th>

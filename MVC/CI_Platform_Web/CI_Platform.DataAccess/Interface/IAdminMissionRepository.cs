@@ -10,5 +10,7 @@ namespace CI_Platform.Repository.Interface
     public interface IAdminMissionRepository
     {
         public List<AdminMissionDisplayVm> GetMissions();
+
+        public AdminMissionCreateVm FillDropDown();
     }
 }

@@ -16,7 +16,7 @@
                     @*<a class="add-object-btn d-flex justify-content-center pt-2" asp-controller="Admin" asp-action="AdminCMSAdd"><i class="bi bi-plus"></i>&nbsp;Add</a>*@
                 </div>
                 <div class="object-table mt-4">
-                    <table class="table">
+                    <table class="table" id="Admin-table">
                         <thead style="height:80px;">
                             <tr>
                                 <th>Story Title</th>
@@ -39,20 +39,20 @@
                                             <a asp-controller="Admin" asp-action="AdminStoryDetails" asp-route-storyid="@story.StoryId" class="btn story-view-btn" style="border:solid 1px; border-color:#F88634;border-radius:40px;color:#F88634">View</a>
                                         </div>
                                         <div class="approve-icon-div">
-                                            <a class="object-edit pt-3">
+                                            <a class="object-edit pt-3" asp-controller="Admin" asp-action="ApproveStory" asp-route-storyid="@story.StoryId">
                                                 <i class="bi bi-check-circle" style="color:green; font-size:x-large"></i>
                                                 
                                             </a>
                                         </div>
-                                        <div class="approve-icon-div">
-                                            <a class="object-delete pt-3">
+                                        <div class="decline-icon-div">
+                                            <a class="object-delete pt-3" asp-controller="Admin" asp-action="DeclineStory" asp-route-storyid="@story.StoryId">
                                                 <i class="bi bi-x-circle" style="color:red; font-size:x-large"></i>
                                             </a>
                                         </div>
                                         <div class="delete-icon-div ps-0">
                                             
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn object-delete ps-0" @*onclick="getcmsid(@cms.CmsPageId)"*@ data-toggle="modal" data-target="#exampleModalCenter">
+                                            <button type="button" class="btn object-delete ps-0" onclick="getstoryid(@story.StoryId)" data-toggle="modal" data-target="#exampleModalCenter">
                                               <img src ="~/assets/bin.png" />
                                             </button>
 
@@ -67,13 +67,13 @@
                                                     </button>
                                                   </div>
                                                   <div class="modal-body">
-                                                      <input type="number" id="cmspageid" hidden>
+                                                      <input type="number" id="storyid" hidden>
                                                     Are You Sure You Want to delete this item?
                                                     
                                                   </div>
                                                   <div class="modal-footer d-flex justify-content-center">
                                                       <button type="button" class="btn obj-delete-cancel" data-dismiss="modal">Cancel</button>
-                                                      <a class="btn pt-2 modal-delete-btn" @*onclick="deleteCMS()"*@ @*asp-controller="Admin" asp-action="AdminCMSDelete" asp-route-cmspageid="@cms.CmsPageId"*@>Delete</a>
+                                                      <a class="btn pt-2 modal-delete-btn" onclick="deleteStory()" @*asp-controller="Admin" asp-action="AdminCMSDelete" asp-route-cmspageid="@cms.CmsPageId"*@>Delete</a>
                                                   </div>
                                                 </div>
                                               </div>
@@ -89,17 +89,17 @@
                 </div>
 
                 <script>
-                    function getcmsid(id){
-                        document.getElementById("cmspageid").value = id;
+                    function getstoryid(id){
+                        document.getElementById("storyid").value = id;
 
                     }
 
 
-                    function deleteCMS(){
-                        var cmsid = $("#cmspageid").val();
+                    function deleteStory(){
+                        var storyid = $("#storyid").val();
                         $.ajax({
-                            url:'/Admin/AdminCMSDelete',
-                            data:{cmspageid:cmsid},
+                            url:'/Admin/DeleteStory',
+                            data:{storyid:storyid},
                             success: function (result){
                                 if(result != ""){
                                     $("#del-modal-close").click();
@@ -113,6 +113,14 @@
                                 
                                 }
                                 //alert(result);
+                                $("#del-modal-close").click();
+                                setTimeout(function(){
+                                alert("Deleted Successfully");
+                                },1500)//
+                                setTimeout(function(){
+                                location.reload();
+                                },2000)
+                                
                             }
                         })
                     }

@@ -387,13 +387,14 @@
                                         <div class="col">
                                             <label class="required">Subject</label><br />
                                             <input class="w-100" id="contact-subject" type="text" maxlength="255" placeholder="Enter your subject here" required/>
+                                            <span class="text-danger" id="subjectvalidation"></span>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col">
                                             <label class="required">Message</label><br />
-                                            <textarea class="w-100" id="contact-message" placeholder="Enter your Message" maxlength="60000" rows="5" required/>
-                                        </textarea>
+                                            <textarea class="w-100" id="contact-message" placeholder="Enter your Message" maxlength="60000" rows="5" required/></textarea>
+                                        <span class="text-danger" id="messagevalidation"></span>
                                         </div>
                                     </div>
                                 </div>

@@ -12,5 +12,11 @@ namespace CI_Platform.Repository.Interface
         public List<AdminStoryDisplayVm> GetStories();
 
         public AdminStoryDetailsVm GetDetails(long storyid);
+
+        public string StoryApprove(long storyid);
+
+        public string StoryDecline(long storyid);
+
+        public string StoryDelete(long storyid);
     }
 }

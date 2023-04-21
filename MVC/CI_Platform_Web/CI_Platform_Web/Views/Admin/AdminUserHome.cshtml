@@ -11,7 +11,7 @@
                 <div class="search-add-wrapper d-flex justify-content-between mt-3 p-2">
                     <div class="search-wrapper d-flex align-content-center p-2 w-25" style="border:solid 1px;">
                         <i class="bi bi-search"></i>
-                        <input type="search" class="ps-2" placeholder="Search" style="border:none;" />
+                        <input type="search" class="ps-2" placeholder="Search" style="border:none;" id="my-search" />
                     </div>
                     <a asp-action="AdminUserAdd" asp-controller="Admin">
                         <button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>
@@ -19,7 +19,7 @@
                     
                 </div>
                 <div class="object-table mt-4">
-                    <table class="table">
+                    <table class="table" id="Admin-table">
                         <thead style="height:80px;">
                             <tr>
                                 <th>First Name</th>

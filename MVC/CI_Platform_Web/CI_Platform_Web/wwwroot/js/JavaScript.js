@@ -8,50 +8,50 @@ $(document).ready(function () {
     ImgUpload();
     $("#country-dropdown").change();
 
-    Title();
-    $('#mission-select').on('change', function () {
-        Title();
-    })
+    //Title();
+    //$('#mission-select').on('change', function () {
+    //    Title();
+    //})
 
-    $('#timetable').DataTable({
-        "paging": false,
-        "info": false,
-        "searching": false,
-        "columns": [
-            null,
-            null,
-            null,
-            null,
-            null
-        ],
-        "columnDefs": [
-            { "orderable": true, "targets": [1, 2] },
-            { "orderable": false, "targets": [0, 3, 4] }
-        ],
-        "order": [],
-        "scrollY": "300px",
-        "scrollCollapse": false,
-    });
+    //$('#timetable').DataTable({
+    //    "paging": false,
+    //    "info": false,
+    //    "searching": false,
+    //    "columns": [
+    //        null,
+    //        null,
+    //        null,
+    //        null,
+    //        null
+    //    ],
+    //    "columnDefs": [
+    //        { "orderable": true, "targets": [1, 2] },
+    //        { "orderable": false, "targets": [0, 3, 4] }
+    //    ],
+    //    "order": [],
+    //    "scrollY": "300px",
+    //    "scrollCollapse": false,
+    //});
 
 
-    $('#goaltable').DataTable({
-        "paging": false,
-        "info": false,
-        "searching": false,
-        "columns": [
-            null,
-            null,
-            null,
-            null
-        ],
-        "columnDefs": [
-            { "orderable": true, "targets": [1, 2] },
-            { "orderable": false, "targets": [0, 3] }
-        ],
-        "order": [],
-        "scrollY": "300px",
-        "scrollCollapse": false,
-    });
+    //$('#goaltable').DataTable({
+    //    "paging": false,
+    //    "info": false,
+    //    "searching": false,
+    //    "columns": [
+    //        null,
+    //        null,
+    //        null,
+    //        null
+    //    ],
+    //    "columnDefs": [
+    //        { "orderable": true, "targets": [1, 2] },
+    //        { "orderable": false, "targets": [0, 3] }
+    //    ],
+    //    "order": [],
+    //    "scrollY": "300px",
+    //    "scrollCollapse": false,
+    //});
 
 
 });
@@ -331,7 +331,7 @@ function getcities(cityid) {
 
 const passwordInput = document.getElementById("newpass");
 const passwordError = document.getElementById("password-validation");
-
+const passerror = document.getElementById("passerror");
 
 passwordInput.addEventListener('input', () =>
 {
@@ -365,9 +365,9 @@ passwordInput.addEventListener('input', () =>
 
 function changepass() {
     
-    document.getElementById("passerror").value = "";
-    document.getElementById("password-validation").value = "";
-    document.getElementById("pass-match").value = "";
+    document.getElementById("passerror").textContent = "";
+    document.getElementById("password-validation").textContent = "";
+    document.getElementById("pass-match").textContent = "";
     var cpass = document.getElementById("cpass").value;
     var newpass = document.getElementById("newpass").value;
     var cnfpass = document.getElementById("cnfpass").value;
@@ -378,7 +378,7 @@ function changepass() {
     const specialRegex = /[$@$!%*?&]/;
 
     if (cpass == "") {
-        $("#passerror").textContent = "Please Enter the Current Password";
+        passerror.textContent = "Please Enter the Current Password";
         return;
     }
     if (password.length < 6) {
@@ -540,12 +540,27 @@ function SaveMessage() {
             Message: message
         },
         success: function (response) {
-            if (response == true) {
+            if (response == "") {
                 $("#contact-us-close").click();
                 alert('Message Sent Sucessfully');
             }
             else {
-                alert('Please Login once Again');
+                document.getElementById("subjectvalidation").textContent = "";
+                document.getElementById("messagevalidation").textContent = "";
+                const suberror = document.getElementById("subjectvalidation");
+                const messerror = document.getElementById("messagevalidation");
+                $("#subjectvalidation").textContent = "";
+                $("#messagevalidation").textContent = "";
+                if (response == "Please Enter a Subject") {
+                    suberror.textContent = response;
+                }
+                else if (response == "Please Enter a Message") {
+                    messerror.textContent = response;
+                }
+                else {
+                    $("#contact-us-close").click();
+                    alert(response);
+                }
             }
         }
     });
