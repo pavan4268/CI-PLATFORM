@@ -1,8 +1,7 @@
-﻿
-@using CI_Platform.Entities.ViewModels
+﻿@using CI_Platform.Entities.ViewModels
 @model AdminMissionCreateVm
 @{
-    ViewData["Title"] = "AdminMissionAdd";
+    ViewData["Title"] = "AdminMissionEdit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -189,8 +188,53 @@
             </div>
                 </div>
 
-               
 
+                <div class="row mt-3">
+                    <label class="form-label">Uploaded Images</label><br />
+                    <div class="row border">
+                    @if(Model.Imagepaths.Count() > 0)
+                    {
+                        @foreach(var image in Model.Imagepaths)
+                        {
+                            <div class="saved-img" style="margin-right:1rem;">
+                                <button class="save-cancel" data-source="@image" data-missionid="@Model.MissionId" id="img-delete"><i class="bi bi-x"></i></button>
+                                <img src="~/assets/MissionMedia/Images/@image" />
+                            </div>
+                            
+                        }
+                    }
+                    else
+                    {
+                        <span>No Image Found</span>
+                    }
+                </div>
+                </div>
+
+
+                <div class="row mt-3">
+                    <label class="form-label">Uploaded Documents</label><br />
+                    <div class="row border">
+                    @if(Model.Documentpaths.Count() > 0)
+                    {
+                        @foreach(var doc in Model.Documentpaths)
+                        {
+                            <div class="saved-img" style="margin-right:1rem;">
+                                <button class="save-cancel" data-source="@doc" data-missionid="@Model.MissionId" id="doc-delete"><i class="bi bi-x"></i></button>
+                                <img src="~/assets/MissionMedia/Documents/@doc"  alt="@doc"/>
+                            </div>
+                            
+                        }
+                    }
+                    else
+                    {
+                        <span>No Document Found</span>
+                    }
+                </div>
+                </div>
+
+
+
+               
             </div>
 
             
@@ -218,3 +262,5 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 </body>
 @*accept = "image/jpeg, image/png, image/jpg"*@
+
+

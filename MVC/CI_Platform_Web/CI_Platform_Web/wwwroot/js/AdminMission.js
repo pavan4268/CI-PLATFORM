@@ -20,9 +20,9 @@ function ImgUpload() {
             var iterator = 0;
             filesArr.forEach(function (f, index) {
 
-                if (!f.type.match('image.*')) {
-                    return;
-                }
+                //if (!f.type.match('image.*')) {
+                //    return;
+                //}
 
                 if (imgArray.length > maxLength) {
                     return false
@@ -61,3 +61,77 @@ function ImgUpload() {
         $(this).parent().parent().remove();
     });
 }
+
+
+//for time and goal div hide and display 
+
+const missionTypeSelect = document.querySelector('#mission-type');
+
+const timediv = document.querySelector('.time-div');
+const goaldiv = document.querySelector('.goal-div');
+
+
+missionTypeSelect.addEventListener('change', function () {
+    if (this.value == "Time") {
+        timediv.style.display = 'block';
+        goaldiv.style.display = 'none';
+    }
+    if (this.value == "Goal") {
+        timediv.style.display = 'none';
+        goaldiv.style.display = 'block';
+    }
+});
+//for time and goal div hida and display
+
+$("#img-delete").click(function () {
+    var src = $(this).data("source");
+    var ext = "img";
+    var parent = $(this).parent();
+    var missionId = $(this).data("missionid");
+
+    $.ajax({
+        method: 'POST',
+        url: "/Admin/ImageDelete",
+        data: {
+            id: missionId,
+            source: src,
+            extension: ext,
+        },
+        success: function (response) {
+            console.log(response);
+            if (response) {
+                parent.addClass('d-none');
+            }
+        },
+        error: function (xhr, error) {
+            console.log(error);
+        }
+    })
+});
+
+
+$("#doc-delete").click(function () {
+    var src = $(this).data("source");
+    var ext = "doc";
+    var parent = $(this).parent();
+    var missionId = $(this).data("missionid");
+
+    $.ajax({
+        method: 'POST',
+        url: "/Admin/DeleteMediaDocument",
+        data: {
+            id: missionId,
+            source: src,
+            extension: ext,
+        },
+        success: function (response) {
+            console.log(response);
+            if (response) {
+                parent.addClass('d-none');
+            }
+        },
+        error: function (xhr, error) {
+            console.log(error);
+        }
+    })
+});

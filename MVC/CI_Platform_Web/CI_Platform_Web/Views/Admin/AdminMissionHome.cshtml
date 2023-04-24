@@ -38,9 +38,12 @@
                                 <td>
                                     <div class="icons-div d-flex justify-content-end">
                                         <div class="edit-icon-div">
-                                            <button type="button" class="object-edit">
+                                            @*<button type="button" class="object-edit">
                                                 <img src="~/assets/editing.png" />
-                                            </button>
+                                            </button>*@
+                                            <a class="btn object-edit" asp-controller="Admin" asp-action="AdminMissionEdit" asp-route-missionid="@mission.MissionId">
+                                                <img src="~/assets/editing.png" />
+                                            </a>
                                         </div>
                                         <div class="delete-icon-div">
                                             <button type="button" class="object-delete">

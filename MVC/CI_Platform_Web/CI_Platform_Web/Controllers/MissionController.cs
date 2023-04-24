@@ -61,7 +61,9 @@ namespace CI_Platform_Web.Controllers
 
             if (HttpContext.Session.GetString("FirstName") != null)
             {
-                var cardmodel = _missionCard.GetMissions();
+                string user = HttpContext.Session.GetString("UserId");
+                long userid = long.Parse(user);
+                var cardmodel = _missionCard.GetMissions(userid);
                 
 
                 const int pagesize = 3;

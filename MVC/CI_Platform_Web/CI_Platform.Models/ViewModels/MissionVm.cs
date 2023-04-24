@@ -39,5 +39,9 @@ namespace CI_Platform.Entities.ViewModels
         public string MissionType { get; set; }
 
         public long MissionId { get; set; }
+
+        public bool HasApplied { get; set; }
+
+        public DateTime? RegistrationDeadline { get; set; }
     }
 }

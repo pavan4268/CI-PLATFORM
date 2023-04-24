@@ -234,12 +234,100 @@ namespace CI_Platform_Web.Controllers
             return View(missions);
         }
 
-
+        #region Mission Add
         public IActionResult AdminMissionAdd()
         {
             AdminMissionCreateVm vm = _adminMissionRepository.FillDropDown();
             return View(vm);
         }
+
+
+        [HttpPost]
+        public IActionResult AdminMissionAdd(AdminMissionCreateVm obj)
+        {
+            if (obj.Images != null)
+            {
+                foreach(var image in obj.Images)
+                {
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Guid.NewGuid().ToString();
+                    var extension = Path.GetExtension(image.FileName);
+                    if(extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+                    {
+                        List<string> images = new List<string>();
+                        var uploads = Path.Combine(wwwRootPath, @"assets\MissionMedia\Images");
+                        using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        {
+                            image.CopyTo(filestream);
+                        }
+                        string img = fileName + extension;
+                        images.Add(img);
+                        obj.Imagepaths = images;
+                    }
+                    else
+                    {
+                        List<string> docs = new List<string>();
+                        var uploads = Path.Combine(wwwRootPath, @"assets\MissionMedia\Documents");
+                        using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        {
+                            image.CopyTo(filestream);
+                        }
+                        string doc = fileName + extension;
+                        docs.Add(doc);
+                        obj.Documentpaths = docs;
+                    }
+                    
+
+                   
+                }
+                
+            }
+            string? response = _adminMissionRepository.AddMission(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                return RedirectToAction("AdminMissionHome");
+
+            }
+            return View(obj);
+        }
+        #endregion
+
+
+        public IActionResult AdminMissionEdit(long missionid)
+        {
+            AdminMissionCreateVm obj = _adminMissionRepository.GetData(missionid);
+            return View(obj);
+        }
+
+
+        
+        public bool ImageDelete(long id, string source, string extension)
+        {
+            MissionMedium? image = _db.MissionMedia.FirstOrDefault(x=>x.MissionId==id && x.MediaPath == source && x.MediaType==extension);
+            if (image != null)
+            {
+                image.DeletedAt = DateTime.Now;
+                _db.MissionMedia.Update(image);
+                _db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool DocumentDelete(long id, string source, string extension)
+        {
+            MissionDocument? document = _db.MissionDocuments.FirstOrDefault(x => x.MissionId == id && x.DocumentPath == source && x.DocumentType == extension);
+            if(document != null)
+            {
+                document.DeletedAt = DateTime.Now;
+                _db.MissionDocuments.Update(document);
+                _db.SaveChanges(true);
+                return true;
+            }
+            return false;
+        }
+
+
 
 
         //<------------------------------------------------------------------------Mission Theme---------------------------------------------------------------------->

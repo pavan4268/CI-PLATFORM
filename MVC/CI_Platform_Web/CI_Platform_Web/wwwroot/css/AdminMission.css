@@ -123,3 +123,17 @@ p {
     box-shadow: none;
     /*text-decoration:none;*/
 }
+.saved-img img{
+    height:10rem;
+    width:10rem;
+}
+.saved-img{
+    height:15rem;
+    width:15rem;
+}
+.save-cancel{
+    position:absolute;
+    
+    
+   
+}

@@ -97,9 +97,9 @@ namespace CI_Platform.Repository.Repository
             MissionTheme missionTheme = _db.MissionThemes.Where(e => e.MissionThemeId == mission.ThemeId).FirstOrDefault();
             string[] startdatetime = mission.StartDate.ToString().Split(' ');
             string[] enddatetime = mission.EndDate.ToString().Split(' ');
-            var missionskills = missionskill.Where(x => x.MissionId == mission.MissionId).FirstOrDefault();
+            MissionSkill? missionskills = missionskill.Where(x => x.MissionId == mission.MissionId).FirstOrDefault();
             //var skill = skills.Where(x => x.SkillId == missionskills.SkillId).FirstOrDefault();
-            var skills = _db.Skills.Where(x => x.SkillId == missionskills.SkillId).FirstOrDefault();
+            Skill? skills = _db.Skills.Where(x => x.SkillId == missionskills.SkillId).FirstOrDefault();
             //var ratings = _db.MissionRatings.Where(x=>x.MissionId==mission.MissionId).Count() - _db.MissionRatings.Where(x=>x.MissionId==mission.MissionId())
             Country country = _db.Countries.Where(e=>e.CountryId==mission.CountryId).FirstOrDefault();
 

@@ -368,7 +368,28 @@
               }
               
               <div class="apply-btn-div d-flex p-4">
-                <button
+                  @if(card.HasApplied==true){
+                      <button
+                  class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
+                >
+                  <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
+                    >Already Applied&nbsp;
+                    <img src="~/assets/right-arrow.png" alt=""
+                  /></a>
+                </button>
+                  }
+                  else if(card.RegistrationDeadline<DateTime.Now){
+                      <button
+                  class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
+                >
+                  <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
+                    >Closed&nbsp;
+                    <img src="~/assets/right-arrow.png" alt=""
+                  /></a>
+                </button>
+                  }
+                  else{
+                      <button
                   class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
                 >
                   <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
@@ -376,6 +397,8 @@
                     <img src="~/assets/right-arrow.png" alt=""
                   /></a>
                 </button>
+                  }
+                
               </div>
             </div>
           
@@ -735,11 +758,28 @@
                                 class="text-decoration-none view-details-link d-flex p-1"
                                 asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
                               >
-                                <span class="view-details-txt"
+                              @if(card.HasApplied==true){
+                                  <span class="view-details-txt"
                                   >View Details &nbsp;<img
                                     src="~/assets/right-arrow.png"
                                     alt=""
                                 /></span>
+                              }
+                              else if(@card.RegistrationDeadline<DateTime.Now){
+                                  <span class="view-details-txt"
+                                  >Closed &nbsp;<img
+                                    src="~/assets/right-arrow.png"
+                                    alt=""
+                                /></span>
+                              }
+                              else{
+                                  <span class="view-details-txt"
+                                  >Apply &nbsp;<img
+                                    src="~/assets/right-arrow.png"
+                                    alt=""
+                                /></span>
+                              }
+                                
                               </a>
                             </button>
                         
