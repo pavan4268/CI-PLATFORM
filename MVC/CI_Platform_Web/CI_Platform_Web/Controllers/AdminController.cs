@@ -108,31 +108,35 @@ namespace CI_Platform_Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminUserEdit(AdminUserCreateVm obj, long userid, IFormFile image)
+        public IActionResult AdminUserEdit(AdminUserCreateVm obj, long userid, IFormFile? image)
         {
-            string wwwRootPath = _hostEnvironment.WebRootPath;
-            string fileName = Guid.NewGuid().ToString();
-            var uploads = Path.Combine(wwwRootPath, @"assets\UserAvatar");
-            var extension = Path.GetExtension(image.FileName);
-
-            using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+            if(image != null)
             {
-                image.CopyTo(filestream);
-            }
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(wwwRootPath, @"assets\UserAvatar");
+                var extension = Path.GetExtension(image.FileName);
 
-            //delete existing user avatar if present
-            User? edituser = _db.Users.FirstOrDefault(user => user.UserId == userid);
-            if(edituser != null && edituser.Avatar!=null)
-            {
-                string imagepath = edituser.Avatar;
-                var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\UserAvatar\" + imagepath));
-                if (System.IO.File.Exists(filepath))
+                using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                 {
-                    System.IO.File.Delete(filepath);
+                    image.CopyTo(filestream);
                 }
+
+                //delete existing user avatar if present
+                User? edituser = _db.Users.FirstOrDefault(user => user.UserId == userid);
+                if (edituser != null && edituser.Avatar != null)
+                {
+                    string imagepath = edituser.Avatar;
+                    var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\UserAvatar\" + imagepath));
+                    if (System.IO.File.Exists(filepath))
+                    {
+                        System.IO.File.Delete(filepath);
+                    }
+                }
+                //delete existing user avatar if present
+                obj.Avatar = fileName + extension;
             }
-            //delete existing user avatar if present
-            obj.Avatar = fileName + extension;
+            
             obj.UserId = userid;
             _adminUserRepository.EditUser(obj);
             return RedirectToAction("AdminUserHome");
@@ -245,16 +249,24 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminMissionAdd(AdminMissionCreateVm obj)
         {
+            if (obj.StartDate <= DateTime.Today)
+            {
+                ModelState.AddModelError("Startdate", "Cannot Insert Date before today's date");
+
+                return View(obj);
+            }
             if (obj.Images != null)
             {
-                foreach(var image in obj.Images)
+                List<string> images = new List<string>();
+                List<string> docs = new List<string>();
+                foreach (var image in obj.Images)
                 {
                     string wwwRootPath = _hostEnvironment.WebRootPath;
                     string fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(image.FileName);
                     if(extension == ".png" || extension == ".jpg" || extension == ".jpeg")
                     {
-                        List<string> images = new List<string>();
+                        
                         var uploads = Path.Combine(wwwRootPath, @"assets\MissionMedia\Images");
                         using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                         {
@@ -262,11 +274,11 @@ namespace CI_Platform_Web.Controllers
                         }
                         string img = fileName + extension;
                         images.Add(img);
-                        obj.Imagepaths = images;
+                        
                     }
-                    else
+                    if (extension == ".pdf" || extension == ".doc" || extension == ".docx" || extension == ".txt" || extension == ".ppt" || extension == ".pptx" || extension == ".xls" || extension == ".xlsx")
                     {
-                        List<string> docs = new List<string>();
+                        
                         var uploads = Path.Combine(wwwRootPath, @"assets\MissionMedia\Documents");
                         using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                         {
@@ -274,14 +286,23 @@ namespace CI_Platform_Web.Controllers
                         }
                         string doc = fileName + extension;
                         docs.Add(doc);
-                        obj.Documentpaths = docs;
+                        
                     }
                     
 
                    
                 }
+                if(images.Count > 0)
+                {
+                    obj.Imagepaths = images;
+                }
+                if(docs.Count > 0)
+                {
+                    obj.Documentpaths = docs;
+                }
                 
             }
+            
             string? response = _adminMissionRepository.AddMission(obj);
             if (string.IsNullOrEmpty(response))
             {
@@ -292,7 +313,7 @@ namespace CI_Platform_Web.Controllers
         }
         #endregion
 
-
+        #region Mission Edit
         public IActionResult AdminMissionEdit(long missionid)
         {
             AdminMissionCreateVm obj = _adminMissionRepository.GetData(missionid);
@@ -327,7 +348,83 @@ namespace CI_Platform_Web.Controllers
             return false;
         }
 
+        [HttpPost]
+        public IActionResult AdminMissionEdit(AdminMissionCreateVm obj)
+        {
+            if (obj.Images != null)
+            {
+                List<string> images = new List<string>();
+                List<string> docs = new List<string>();
+                foreach (var image in obj.Images)
+                {
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Guid.NewGuid().ToString();
+                    var extension = Path.GetExtension(image.FileName);
+                    if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+                    {
+                        
+                        var uploads = Path.Combine(wwwRootPath, @"assets\MissionMedia\Images");
+                        using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        {
+                            image.CopyTo(filestream);
+                        }
+                        string img = fileName + extension;
+                        images.Add(img);
+                        
+                    }
+                    if(extension == ".pdf" || extension == ".doc" || extension == ".docx" || extension == ".txt" || extension ==".ppt" || extension == ".pptx" || extension == ".xls" || extension == ".xlsx")
+                    {
+                        
+                        var uploads = Path.Combine(wwwRootPath, @"assets\MissionMedia\Documents");
+                        using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        {
+                            image.CopyTo(filestream);
+                        }
+                        string doc = fileName + extension;
+                        docs.Add(doc);
+                        
+                    }
 
+
+
+                }
+                if(images.Count > 0)
+                {
+                    obj.Imagepaths = images;
+                }
+                if(docs.Count > 0)
+                {
+                    obj.Documentpaths = docs;
+                }
+                
+            }
+            string? response = _adminMissionRepository.EditMission(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                return RedirectToAction("AdminMissionHome");
+            }
+            return View(obj);
+        }
+
+        #endregion
+
+
+        public string DeleteMission(long? missionid)
+        {
+            string? reply = string.Empty;
+            if (missionid != null)
+            {
+                string? response = _adminMissionRepository.DeleteMission(missionid);
+                if(response == null)
+                {
+                    return reply;
+                }
+
+                return response;
+            }
+            reply = "Could not Delete Response";
+            return reply;
+        }
 
 
         //<------------------------------------------------------------------------Mission Theme---------------------------------------------------------------------->

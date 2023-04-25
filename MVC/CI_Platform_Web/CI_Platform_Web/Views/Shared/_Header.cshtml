@@ -3,7 +3,9 @@
 
 }*@
 @inject IHttpContextAccessor _contextAccessor;
-
+<head>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+</head>
 <header>
         <!-- container consisting both nav rows starts here -->
         <div class="container-fluid">
@@ -133,13 +135,14 @@
                             </button>
 
                             <!-- Collapsible wrapper -->
+                              <form method = "post" id = "filterform">
                             <div class="collapse navbar-collapse"
                                  id="navbarRightAlignExample">
                                 <!-- Left links -->
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <!-- Navbar dropdown -->
                                    
-                                       <select id = "CountryList"  style="background-color:transparent;border:none">
+                                       <select id = "CountryList" name="countryId" style="background-color:transparent;border:none">
                                            <option>Country</option>
                                        </select>
 
@@ -170,9 +173,27 @@
 
                                             </ul>
                                     </li>*@
-                                     <select id = "CityList" style="background-color:transparent;border:none">
+                                    @* <select id = "CityList" style="background-color:transparent;border:none">
                                            <option>City</option>
-                                       </select>
+                                       </select>*@
+
+                                       <div class="dropdown d-flex flex-column justify-content-center nav-link col-lg-3 col-sm-12 col-md-6 removepadding border">
+                                        <button class="dropdown-toggle profile dropboxdesign" type="button" data-bs-toggle="dropdown">
+                                            <div class="d-flex justify-content-between">
+                                            <div>
+                                                <span>City</span>
+
+                                             </div>
+                                             <div>
+                                                @*<img src="~/assets/drop-down.png" class="ic-down">*@
+
+                                            </div>
+                                            </div>
+                                        </button>
+                                        <ul class="dropdown-menu dropdownboxwidth citylistdropdownfilter" id = "citylist">
+                             
+                                        </ul>
+                                      </div>
                                     <!-- nav-bar dropdown ends -->
                                     <!-- Navbar dropdown -->
                                     @*<li class="nav-item dropdown col">
@@ -200,9 +221,26 @@
                                         </ul>
                                     </li>*@
 
-                                     <select id = "MissionThemeList" style="background-color:transparent;border:none">
+                                     @*<select id = "MissionThemeList" style="background-color:transparent;border:none">
                                            <option>Theme</option>
-                                       </select>
+                                       </select>*@
+                                       <div class="dropdown d-flex flex-column justify-content-center nav-link col-lg-3 col-sm-12 col-md-6 removepadding border">
+                                            <button class="dropdown-toggle profile dropboxdesign" type="button" data-bs-toggle="dropdown">
+                                                <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <span>Theme</span>
+
+                                                 </div>
+                                                 <div>
+                                                    @*<img src="../CI Platform Assets/drop-down.png" class="ic-down">*@
+
+                                                </div>
+                                                </div>
+                                            </button>
+                                                 <ul class="dropdown-menu dropdownboxwidth" id = "themelist">
+                             
+                                                  </ul>
+                                          </div>
 
                                     <!-- nav-bar dropdown ends -->
                                     <!-- Navbar dropdown -->
@@ -232,15 +270,34 @@
                                     </li>*@
 
 
-                                    <select id = "MissionSkillList" style="background-color:transparent;border:none">
+                                    @*<select id = "MissionSkillList" style="background-color:transparent;border:none">
                                            <option>Skills</option>
-                                       </select>
+                                       </select>*@
+
+                                       <div class="dropdown d-flex flex-column justify-content-center nav-link col-lg-3 col-sm-12 col-md-6 removepadding border">
+                                            <button class="dropdown-toggle profile dropboxdesign" type="button" data-bs-toggle="dropdown">
+                                                <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <span>Skills</span>
+
+                                                 </div>
+                                                 <div>
+                                                    @*<img src="../CI Platform Assets/drop-down.png" class="ic-down">*@
+
+                                                </div>
+                                                </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdownboxwidth" id = "skilllist">
+                             
+                                            </ul>
+                                          </div>
 
 
                                     <!-- nav-bar dropdown ends -->
                                 </ul>
                                 <!-- Left links -->
                             </div>
+                            </form>
                             <!-- Collapsible wrapper -->
                         </div>
                         <!-- Container wrapper -->
@@ -251,3 +308,4 @@
         </div>
         <!-- container consisting both nav rows ends here -->
     </header>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

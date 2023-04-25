@@ -20,6 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+    
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -138,411 +139,11 @@
       </div>
       
       @*grid view container starts here*@
-
-      <div id = "gridviewcontainer">
-      <div class="row row-cols-1 row-cols-xl-3 row-cols-md-2 pt-3 justify-content-center">
-         
-        <!-- first mission card -->
-        @foreach(var card in Model){
-        <div class="card col p-2 m-2 d-flex" id = "card-bod">
-          
-            <!-- div wrapping img and buttons on it starts -->
-            <div class="img-button p-0 m-0">
-              <img
-                class="card-img-top"
-                src="~/assets/Grow-Trees-On-the-path-to-environment-sustainability.png"
-                alt="Card image cap"
-              />
-
-              <div class="city-button bg-dark d-flex pl-2">
-                <img class="pin-img" src="~/assets/pin.png" alt="" />
-                <span
-                  class="city-txt pb-4 align-content-center justify-content-center"
-                >
-                  @card.CityName</span
-                >
-              </div>
-              <div class="like-button bg-dark d-flex p-2 m-0">
-                <img
-                  src="~/assets/heart.png"
-                  class="like-img d-flex"
-                  alt=""
-                />
-              </div>
-              <div class="share-button bg-dark d-flex p-2 m-0">
-                <img
-                  src="~/assets/user.png"
-                  class="share-img d-flex"
-                  alt=""
-                />
-              </div>
-            </div>
-            <!-- div wrapping img and buttons on it ends -->
-            <div class="mission-theme p-1">
-              <span class="theme-txt">@card.MissionThemes</span>
-            </div>
-
-            <div class="container card-body">
-              <!-- mission title starts here -->
-              <div class="row">
-                <h5 class="card-title" id="missiontitle">
-                  @card.Title
-                </h5>
-              </div>
-              <!-- mission title ends here -->
-              <!-- mission text starts here -->
-              <div class="row">
-                <p class="card-text">
-                  @card.ShortDescription
-                </p>
-              </div>
-              <!-- mission text starts here -->
-              <!-- mission organization and mission rating wrapper row div starts -->
-              <div class="row mt-3">
-                <!-- mission organization col div starts -->
-                <div class="col mission-org">@card.OrganizationName</div>
-                <!-- mission organization col div ends -->
-                <!-- rating col div starts -->
-                <div class="col mission-rating d-flex align-content-center">
-                  <img src="~/assets/selected-star.png" alt="" />
-                  <img src="~/assets/selected-star.png" alt="" />
-                  <img src="~/assets/selected-star.png" alt="" />
-                  <img src="~/assets/star.png" alt="" />
-                                <img src="~/assets/star.png" alt="" />
-                </div>
-                <!-- rating col div ends -->
-              </div>
-              <div class="row d-flex justify-content-center mt-4">
-                <div class="col-1 p-0">
-                  <hr />
-                </div>
-                <div
-                  class="col-10 event-period d-flex align-content-center justify-content-center m-0"
-                >
-                  <span class="event-active p-2"
-                    >@card.StartDate - @card.EndDate</span
-                  >
-                </div>
-                <div class="col-1 p-0">
-                  <hr />
-                </div>
-              </div>
-              <!-- mission organization and mission rating wrapper row div ends -->
-               @if(card.MissionType == "Time"){
-              <!-- mission period, seats left and deadline div starts -->
-              <div class="container event-wrapper">
-                <!-- mission period div starts -->
-
-                <!-- mission period div ends -->
-               
-                <!-- seats details and deadline wrapper div row starts here -->
-                <div
-                  class="row pt-2 pb-3 mt-1 d-flex align-content-center justify-content-center"
-                >
-                
-                  <div
-                    class="col d-flex align-content-center justify-content-center pl-0"
-                  >
-                    <!-- seats img div starts -->
-                    <div
-                      class="seats-img d-flex justify-content-center align-content-center mr-2"
-                    >
-                      <img
-                        src="~/assets/Seats-left.png"
-                        class="mission-logo"
-                        alt=""
-                      />
-                    </div>
-                    <!-- seats img div ends -->
-                    <!-- div containing seats details text starts -->
-
-                    <div class="eventt">
-                      <span class="event-num d-block">@card.NumberOfSeats</span>
-                      <span class="event-txt">Seats Left</span>
-                    </div>
-
-                    <!-- div containing seats details text ends -->
-                  </div>
-                  <!-- deadline wrapper col div starts -->
-                  <div
-                    class="col d-flex align-content-center justify-content-center"
-                  >
-                    <!-- clock img div starts -->
-                    <div
-                      class="seats-img align-content-center justify-content-center mr-2"
-                    >
-                      <img
-                        src="~/assets/deadline.png"
-                        class="mission-logo"
-                        alt=""
-                      />
-                    </div>
-                    <!-- clock img div ends -->
-                    <!-- div containing from and to dates starts -->
-
-                    <div class="eventt">
-                      <span class="event-num d-block">@card.Deadline</span>
-                      <span class="event-txt">Deadline</span>
-                    </div>
-
-                    <!-- div containing from and to dates ends -->
-                  </div>
-                  <!-- deadline wrapper col div ends -->
-                </div>
-                <!-- seats details and deadline wrapper div row ends here -->
-                
-              </div>
-              <!-- mission period, seats left and deadline div ends -->
-              }
-              else{
-                   <div class="container event-wrapper">
-                <!-- mission period div starts -->
-
-                <!-- mission period div ends -->
-               
-                <!-- seats details and deadline wrapper div row starts here -->
-                <div
-                  class="row pt-2 pb-3 mt-1 d-flex align-content-center justify-content-center"
-                >
-                
-                  <div
-                    class="col d-flex align-content-center justify-content-center pl-0"
-                  >
-                    <!-- seats img div starts -->
-                    <div
-                      class="seats-img d-flex justify-content-center align-content-center mr-2"
-                    >
-                      <img
-                        src="~/assets/Seats-left.png"
-                        class="mission-logo"
-                        alt=""
-                      />
-                    </div>
-                    <!-- seats img div ends -->
-                    <!-- div containing seats details text starts -->
-
-                    <div class="eventt">
-                      <span class="event-num d-block">@card.AvailableSeats</span>
-                      <span class="event-txt">Seats Left</span>
-                    </div>
-
-                    <!-- div containing seats details text ends -->
-                  </div>
-                  <!-- deadline wrapper col div starts -->
-                   <div
-                    class="col d-flex align-content-center justify-content-center"
-                  >
-                   <ul class="list-group list-group-flush">
-              <li class="list-group-item pt-0">
-                <div class="date w-100 container d-flex align-items-center">
-                  <div class="clock-img">
-                    <img
-                      src="~/assets/achieved.png"
-                      id="clock-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="event-deadline pl-2">
-                    <div
-                      class="progress p-0 w-100 container"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow="75"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    >
-                      <div class="progress-bar w-75"></div>
-                    </div>
-                    <span class="achieved-txt">8000 achieved</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            </div>
-                  <!-- deadline wrapper col div ends -->
-                </div>
-                <!-- seats details and deadline wrapper div row ends here -->
-                
-              </div>
-              <!-- mission period, seats left and deadline div ends -->
-              }
-              
-              <div class="apply-btn-div d-flex p-4">
-                  @if(card.HasApplied==true){
-                      <button
-                  class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
-                >
-                  <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
-                    >Already Applied&nbsp;
-                    <img src="~/assets/right-arrow.png" alt=""
-                  /></a>
-                </button>
-                  }
-                  else if(card.RegistrationDeadline<DateTime.Now){
-                      <button
-                  class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
-                >
-                  <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
-                    >Closed&nbsp;
-                    <img src="~/assets/right-arrow.png" alt=""
-                  /></a>
-                </button>
-                  }
-                  else{
-                      <button
-                  class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
-                >
-                  <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
-                    >Apply&nbsp;
-                    <img src="~/assets/right-arrow.png" alt=""
-                  /></a>
-                </button>
-                  }
-                
-              </div>
-            </div>
-          
-        </div>
-        }
-        </div>
-        </div>
+      <div id="maindata">
+          <partial name="_FilterPagePartial" model="@Model"/>
+      </div>
+      
         
-        <!-- first mission card ends -->
-        <!--  -->
-       
-        <!--  -->
-       
-       
-        <!--  -->
-        <!-- second row start -->
-
-        
-       
-        <!--  -->
-        <!-- Third Mission card -->
-       @* <div class="col p-2 d-flex">
-          <div class="card" style="width: 460px; height: 618px">
-            <div class="img-button container p-0 m-0">
-              <img
-                class="card-img-top"
-                src="CI Platform Assets/Plantation-and-Afforestation-programme.png"
-                alt="Card image cap"
-              />
-              <div class="city-button bg-dark d-flex pl-2">
-                <img class="pin-img" src="CI Platform Assets/pin.png" alt="" />
-                <span
-                  class="city-txt pb-4 align-content-center justify-content-center"
-                >
-                  Paris</span
-                >
-              </div>
-              <div class="like-button bg-dark d-flex p-2 m-0">
-                <img
-                  src="CI Platform Assets/heart.png"
-                  class="like-img d-flex"
-                  alt=""
-                />
-              </div>
-              <div class="share-button bg-dark d-flex p-2 m-0">
-                <img
-                  src="CI Platform Assets/user.png"
-                  class="share-img d-flex"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="mission-theme p-1">
-              <span class="theme-txt">Nutrition</span>
-            </div>
-
-            <div class="card-body">
-              <h5 class="card-title">Plantation and Afforestation programme</h5>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Praesentium asperiores ex, placeat labore eum dolores?
-              </p>
-              <div class="org-rating d-flex row">
-                <div class="org-name d-flex col-6">Amaze Doctors</div>
-
-                <div class="rating d-flex col-6">
-                  <img
-                    class="img-fluid star-rating"
-                    src="CI Platform Assets/selected-star.png"
-                    alt=""
-                  />
-                  <img
-                    class="img-fluid star-rating"
-                    src="CI Platform Assets/selected-star.png"
-                    alt=""
-                  />
-                  <img
-                    class="img-fluid star-rating"
-                    src="CI Platform Assets/selected-star.png"
-                    alt=""*@
-                  @*/>
-                  <img
-                    class="img-fluid star-rating"
-                    src="CI Platform Assets/star.png"
-                    alt=""
-                  />
-                  <img
-                    class="img-fluid star-rating"
-                    src="CI Platform Assets/star.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="container d-flex mission-period">
-              <span class="mission-period-txt">Plant 10,000 Trees</span>
-            </div>
-            <ul class="list-group list-group-flush pt-3">
-              <li class="list-group-item">
-                <div class="date w-100 container d-flex align-items-center">
-                  <div class="clock-img">
-                    <img
-                      src="CI Platform Assets/achieved.png"
-                      id="clock-img"
-                      alt=""
-                    />
-                  </div>
-                  <div class="event-deadline pl-2">
-                    <div
-                      class="progress p-0 w-100 container"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow="75"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    >
-                      <div class="progress-bar w-75"></div>
-                    </div>
-                    <span class="achieved-txt">8000 achieved</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div class="card-body d-flex">
-              <button
-                class="apply-btn container-fluid align-items-center align-self-center"
-              >
-                <span class="apply-btn-txt"
-                  >Apply&nbsp;
-                  <img src="CI Platform Assets/right-arrow.png" alt=""
-                /></span>
-              </button>
-            </div>
-          </div>
-        </div>*@
-
-       @* <!-- third mission card -->
-        <!-- second mission row -->
-        <!-- third mission row -->
-
-        
-       
-        <!-- Third Mission card -->*@
 
 
         @*list view div starts*@
@@ -863,10 +464,10 @@
     
 
   <!-- MDB -->
-    <script src = "~/lib/jquery/dist/jquery.js" asp-append-version="true"
-></script>
-  <script src = "~/js/Cascade.js" asp-append-version="true"
-></script>
+   @* <script src = "~/lib/jquery/dist/jquery.min.js" asp-append-version="true"
+></script>*@
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ 
 
   <script
     type="text/javascript"
@@ -878,11 +479,11 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"
   ></script>
-  <script
+  @*<script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"
-  ></script>
+  ></script>*@
   <script
     src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -895,6 +496,8 @@
   ></script>
  
  <script src = "~/js/Searchscript.js"></script>
+  <script src = "~/js/Cascade.js" asp-append-version="true"
+></script>
  <script>
 // var listview = document.getElementById("listviewcontainer");
 //listview.style.display = "none";

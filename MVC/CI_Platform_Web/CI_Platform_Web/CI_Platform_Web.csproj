@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <None Remove="Views\Home\forgot-password.html" />
+    <None Remove="Views\Mission\NoMissionFound.html" />
   </ItemGroup>
 
  

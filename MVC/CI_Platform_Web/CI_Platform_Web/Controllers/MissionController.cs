@@ -206,6 +206,133 @@ namespace CI_Platform_Web.Controllers
             return RedirectToAction("Index" , "Home");
         }
 
+        #region Mission Filter
+        public IActionResult FilterMissions(int countryId, string sort, string SearchText, string[] cities, string[] themes, string[] skills)
+        {
+
+
+
+            string? user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            var data = _missionCard.GetMissions(userid);
+            //var data = _userRepositery.GetMissions(HttpContext.Session.GetString("userId"));
+
+            if (countryId > 0)
+            {
+                data = data.Where(x => x.CountryId == countryId).ToList();
+
+                if (data.Count == 0)
+                {
+                    return PartialView("_NoMissionPartial");
+                }
+
+
+
+
+
+            }
+            if (cities.Length > 0)
+            {
+
+                data = data.Where(c => cities.Contains(c.CityName)).ToList();
+
+                if (data.Count == 0)
+                {
+                    return PartialView("_NoMissionPartial");
+                }
+            }
+
+            if (themes.Length > 0)
+            {
+
+
+                data = data.Where(c => themes.Contains(c.MissionThemes)).ToList();
+
+                if (data.Count == 0)
+                {
+                    return PartialView("_NoMissionPartial");
+                }
+            }
+
+
+
+            if (skills.Length > 0)
+            {
+
+
+                data = data.Where(c => skills.Contains(c.MissionSkill.ToString())).ToList();
+
+
+                if (data.Count == 0)
+                {
+                    return PartialView("_NoMissionPartial");
+                }
+            }
+
+
+            if (sort != null)
+            {
+
+
+
+                if (sort == "Newest")
+                {
+                    data = data.OrderByDescending(x => x.CreatedAt).ToList();
+
+                }
+                else if (sort == "Oldest")
+                {
+                    data = data.OrderBy(x => x.CreatedAt).ToList();
+
+                }
+
+                else if (sort == "Lowest available seats")
+                {
+                    data = data.OrderBy(x => x.NumberOfSeats).ToList();
+                }
+
+                else if (sort == "Highest available seats")
+                {
+                    data = data.OrderByDescending(x => x.NumberOfSeats).ToList();
+                }
+                //else if (sort == "My favourites")
+                //{
+                //    data = data.Where(x => x.IsFavourite == true).ToList();
+
+                    
+                //}
+                else if (data.Count == 0)
+                {
+                    return PartialView("_NoMissionPartial");
+
+                }
+
+                else if (sort == "Registration deadline")
+                {
+                    data = data.OrderBy(x => x.EndDate).ToList();
+
+                }
+
+
+            }
+
+            //if (SearchText != null)
+            //{
+            //    SearchText = SearchText.ToLower();
+
+            //    data = data.Where(x => x.Title.ToLower().Contains(SearchText) || x.ShortDescription.ToLower().Contains(SearchText)).ToList();
+            //    if (data.Count == 0)
+            //    {
+            //        return PartialView("NoMissionPartial");
+            //    }
+
+            //}
+
+
+            return PartialView("_FilterPagePartial", data);
+        }
+
+#endregion
 
         //volunteer mission page
         public IActionResult VolunteeringMissionPage(long? id)

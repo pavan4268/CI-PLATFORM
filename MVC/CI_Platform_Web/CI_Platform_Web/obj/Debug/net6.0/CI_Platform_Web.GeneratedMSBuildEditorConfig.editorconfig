@@ -131,12 +131,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_FilterPagePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GaWx0ZXJQYWdlUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_NoMissionPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob01pc3Npb25QYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CI Platform/CI-Platform/MVC/CI_Platform_Web/CI_Platform_Web/Views/Shared/_OnlyHeader.cshtml]

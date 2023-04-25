@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "r7+tQDRGtgwjeaYPQmfvzWSLsCFhBp8gPRCKmzX7dtQ=",
+  "Hash": "QESH+BNLVBFI09px9x5t9B0dtJfkEDIqVLI1PhQLqPU=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -1173,6 +1173,40 @@
       "OriginalItemSpec": "wwwroot\\assets\\MissionMedia\\Documents\\5facb977-6e17-4883-b96f-67e0eebbbd8f.txt"
     },
     {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\MissionMedia\\Documents\\f26ce54a-c9ad-4fbf-be5b-8ef5aa1ac038.txt",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/MissionMedia/Documents/f26ce54a-c9ad-4fbf-be5b-8ef5aa1ac038.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\MissionMedia\\Documents\\f26ce54a-c9ad-4fbf-be5b-8ef5aa1ac038.txt"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\MissionMedia\\Documents\\fe4fa27d-9fbe-4a03-835e-ebcc8ccdf841.txt",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/MissionMedia/Documents/fe4fa27d-9fbe-4a03-835e-ebcc8ccdf841.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\MissionMedia\\Documents\\fe4fa27d-9fbe-4a03-835e-ebcc8ccdf841.txt"
+    },
+    {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\MissionMedia\\Images\\0537967e-0ae2-4e4c-b295-97b5ce8d5639.png",
       "SourceId": "CI_Platform_Web",
       "SourceType": "Discovered",
@@ -1205,6 +1239,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\MissionMedia\\Images\\0711887d-1a86-4d21-b6ab-65ce58beee3b.png"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\MissionMedia\\Images\\09cb8f86-165c-4d1a-8afa-08fb50da5f7c.png",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/MissionMedia/Images/09cb8f86-165c-4d1a-8afa-08fb50da5f7c.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\MissionMedia\\Images\\09cb8f86-165c-4d1a-8afa-08fb50da5f7c.png"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\MissionMedia\\Images\\15b58865-1cc6-4aca-b536-5578a9037757.png",
@@ -1307,6 +1358,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\MissionMedia\\Images\\80a07cbc-23d3-4fa8-ba06-02e2217b14be.png"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\MissionMedia\\Images\\8432e1aa-60dd-45f3-b71e-82278a418945.png",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/MissionMedia/Images/8432e1aa-60dd-45f3-b71e-82278a418945.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\MissionMedia\\Images\\8432e1aa-60dd-45f3-b71e-82278a418945.png"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\MissionMedia\\Images\\88958954-ce9b-4f58-85a5-b5ba2aeb868b.png",
@@ -2174,6 +2242,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\UserAvatar\\c6876c31-629e-4736-be93-d6280577e3cc.txt"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\UserAvatar\\ea4feda7-fba7-4751-93c5-da00d0f42be3.png",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/UserAvatar/ea4feda7-fba7-4751-93c5-da00d0f42be3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\UserAvatar\\ea4feda7-fba7-4751-93c5-da00d0f42be3.png"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\user-img.png",

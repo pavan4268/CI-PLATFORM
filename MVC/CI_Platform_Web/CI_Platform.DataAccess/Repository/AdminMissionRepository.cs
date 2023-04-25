@@ -166,6 +166,10 @@ namespace CI_Platform.Repository.Repository
                 vm.CountryId = getmission.CountryId;
                 vm.Availability = getmission.Availability;
                 vm.MissionType = getmission.MissionType;
+                vm.OrganizationDetails = getmission.OrganizationDetails;
+                vm.OrganizationName = getmission.OrganizationName;
+                vm.StartDate = getmission.StartDate;
+                vm.EndDate = getmission.EndDate;
                 if (vm.MissionType == "Time")
                 {
                     vm.TotalSeats = getmission.TotalSeats;
@@ -225,54 +229,169 @@ namespace CI_Platform.Repository.Repository
         }
         #endregion
 
+        #region Edit Mission
+        public string EditMission(AdminMissionCreateVm obj)
+        {
+            string? reply = string.Empty;
+            Mission? editmission = _db.Missions.FirstOrDefault(mission => mission.MissionId == obj.MissionId);
+            if (editmission != null)
+            {
+                editmission.ThemeId = obj.ThemeId;
+                editmission.CityId = obj.CityId;
+                editmission.CountryId = obj.CountryId;
+                editmission.Title = obj.Title;
+                editmission.Description = obj.Description;
+                editmission.ShortDescription = obj.ShortDescription;
+                editmission.StartDate = obj.StartDate;
+                editmission.EndDate = obj.EndDate;
+                editmission.MissionType = obj.MissionType;
+                editmission.OrganizationDetails = obj.OrganizationDetails;
+                editmission.OrganizationName = obj.OrganizationName;
+                editmission.Availability = obj.Availability;
+                editmission.UpdatedAt = DateTime.Now;
+                if (obj.MissionType == "Time")
+                {
+                    editmission.TotalSeats = obj.TotalSeats;
+                    GoalMission? findgoal = _db.GoalMissions.FirstOrDefault(goal=>goal.MissionId == obj.MissionId);
+                    if(findgoal != null)
+                    {
+                        _db.GoalMissions.Remove(findgoal);
+                        
+                    }
+                }
+                _db.Missions.Update(editmission);
+                _db.SaveChanges();
+                if (obj.SkillIds != null)
+                {
+                    List<MissionSkill> skills = _db.MissionSkills.Where(skill => skill.MissionId == obj.MissionId).ToList();
+                    if(skills.Count > 0)
+                    {
+                        _db.MissionSkills.RemoveRange(skills);
+                        _db.SaveChanges(true);
+                    }
+                    List<MissionSkill> AddSkills = new List<MissionSkill>();
+                    foreach (var skillId in obj.SkillIds)
+                    {
+                        MissionSkill AddSkill = new MissionSkill();
+                        AddSkill.SkillId = skillId;
+                        AddSkill.MissionId = obj.MissionId;
+                        AddSkills.Add(AddSkill);
+                    }
+                    _db.MissionSkills.AddRange(AddSkills);
+                    _db.SaveChanges();
+                }
+                if (obj.MissionType == "Goal")
+                {
+                    editmission.TotalSeats = null;
+                    editmission.UpdatedAt = DateTime.Now;
+                    _db.Missions.Update(editmission);
+                    _db.SaveChanges(true);
+                    GoalMission? goaledit = _db.GoalMissions.FirstOrDefault(mission => mission.MissionId == obj.MissionId);
+                    if (goaledit != null)
+                    {
+                        goaledit.GoalValue = (int)obj.GoalValue;
+                        goaledit.GoalObjectiveText = obj.GoalObjective;
+                        goaledit.UpdatedAt = DateTime.Now;
+                        _db.GoalMissions.Update(goaledit);
+                        _db.SaveChanges();
+                    }
+                    else
+                    {
+                        GoalMission newgoal = new GoalMission();
+                        newgoal.MissionId = obj.MissionId;
+                        newgoal.GoalValue = (int)obj.GoalValue;
+                        newgoal.GoalObjectiveText = obj.GoalObjective;
+                        _db.GoalMissions.Add(newgoal);
+                        _db.SaveChanges();
+                    }
+                }
+                if (obj.Documentpaths != null)
+                {
+                    List<MissionDocument> documents = new List<MissionDocument>();
+                    foreach (string doc in obj.Documentpaths)
+                    {
+                        MissionDocument document = new MissionDocument();
+                        document.MissionId = obj.MissionId;
+                        document.DocumentType = "doc";
+                        document.DocumentPath = doc;
+                        documents.Add(document);
+                    }
+                    _db.MissionDocuments.AddRange(documents);
+                    _db.SaveChanges(true);
+                }
+                if (obj.Imagepaths != null)
+                {
+                    List<MissionMedium> images = new List<MissionMedium>(); 
+                    foreach (string img in obj.Imagepaths)
+                    {
+                        MissionMedium image = new MissionMedium();
+                        image.MissionId = obj.MissionId;
+                        image.MediaType = "img";
+                        image.MediaPath = img;
+                        images.Add(image);
+                    }
+                    _db.MissionMedia.AddRange(images);
+                    _db.SaveChanges(true);
+                }
+                if(obj.VideoURL != null)
+                {
+                    MissionMedium? video = _db.MissionMedia.FirstOrDefault(video=>video.MissionId==obj.MissionId && video.MediaType=="mp4");
+                    if (video != null)
+                    {
+                        _db.MissionMedia.Remove(video);
+                        _db.SaveChanges();
+                    }
+                    MissionMedium newvideo = new MissionMedium();
+                    newvideo.MissionId = obj.MissionId;
+                    newvideo.MediaType = "mp4";
+                    newvideo.MediaPath = obj.VideoURL;
+                    _db.MissionMedia.Add(newvideo);
+                    _db.SaveChanges(true);
+                }
+                return reply;
+            }
+            reply = "Mission Not Found";
+            return reply;
 
-        //public string EditMission(AdminMissionCreateVm obj)
-        //{
-        //    Mission? editmission = _db.Missions.FirstOrDefault(mission=>mission.MissionId == obj.MissionId);
-        //    if (editmission != null)
-        //    {
-        //        editmission.ThemeId = obj.ThemeId;
-        //        editmission.CityId = obj.CityId;
-        //        editmission.CountryId = obj.CountryId;
-        //        editmission.Title = obj.Title;
-        //        editmission.Description = obj.Description;
-        //        editmission.ShortDescription = obj.ShortDescription;
-        //        editmission.StartDate = obj.StartDate;
-        //        editmission.EndDate = obj.EndDate;
-        //        editmission.MissionType = obj.MissionType;
-        //        editmission.OrganizationDetails = obj.OrganizationDetails;
-        //        editmission.OrganizationName = obj.OrganizationName;
-        //        editmission.Availability = obj.Availability;
-        //        editmission.UpdatedAt = DateTime.Now;
-        //        if(obj.MissionType == "Time")
-        //        {
-        //            editmission.TotalSeats = obj.TotalSeats;
-        //        }
-        //        _db.Missions.Update(editmission);
-        //        _db.SaveChanges();
-        //        if (obj.MissionType == "Goal")
-        //        {
-        //            editmission.TotalSeats = null;
-        //            editmission.UpdatedAt = DateTime.Now;
-        //            _db.Missions.Update(editmission);
-        //            _db.SaveChanges(true);
-        //            GoalMission? goaledit  = _db.GoalMissions.FirstOrDefault(mission=>mission.MissionId == obj.MissionId);
-        //            if (goaledit != null)
-        //            {
-        //                goaledit.GoalValue = (int)obj.GoalValue;
-        //                goaledit.GoalObjectiveText = obj.GoalObjective;
-        //                goaledit.UpdatedAt = DateTime.Now;
-        //                _db.GoalMissions.Update(goaledit);
-        //            }
-        //            else
-        //            {
-        //                GoalMission newgoal = new GoalMission();
-        //            }
-        //        }
-            
-        //    }
+        }
+        #endregion
 
-
-        //}
+        public string DeleteMission(long? missionid)
+        {
+            string? reply = string.Empty;
+            if (missionid != null)
+            {
+                Mission? missiondelete = _db.Missions.FirstOrDefault(mission=>mission.MissionId==missionid);
+                if (missiondelete != null)
+                {
+                    missiondelete.DeletedAt = DateTime.Now;
+                    _db.Missions.Update(missiondelete);
+                    List<MissionSkill>? deleteskills = _db.MissionSkills.Where(mskills=>mskills.MissionId==missionid).ToList();
+                    if (deleteskills.Any())
+                    {
+                        _db.MissionSkills.RemoveRange(deleteskills);
+                    }
+                    GoalMission? goaldelete = _db.GoalMissions.FirstOrDefault(goal => goal.MissionId==missionid);
+                    if(goaldelete != null)
+                    {
+                        _db.GoalMissions.Remove(goaldelete);
+                    }
+                    List<MissionMedium>? mediadelete = _db.MissionMedia.Where(media=>media.MissionId==missionid).ToList();
+                    if (mediadelete.Any())
+                    {
+                        _db.MissionMedia.RemoveRange(mediadelete);
+                    }
+                    List<MissionDocument>? documentdelete = _db.MissionDocuments.Where(doc=>doc.MissionId==missionid).ToList();
+                    if (documentdelete.Any())
+                    {
+                        _db.MissionDocuments.RemoveRange(documentdelete);
+                    }
+                    _db.SaveChanges();
+                    return reply;
+                }
+            }
+            reply = "Mission Not Found";
+            return reply;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CI_Platform.Entities.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,5 +44,8 @@ namespace CI_Platform.Entities.ViewModels
         public bool HasApplied { get; set; }
 
         public DateTime? RegistrationDeadline { get; set; }
+
+        public long? CountryId { get; set; }
+        public List<MissionSkill> MissionSkill { get; set; }
     }
 }

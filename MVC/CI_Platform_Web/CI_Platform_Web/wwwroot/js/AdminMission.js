@@ -118,7 +118,7 @@ $("#doc-delete").click(function () {
 
     $.ajax({
         method: 'POST',
-        url: "/Admin/DeleteMediaDocument",
+        url: "/Admin/DocumentDelete",
         data: {
             id: missionId,
             source: src,

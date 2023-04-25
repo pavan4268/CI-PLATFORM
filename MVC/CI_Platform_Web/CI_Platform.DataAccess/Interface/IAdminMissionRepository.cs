@@ -16,5 +16,9 @@ namespace CI_Platform.Repository.Interface
         public string AddMission(AdminMissionCreateVm obj);
 
         public AdminMissionCreateVm GetData(long missionid);
+
+        public string EditMission(AdminMissionCreateVm obj);
+
+        public string DeleteMission(long? missionid);
     }
 }

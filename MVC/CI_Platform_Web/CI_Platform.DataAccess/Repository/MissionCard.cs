@@ -27,7 +27,8 @@ namespace CI_Platform.Repository.Repository
             var themes = _db.MissionThemes.ToList();
             var goalMissions = _db.GoalMissions.ToList();
             var missionRatings = _db.MissionRatings.ToList();
-            
+            List<Skill> skills = _db.Skills.ToList();
+
             foreach (var mission in missions)
             {
                 City? city = _db.Cities.Where(e => e.CityId == mission.CityId).FirstOrDefault();
@@ -35,7 +36,10 @@ namespace CI_Platform.Repository.Repository
                 string[] startdatetime = mission.StartDate.ToString().Split(' ');
                 string[] enddatetime = mission.EndDate.ToString().Split(' ');
                 MissionApplication? applied = _db.MissionApplications.FirstOrDefault(x => x.MissionId == mission.MissionId && x.UserId == userid);
+                var missionSkill = _db.MissionSkills.Where(e => e.MissionId == mission.MissionId).ToList();
                 
+                missionSkill = missionSkill.Join(skills, ms => ms.SkillId, s => s.SkillId, (ms, s) => ms).ToList();
+
                 if (city != null)
                 {
                     var cardview = new MissionVm
@@ -57,6 +61,8 @@ namespace CI_Platform.Repository.Repository
                         MissionId = mission.MissionId,
                         RegistrationDeadline = mission.StartDate,
                         AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count(),
+                        CountryId = mission.CountryId,
+                        MissionSkill = missionSkill,
 
                     };
                     if (applied != null)

@@ -1,23 +1,31 @@
 ﻿
 
-$(document).ready(function () {
+jQuery(document).ready(function () {
     
     GetCountry();
     GetMissionThemes();
     GetMissionSkillList();
     $('#CountryList').change(function () {
         var id = $(this).val();
-        $('#CityList').empty();
-        $('#CityList').append('<Option>City</Option>');
+        $('#citylist').empty();
+        /*$('#citylist').append('<Option>City</Option>');*/
         $.ajax({
             url: '/Mission/City?id=' + id,
             success: function (result) {
                 $.each(result, function (i, data) {
-                    $('#CityList').append('<Option value =' + data.cityId + '>' + data.name + '</Option>');
+                    /*$('#CityList').append('<Option value =' + data.cityId + '>' + data.name + '</Option>');*/
+                     $('#citylist').append(`<li class = "dropbtn"><input class="form-check-input me-2" value="${data.name}" type = "checkbox" id = "${data.cityId}city-checkbox" name = "cities"/>${data.name}</li>`);
                 });
+                $("#filterform input").change((e) => { FilterMission(e); })
             }
         });
     });
+    $("#filterform").submit((e) => { FilterMission(e); })
+    $("#filterform input").change((e) => { FilterMission(e); })
+    $("#filterform select").change((e) => { FilterMission(e); })
+   
+
+
     //$('#searchButton'.on("click", function () {
     //    var inputvalue = $("#InputField").val();
     //    $.ajax({
@@ -50,11 +58,15 @@ function GetMissionThemes() {
         url: '/Mission/Theme',
         success: function (result) {
             $.each(result, function (i, data) {
-                $('#MissionThemeList').append('<Option value=' + data.missionThemeId + '>' + data.title + '</Option>');
+                /*$('#MissionThemeList').append('<Option value=' + data.missionThemeId + '>' + data.title + '</Option>');*/
+                $("#themelist").append(`<li class = "dropbtn"><input class="form-check-input me-2" value="${data.title}" type = "checkbox" name = "themes" id = "${data.missionThemeId}theme-checkbox"/> ${data.title} </li>`);
             });
+            $("#filterform input").change((e) => { FilterMission(e); })
         }
     });
 }
+
+
 
 
 function GetMissionSkillList() {
@@ -62,13 +74,64 @@ function GetMissionSkillList() {
         url: '/Mission/Skills',
         success: function (result) {
             $.each(result, function (i, data) {
-                $('#MissionSkillList').append('<Option value=' + data.skillId + '>' + data.skillName + '</Option>');
+                /*$('#MissionSkillList').append('<Option value=' + data.skillId + '>' + data.skillName + '</Option>');*/
+                $("#skilllist").append(`<li class = "dropbtn"><input class="form-check-input me-2" value="${data.skillId}" type = "checkbox" name = "skills" id = "${data.skillId}skill-checkbox"> ${data.skillName} </li>`);
+
             });
+            $("#filterform input").change((e) => { FilterMission(e); })
         }
     });
 }
 
 
+function FilterMission(e) {
+
+    e.preventDefault();
+    var filterFormData = $("#filterform").serialize();
+
+    $.ajax({
+        method: 'Post',
+        url: '/Mission/FilterMissions',
+        data: filterFormData,
+
+
+        /* data: {countryId:countryId, SearchText:searchtext, sort : sort},*/
+        success: function (response) {
+
+
+
+            console.log(response);
+            $("#maindata").html(response);
+
+            //FilterCityTag();
+            //var count = document.querySelector("#modelcount").value;
+            //var staticText = document.querySelector(".statictext"); // get the statictext element
+            //staticText.textContent = count + " missions";
+            //grid = document.querySelector("#gridView");
+            //list = document.querySelector("#listView");
+            //btngrid = document.querySelector("#btngrid");
+            //btnlist = document.querySelector("#btnlist");
+
+            //if ($('#btngrid').hasClass('gridhover')) {
+            //    btngrid.click();
+            //}
+            //else {
+            //    btnlist.click();
+            //}
+
+
+
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.log("ajax error" + xhr.responseText);
+        }
+    });
+
+
+
+
+}
 
 
 //$(document).ready(function () {

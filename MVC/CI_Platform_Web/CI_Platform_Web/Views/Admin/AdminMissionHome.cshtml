@@ -46,9 +46,36 @@
                                             </a>
                                         </div>
                                         <div class="delete-icon-div">
-                                            <button type="button" class="object-delete">
+                                            @*<button type="button" class="object-delete">
                                                 <img src ="~/assets/bin.png" />
+                                            </button>*@
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn object-delete ps-0" onclick="getstoryid(@mission.MissionId)" data-toggle="modal" data-target="#exampleModalCenter">
+                                              <img src ="~/assets/bin.png" />
                                             </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete</h5>
+                                                    <button type="button" id="del-modal-close" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <input type="number" id="missionid" hidden>
+                                                    Are You Sure You Want to delete this item?
+                                                    
+                                                  </div>
+                                                  <div class="modal-footer d-flex justify-content-center">
+                                                      <button type="button" class="btn obj-delete-cancel" data-dismiss="modal">Cancel</button>
+                                                      <a class="btn pt-2 modal-delete-btn" onclick="deleteMission()" @*asp-controller="Admin" asp-action="AdminCMSDelete" asp-route-cmspageid="@cms.CmsPageId"*@>Delete</a>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -59,3 +86,41 @@
                     </table>
                 </div>
 
+                <script>
+                    function getstoryid(id){
+                        document.getElementById("missionid").value = id;
+
+                    }
+
+
+                    function deleteMission(){
+                        var missionid = $("#missionid").val();
+                        $.ajax({
+                            url:'/Admin/DeleteMission',
+                            data:{missionid:missionid},
+                            success: function (result){
+                                if(result != ""){
+                                    $("#del-modal-close").click();
+                                setTimeout(function(){
+                                alert(result);
+                                },1500)//
+                                setTimeout(function(){
+                                location.reload();
+                                },2000)
+                                
+                                
+                                }
+                                //alert(result);
+                                $("#del-modal-close").click();
+                                setTimeout(function(){
+                                alert("Deleted Successfully");
+                                },1500)//
+                                setTimeout(function(){
+                                location.reload();
+                                },2000)
+                                
+                            }
+                        })
+                    }
+
+                </script>
