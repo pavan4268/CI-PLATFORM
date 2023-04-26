@@ -229,6 +229,7 @@ namespace CI_Platform.Repository.Repository
         }
         #endregion
 
+
         #region Edit Mission
         public string EditMission(AdminMissionCreateVm obj)
         {

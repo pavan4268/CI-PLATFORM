@@ -25,6 +25,7 @@ builder.Services.AddScoped<IAdminMissionThemeRepository, AdminMissionThemeReposi
 builder.Services.AddScoped<IAdminMissionSkillsRepository, AdminMissionSkillsRepository>();
 builder.Services.AddScoped<IAdminMissionApplicationRepository, AdminMissionApplicationRepository>();
 builder.Services.AddScoped<IAdminStoryRepository, AdminStoryRepository>();
+builder.Services.AddScoped<IAdminBannerRepository, AdminBannerRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

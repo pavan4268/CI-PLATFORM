@@ -1,58 +1,57 @@
 ﻿@using CI_Platform.Entities.ViewModels
-@model List<AdminStoryDisplayVm>
+@model List<AdminBannerDisplayVm>
 @{
-    ViewData["Title"] = "AdminStoryHome";
+    ViewData["Title"] = "AdminBannerHome";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    if(TempData["SuccessMessage"] != null){
+        <script type="text/javascript">
+            alert('@TempData["SuccessMessage"]');
+        </script>
+    }
 }
 
 <div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
-                    <h3 style="font-weight:400;">Story</h3>
+                    <h3 style="font-weight:400;">Banner Management</h3>
                 </div>
                 <div class="search-add-wrapper d-flex justify-content-between mt-3 p-2">
                     <div class="search-wrapper d-flex align-content-center p-2 w-25" style="border:solid 1px;">
                         <i class="bi bi-search"></i>
                         <input type="search" class="ps-2" placeholder="Search" style="border:none;" />
                     </div>
-                    @*<a class="add-object-btn d-flex justify-content-center pt-2" asp-controller="Admin" asp-action="AdminCMSAdd"><i class="bi bi-plus"></i>&nbsp;Add</a>*@
+                    @*<button type="button" class="add-object-btn"><i class="bi bi-plus"></i>&nbsp;Add</button>*@
+                    <a class="add-object-btn d-flex justify-content-center pt-2" asp-controller="Admin" asp-action="AdminBannerAdd"><i class="bi bi-plus"></i>&nbsp;Add</a>
                 </div>
                 <div class="object-table mt-4">
                     <table class="table" id="Admin-table">
                         <thead style="height:80px;">
                             <tr>
-                                <th>Story Title</th>
-                                <th>Full Name</th>
-                                <th>Mission Title</th>
                                 
-                                
+                                <th>Image</th>
+                                <th>Sort Order</th>
                                 <th style="text-align:end"><span class="pe-2">Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var story in Model){
+                            @foreach(var banner in Model){
                                 <tr>
-                                <td>@story.Title</td>
-                                <td>@story.UserName</td>
-                                <td>@story.MissionTitle</td>
+                                
+                                <td>@banner.Image</td>
+                                <td>@banner.SortOrder</td>
                                 <td>
-                                    <div class="icons-div d-flex gap-2 justify-content-end">
-                                        <div class="view-story-btn-div">
-                                            <a asp-controller="Admin" asp-action="AdminStoryDetails" asp-route-storyid="@story.StoryId" class="btn story-view-btn" style="border:solid 1px; border-color:#F88634;border-radius:40px;color:#F88634">View</a>
-                                        </div>
-                                        <div class="approve-icon-div">
-                                            <a class="object-edit pt-3" asp-controller="Admin" asp-action="ApproveStory" asp-route-storyid="@story.StoryId">
-                                                <i class="bi bi-check-circle" style="color:green; font-size:x-large"></i>
-                                                
+                                    <div class="icons-div d-flex justify-content-end">
+                                        <div class="edit-icon-div">
+                                            @*<button type="button" class="object-edit">
+                                                <img src="~/assets/editing.png" />
+                                            </button>*@
+                                            <a class="btn object-edit" asp-controller="Admin" asp-action="AdminBannerEdit" asp-route-bannerid="@banner.BannerId">
+                                                <img src="~/assets/editing.png" />
                                             </a>
                                         </div>
-                                        <div class="decline-icon-div">
-                                            <a class="object-delete pt-3" asp-controller="Admin" asp-action="DeclineStory" asp-route-storyid="@story.StoryId">
-                                                <i class="bi bi-x-circle" style="color:red; font-size:x-large"></i>
-                                            </a>
-                                        </div>
-                                        <div class="delete-icon-div ps-0">
-                                            
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn object-delete ps-0" onclick="getstoryid(@story.StoryId)" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <div class="delete-icon-div">
+                                            @*<button type="button" class="object-delete">
+                                                <img src ="~/assets/bin.png" />
+                                            </button>*@
+                                            <button type="button" class="btn object-delete" onclick="getbannerid(@banner.BannerId)" data-toggle="modal" data-target="#exampleModalCenter">
                                               <img src ="~/assets/bin.png" />
                                             </button>
 
@@ -67,13 +66,13 @@
                                                     </button>
                                                   </div>
                                                   <div class="modal-body">
-                                                      <input type="number" id="storyid" hidden>
+                                                      <input type="number" id="bannerid" hidden>
                                                     Are You Sure You Want to delete this item?
                                                     
                                                   </div>
                                                   <div class="modal-footer d-flex justify-content-center">
                                                       <button type="button" class="btn obj-delete-cancel" data-dismiss="modal">Cancel</button>
-                                                      <a class="btn pt-2 modal-delete-btn" onclick="deleteStory()" @*asp-controller="Admin" asp-action="AdminCMSDelete" asp-route-cmspageid="@cms.CmsPageId"*@>Delete</a>
+                                                      <a class="btn pt-2 modal-delete-btn" onclick="deleteBanner()">Delete</a>
                                                   </div>
                                                 </div>
                                               </div>
@@ -89,17 +88,17 @@
                 </div>
 
                 <script>
-                    function getstoryid(id){
-                        document.getElementById("storyid").value = id;
+                    function getbannerid(id){
+                        document.getElementById("bannerid").value = id;
 
                     }
 
 
-                    function deleteStory(){
-                        var storyid = $("#storyid").val();
+                    function deleteBanner(){
+                        var bannerid = $("#bannerid").val();
                         $.ajax({
-                            url:'/Admin/DeleteStory',
-                            data:{storyid:storyid},
+                            url:'/Admin/DeleteBanner',
+                            data:{bannerid:bannerid},
                             success: function (result){
                                 if(result != ""){
                                     $("#del-modal-close").click();
@@ -124,6 +123,4 @@
                             }
                         })
                     }
-
                 </script>
-

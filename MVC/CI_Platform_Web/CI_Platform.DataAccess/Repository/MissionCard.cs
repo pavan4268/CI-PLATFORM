@@ -22,7 +22,7 @@ namespace CI_Platform.Repository.Repository
         public List<MissionVm> GetMissions(long? userid)
         {
             var getmissions = new List<MissionVm>();
-            var missions = _db.Missions.ToList();
+            var missions = _db.Missions.Where(mission=>mission.DeletedAt==null).ToList();
             var cities = _db.Cities.ToList();
             var themes = _db.MissionThemes.ToList();
             var goalMissions = _db.GoalMissions.ToList();
@@ -57,10 +57,10 @@ namespace CI_Platform.Repository.Repository
                         Deadline = startdatetime[0],
                         CreatedAt = mission.CreatedAt,
                         MissionType = mission.MissionType,
-                        Seats = (int)mission.TotalSeats,
+                        //Seats = (int)mission.TotalSeats,
                         MissionId = mission.MissionId,
                         RegistrationDeadline = mission.StartDate,
-                        AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count(),
+                        //AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count(),
                         CountryId = mission.CountryId,
                         MissionSkill = missionSkill,
 
@@ -68,6 +68,11 @@ namespace CI_Platform.Repository.Repository
                     if (applied != null)
                     {
                         cardview.HasApplied = true;
+                    }
+                    if (cardview.MissionType == "Time")
+                    {
+                        cardview.Seats = (int)mission.TotalSeats;
+                        cardview.AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count();
                     }
                     getmissions.Add(cardview);
                 }

@@ -20,8 +20,9 @@ namespace CI_Platform_Web.Controllers
         private readonly IAdminMissionSkillsRepository _adminMissionSkillsRepository;
         private readonly IAdminMissionApplicationRepository _adminMissionApplicationRepository;
         private readonly IAdminStoryRepository _adminStoryRepository;
+        private readonly IAdminBannerRepository _adminBannerRepository;
 
-        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment, IAdminStoryRepository adminStoryRepository)
+        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment, IAdminStoryRepository adminStoryRepository, IAdminBannerRepository adminBannerRepository)
         {
             _db = db;
             _hostEnvironment = webHostEnvironment;
@@ -32,13 +33,14 @@ namespace CI_Platform_Web.Controllers
             _adminMissionSkillsRepository = adminMissionSkillsRepository;
             _adminMissionApplicationRepository = adminMissionApplicationRepository;
             _adminStoryRepository = adminStoryRepository;
+            _adminBannerRepository = adminBannerRepository;
         }
 
 
 
 
         //<--------------------------------------------------------------------User----------------------------------------------------------------------------->
-
+        #region User
         public IActionResult AdminUserHome()
         {
             List<AdminUserDisplayVm> userdetails = _adminUserRepository.GetUsers();
@@ -47,7 +49,7 @@ namespace CI_Platform_Web.Controllers
 
 
 
-
+        #region User Add
 
         public IActionResult AdminUserAdd()
         {
@@ -90,7 +92,7 @@ namespace CI_Platform_Web.Controllers
 
         }
 
-
+        #endregion
 
 
         public JsonResult GetCities(long countryid)
@@ -100,7 +102,7 @@ namespace CI_Platform_Web.Controllers
         }
 
 
-
+        #region User Edit
         public IActionResult AdminUserEdit(long userid)
         {
             AdminUserCreateVm userdetails = _adminUserRepository.GetUser(userid);
@@ -141,8 +143,8 @@ namespace CI_Platform_Web.Controllers
             _adminUserRepository.EditUser(obj);
             return RedirectToAction("AdminUserHome");
         }
+        #endregion
 
-        
         public string AdminUserDelete(long userid)
         {
             string result = "";
@@ -156,6 +158,9 @@ namespace CI_Platform_Web.Controllers
             return result;
             
         }
+
+        #endregion
+
         //<---------------------------------------------------------------------------CMS------------------------------------------------------------------------>
 
 
@@ -232,6 +237,9 @@ namespace CI_Platform_Web.Controllers
 
 
         //<---------------------------------------------------------------------------Mission------------------------------------------------------------------------>
+
+        #region Mission
+
         public IActionResult AdminMissionHome()
         {
             List<AdminMissionDisplayVm> missions = _adminMissionRepository.GetMissions();
@@ -249,12 +257,50 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminMissionAdd(AdminMissionCreateVm obj)
         {
-            if (obj.StartDate <= DateTime.Today)
+            #region Mission Add Date Validations
+            if (obj.StartDate != null)
             {
-                ModelState.AddModelError("Startdate", "Cannot Insert Date before today's date");
 
-                return View(obj);
+                List<Country>? Countries = _db.Countries.Where(country => country.DeletedAt == null).ToList();
+                List<MissionTheme>? Themes = _db.MissionThemes.Where(theme => theme.Status == 1 && theme.DeletedAt == null).ToList();
+                List<Skill>? SkillList = _db.Skills.Where(skill => skill.DeletedAt == null && skill.Status == 1).ToList();
+                obj.SkillList = SkillList;
+                obj.Countries = Countries;
+                obj.MissionThemes = Themes;
+
+                if (obj.StartDate <= DateTime.Today)
+                {
+                    ModelState.AddModelError("Startdate", "Cannot Insert Today's Date or Date before today's date");
+                    return View(obj);
+                }
+                if(obj.EndDate!= null)
+                {
+                    if (obj.EndDate <= obj.StartDate)
+                    {
+                        ModelState.AddModelError("EndDate", "Cannot Insert Date before or equal to StartDate");
+                        return View(obj);
+                    }
+                    if(obj.DeadLine != null)
+                    {
+                        if(obj.DeadLine >= obj.StartDate)
+                        {
+                            ModelState.AddModelError("DeadLine", "Cannot Insert Date After or equal to start Date");
+                            return View(obj);
+                        }
+                        if(obj.DeadLine <= DateTime.Today)
+                        {
+                            ModelState.AddModelError("DeadLine", "Cannot Insert Date before or Equal to today");
+                            return View(obj);
+                        }
+                    }
+                }
+                
+
             }
+            #endregion
+
+
+            #region Mission Add Images and Docs Add
             if (obj.Images != null)
             {
                 List<string> images = new List<string>();
@@ -302,7 +348,8 @@ namespace CI_Platform_Web.Controllers
                 }
                 
             }
-            
+            #endregion
+
             string? response = _adminMissionRepository.AddMission(obj);
             if (string.IsNullOrEmpty(response))
             {
@@ -348,9 +395,87 @@ namespace CI_Platform_Web.Controllers
             return false;
         }
 
+
+        #region Mission Edit Post
         [HttpPost]
         public IActionResult AdminMissionEdit(AdminMissionCreateVm obj)
         {
+
+            #region Mission Edit Date Validations
+            if (obj.StartDate != null)
+            {
+
+
+                #region Refill DropDown
+                List<Country>? Countries = _db.Countries.Where(country => country.DeletedAt == null).ToList();
+                List<MissionTheme>? Themes = _db.MissionThemes.Where(theme => theme.Status == 1 && theme.DeletedAt == null).ToList();
+                List<Skill>? SkillList = _db.Skills.Where(skill => skill.DeletedAt == null && skill.Status == 1).ToList();
+                obj.SkillList = SkillList;
+                obj.Countries = Countries;
+                obj.MissionThemes = Themes;
+                #endregion
+
+                #region Refill Image and Docs
+                List<MissionMedium>? medias = _db.MissionMedia.Where(x => x.MissionId == obj.MissionId && x.DeletedAt == null).ToList();
+                if (medias != null)
+                {
+                    List<string> images = new List<string>();
+                    foreach (var media in medias.Where(x => x.MediaType == "img"))
+                    {
+                        images.Add(media.MediaPath);
+                    }
+                    obj.Imagepaths = images;
+                    MissionMedium? videopath = _db.MissionMedia.FirstOrDefault(x => x.MissionId == obj.MissionId && x.MediaType == "mp4");
+                    if (videopath != null)
+                    {
+                        obj.VideoURL = videopath.MediaPath;
+                    }
+
+                }
+                List<MissionDocument>? missiondocs = _db.MissionDocuments.Where(x => x.MissionId == obj.MissionId && x.DeletedAt == null).ToList();
+                if (missiondocs != null)
+                {
+                    List<string>? docs = new List<string>();
+                    foreach (MissionDocument document in missiondocs)
+                    {
+                        docs.Add(document.DocumentPath);
+                    }
+                    obj.Documentpaths = docs;
+                }
+                #endregion
+
+                if (obj.StartDate <= DateTime.Today)
+                {
+                    ModelState.AddModelError("Startdate", "Cannot Insert Today's Date or Date before today's date");
+                    return View(obj);
+                }
+                if (obj.EndDate != null)
+                {
+                    if (obj.EndDate <= obj.StartDate)
+                    {
+                        ModelState.AddModelError("EndDate", "Cannot Insert Date before or equal to StartDate");
+                        return View(obj);
+                    }
+                    if (obj.DeadLine != null)
+                    {
+                        if (obj.DeadLine >= obj.StartDate)
+                        {
+                            ModelState.AddModelError("DeadLine", "Cannot Insert Date After or equal to start Date");
+                            return View(obj);
+                        }
+                        if (obj.DeadLine <= DateTime.Today)
+                        {
+                            ModelState.AddModelError("DeadLine", "Cannot Insert Date before or Equal to today");
+                            return View(obj);
+                        }
+                    }
+                }
+
+            }
+            #endregion
+
+
+
             if (obj.Images != null)
             {
                 List<string> images = new List<string>();
@@ -405,6 +530,7 @@ namespace CI_Platform_Web.Controllers
             }
             return View(obj);
         }
+        #endregion
 
         #endregion
 
@@ -412,8 +538,38 @@ namespace CI_Platform_Web.Controllers
         public string DeleteMission(long? missionid)
         {
             string? reply = string.Empty;
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            
             if (missionid != null)
             {
+                List<string>? images = (from mm in _db.MissionMedia.Where(media => media.MissionId == missionid && media.DeletedAt == null)
+                                        select mm.MediaPath).ToList();
+                if (images.Count > 0)
+                {
+
+                    foreach (string img in images)
+                    {
+                        //string imagepath = edituser.Avatar;
+                        var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\MissionMedia\Images\" + img));
+                        if (System.IO.File.Exists(filepath))
+                        {
+                            System.IO.File.Delete(filepath);
+                        }
+                    }
+                }
+                List<string>? documents = (from md in _db.MissionDocuments.Where(document => document.MissionId == missionid && document.DeletedAt == null)
+                                           select md.DocumentPath).ToList();
+                if (documents.Count > 0)
+                {
+                    foreach (string document in documents)
+                    {
+                        var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\MissionMedia\Documents\" + document));
+                        if (System.IO.File.Exists(filepath))
+                        {
+                            System.IO.File.Delete(filepath);
+                        }
+                    }
+                }
                 string? response = _adminMissionRepository.DeleteMission(missionid);
                 if(response == null)
                 {
@@ -422,10 +578,11 @@ namespace CI_Platform_Web.Controllers
 
                 return response;
             }
-            reply = "Could not Delete Response";
+            reply = "Could not Delete Mission";
             return reply;
         }
 
+        #endregion
 
         //<------------------------------------------------------------------------Mission Theme---------------------------------------------------------------------->
 
@@ -599,6 +756,8 @@ namespace CI_Platform_Web.Controllers
 
         //<--------------------------------------------------------------------------------Story------------------------------------------------------------------------>
 
+
+        #region Story
         public IActionResult AdminStoryHome()
         {
             List<AdminStoryDisplayVm>? stories = _adminStoryRepository.GetStories();
@@ -657,8 +816,120 @@ namespace CI_Platform_Web.Controllers
         }
 
 
+        #endregion
 
 
+        //<--------------------------------------------------------------------------------Banner---------------------------------------------------------------------->
+
+
+        #region Banner
+        public IActionResult AdminBannerHome()
+        {
+            List<AdminBannerDisplayVm>? banners = _adminBannerRepository.GetBanner();
+            return View(banners);
+        }
+
+
+        #region Banner Add
+        public IActionResult AdminBannerAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminBannerAdd(AdminBannerCreateVm obj)
+        {
+            if(obj.BannerImage == null)
+            {
+                ModelState.AddModelError("BannerImage", "Please Select an Image");
+                return View(obj);
+            }
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString();
+            var uploads = Path.Combine(wwwRootPath, @"assets\Banner");
+            var extension = Path.GetExtension(obj.BannerImage.FileName);
+
+            using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+            {
+                obj.BannerImage.CopyTo(filestream);
+            }
+
+            obj.Image = fileName + extension;
+
+            string? response = _adminBannerRepository.AddBanner(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                return RedirectToAction("AdminBannerHome");
+            }
+            ViewBag.ErrorMessage = "Some Error occured";
+            return View();
+        }
+
+        #endregion
+
+
+        #region Banner Edit
+        public IActionResult AdminBannerEdit(long bannerid)
+        {
+            AdminBannerCreateVm? banner = _adminBannerRepository.GetEditData(bannerid);
+            if (banner != null)
+            {
+                return View(banner);
+            }
+            TempData["ErrorMessage"] = "Cannot Find Banner Data";
+            return RedirectToAction("AdminBannerHome");
+        }
+
+        [HttpPost]
+        public IActionResult AdminBannerEdit(AdminBannerCreateVm obj)
+        {
+            if(obj.BannerImage != null)
+            {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(wwwRootPath, @"assets\Banner");
+                var extension = Path.GetExtension(obj.BannerImage.FileName);
+
+                using (var filestream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    obj.BannerImage.CopyTo(filestream);
+                }
+
+                obj.Image = fileName + extension;
+            }
+            string? response = _adminBannerRepository.SaveEditData(obj);
+            if (string.IsNullOrEmpty(response))
+            {
+                TempData["SuccessMessage"] = "Banner Edited SuccessFully";
+                return RedirectToAction("AdminBannerHome");
+            }
+            ViewBag.ErrorMessage = response;
+            return View();
+        }
+        #endregion
+
+        public string DeleteBanner(long bannerid)
+        {
+            string? reply = "";
+            Banner? deleteimg = _db.Banners.FirstOrDefault(banner=>banner.BannerId == bannerid && banner.DeletedAt == null);
+            if(deleteimg != null)
+            {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string imagepath = deleteimg.Image;
+                var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\Banner\" + imagepath));
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
+            }
+            string? response = _adminBannerRepository.DeleteBanner(bannerid);
+            if (string.IsNullOrEmpty(response))
+            {
+                return reply;
+            }
+            return response;
+        }
+        #endregion
 
     }
 }

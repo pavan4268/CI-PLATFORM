@@ -69,6 +69,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\assets\MissionMedia\Images\" />
     <Folder Include="wwwroot\assets\MissionMedia\Documents\" />
+    <Folder Include="wwwroot\assets\Banner\" />
     <Folder Include="wwwroot\assets\UserAvatar\" />
     <Folder Include="wwwroot\assets\storyImages\" />
   </ItemGroup>
