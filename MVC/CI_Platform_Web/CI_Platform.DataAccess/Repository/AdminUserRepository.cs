@@ -143,7 +143,11 @@ namespace CI_Platform.Repository.Repository
                 edituser.ProfileText = obj.ProfileText;
                 edituser.Department = obj.Department;
                 edituser.PhoneNumber = obj.PhoneNumber;
-                edituser.Avatar = obj.Avatar;
+                if(obj.Avatar != null)
+                {
+                    edituser.Avatar = obj.Avatar;
+                }
+                
                 _db.Users.Update(edituser);
                 _db.SaveChanges();
             }

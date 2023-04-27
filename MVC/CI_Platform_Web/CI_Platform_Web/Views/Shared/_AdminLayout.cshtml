@@ -31,14 +31,14 @@
                     <span class="nav-text">NAVIGATION</span>
                     <ul class="nav-list ps-0 ms-0 mt-2">
                         
-                        <li class="nav-item ps-0 ms-0 d-flex align-content-center nav-active">
+                        <li class="nav-item ps-0 ms-0 d-flex align-content-center nav">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-person" id="item-icon-active"></i>
+                                    <i class="bi bi-person inav" id="item-icon"></i>
                                 </div>
                                 <a id="obj-link" class="d-none" asp-action="AdminUserHome" asp-controller="Admin"></a>
                                 <div class="item-text-div d-flex align-self-center">
-                                    <span class="item-name text-active">User</span>
+                                    <span class="item-name">User</span>
                                 </div>
                             
                             </div>
@@ -47,7 +47,7 @@
                         <li class="nav-item ps-0 ms-0 mt-2 d-flex align-content-center">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-file-earmark-text" id="item-icon"></i>
+                                    <i class="bi bi-file-earmark-text inav" id="item-icon"></i>
                                 </div>
                                 <a class="d-none" id="obj-link" asp-action="AdminCMSHome" asp-controller="Admin"></a>
                                 <div class="item-text-div d-flex align-self-center">
@@ -58,7 +58,7 @@
                         <li class="nav-item ps-0 ms-0 mt-2 d-flex align-content-center">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-bullseye" id="item-icon"></i>
+                                    <i class="bi bi-bullseye inav" id="item-icon"></i>
                                 
                                 </div>
                                 <a class="d-none" id="obj-link" asp-action="AdminMissionHome" asp-controller="Admin"></a>
@@ -70,7 +70,7 @@
                         <li class="nav-item ps-0 ms-0 mt-2 d-flex align-content-center">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-columns" id="item-icon"></i>
+                                    <i class="bi bi-columns inav" id="item-icon"></i>
                                     
                                 </div>
                                 <a class="d-none" id="obj-link" asp-action="AdminMissionThemeHome" asp-controller="Admin"></a>
@@ -82,7 +82,7 @@
                         <li class="nav-item ps-0 ms-0 mt-2 d-flex align-content-center">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-tools" id="item-icon"></i>
+                                    <i class="bi bi-tools inav" id="item-icon"></i>
                                    
                                 </div>
                                 <a class="d-none" id="obj-link" asp-action="AdminMissionSkillsHome" asp-controller="Admin"></a>
@@ -94,7 +94,7 @@
                         <li class="nav-item ps-0 ms-0 mt-2 d-flex align-content-center">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-tools" id="item-icon"></i>
+                                    <i class="bi bi-tools inav" id="item-icon"></i>
                                    
                                 </div>
                                 <a class="d-none" id="obj-link" asp-action="AdminMissionApplicationHome" asp-controller="Admin"></a>
@@ -106,7 +106,7 @@
                         <li class="nav-item ps-0 ms-0 mt-2 d-flex align-content-center">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-journal-album" id="item-icon"></i>
+                                    <i class="bi bi-journal-album inav" id="item-icon"></i>
                                    
                                 </div>
                                 <a class="d-none" id="obj-link" asp-action="AdminStoryHome" asp-controller="Admin"></a>
@@ -118,7 +118,7 @@
                         <li class="nav-item ps-0 ms-0 mt-2 d-flex align-content-center">
                             <div class="item-wrapper d-flex align-content-center ps-0 ms-0">
                                 <div class="item-img-div ps-3 me-3 pt-2">
-                                    <i class="bi bi-film" id="item-icon"></i>
+                                    <i class="bi bi-film inav" id="item-icon"></i>
                                    
                                 </div>
                                 <a class="d-none" id="obj-link" asp-action="AdminBannerHome" asp-controller="Admin"></a>
@@ -130,7 +130,7 @@
                     </ul>
                 </div>
             </div>
-        <div class="col header-content-wrapper ms-0 ps-0">
+        <div class="col header-content-wrapper ms-0 ps-0"  style="overflow-y:auto; height:100vh;">
             <partial name="_AdminHeader" />
             <div class="content-div m-4">
                 @RenderBody()

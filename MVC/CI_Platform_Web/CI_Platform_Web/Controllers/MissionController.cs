@@ -316,17 +316,17 @@ namespace CI_Platform_Web.Controllers
 
             }
 
-            //if (SearchText != null)
-            //{
-            //    SearchText = SearchText.ToLower();
+            if (SearchText != null)
+            {
+                SearchText = SearchText.ToLower();
 
-            //    data = data.Where(x => x.Title.ToLower().Contains(SearchText) || x.ShortDescription.ToLower().Contains(SearchText)).ToList();
-            //    if (data.Count == 0)
-            //    {
-            //        return PartialView("NoMissionPartial");
-            //    }
+                data = data.Where(x => x.Title.ToLower().Contains(SearchText) || x.ShortDescription.ToLower().Contains(SearchText)).ToList();
+                if (data.Count == 0)
+                {
+                    return PartialView("NoMissionPartial");
+                }
 
-            //}
+            }
 
 
             return PartialView("_FilterPagePartial", data);

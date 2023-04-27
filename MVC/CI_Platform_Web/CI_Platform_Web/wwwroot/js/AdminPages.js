@@ -1,6 +1,6 @@
 ﻿jQuery(document).ready(function () {
 
-    $('#Admin-table').DataTable({
+    var oTable = $('#Admin-table').DataTable({
         "info": false,
         "bLengthChange": false,
         "ordering": false,
@@ -8,6 +8,7 @@
         "search": {
             search: $('#my-search').val()
         },
+        
         "pagingType": 'full_numbers',
         "pageLength": 8,
         language: {
@@ -17,10 +18,44 @@
                 sFirst: '<i class="bi bi-chevron-double-left"></i>',
                 sLast: '<i class="bi bi-chevron-double-right"></i>'
             },
-            'search': '',
-            searchPlaceholder: "Search"
+            //'search': '',
+            //searchPlaceholder: "Search"
         }
     });
+    $('#my-search').keyup(function () {
+        oTable.search($(this).val()).draw();
+    })
+
+
+
+
+    var listItems = $('ul.nav-list li.nav-item');
+    var activeIndex = localStorage.getItem('activeIndex');
+    if (activeIndex !== null) {
+        listItems.removeClass('nav-active');
+        listItems.eq(activeIndex).addClass('nav-active');
+        $('span.item-name').removeClass('text-active');
+        $('span.item-name', listItems.eq(activeIndex)).addClass('text-active');
+        $('i.inav').attr('id', 'item-icon');
+        $('i.inav', listItems.eq(activeIndex)).attr('id', 'item-icon-active');
+    }
+    listItems.on('click', function () {
+        var index = $(this).index();
+        localStorage.setItem('activeIndex', index);
+        listItems.removeClass('nav-active');
+        $(this).addClass('nav-active');
+        $('span.item-name').removeClass('text-active');
+        $('span.item-name', this).addClass('text-active');
+        $('i.inav').attr('id', 'item-icon');
+        $('i.inav', this).attr('id', 'item-icon-active');
+        var link = $('a#obj-link', this);
+        if (link.length > 0) {
+            link.get(0).click();
+        }
+    });
+
+
+
 
     
 
@@ -30,38 +65,38 @@
 
 
 
-// Get all list items
-var listItems = $('ul.nav-list li.nav-item');
+//// Get all list items
+//var listItems = $('ul.nav-list li.nav-item');
 
-// Add click event listener to each list item
-listItems.on('click', function () {
-    // Remove nav-active class from all list items
-    listItems.removeClass('nav-active');
+//// Add click event listener to each list item
+//listItems.on('click', function () {
+//    // Remove nav-active class from all list items
+//    listItems.removeClass('nav-active');
 
-    // Add nav-active class to clicked list item
-    $(this).addClass('nav-active');
+//    // Add nav-active class to clicked list item
+//    $(this).addClass('nav-active');
 
-    // Remove text-active class from all spans
-    $('span.item-name').removeClass('text-active');
+//    // Remove text-active class from all spans
+//    $('span.item-name').removeClass('text-active');
 
-    // Add text-active class to span inside clicked list item
-    $('span.item-name', this).addClass('text-active');
+//    // Add text-active class to span inside clicked list item
+//    $('span.item-name', this).addClass('text-active');
 
-    // Change icon of all list items to item-icon
-    $('i.bi').attr('id', 'item-icon');
+//    // Change icon of all list items to item-icon
+//    $('i.bi').attr('id', 'item-icon');
 
-    // Change icon of clicked list item to item-icon-active
-	$('i.bi', this).attr('id', 'item-icon-active');
+//    // Change icon of clicked list item to item-icon-active
+//	$('i.bi', this).attr('id', 'item-icon-active');
 
-	//to click the hidden button
-	//const hiddenButton = $(this).find('.obj-link');
-	//hiddenButton.trigger('click');
-	/*$('#obj-link', this).click();*/
-	var link = $('a#obj-link', this);
-	if (link.length > 0) {
-		link.get(0).click();
-	}
-});
+//	//to click the hidden button
+//	//const hiddenButton = $(this).find('.obj-link');
+//	//hiddenButton.trigger('click');
+//	/*$('#obj-link', this).click();*/
+//	var link = $('a#obj-link', this);
+//	if (link.length > 0) {
+//		link.get(0).click();
+//	}
+//});
 
 function displayDateTime() {
 	var currentDate = new Date();
@@ -92,6 +127,18 @@ $(document).ready(function () {
     $("#country-dropdown").change();
     var readURL = function (input) {
         if (input.files && input.files[0]) {
+
+            // check if the selected file is an image
+            if (!input.files[0].type.startsWith('image/')) {
+                alert('Please select an image file.');
+                //console.log(input.files[0]);
+                //input.files[0].val('');
+                $("#profileimg").val(null);
+                console.log(input.files[0]);
+                return;
+            }
+
+
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#user-profile').attr('src', e.target.result);

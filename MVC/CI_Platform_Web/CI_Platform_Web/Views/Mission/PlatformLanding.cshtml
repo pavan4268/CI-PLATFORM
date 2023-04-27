@@ -81,7 +81,7 @@
           </p>
         </div>
 
-        <div class="col p-0 m-0 d-flex justify-content-end align-content-center">
+        <div class="col p-0 m-0 d-flex justify-content-end align-content-center gap-5">
           <!-- Sorting drop down -->
 
           @*<div class="dropdown p-0 mr-4" id="sortmenu">
@@ -107,7 +107,7 @@
 
           <select class="form-select sortbywidth" aria-label="Default select example" id = "selectsort" style="max-width:180px">
               
-                            <option selected>@ViewBag.sortvalue</option>
+                            @*<option selected>@ViewBag.sortvalue</option>*@
                             <option value="Newest">Newest</option>
                             <option value="Oldest">Oldest</option>
                             <option value="Lowest available seats">Lowest available seats</option>
@@ -122,14 +122,14 @@
 
           <!-- list and grid view start -->
 
-         <div class = " d-flex column-gap-2 justify-content-end align-content-center pt-1">
+         <div class = " d-flex justify-content-end align-content-center pt-1 mt-1 gap-3">
              
-             <a onclick="gridview()">
+             <a onclick="gridview()" class="toggle_icon">
                  <img src ="~/assets/grid.png">
              </a>
              
              
-              <a onclick="listview()">
+              <a onclick="listview()"  class="toggle_icon">
                  <img src ="~/assets/list.png">
              </a>
              

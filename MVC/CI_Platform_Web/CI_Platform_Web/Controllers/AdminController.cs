@@ -65,7 +65,50 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminUserAdd(AdminUserCreateVm obj, IFormFile? image)
         {
-            if(image != null)
+            AdminUserCreateVm getcountries = _adminUserRepository.Getcountry();
+
+
+
+            #region EmployeeId Validation
+            if (obj.EmployeeId != null)
+            {
+                User? checkEmpId = _db.Users.FirstOrDefault(u => u.EmployeeId == obj.EmployeeId);
+                if (checkEmpId != null)
+                {
+                    ModelState.AddModelError("EmployeeId", "Employee Id Already Exists");
+                   
+                    
+                    if(getcountries.Countries.Count > 0)
+                    {
+                        obj.Countries = getcountries.Countries;
+                    }
+                    
+                    return View(obj);
+                }
+            }
+            #endregion
+
+
+            #region EmailId Validation
+
+            if(obj.Email != null)
+            {
+                User? ckeckemail = _db.Users.FirstOrDefault(u => u.Email == obj.Email);
+                if (ckeckemail != null)
+                {
+                    ModelState.AddModelError("Email", "User with the above Email Already Exists.");
+                    if(getcountries.Countries.Count > 0)
+                    {
+                        obj.Countries= getcountries.Countries;  
+
+                    }
+                    return View(obj);
+                }
+            } 
+
+            #endregion
+
+            if (image != null)
             {
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Guid.NewGuid().ToString();
@@ -82,6 +125,8 @@ namespace CI_Platform_Web.Controllers
                 //_adminUserRepository.AddUser(obj);
                 //return RedirectToAction("AdminUserHome");
             }
+            
+
             
             
 
@@ -112,7 +157,48 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminUserEdit(AdminUserCreateVm obj, long userid, IFormFile? image)
         {
-            if(image != null)
+            AdminUserCreateVm getcountries = _adminUserRepository.Getcountry();
+
+            #region EmployeeId Validation
+            if (obj.EmployeeId != null)
+            {
+                User? checkEmpId = _db.Users.FirstOrDefault(u => u.EmployeeId == obj.EmployeeId && u.UserId != userid);
+                if (checkEmpId != null)
+                {
+                    ModelState.AddModelError("EmployeeId", "Employee Id Already Exists");
+
+
+                    if (getcountries.Countries.Count > 0)
+                    {
+                        obj.Countries = getcountries.Countries;
+                    }
+
+                    return View(obj);
+                }
+            }
+            #endregion
+
+
+            #region Email Validation
+            if (obj.Email != null)
+            {
+                User? ckeckemail = _db.Users.FirstOrDefault(u => u.Email == obj.Email && u.UserId != userid);
+                if (ckeckemail != null)
+                {
+                    ModelState.AddModelError("Email", "User with the above Email Already Exists.");
+                    if (getcountries.Countries.Count > 0)
+                    {
+                        obj.Countries = getcountries.Countries;
+
+                    }
+                    return View(obj);
+                }
+            }
+            #endregion
+
+
+            #region Saving New Image And Deleting Previous Image
+            if (image != null)
             {
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Guid.NewGuid().ToString();
@@ -138,7 +224,9 @@ namespace CI_Platform_Web.Controllers
                 //delete existing user avatar if present
                 obj.Avatar = fileName + extension;
             }
-            
+            #endregion
+
+
             obj.UserId = userid;
             _adminUserRepository.EditUser(obj);
             return RedirectToAction("AdminUserHome");
@@ -231,9 +319,6 @@ namespace CI_Platform_Web.Controllers
             return result;
         }
         #endregion
-
-
-
 
 
         //<---------------------------------------------------------------------------Mission------------------------------------------------------------------------>
@@ -444,18 +529,41 @@ namespace CI_Platform_Web.Controllers
                 }
                 #endregion
 
-                if (obj.StartDate <= DateTime.Today)
+                Mission? getmission = _db.Missions.FirstOrDefault(mission=>mission.MissionId == obj.MissionId && mission.DeletedAt == null);
+                //if(obj.StartDate > DateTime.Today)
+                //{
+                //    if (obj.StartDate <= DateTime.Today)
+                //    {
+                //        ModelState.AddModelError("Startdate", "Cannot Insert Today's Date or Date before today's date");
+                //        return View(obj);
+                //    }
+                //}
+                if(obj.StartDate != getmission.StartDate)
                 {
-                    ModelState.AddModelError("Startdate", "Cannot Insert Today's Date or Date before today's date");
-                    return View(obj);
-                }
-                if (obj.EndDate != null)
-                {
-                    if (obj.EndDate <= obj.StartDate)
+                    if(getmission.StartDate <= DateTime.Today)
                     {
-                        ModelState.AddModelError("EndDate", "Cannot Insert Date before or equal to StartDate");
+                        ModelState.AddModelError("StartDate", "Cannot Edit StartDate of an ongoing mission.");
                         return View(obj);
                     }
+                    if (obj.StartDate <= DateTime.Today)
+                    {
+                        ModelState.AddModelError("Startdate", "Cannot Insert Today's Date or Date before today's date");
+                        return View(obj);
+                    }
+                }
+
+                if (obj.EndDate != null)
+                {
+                    if(obj.EndDate != getmission.EndDate)
+                    {
+                        if (obj.EndDate <= obj.StartDate)
+                        {
+                            ModelState.AddModelError("EndDate", "Cannot Insert Date before or equal to StartDate");
+                            return View(obj);
+                        }
+                        //if()
+                    }
+                    
                     if (obj.DeadLine != null)
                     {
                         if (obj.DeadLine >= obj.StartDate)
