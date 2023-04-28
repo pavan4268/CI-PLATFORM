@@ -72,8 +72,9 @@
 
 
             <div class="title-input-wrapper pe-0 ps-3 mt-4 me-0">
-                <label>Title</label><br />
+                <label class="required">Title</label><br />
                 <input type="text" class="form-control" placeholder="Enter CMS Title" asp-for="Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
 

@@ -75,6 +75,7 @@ namespace CI_Platform.Repository.Repository
                 if (obj.MissionType == "Time")
                 {
                     addmission.TotalSeats = obj.TotalSeats;
+                    addmission.Deadline = obj.DeadLine;
                     
                 }
                 _db.Missions.Add(addmission);
@@ -173,6 +174,7 @@ namespace CI_Platform.Repository.Repository
                 if (vm.MissionType == "Time")
                 {
                     vm.TotalSeats = getmission.TotalSeats;
+                    vm.DeadLine = getmission.Deadline;
                 }
                 else if(vm.MissionType =="Goal")
                 {
@@ -253,6 +255,7 @@ namespace CI_Platform.Repository.Repository
                 if (obj.MissionType == "Time")
                 {
                     editmission.TotalSeats = obj.TotalSeats;
+                    editmission.Deadline = obj.DeadLine;
                     GoalMission? findgoal = _db.GoalMissions.FirstOrDefault(goal=>goal.MissionId == obj.MissionId);
                     if(findgoal != null)
                     {
@@ -284,6 +287,7 @@ namespace CI_Platform.Repository.Repository
                 if (obj.MissionType == "Goal")
                 {
                     editmission.TotalSeats = null;
+                    editmission.Deadline = null;
                     editmission.UpdatedAt = DateTime.Now;
                     _db.Missions.Update(editmission);
                     _db.SaveChanges(true);

@@ -60,6 +60,8 @@ namespace CI_Platform.Entities.ViewModels
         public bool IsFavourite { get; set; }
 
         public List<RelatedMissionsVm> RelatedMissions { get; set; }
+
+        public int ApplicationStatus { get; set; }
         
     }
 }

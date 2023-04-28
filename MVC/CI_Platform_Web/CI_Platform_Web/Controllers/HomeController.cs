@@ -93,7 +93,17 @@ namespace CI_Platform_Web.Controllers
                         _contextAccessor.HttpContext.Session.SetString("FirstName", issuccess.FirstName + " " + issuccess.LastName);
                         _contextAccessor.HttpContext.Session.SetString("UserId" , issuccess.UserId.ToString());
                         _contextAccessor.HttpContext.Session.SetString("Email" , issuccess.Email);
-                        _contextAccessor.HttpContext.Session.SetString("Avtaar", issuccess.Avatar);
+                        if(issuccess.Avatar != null)
+                        {
+                            _contextAccessor.HttpContext.Session.SetString("Avtaar", issuccess.Avatar);
+                        }
+                        if (TempData.ContainsKey("storyid"))
+                        {
+                            int? storyid = TempData["storyid"]as int?;
+                            
+                            return RedirectToAction("StoryDetails", "Story" , new {storyid});
+
+                        }
                        
                         return RedirectToAction("PlatformLanding", "Mission");
                     }

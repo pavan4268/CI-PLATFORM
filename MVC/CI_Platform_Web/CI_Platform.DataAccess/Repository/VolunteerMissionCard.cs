@@ -112,38 +112,39 @@ namespace CI_Platform.Repository.Repository
             //var relatedmission = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId != mission.MissionId && (t.City.Name == city.Name || t.Country.Name == country.Name || t.Theme.Title == missionTheme.Title)).ToList();
             //getmission.RelatedMissionList = relatedmission;
             List<RelatedMissionsVm> relatedmissions = new List<RelatedMissionsVm>();
-            var relatedmissionlist = _db.Missions.Where(x=> x.MissionId!=mission.MissionId && (x.CityId==mission.CityId || x.CountryId==mission.CountryId || x.ThemeId==mission.ThemeId)).ToList();
+            var relatedmissionlist = _db.Missions.Where(x=> x.MissionId!=mission.MissionId && (x.CityId==mission.CityId || x.CountryId==mission.CountryId || x.ThemeId==mission.ThemeId)).Take(3).ToList();
             foreach(var relatedmission in relatedmissionlist)
             {
-                RelatedMissionsVm relMissions = new RelatedMissionsVm();
+                RelatedMissionsVm? relMissions = new RelatedMissionsVm();
                 var cityname = _db.Cities.Where(x => x.CityId == relatedmission.CityId).SingleOrDefault();
                 var themename = _db.MissionThemes.Where(x => x.MissionThemeId == relatedmission.ThemeId).SingleOrDefault();
                 string[] startdate = relatedmission.StartDate.ToString().Split(' ');
                 string[] enddate = relatedmission.EndDate.ToString().Split(' ');
+                relMissions.MissionId = relatedmission.MissionId;
                 relMissions.MissionTitle = relatedmission.Title;
                 relMissions.MissionDescription = relatedmission.ShortDescription;
                 relMissions.CityName = cityname.Name;
                 relMissions.MissionTheme = themename.Title;
                 relMissions.MissionOrganization = relatedmission.OrganizationName;
-                relMissions.SeatsLeft = (int)(relatedmission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == relatedmission.MissionId).Count());
+                relMissions.SeatsLeft = (int)(relatedmission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == relatedmission.MissionId).Count() == null ? 0: _db.MissionApplications.Where(x => x.MissionId == relatedmission.MissionId).Count());
                 relMissions.StartDate = startdate[0];
                 relMissions.EndDate = enddate[0];
                 relMissions.Deadline = startdate[0];
                 relMissions.MissionType = relatedmission.MissionType;
-                relMissions.MissionId = relatedmission.MissionId;
+                
 
                 relatedmissions.Add(relMissions);
             }
             getmission.RelatedMissions = relatedmissions;
             // for related mission end
 
-            
 
 
 
 
-            
 
+
+            getmission.MissionId = mission.MissionId;
                 getmission.Title = mission.Title;
                 getmission.ShortDescription = mission.ShortDescription;
                 getmission.OrganizationName = mission.OrganizationName;
@@ -158,7 +159,7 @@ namespace CI_Platform.Repository.Repository
                 getmission.SkillName = skills.SkillName;
                 getmission.Rating = (int)missionRating;
                 getmission.RatedbyUsers = (int)ratingcount;
-
+            getmission.ApplicationStatus = GetApplicationStatus(mission.MissionId, userid);
 
            
             
@@ -173,6 +174,23 @@ namespace CI_Platform.Repository.Repository
 
 
             return getmissions;
+        }
+        public int GetApplicationStatus(long? missionid, long? userid)
+        {
+            MissionApplication? checkapplied = _db.MissionApplications.FirstOrDefault(x => x.MissionId == missionid && x.UserId == userid);
+            if(checkapplied != null)
+            {
+                if(checkapplied.ApprovalStatus == "Pending")
+                {
+                    return 1;
+                }
+                if(checkapplied.ApprovalStatus == "Approve")
+                {
+                    return 2;
+                }
+
+            }
+            return 0;
         }
     }
 }

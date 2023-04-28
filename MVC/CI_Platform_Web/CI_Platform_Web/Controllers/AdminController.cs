@@ -5,6 +5,7 @@ using CI_Platform.Entities.ViewModels;
 using CI_Platform.Repository.Interface;
 using System.Net.Mail;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CI_Platform_Web.Controllers
 {
@@ -453,7 +454,7 @@ namespace CI_Platform_Web.Controllers
         }
 
 
-        
+        [HttpPost]
         public bool ImageDelete(long id, string source, string extension)
         {
             MissionMedium? image = _db.MissionMedia.FirstOrDefault(x=>x.MissionId==id && x.MediaPath == source && x.MediaType==extension);
@@ -466,7 +467,7 @@ namespace CI_Platform_Web.Controllers
             }
             return false;
         }
-
+        [HttpPost]
         public bool DocumentDelete(long id, string source, string extension)
         {
             MissionDocument? document = _db.MissionDocuments.FirstOrDefault(x => x.MissionId == id && x.DocumentPath == source && x.DocumentType == extension);
@@ -474,7 +475,7 @@ namespace CI_Platform_Web.Controllers
             {
                 document.DeletedAt = DateTime.Now;
                 _db.MissionDocuments.Update(document);
-                _db.SaveChanges(true);
+                _db.SaveChanges();
                 return true;
             }
             return false;
@@ -554,8 +555,14 @@ namespace CI_Platform_Web.Controllers
 
                 if (obj.EndDate != null)
                 {
+
                     if(obj.EndDate != getmission.EndDate)
                     {
+                        if(getmission.EndDate <= DateTime.Today)
+                        {
+                            ModelState.AddModelError("EndDate", "Cannot Edit Date of Closed Mission");
+                            return View(obj);
+                        }
                         if (obj.EndDate <= obj.StartDate)
                         {
                             ModelState.AddModelError("EndDate", "Cannot Insert Date before or equal to StartDate");
@@ -564,8 +571,17 @@ namespace CI_Platform_Web.Controllers
                         //if()
                     }
                     
-                    if (obj.DeadLine != null)
+                    
+                }
+                if (obj.DeadLine != null)
+                {
+                    if (obj.DeadLine != getmission.Deadline)
                     {
+                        if (getmission.StartDate <= DateTime.Today)
+                        {
+                            ModelState.AddModelError("DeadLine", "Cannot Edit Deadline of an Ongoing Mission");
+                            return View(obj);
+                        }
                         if (obj.DeadLine >= obj.StartDate)
                         {
                             ModelState.AddModelError("DeadLine", "Cannot Insert Date After or equal to start Date");
@@ -577,6 +593,7 @@ namespace CI_Platform_Web.Controllers
                             return View(obj);
                         }
                     }
+
                 }
 
             }
@@ -623,10 +640,12 @@ namespace CI_Platform_Web.Controllers
                 }
                 if(images.Count > 0)
                 {
+                    obj.Imagepaths = null;
                     obj.Imagepaths = images;
                 }
                 if(docs.Count > 0)
                 {
+                    obj.Documentpaths = null;
                     obj.Documentpaths = docs;
                 }
                 
@@ -710,6 +729,17 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminMissionThemeAdd(AdminMissionThemeCreateVm obj)
         {
+            if(obj.Title != null)
+            {
+                List<MissionTheme>? checktheme = _db.MissionThemes.Where(theme=>theme.DeletedAt==null).ToList();
+                if(checktheme.Count > 0)
+                {
+                    if(checktheme.Any(theme=>theme.Title.ToLower() == obj.Title.ToLower()))
+                    {
+                        ModelState.AddModelError("Title", "Theme Already Exists");
+                    }
+                }
+            }
            string response =  _adminMissionThemeRepository.AddTheme(obj);
             if (string.IsNullOrEmpty(response))
             {
@@ -733,6 +763,17 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminMissionThemeEdit(AdminMissionThemeCreateVm obj)
         {
+            if (obj.Title != null)
+            {
+                List<MissionTheme>? checktheme = _db.MissionThemes.Where(theme=>theme.MissionThemeId != obj.MissionThemeId && theme.DeletedAt==null).ToList();
+                if(checktheme.Count > 0)
+                {
+                    if(checktheme.Any(theme=> theme.Title.ToLower() == obj.Title.ToLower()))
+                    {
+                        ModelState.AddModelError("Title", "Theme Already Exists");
+                    }
+                }
+            }
             string? response = _adminMissionThemeRepository.EditTheme(obj);
             if (string.IsNullOrEmpty(response))
             {
@@ -776,6 +817,16 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminMissionSkillsAdd(AdminMissionSkillsCreateVm obj)
         {
+            //Skill? checkskill = _db.Skills.FirstOrDefault(skill=>skill.SkillId == obj.SkillId && skill.DeletedAt == null);
+            List<Skill>? checkskill = _db.Skills.Where(skill => skill.DeletedAt == null).ToList(); 
+            if(checkskill != null)
+            {
+                if(checkskill.Any(x=>x.SkillName.ToLower() == obj.SkillName.ToLower()))
+                {
+                    ModelState.AddModelError("SkillName", "Skill Already Exists");
+                    return View(obj);
+                }
+            }
             string? response = _adminMissionSkillsRepository.AddSkill(obj);
             if (string.IsNullOrEmpty(response))
             {
@@ -789,6 +840,8 @@ namespace CI_Platform_Web.Controllers
         #region Mission Skills Edit
         public IActionResult AdminMissionSkillsEdit(long skillid)
         {
+            
+
             AdminMissionSkillsCreateVm getskill = _adminMissionSkillsRepository.GetSkills(skillid);
             if (getskill != null)
             {
@@ -800,6 +853,15 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminMissionSkillsEdit(AdminMissionSkillsCreateVm obj)
         {
+            List<Skill>? checkskill = _db.Skills.Where(skill => skill.DeletedAt == null).ToList();
+            if(checkskill != null)
+            {
+                if (checkskill.Any(skill => skill.SkillName.ToLower() == obj.SkillName.ToLower() && skill.SkillId != obj.SkillId))
+                {
+                    ModelState.AddModelError("SkillName", "Skill Already Exists");
+                    return View(obj);
+                }
+            }
             string? response = _adminMissionSkillsRepository.EditSkill(obj);
             if (string.IsNullOrEmpty(response))
             {

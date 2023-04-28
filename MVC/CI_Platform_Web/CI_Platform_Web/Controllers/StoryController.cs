@@ -44,6 +44,11 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult StoryDetails(long storyid)
         {
+            if(HttpContext.Session.GetString("UserId") == null)
+            {
+                TempData["storyid"] = (Int32)storyid;
+                return RedirectToAction("Index", "Home");
+            }
             var story = _storyCards.GetStoryDetails(storyid);
             return View(story);
         }

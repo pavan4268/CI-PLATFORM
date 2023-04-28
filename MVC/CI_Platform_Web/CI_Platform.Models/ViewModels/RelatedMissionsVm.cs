@@ -16,7 +16,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public string MissionOrganization { get; set; }
 
-        public int SeatsLeft { get; set; }
+        public int? SeatsLeft { get; set; }
 
         public string StartDate     { get; set; }
 

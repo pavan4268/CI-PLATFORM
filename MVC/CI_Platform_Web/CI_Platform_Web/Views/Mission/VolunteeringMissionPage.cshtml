@@ -392,14 +392,42 @@
             <!-- div containing city,theme,date,organization ends -->
             <!-- apply button div starts -->
             <div class="container-fluid d-flex justify-content-center pt-4">
-              <button
+                @if(data.ApplicationStatus == 1){
+                    <button
+                class="btn btn-warning justify-content-center"
+                type="submit"
+                aria-label="Apply Now"
+                
+                
+              >
+                Pending
+                
+              </button>
+                }
+                else if(data.ApplicationStatus == 2){
+                    <button
+                class="btn btn-warning justify-content-center"
+                type="submit"
+                aria-label="Apply Now"
+                
+              >
+                Applied
+                
+              </button>
+                }
+                else{
+                    <button
                 class="btn apply-button justify-content-center"
                 type="submit"
                 aria-label="Apply Now"
+                id="apply-btn"
+                data-missionid="@data.MissionId"
               >
                 Apply Now
                 <img src="~/assets/right-arrow.png" alt="" />
               </button>
+                }
+              
             </div>
             <!-- apply button div ends -->
           </div>
@@ -988,7 +1016,7 @@
     </div>
     </div>
     }
-    //<script src="~/js/Cascade.js"></script>
+    
 
      <script src = "~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
     <script src = "~/js/Cascade.js" asp-append-version="true"></script>
@@ -1005,11 +1033,7 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"
   ></script>
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"
-  ></script>
+  
   <script
     src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

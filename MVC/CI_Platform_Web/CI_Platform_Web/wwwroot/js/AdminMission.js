@@ -90,7 +90,7 @@ $("#img-delete").click(function () {
     var missionId = $(this).data("missionid");
 
     $.ajax({
-        method: 'POST',
+        type: 'post',
         url: "/Admin/ImageDelete",
         data: {
             id: missionId,
@@ -110,18 +110,44 @@ $("#img-delete").click(function () {
 });
 
 
-$("#doc-delete").click(function () {
-    var src = $(this).data("source");
+//$("#doc-delete").click(function () {
+//    var src = $(this).data("source");
+//    var ext = "doc";
+//    var parent = $(this).parent();
+//    var missionId = $(this).data("missionid");
+
+//    $.ajax({
+//        type: 'post',
+//        url: "/Admin/DocumentDelete",
+//        data: {
+//            id: missionId,
+//            source: src,
+//            extension: ext,
+//        },
+//        success: function (response) {
+//            console.log(response);
+//            if (response) {
+//                parent.addClass('d-none');
+//            }
+//        },
+//        error: function (xhr, error) {
+//            console.log(error);
+//        }
+//    })
+//});
+
+function deleteDoc(docsrc, missionid) {
+    //var src = $(this).data("source");
     var ext = "doc";
-    var parent = $(this).parent();
-    var missionId = $(this).data("missionid");
+    //var parent = $(this).parent();
+    //var missionId = $(this).data("missionid");
 
     $.ajax({
-        method: 'POST',
+        type: 'post',
         url: "/Admin/DocumentDelete",
         data: {
-            id: missionId,
-            source: src,
+            id: missionid,
+            source: docsrc,
             extension: ext,
         },
         success: function (response) {
@@ -134,4 +160,4 @@ $("#doc-delete").click(function () {
             console.log(error);
         }
     })
-});
+}

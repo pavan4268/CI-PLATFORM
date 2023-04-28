@@ -48,6 +48,7 @@
             <div class="title-input-wrapper pe-0 ps-3 mt-4 me-0">
                 <label>Theme Name</label><br />
                 <input type="text" class="form-control" placeholder="Enter Theme Name" asp-for="Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
 
@@ -79,4 +80,5 @@
         </div>
     </form>
 </body>
-
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

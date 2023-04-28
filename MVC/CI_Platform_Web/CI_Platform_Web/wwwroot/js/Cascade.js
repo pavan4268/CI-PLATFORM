@@ -152,7 +152,18 @@ function FilterMission(e) {
 //        }
 //    });
 //});
-
+$("#apply-btn").on('click', function () {
+    var missionid = $(this).attr("data-missionid");
+    console.log(missionid);
+    $.ajax({
+        type: 'post',
+        url: '/Mission/ApplyToMission',
+        data: { "missionid": missionid },
+        success: function (result) {
+            location.reload();
+        }
+    })
+})
 
 // sorting js goes here
 document.getElementById("selectsort").addEventListener("change", function () {

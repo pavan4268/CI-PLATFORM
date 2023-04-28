@@ -103,18 +103,7 @@ namespace CI_Platform_Web.Controllers
                     {
                         data = cardmodel.OrderByDescending(x => x.AvailableSeats).ToList();
                     }
-                    //else if (sortby == "Lowest available seats")
-                    //{
-
-                    //}
-                    //else if (sortby == "Highest available seats")
-                    //{
-
-                    //}
-                    //else
-                    //{
-
-                    //}
+                    
                     int recsCount1 = data.Count();
                     
                     var pager1 = new Pager(recsCount1, pg, pagesize);
@@ -131,57 +120,7 @@ namespace CI_Platform_Web.Controllers
                 //return View(cardmodel);
 
 
-                // sorting logic goes here
-
-
-                //if (sortby != null)
-                //{
-                //    List<MissionVm> data = new List<MissionVm>();
-                //    ViewBag.sortvalue = sortby;
-                //    if (sortby == "Newest")
-                //    {
-                //        data = cardmodel.OrderByDescending(x => x.CreatedAt).ToList();
-                //    }
-                //    else if (sortby == "Oldest")
-                //    {
-                //        data = cardmodel.OrderBy(x => x.CreatedAt).ToList();
-                //    }
-                //    else if (sortby == "Sort By Deadline")
-                //    {
-                //        data = cardmodel.OrderBy(x => x.Deadline).ToList();
-                //    }
-                //    int recsCount1 = data.Count();
-                //    var pager1 = new Pager(recsCount1, pg, pagesize);
-                //    int recSkip1 = (pg - 1) * pagesize;
-                //    var sortdata = data.Skip(recSkip1).Take(pager1.PageSize).ToList();
-                //    this.ViewBag.Pager = pager1;
-                //    return View(sortdata);
-                //}
-                //return View(data1);
-
-
-                //ViewData["Newest"] = String.IsNullOrEmpty(sortby) ? "date_desc" : "";
-                //ViewData["Oldest"] = sortby == "Newest" ? "date_desc" : "Date";
-                //ViewData["SortByDeadline"] = sortby == "Sort By Deadline" ? "deadline_date" : "Deadline";
-
-
-                //switch (sortby)
-                //{
-                //    case "date_desc":
-                //        cardmodel = cardmodel.OrderByDescending(x => x.CreatedAt).ToList();
-                //        break;
-
-                //    case "date_aecs":
-                //        cardmodel = cardmodel.OrderBy(x => x.CreatedAt).ToList();
-                //        break;
-                //    case "deadline_date":
-                //        cardmodel= cardmodel.OrderBy(x => x.Deadline).ToList();
-                //        break;
-                //}
-
-
-
-                // sorting logic ends here
+               
 
 
                 //search logic goes here
@@ -331,8 +270,7 @@ namespace CI_Platform_Web.Controllers
 
             return PartialView("_FilterPagePartial", data);
         }
-
-#endregion
+        #endregion
 
         //volunteer mission page
         public IActionResult VolunteeringMissionPage(long? id)
@@ -398,8 +336,29 @@ namespace CI_Platform_Web.Controllers
             
             return new JsonResult(commentsDisplay);
         }
-
-
+        [HttpPost]
+        public void ApplyToMission(long? missionid)
+        {
+            string? user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            Mission? checkmission = _db.Missions.FirstOrDefault(mission => mission.MissionId == missionid && mission.DeletedAt == null);
+            if(checkmission != null)
+            {
+                MissionApplication? checkapplication = _db.MissionApplications.FirstOrDefault(application => application.MissionId == checkmission.MissionId && application.UserId == userid);
+                if(checkapplication == null)
+                {
+                    MissionApplication newapplication = new MissionApplication();
+                    newapplication.UserId = userid;
+                    newapplication.MissionId = checkmission.MissionId;
+                    newapplication.ApprovalStatus = "Pending";
+                    newapplication.AppliedAt = DateTime.Now;
+                    newapplication.CreatedAt = DateTime.Now;
+                    _db.MissionApplications.Add(newapplication);
+                    _db.SaveChanges();
+                }
+            }
+            
+        }
 
     }
 }

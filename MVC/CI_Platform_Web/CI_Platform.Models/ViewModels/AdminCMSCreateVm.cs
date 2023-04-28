@@ -11,6 +11,7 @@ namespace CI_Platform.Entities.ViewModels
     {
         public long CmsPageId { get; set; }
 
+        [Required(ErrorMessage ="Title is Required")]
         public string? Title { get; set; }
 
         
