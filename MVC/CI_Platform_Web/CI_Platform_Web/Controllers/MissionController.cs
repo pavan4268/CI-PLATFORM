@@ -5,6 +5,7 @@ using CI_Platform.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System.Net.Mail;
 
 namespace CI_Platform_Web.Controllers
 {
@@ -275,6 +276,11 @@ namespace CI_Platform_Web.Controllers
         //volunteer mission page
         public IActionResult VolunteeringMissionPage(long? id)
         {
+            if (HttpContext.Session.GetString("UserId") == null)
+            {
+                TempData["missionid"] = (Int32)id;
+                return RedirectToAction("Index", "Home");
+            }
             var missionid = _db.Missions.FirstOrDefault(x=>x.MissionId == id);
             var email = HttpContext.Session.GetString("Email");
             ViewBag.missionid = id;
@@ -358,6 +364,67 @@ namespace CI_Platform_Web.Controllers
                 }
             }
             
+        }
+
+        [HttpPost]
+        public bool RecommendToCoWorker(long missionid, List<string> selecteduser)
+        {
+            string? user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            User? currentuser = _db.Users.FirstOrDefault(user => user.UserId == userid);
+            List<User>? usertomail = _db.Users.Where(seluser=>selecteduser.Contains(seluser.UserId.ToString())).ToList();
+            if(usertomail != null)
+            {
+                foreach(User coworker in usertomail)
+                {
+                    try
+                    {
+                        string email = coworker.Email;
+                        var link = "<a href=\"https://localhost:5001/Mission/VolunteeringMissionPage/" + missionid + "\">Story Link</a>";
+                        MailMessage newMail = new MailMessage();
+                        SmtpClient client = new SmtpClient("smtp.gmail.com");
+                        newMail.From = new MailAddress("ciplatform333@gmail.com", "CI Platform");
+                        newMail.To.Add(email);
+                        newMail.Subject = "Mission Recommended by " + currentuser.FirstName + " " + currentuser.LastName;
+                        newMail.IsBodyHtml = true;
+                        newMail.Body = currentuser.FirstName + " " + currentuser.LastName + "Recommended you the below Mission<br><br><br>" + link;
+                        client.EnableSsl = true;
+                        client.Port = 587;
+                        client.Credentials = new System.Net.NetworkCredential("ciplatform333@gmail.com", "jbdxshjsnfhyimnp");
+                        client.Send(newMail);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+       
+
+        [HttpPost]
+        public void AddRating(long missionid, int ratingvalue)
+        {
+            string? user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            MissionRating? checkexist = _db.MissionRatings.FirstOrDefault(rating => rating.MissionId == missionid && rating.UserId == userid && rating.DeletedAt == null);
+            if (checkexist != null)
+            {
+                checkexist.Rating = ratingvalue;
+                _db.SaveChanges();
+
+            }
+            else
+            {
+                MissionRating newrating = new MissionRating();
+                newrating.MissionId = missionid;
+                newrating.UserId = userid;
+                newrating.Rating = ratingvalue;
+                _db.MissionRatings.Add(newrating);
+                _db.SaveChanges();
+            }
         }
 
     }

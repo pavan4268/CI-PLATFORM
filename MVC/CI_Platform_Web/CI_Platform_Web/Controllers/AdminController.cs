@@ -454,7 +454,7 @@ namespace CI_Platform_Web.Controllers
         }
 
 
-        [HttpPost]
+        
         public bool ImageDelete(long id, string source, string extension)
         {
             MissionMedium? image = _db.MissionMedia.FirstOrDefault(x=>x.MissionId==id && x.MediaPath == source && x.MediaType==extension);
@@ -467,7 +467,7 @@ namespace CI_Platform_Web.Controllers
             }
             return false;
         }
-        [HttpPost]
+        
         public bool DocumentDelete(long id, string source, string extension)
         {
             MissionDocument? document = _db.MissionDocuments.FirstOrDefault(x => x.MissionId == id && x.DocumentPath == source && x.DocumentType == extension);

@@ -83,14 +83,14 @@ missionTypeSelect.addEventListener('change', function () {
 });
 //for time and goal div hida and display
 
-$("#img-delete").click(function () {
+$(".img-delete").click(function () {
     var src = $(this).data("source");
     var ext = "img";
     var parent = $(this).parent();
     var missionId = $(this).data("missionid");
 
     $.ajax({
-        type: 'post',
+        
         url: "/Admin/ImageDelete",
         data: {
             id: missionId,
@@ -110,44 +110,18 @@ $("#img-delete").click(function () {
 });
 
 
-//$("#doc-delete").click(function () {
-//    var src = $(this).data("source");
-//    var ext = "doc";
-//    var parent = $(this).parent();
-//    var missionId = $(this).data("missionid");
-
-//    $.ajax({
-//        type: 'post',
-//        url: "/Admin/DocumentDelete",
-//        data: {
-//            id: missionId,
-//            source: src,
-//            extension: ext,
-//        },
-//        success: function (response) {
-//            console.log(response);
-//            if (response) {
-//                parent.addClass('d-none');
-//            }
-//        },
-//        error: function (xhr, error) {
-//            console.log(error);
-//        }
-//    })
-//});
-
-function deleteDoc(docsrc, missionid) {
-    //var src = $(this).data("source");
+$(".doc-delete").click(function () {
+    var src = $(this).data("source");
     var ext = "doc";
-    //var parent = $(this).parent();
-    //var missionId = $(this).data("missionid");
+    var parent = $(this).parent();
+    var missionId = $(this).data("missionid");
 
     $.ajax({
-        type: 'post',
+        
         url: "/Admin/DocumentDelete",
         data: {
-            id: missionid,
-            source: docsrc,
+            id: missionId,
+            source: src,
             extension: ext,
         },
         success: function (response) {
@@ -160,4 +134,30 @@ function deleteDoc(docsrc, missionid) {
             console.log(error);
         }
     })
-}
+});
+
+//function deleteDoc(docsrc, missionid) {
+//    //var src = $(this).data("source");
+//    var ext = "doc";
+//    //var parent = $(this).parent();
+//    //var missionId = $(this).data("missionid");
+
+//    $.ajax({
+//        type: 'post',
+//        url: "/Admin/DocumentDelete",
+//        data: {
+//            id: missionid,
+//            source: docsrc,
+//            extension: ext,
+//        },
+//        success: function (response) {
+//            console.log(response);
+//            if (response) {
+//                parent.addClass('d-none');
+//            }
+//        },
+//        error: function (xhr, error) {
+//            console.log(error);
+//        }
+//    })
+//}

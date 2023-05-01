@@ -11,57 +11,68 @@ namespace CI_Platform.Entities.ViewModels
     {
         public string Title { get; set; } = null!;
 
-        public string ShortDescription { get; set; }
+        public string? ShortDescription { get; set; }
 
-        public string OrganizationName { get; set; }
+        public string? OrganizationName { get; set; }
 
-        public int Rating { get; set; }
+        public int Rating { get; set; } = 0;
 
-        public string Img { get; set; }
+        public string? Img { get; set; }
 
-        public string MissionThemes { get; set; }
+        public string? MissionThemes { get; set; }
 
-        public string CityName { get; set; }
+        public string? CityName { get; set; }
 
-        public string StartDate { get; set; }
+        public string? StartDate { get; set; }
 
-        public string EndDate { get; set; } 
+        public string? EndDate { get; set; }
 
-        public int NumberOfSeats { get; set; }
+        public int NumberOfSeats { get; set; } = 0;
 
-        public string Deadline { get; set; }
+        public string? Deadline { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
-        public int Seats { get; set; }
+        public int Seats { get; set; } = 0;
 
-        public int AvailableSeats { get; set; }
+        public int AvailableSeats { get; set; } = 0;
 
-        public string MissionType { get; set; }
+        public string? MissionType { get; set; }
 
         public long MissionId { get; set; }
 
-        public string SkillName { get; set; }
+        public string? SkillName { get; set; }
 
         
 
-        public int? RatedbyUsers { get; set; } 
+        public int RatedbyUsers { get; set; } = 0;
 
-        public List<User> users { get; set; }
+        public List<User>? Users { get; set; }
 
-        public List<CommentsVm> PostedComments { get; set; }
+        public List<CommentsVm>? PostedComments { get; set; }
 
-        public string CommentText { get; set; } 
+        public string? CommentText { get; set; } 
 
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
-        public List<RecentVolunteersVm> RecentVolunteers { get; set; }
+        public List<RecentVolunteersVm>? RecentVolunteers { get; set; }
 
         public bool IsFavourite { get; set; }
 
-        public List<RelatedMissionsVm> RelatedMissions { get; set; }
+        public List<RelatedMissionsVm>? RelatedMissions { get; set; }
 
-        public int ApplicationStatus { get; set; }
+        public int ApplicationStatus { get; set; } = 0;
         
+        public int UserRating { get; set; } = 0;
+
+        public string? GoalObjective { get; set; }
+
+        public int GoalValue { get; set; }
+
+        public int GoalAchieved { get; set; } = 0;
+
+        public float GoalPercentage { get; set; }
+
+        public long AlreadyVolunteered { get; set; } = 0;
     }
 }

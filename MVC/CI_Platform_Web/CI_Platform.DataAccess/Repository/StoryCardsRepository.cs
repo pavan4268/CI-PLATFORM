@@ -79,7 +79,7 @@ namespace CI_Platform.Repository.Repository
             details.StoryDescription = story.Description;
             details.StoryTitle = story.Title;
             details.MissionId = story.MissionId;
-            var users = _db.Users.ToList();
+            var users = _db.Users.Where(user=>user.DeletedAt==null).ToList();
             details.users = users;
             details.StoryId = stroyid;
             //story.views = story.views + 1;

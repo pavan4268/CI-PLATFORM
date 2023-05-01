@@ -104,7 +104,14 @@ namespace CI_Platform_Web.Controllers
                             return RedirectToAction("StoryDetails", "Story" , new {storyid});
 
                         }
-                       
+                        if (TempData.ContainsKey("missionid"))
+                        {
+                            int? id = TempData["missionid"] as int?;
+
+                            return RedirectToAction("VolunteeringMissionPage", "Mission", new { id });
+
+                        }
+
                         return RedirectToAction("PlatformLanding", "Mission");
                     }
                     else

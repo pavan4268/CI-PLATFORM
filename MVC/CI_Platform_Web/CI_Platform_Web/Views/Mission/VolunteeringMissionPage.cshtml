@@ -147,7 +147,79 @@
               <div class="container-fluid mt-5">
                 <div class="row">
                   <!-- seats-availability details starts  -->
-                  <div
+                  
+                  <!-- seats-availability details ends -->
+                  <!-- goal or deadline details starts -->
+                  
+
+                    <!-- div containing goal-calendar img ends -->
+                    
+                    
+
+                    @*if mission is goal based*@
+                    @if(data.MissionType == "Goal"){
+                        <div
+                    class="col event d-flex justify-content-center align-content-center m-2"
+                  >
+                    <!-- div containing event img starts -->
+                    <div
+                      class="event-img align-content-center justify-content-center d-flex"
+                    >
+                      <img
+                        src="~/assets/Already-volunteered.png"
+                        class="event-logo"
+                        alt=""
+                      />
+                    </div>
+
+                    <!-- div containing event img ends -->
+                    <div
+                      class="event-details justify-content-center align-content-center"
+                    >
+                      <div
+                        class="container justify-content-center align-content-center"
+                      >
+                        <span class="event-num">@data.AlreadyVolunteered<br /></span>
+                        <span class="event-txt">Already Volunteered</span>
+                      </div>
+                    </div>
+                  </div>
+                        <div
+                    class="col event d-flex justify-content-center align-content-center m-2"
+                  >
+                    <!-- div containing goal-calendar img starts -->
+                    <div
+                      class="event-img align-content-center justify-content-center d-flex"
+                    >
+                      <img
+                        src="~/assets/achieved.png"
+                        class="event-logo"
+                        alt=""
+                      />
+                    </div>
+                        <div
+                      class="event-details justify-content-center align-content-center"
+                    >
+                      <div class="container goal-calendar-txt">
+                        <div
+                          class="progress p-0 w-100"
+                          role="progressbar"
+                          aria-label="Basic example"
+                          aria-valuenow="75"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        >
+                          <div class="progress-bar" style="width:@data.GoalPercentage%;"></div>
+                        </div>
+                        <div class="container pl-0 pt-1">
+                          <span class="event-txt">@data.GoalAchieved Achieved</span>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    }
+                    else{
+                        <div
                     class="col event d-flex justify-content-center align-content-center m-2"
                   >
                     <!-- div containing event img starts -->
@@ -173,43 +245,38 @@
                       </div>
                     </div>
                   </div>
-                  <!-- seats-availability details ends -->
-                  <!-- goal or deadline details starts -->
-                  <div
+
+
+                        <div
                     class="col event d-flex justify-content-center align-content-center m-2"
                   >
-                    <!-- div containing goal-calendar img starts -->
+                    <!-- div containing event img starts -->
                     <div
                       class="event-img align-content-center justify-content-center d-flex"
                     >
                       <img
-                        src="~/assets/achieved.png"
+                        src="~/assets/deadline.png"
                         class="event-logo"
                         alt=""
                       />
                     </div>
 
-                    <!-- div containing goal-calendar img ends -->
+                    <!-- div containing event img ends -->
                     <div
                       class="event-details justify-content-center align-content-center"
                     >
-                      <div class="container goal-calendar-txt">
-                        <div
-                          class="progress p-0 w-100"
-                          role="progressbar"
-                          aria-label="Basic example"
-                          aria-valuenow="75"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                        >
-                          <div class="progress-bar w-75"></div>
-                        </div>
-                        <div class="container pl-0 pt-1">
-                          <span class="event-txt">8000 Achieved</span>
-                        </div>
+                      <div
+                        class="container justify-content-center align-content-center"
+                      >
+                        <span class="event-num">DeadLine<br /></span>
+                        <span class="event-txt">@data.Deadline</span>
                       </div>
                     </div>
                   </div>
+                    }
+                    
+                    @*if mission was goal based*@
+                  
                 </div>
                 <!-- goal or deadline details end -->
               </div>
@@ -237,7 +304,7 @@
                   </div>*@
                   
                   <div class="col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="fav-div" onclick="AddToFavourite(@userId, @id)">
-                      <button type="button" class="col btn add-fav">
+                      <button type="button" class="col btn add-fav shadow-none">
                       @if (@data.IsFavourite)
                       {
                           <i class="bi bi-heart-fill"></i><span style="margin-left:10px">Added to favorite</span>
@@ -252,70 +319,45 @@
                  
                   <!-- add to favourite button div ends -->
                   <!-- recommend to a coworker button div starts -->
-                  <div
-                    class="col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="share-btn" onclick="Share()"
-                  >
-                    <!-- share user img div starts -->
-                    <div class="heart-img align-content-center">
-                      <img src="~/assets/add1.png" alt="" />
-                    </div>
-                    <!-- share user img div ends -->
-                    <!-- Recommend to a co-worker text div starts -->
-                    <div class="add-fav-txt d-flex justify-content-center pl-2">
-                      Recommend To a Co-Worker
-                    </div>
-                    
-                                        <!-- Recommend to a co-worker text div ends -->
+                  <div class="dropdown col fav-button d-flex justify-content-center align-content-center p-2 m-1" id="recommend-div">
+                      <button class="btn dropdown-toggle shadow-none" id="recommend-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/assets/add1.png" />
+                            Recommend To a Co-worker
+                          </button>
+                          <ul class="dropdown-menu" id="recommendtocoworker">
+                              @foreach(var user in data.Users){
+                                  <li class="form-check" style="padding:inherit.5rem 2rem">
+                                      <input class="form-check-input checkbox" type="checkbox" value="@user.UserId" style="margin-top:1rem;" id="rectoid">
+                                      <label class="form-check-label" style="margin-left:5px;">
+                                          <span class="addtorecommend">
+                                              <img src="~/assets/user-img.png" style="width:40px; height:40px; border-radius:50%">
+                                              <span style="margin-left:7px;">@user.FirstName</span>
+                                              <span>@user.LastName</span>
+                                          </span>
+                                      </label>
+                                  </li>
+                              }
+                              <div class="d-flex justify-content-center">
+                                  <button class="btn btn-dark" onclick="recommend(@data.MissionId)" style="border:none; border-radius:24px;background-color:#F88634; color:white; margin-bottom:0.5rem; padding:10px 20px">
+                                      Send
+                                  </button>
+                              </div>
+                          </ul>
                   </div>
-                  <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Share To</h4>
-                                        <button type="button" class="close bg-transparent border-0" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body" style="max-height: 600px;overflow-y: scroll;">
-                                        <table class="border-0" style="width:50%;margin:auto;">
-                                            
-
-
-                                        </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  
                   <!-- recommend to a co-worker button div ends -->
                 </div>
               </div>
               <!-- div containing ratings starts here -->
               <div
-                class="ratings container-fluid d-flex justify-content-center align-content-center"
+                class="ratings container-fluid d-flex justify-content-center align-content-center" id="ratings_star_div"
               >
-                <img
-                  src="~/assets/star-empty.png"
-                  class="img-fluid star-ratings"
-                  alt=""
-                />
-                <img
-                  src="~/assets/star-empty.png"
-                  class="img-fluid star-ratings"
-                  alt=""
-                />
-                <img
-                  src="~/assets/star-empty.png"
-                  class="img-fluid star-ratings"
-                  alt=""
-                />
-                <img
-                  src="~/assets/star-empty.png"
-                  class="img-fluid star-ratings"
-                  alt=""
-                />
-                <img
-                  src="~/assets/star-empty.png"
-                  class="img-fluid star-ratings"
-                  alt=""
-                />
+                @for(var j = 1; j<=@data.UserRating; j++){
+                    <i class = "ratingStar bi bi-star-fill text-warning m-2" data-mission-id = "@data.MissionId"></i>
+                }
+                @for(var j = 5; j>@data.UserRating; j--){
+                    <i class = "ratingStar bi bi-star text-warning m-2" data-mission-id = "@data.MissionId"></i>
+                }
               </div>
               <!-- div containing ratings ends here -->
             </div>
@@ -733,7 +775,7 @@
                                       alt=""
                                     />
                                 }      
-                                @for(int j = data.Rating; j<5; j++)
+                                @for(int? j = data.Rating; j<5; j++)
                                 {
                                      <img
                                       class="imfo-rating-star"
@@ -1017,7 +1059,7 @@
     </div>
     }
     
-
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
      <script src = "~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
     <script src = "~/js/Cascade.js" asp-append-version="true"></script>
   
@@ -1027,18 +1069,18 @@
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
   ></script>
-
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"
   ></script>
   
-  <script
-    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"
-  ></script>
+  
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"

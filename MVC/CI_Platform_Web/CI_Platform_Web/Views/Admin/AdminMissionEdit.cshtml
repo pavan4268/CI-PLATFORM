@@ -200,12 +200,13 @@
                         @foreach(var image in Model.Imagepaths)
                         {
                             <div class="saved-img" style="margin-right:1rem;">
-                                <button class="save-cancel" type="button" data-source="@image" data-missionid="@Model.MissionId" id="img-delete"><i class="bi bi-x"></i></button>
+                                <button class="save-cancel img-delete" type="button" data-source="@image" data-missionid="@Model.MissionId" @*id="img-delete"*@><i class="bi bi-x"></i></button>
                                 <img src="~/assets/MissionMedia/Images/@image" />
                             </div>
                             
                         }
                     }
+                    
                     else
                     {
                         <span>No Image Found</span>
@@ -222,7 +223,7 @@
                         @foreach(var doc in Model.Documentpaths)
                         {
                             <div class="saved-img" style="margin-right:1rem;">
-                                <button class="save-cancel" type="button" data-source="@doc" data-missionid="@Model.MissionId" onclick="deleteDoc(@doc, @Model.MissionId)" id="doc-delete"><i class="bi bi-x"></i></button>
+                                <button class="save-cancel doc-delete" type="button" data-source="@doc" data-missionid="@Model.MissionId" @*onclick="deleteDoc(@doc, @Model.MissionId)"*@ @*id="doc-delete"*@><i class="bi bi-x"></i></button>
                                 <img src="~/assets/MissionMedia/Documents/@doc"  alt="@doc"/>
                             </div>
                             

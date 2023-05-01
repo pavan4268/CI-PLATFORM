@@ -165,6 +165,71 @@ $("#apply-btn").on('click', function () {
     })
 })
 
+
+//recommend to coworker
+function recommend(sid) {
+    var selecteduser = [];
+    $('#recommendtocoworker input:checkbox[id=rectoid]:checked').each(function () {
+        selecteduser.push($(this).val());
+    })
+    console.log(selecteduser);
+    if (selecteduser != null) {
+        $.ajax({
+            method: 'POST',
+            url: '/Mission/RecommendToCoWorker',
+            data: {
+                "missionid": sid,
+                "selecteduser": selecteduser
+
+            },
+            success: function (response) {
+                console.log('mail sent');
+            }
+        })
+    }
+}
+//recommend to coworker
+
+
+//ratings
+
+$(".ratingStar").hover(function () {
+    $(".ratingStar").addClass("bi-star").removeClass("bi-star-fill");
+
+    $(this).addClass("bi-star-fill").removeClass("bi-star");
+
+    $(this).prevAll(".ratingStar").addClass("bi-star-fill").removeClass("bi-star");
+
+});
+
+
+$("#ratings_star_div .ratingStar").on('click', function () {
+    var starValue = $(this).index() + 1;
+    console.log(starValue);
+    var missionId = $(this).data("mission-id");
+
+    
+
+    $.ajax({
+        type: "Post",
+        url: "/Mission/AddRating",
+        data: { "missionid": missionId, "ratingvalue": starValue},
+        success: function (response) {
+            console.log(response);
+            location.reload();
+        },
+        error: function (response) {
+            console.log(response);
+        }
+
+    });
+});
+
+//ratings
+
+
+
+
 // sorting js goes here
 document.getElementById("selectsort").addEventListener("change", function () {
 

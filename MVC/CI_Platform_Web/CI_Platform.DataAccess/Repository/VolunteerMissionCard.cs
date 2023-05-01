@@ -92,25 +92,23 @@ namespace CI_Platform.Repository.Repository
 
             //for recent volunteers ends
 
-
-            City city = _db.Cities.Where(e => e.CityId == mission.CityId).FirstOrDefault();
-            MissionTheme missionTheme = _db.MissionThemes.Where(e => e.MissionThemeId == mission.ThemeId).FirstOrDefault();
+            MissionRating? userrating = _db.MissionRatings.FirstOrDefault(rating => rating.MissionId==id && rating.UserId == userid && rating.DeletedAt == null);
+            City? city = _db.Cities.Where(e => e.CityId == mission.CityId).FirstOrDefault();
+            MissionTheme? missionTheme = _db.MissionThemes.Where(e => e.MissionThemeId == mission.ThemeId).FirstOrDefault();
             string[] startdatetime = mission.StartDate.ToString().Split(' ');
             string[] enddatetime = mission.EndDate.ToString().Split(' ');
             MissionSkill? missionskills = missionskill.Where(x => x.MissionId == mission.MissionId).FirstOrDefault();
-            //var skill = skills.Where(x => x.SkillId == missionskills.SkillId).FirstOrDefault();
+            
             Skill? skills = _db.Skills.Where(x => x.SkillId == missionskills.SkillId).FirstOrDefault();
             //var ratings = _db.MissionRatings.Where(x=>x.MissionId==mission.MissionId).Count() - _db.MissionRatings.Where(x=>x.MissionId==mission.MissionId())
-            Country country = _db.Countries.Where(e=>e.CountryId==mission.CountryId).FirstOrDefault();
+            Country? country = _db.Countries.Where(e=>e.CountryId==mission.CountryId).FirstOrDefault();
 
             //to display avg rating
             var missionRating = _db.MissionRatings.Where(x=>x.MissionId==mission.MissionId).Average(x => x.Rating);
             var ratingcount = _db.MissionRatings.Where(x=>x.MissionId==mission.MissionId).Count();//this will count total number of users ratings for particular mission
 
             //for related mission
-            //var missionl = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId == id).SingleOrDefault();
-            //var relatedmission = _db.Missions.Include(x => x.City).Include(x => x.Country).Include(x => x.Theme).Where(t => t.MissionId != mission.MissionId && (t.City.Name == city.Name || t.Country.Name == country.Name || t.Theme.Title == missionTheme.Title)).ToList();
-            //getmission.RelatedMissionList = relatedmission;
+            
             List<RelatedMissionsVm> relatedmissions = new List<RelatedMissionsVm>();
             var relatedmissionlist = _db.Missions.Where(x=> x.MissionId!=mission.MissionId && (x.CityId==mission.CityId || x.CountryId==mission.CountryId || x.ThemeId==mission.ThemeId)).Take(3).ToList();
             foreach(var relatedmission in relatedmissionlist)
@@ -144,27 +142,64 @@ namespace CI_Platform.Repository.Repository
 
 
 
-            getmission.MissionId = mission.MissionId;
+                getmission.MissionId = mission.MissionId;
                 getmission.Title = mission.Title;
                 getmission.ShortDescription = mission.ShortDescription;
                 getmission.OrganizationName = mission.OrganizationName;
-                getmission.MissionThemes = missionTheme.Title;
+                getmission.MissionThemes = missionTheme?.Title;
                 getmission.CityName = city.Name;
                 getmission.StartDate = "From " + startdatetime[0];
                 getmission.EndDate = "Until " + enddatetime[0];
-                getmission.Deadline = startdatetime[0];
                 getmission.MissionType = mission.MissionType;
-                getmission.Seats = (int)mission.TotalSeats;
-                getmission.AvailableSeats = (int)mission.TotalSeats - missionapplication.Where(x => x.MissionId == mission.MissionId).Count();
+                if (mission.MissionType == "Time") {    
+                        getmission.Deadline = mission.Deadline?.ToString("dd-MM-yyyy");
+                        getmission.Seats = (int)mission.TotalSeats;
+                        getmission.AvailableSeats = (int)mission.TotalSeats - missionapplication.Where(x => x.MissionId == mission.MissionId).Count();
+                }
+                if(mission.MissionType == "Goal")
+                {
+                    GoalMission? getgoaldata = _db.GoalMissions.FirstOrDefault(goal => goal.MissionId == mission.MissionId && goal.DeletedAt==null);
+                    if (getgoaldata != null)
+                    {
+                        getmission.GoalValue = getgoaldata.GoalValue;
+                        getmission.GoalObjective = getgoaldata.GoalObjectiveText;
+                        List<Timesheet>? getgoalachieved = _db.Timesheets.Where(timesheet=>timesheet.MissionId== mission.MissionId && timesheet.DeletedAt==null).ToList();
+                        if (getgoalachieved != null)
+                        {
+                        getmission.GoalAchieved = (int)getgoalachieved.Sum(goal => goal.Action) == null ? 0 : (int)getgoalachieved.Sum(goal => goal.Action);
+                        getmission.GoalPercentage = (float)((float)getmission.GoalAchieved / (float)getmission.GoalValue) * 100;
+                        getmission.AlreadyVolunteered = _db.MissionApplications.Count(mission => mission.MissionId == getmission.MissionId && mission.ApprovalStatus == "Approve" && mission.DeletedAt == null); ;
+                        }
+                    }
+                }
+                
+                
+                
                 getmission.SkillName = skills.SkillName;
-                getmission.Rating = (int)missionRating;
+                if(missionRating != null)
+                {
+                    getmission.Rating = (int)missionRating;
+                }
+                else
+                {
+                    getmission.Rating = 0;
+                }
+                //getmission.Rating = (int)missionRating == null ? 0 : (int)missionRating;
                 getmission.RatedbyUsers = (int)ratingcount;
-            getmission.ApplicationStatus = GetApplicationStatus(mission.MissionId, userid);
-
-           
+                getmission.ApplicationStatus = GetApplicationStatus(mission.MissionId, userid);
+                getmission.Users = _db.Users.Where(user=>user.DeletedAt == null).ToList();
+                if(userrating != null)
+                {
+                    getmission.UserRating = (int)userrating.Rating;
+                }
+                else
+                {
+                    getmission.UserRating= 0;
+                }
+                //getmission.UserRating = (int)userrating.Rating == null ? 0 : (int)userrating.Rating;
             
             
-            getmissions.Add(getmission);
+                getmissions.Add(getmission);
 
 
 
@@ -173,7 +208,7 @@ namespace CI_Platform.Repository.Repository
 
 
 
-            return getmissions;
+               return getmissions;
         }
         public int GetApplicationStatus(long? missionid, long? userid)
         {
