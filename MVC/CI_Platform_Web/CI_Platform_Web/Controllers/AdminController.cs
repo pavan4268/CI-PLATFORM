@@ -380,7 +380,15 @@ namespace CI_Platform_Web.Controllers
                         }
                     }
                 }
-                
+                //description validation
+
+                if (string.IsNullOrEmpty(obj.Description))
+                {
+                    ModelState.AddModelError("Description", "Please Enter Description");
+                    return View(obj);
+                }
+
+                //description validation
 
             }
             #endregion

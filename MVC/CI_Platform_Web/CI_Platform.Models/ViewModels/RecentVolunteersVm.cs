@@ -11,7 +11,7 @@ namespace CI_Platform.Entities.ViewModels
         public string UserName { get; set; }
 
         
-
+        public string? Avatar { get; set; }
        
 
         public DateTime AppliedAt { get; set; }

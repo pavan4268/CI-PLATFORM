@@ -31,6 +31,37 @@
                                  id="navbarRightAlignExample">
                                 <!-- Left links -->
                                 <ul class="navbar-nav mb-2">
+
+
+                                    <!-- Navbar dropdown -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           href="#"
+                                           id="ExploreDropdown"
+                                           role="button"
+                                           data-mdb-toggle="dropdown"
+                                           aria-expanded="false">
+                                            Explore
+                                        </a>
+                                        <!-- Dropdown menu -->
+                                        <ul class="dropdown-menu"
+                                            aria-labelledby="ExploreDropdown">
+                                            <li>
+                                                <a class="dropdown-item" href="#">Top Themes</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="#">Most Ranked</a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a class="dropdown-item" href="#">Top Favourite</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+
+
                                     <li class="nav-item">
                                         <a class="nav-link" aria-current="page" asp-action="StoriesListing" asp-controller="Story">Stories</a>
                                     </li>

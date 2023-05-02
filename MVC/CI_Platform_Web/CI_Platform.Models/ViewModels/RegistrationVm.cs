@@ -1,4 +1,5 @@
-﻿using NHibernate.Type;
+﻿using CI_Platform.Entities.Data;
+using NHibernate.Type;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,6 +40,6 @@ namespace CI_Platform.Entities.ViewModels
         [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Phone number should be 10 digits long and contain numbers only")]
         public long PhoneNumber { get; set; }
 
-
+        public List<Banner>? banners { get; set; }
     }
 }

@@ -32,89 +32,43 @@
                  class="carousel slide"
                  data-bs-ride="carousel">
                 <div class="carousel-indicators m-4">
-                    <button type="button"
+                    @if(Model.banners.Count > 0)
+                    {
+                        @for(int i = 0; i < Model.banners.Count; i++)
+                        {
+                            <button type="button"
                             data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide-to="0"
-                            class="active"
+                            data-bs-slide-to="@i"
+                            class=@(i == 0 ? "active" : "")
                             aria-current="true"
-                            aria-label="Slide 1"></button>
-                    <button type="button"
-                            data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    <button type="button"
-                            data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
+                            aria-label="Slide @(i+1)"></button>
+                        }
+                    }
+
+                    
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    @if (Model.banners.Count > 0)
+                    {
+                        for(int j = 0; j<Model.banners.Count; j++)
+                        {
+                            <div class="carousel-item @(j==0 ? "active" : "")">
                         <div class="gradient-block">
-                            <img src="assets\Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                            <img src="~/assets/Banner/@Model.banners[j].Image"
                                  class="d-block w-100"
                                  alt="..." />
                         </div>
 
                         <div class="carousel-caption d-md-block">
                             <h2 class="text-start">
-                                Sed ut perspiciatis unde omnis iste natus voluptatem.
+                                @Model.banners[j].Text
                             </h2>
-                            <p class="text-start d-none d-sm-none d-lg-block">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </p>
+                            
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="gradient-block">
-                            <img src="assets\Grow-Trees-On-the-path-to-environment-sustainability-login.png"
-                                 class="d-block w-100"
-                                 alt="..." />
-                        </div>
-                        <div class="carousel-caption d-md-block">
-                            <h2 class="text-start">
-                                Sed ut perspiciatis unde omnis iste natus voluptatem.
-                            </h2>
-                            <p class="text-start d-none d-sm-none d-lg-block">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="gradient-block">
-                            <img src="assets\Grow-Trees-On-the-path-to-environment-sustainability-login.png"
-                                 class="d-block w-100"
-                                 alt="..." />
-                        </div>
-                        <div class="carousel-caption d-md-block">
-                            <h2 class="text-start">
-                                Sed ut perspiciatis unde omnis iste natus voluptatem.
-                            </h2>
-                            <p class="text-start d-none d-sm-none d-lg-block">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </p>
-                        </div>
-                    </div>
+                        }
+                    }
+                   
                 </div>
                 <button class="carousel-control-prev"
                         type="button"

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C4sSPtukxY2Up08eV6RJwDpR6aJJU4fNVJVf6Sie0xY=",
+  "Hash": "2wBf/zEAoU/xHbLw48/whc1vaU/q4Ms8YbtqvdLalBY=",
   "Source": "CI_Platform_Web",
   "BasePath": "_content/CI_Platform_Web",
   "Mode": "Default",
@@ -185,6 +185,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\arrow.png"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Banner\\47befc4f-fa27-432c-8226-119626a63419.png",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/Banner/47befc4f-fa27-432c-8226-119626a63419.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\Banner\\47befc4f-fa27-432c-8226-119626a63419.png"
+    },
+    {
+      "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Banner\\704533e1-0aeb-4ccf-8c2f-563ab84cc9e3.png",
+      "SourceId": "CI_Platform_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\",
+      "BasePath": "_content/CI_Platform_Web",
+      "RelativePath": "assets/Banner/704533e1-0aeb-4ccf-8c2f-563ab84cc9e3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\Banner\\704533e1-0aeb-4ccf-8c2f-563ab84cc9e3.png"
     },
     {
       "Identity": "D:\\CI Platform\\CI-Platform\\MVC\\CI_Platform_Web\\CI_Platform_Web\\wwwroot\\assets\\Banner\\d6ab151e-48ee-4873-9e54-bc5a25181c07.jpg",

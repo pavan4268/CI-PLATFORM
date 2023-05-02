@@ -13,7 +13,11 @@ namespace CI_Platform.Entities.ViewModels
 
         public string? ShortDescription { get; set; }
 
+        public string? Description { get; set; }
+
         public string? OrganizationName { get; set; }
+
+        public string? OrganizationDetails { get; set; }
 
         public int Rating { get; set; } = 0;
 
@@ -29,7 +33,9 @@ namespace CI_Platform.Entities.ViewModels
 
         public int NumberOfSeats { get; set; } = 0;
 
-        public string? Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
+
+        public DateTime? TheEnd { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
@@ -43,7 +49,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public string? SkillName { get; set; }
 
-        
+        public string? Availability { get; set; }
 
         public int RatedbyUsers { get; set; } = 0;
 

@@ -86,6 +86,7 @@ namespace CI_Platform.Repository.Repository
                 var recentuser = _db.Users.Where(x=>x.UserId==volunteer.UserId).FirstOrDefault();
                 recentParticipant.UserName = recentuser.FirstName + " " + recentuser.LastName;
                 recentParticipant.AppliedAt = volunteer.CreatedAt;
+                recentParticipant.Avatar = recentuser.Avatar;
                 recentVolunteer.Add(recentParticipant);
             }
             getmission.RecentVolunteers = recentVolunteer;
@@ -138,10 +139,6 @@ namespace CI_Platform.Repository.Repository
 
 
 
-
-
-
-
                 getmission.MissionId = mission.MissionId;
                 getmission.Title = mission.Title;
                 getmission.ShortDescription = mission.ShortDescription;
@@ -150,9 +147,13 @@ namespace CI_Platform.Repository.Repository
                 getmission.CityName = city.Name;
                 getmission.StartDate = "From " + startdatetime[0];
                 getmission.EndDate = "Until " + enddatetime[0];
+                getmission.TheEnd = mission.EndDate;
                 getmission.MissionType = mission.MissionType;
+                getmission.OrganizationDetails = mission.OrganizationDetails;
+                getmission.Availability = mission.Availability;
+                getmission.Description = mission.Description;
                 if (mission.MissionType == "Time") {    
-                        getmission.Deadline = mission.Deadline?.ToString("dd-MM-yyyy");
+                        getmission.Deadline = mission.Deadline;
                         getmission.Seats = (int)mission.TotalSeats;
                         getmission.AvailableSeats = (int)mission.TotalSeats - missionapplication.Where(x => x.MissionId == mission.MissionId).Count();
                 }
@@ -202,14 +203,14 @@ namespace CI_Platform.Repository.Repository
                 getmissions.Add(getmission);
 
 
-
-           
-
-
-
-
                return getmissions;
         }
+
+
+
+
+
+
         public int GetApplicationStatus(long? missionid, long? userid)
         {
             MissionApplication? checkapplied = _db.MissionApplications.FirstOrDefault(x => x.MissionId == missionid && x.UserId == userid);

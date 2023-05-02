@@ -28,21 +28,25 @@ namespace CI_Platform.Entities.ViewModels
 
 
         [Required(ErrorMessage = "Mission Title is Required.")]
-        [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Please enter only alphabetic characters and spaces")]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "Special Characters not Allowed")]
         public string Title { get; set; } = null!;
 
 
         [Required(ErrorMessage = "Short Description is Required.")]
-        [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Please enter only alphabetic characters and spaces")]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "Special Characters not Allowed")]
         public string? ShortDescription { get; set; }
 
+
+        [Required(ErrorMessage = "Description is Required.")]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "Special Characters not Allowed")]
         public string? Description { get; set; }
 
 
 
-
+        [Required(ErrorMessage ="Please Select a StartDate")]
         public DateTime? StartDate { get; set; }
 
+        [Required(ErrorMessage ="Please Select an EndDate")]
         public DateTime? EndDate { get; set; }
 
         public DateTime? DeadLine { get; set; }
@@ -59,12 +63,12 @@ namespace CI_Platform.Entities.ViewModels
 
 
         [Required(ErrorMessage = "Organization Name is Required.")]
-        [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Please enter only alphabetic characters and spaces")]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "Special Characters not Allowed")]
         public string? OrganizationName { get; set; }
 
 
         [Required(ErrorMessage = "Organization Details are Required.")]
-        [RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Please enter only alphabetic characters and spaces")]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "Special Characters not Allowed")]
         public string? OrganizationDetails { get; set; }
 
 

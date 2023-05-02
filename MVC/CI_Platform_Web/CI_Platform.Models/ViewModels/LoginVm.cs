@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CI_Platform.Entities.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,7 @@ namespace CI_Platform.Entities.ViewModels
         public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
+
+        public List<Banner>? banners { get; set; }
     }
 }

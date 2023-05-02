@@ -8,17 +8,11 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Entities.ViewModels
 {
-    public class ResetVm
+    public class ForgotVm
     {
-        [Required]
-        public string Password { get; set; } = null!;
-
-        [Required]
-        public string Confirm_Password { get; set; } = null!;
-
-        public string Email { get; set; }= null!;
-
-        public string Token { get; set; } = null!;  
+        [Required(ErrorMessage ="Please Enter an Email")]
+        [EmailAddress(ErrorMessage = "Email is not valid")]
+        public string? Email { get; set; }
 
         public List<Banner>? banners { get; set; }
     }

@@ -37,7 +37,13 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            LoginVm vm = new LoginVm(); 
+            List<Banner>? banners = _db.Banners.Where(banner=>banner.DeletedAt==null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                vm.banners = banners;
+            }
+            return View(vm);
         }
 
         public IActionResult Privacy()
@@ -47,17 +53,35 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult forgot()
         {
-            return View();
+            ForgotVm vm = new ForgotVm();
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                vm.banners = banners;
+            }
+            return View(vm);
         }
 
         public IActionResult registration()
         {
-            return View();
+            RegistrationVm vm = new RegistrationVm();
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                vm.banners = banners;
+            }
+            return View(vm);
         }
 
         public IActionResult reset()
         {
-            return View();
+            ResetVm vm = new ResetVm();
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                vm.banners = banners;
+            }
+            return View(vm);
         }
 
 
@@ -76,6 +100,11 @@ namespace CI_Platform_Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LoginVm obj)
         {
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                obj.banners = banners;
+            }
             if (ModelState.IsValid)
             {
                 if(_db!=null)
@@ -120,15 +149,20 @@ namespace CI_Platform_Web.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                return View();
+                return View(obj);
             }
-            return View();
+            return View(obj);
         }
         //registration
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult registration(RegistrationVm obj)
         {
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                obj.banners = banners;
+            }
             if (ModelState.IsValid)
             {
                 var existsuser = _db.Users.FirstOrDefault(c => c.Email == obj.Email);
@@ -158,20 +192,21 @@ namespace CI_Platform_Web.Controllers
                     return RedirectToAction("Index");
                 }
                 TempData["emailexists"] = "Email Already Exists!";
-                return View();
+                return View(obj);
                 
             }
             TempData["emailexists"] = "Some Error Occured";
 
-            return View();
+            return View(obj);
         }
         //registration
 
         //forgot password
         [HttpPost]
         
-        public IActionResult forgot(User obj)
+        public IActionResult forgot(ForgotVm obj)
         {
+
             var verify = _db.Users.ToList()
                             .Where(a => a.Email == obj.Email).Count();
             if (verify != 0)
@@ -202,15 +237,19 @@ namespace CI_Platform_Web.Controllers
                     };
                     _db.PasswordResets.Add(data);
                     _db.SaveChanges();
-
+                    return RedirectToAction("Index");
                 }
                 catch(Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
             }
-           
-            return View();
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                obj.banners = banners;
+            }
+            return View(obj);
         }
         //forgot password
 
@@ -220,7 +259,11 @@ namespace CI_Platform_Web.Controllers
         {
             ResetVm vm = new ResetVm()
             { Email = Email, Token = Token };
-
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                vm.banners = banners;
+            }
             return View(vm);
         }
 
@@ -240,7 +283,12 @@ namespace CI_Platform_Web.Controllers
 
                 return RedirectToAction("Index");
             }
-            
+            List<Banner>? banners = _db.Banners.Where(banner => banner.DeletedAt == null).OrderBy(banner => banner.SortOrder).ToList();
+            if (banners.Any())
+            {
+                obj.banners = banners;
+            }
+
             return View(obj);
         }
       
@@ -248,37 +296,8 @@ namespace CI_Platform_Web.Controllers
 
        
     }
-                //logout
-
+                
                
 
-                //logout
+                
 }
-//else
-//                {
-//                    TempData["alert"] = "data is null";
-//                    return RedirectToAction("login", "home");
-//    }
-//}
-//return View();
-
-//if (issucess != null)
-//            {
-//                return RedirectToAction("PlatformLanding", "Mission");
-//            }
-//            else
-//            {
-//                return RedirectToAction("Index", "Home");
-//            }
-
-// login
-
-
-
-
-//    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-//    public IActionResult Error()
-//    {
-//        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-//    }
-//}

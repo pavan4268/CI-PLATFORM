@@ -269,7 +269,7 @@
                         class="container justify-content-center align-content-center"
                       >
                         <span class="event-num">DeadLine<br /></span>
-                        <span class="event-txt">@data.Deadline</span>
+                        <span class="event-txt">@data.Deadline?.ToString("dd-MM-yyyy")</span>
                       </div>
                     </div>
                   </div>
@@ -457,6 +457,28 @@
                 
               </button>
                 }
+                else if(data.Deadline<DateTime.Today){
+                    <button
+                class="btn btn-warning justify-content-center"
+                type="submit"
+                aria-label="Apply Now"
+                
+              >
+                Closed
+                
+              </button>
+                }
+                else if(data.TheEnd<DateTime.Today){
+                    <button
+                class="btn btn-warning justify-content-center"
+                type="submit"
+                aria-label="Apply Now"
+                
+              >
+                Expired
+                
+              </button>
+                }
                 else{
                     <button
                 class="btn apply-button justify-content-center"
@@ -546,63 +568,12 @@
               <div class="container mission-details">
                 <!-- mission introduction div starts -->
                 <div class="mission-introduction">
-                  <h3 class="intro-txt">Introduction</h3>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Quod nihil modi similique veniam delectus inventore quo
-                    fugit perferendis nulla corporis velit, incidunt doloribus?
-                    Animi ad delectus nostrum porro quod ipsum quos facilis
-                    similique.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Quod nihil modi similique veniam delectus inventore quo
-                    fugit perferendis nulla corporis velit, incidunt doloribus?
-                    Animi ad delectus nostrum porro quod ipsum quos facilis
-                    similique.
-                  </p>
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Aliquid fugit consequatur explicabo commodi quasi deleniti
-                    ea quibusdam eos eaque, voluptatum nulla perferendis saepe
-                    sit ut vel quaerat obcaecati delectus ullam aliquam unde
-                    vero! Veniam nulla dolorem consequuntur consequatur impedit
-                    architecto, temporibus neque, sunt animi nostrum
-                    voluptatibus commodi. Illo commodi omnis nemo possimus vero
-                    ducimus praesentium optio corrupti, in odit dolorem quam
-                    iste et tempore, voluptatibus beatae.
-                  </p>
+                    @Html.Raw(@data.Description)
+
                 </div>
                 <!-- mission introduction div ends -->
                 <!-- mission challenge div starts -->
-                <div class="mission-challenge">
-                  <h3 class="intro-txt">Challenge</h3>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Quod nihil modi similique veniam delectus inventore quo
-                    fugit perferendis nulla corporis velit, incidunt doloribus?
-                    Animi ad delectus nostrum porro quod ipsum quos facilis
-                    similique.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Quod nihil modi similique veniam delectus inventore quo
-                    fugit perferendis nulla corporis velit, incidunt doloribus?
-                    Animi ad delectus nostrum porro quod ipsum quos facilis
-                    similique.
-                  </p>
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Aliquid fugit consequatur explicabo commodi quasi deleniti
-                    ea quibusdam eos eaque, voluptatum nulla perferendis saepe
-                    sit ut vel quaerat obcaecati delectus ullam aliquam unde
-                    vero! Veniam nulla dolorem consequuntur consequatur impedit
-                    architecto, temporibus neque, sunt animi nostrum
-                    voluptatibus commodi. Illo commodi omnis nemo possimus vero
-                    ducimus praesentium optio corrupti, in odit dolorem quam
-                    iste et tempore, voluptatibus beatae.
-                  </p>
-                </div>
+                
                 <!-- mission challenge div ends -->
                 <!-- mission documents div starts -->
                 <div class="mission-challenge">
@@ -647,13 +618,14 @@
               role="tabpanel"
               aria-labelledby="organization-tab"
             >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam,
-              optio voluptate nisi, sed nulla voluptas, temporibus incidunt
-              rerum accusantium iusto praesentium quis ea consectetur dolorem?
-              Dolorum delectus voluptate numquam mollitia quasi ipsam ut
-              suscipit ipsa maiores quas, laborum doloribus reiciendis
-              laudantium expedita similique quis totam nobis eveniet adipisci
-              quod quibusdam tempora facere iste. Iste, maxime!
+                @if(!string.IsNullOrEmpty(data.OrganizationDetails)){
+                    @data.OrganizationDetails
+                }
+                else{
+                    <span>No Information Available</span>
+                }
+                
+              
             </div>
             <div
               class="tab-pane fade"
@@ -758,7 +730,7 @@
             <div class="row container-fluid field pb-4 pt-3 m-0">
               <!-- creating different divs for fields and their values starts -->
               <div class="col-lg-2">Days</div>
-              <div class="col-lg">Weekend Only</div>
+              <div class="col-lg">@data.Availability</div>
               <!-- creating different divs for fields and their values ends -->
             </div>
             <!-- days div ends -->
@@ -769,37 +741,22 @@
               <div class="col-lg">
                                 @for(int j = 0; j < data.Rating; j++)
                                 {
-                                     <img
+                                    <i class = "bi bi-star-fill text-warning m-2"></i>
+                                     @*<img
                                       class="imfo-rating-star img-fluid"
                                       src="~/assets/selected-star.png"
                                       alt=""
-                                    />
+                                    />*@
                                 }      
                                 @for(int? j = data.Rating; j<5; j++)
                                 {
-                                     <img
+                                    <i class = "bi bi-star m-2"></i>
+                                     @*<img
                                       class="imfo-rating-star"
                                       src="~/assets/star-empty.png"
                                       alt=""
-                                    />
+                                    />*@
                                 }
-
-                
-                @*<img
-                  class="imfo-rating-star"
-                  src="~/assets/selected-star.png"
-                  alt=""
-                />
-                <img
-                  class="imfo-rating-star"
-                  src="~/assets/selected-star.png"
-                  alt=""
-                />
-                <img
-                  class="imfo-rating-star"
-                  src="~/assets/selected-star.png"
-                  alt=""
-                />*@
                 <span class="rating-detail">(by @data.RatedbyUsers volunteers)</span>
               </div>
               <!-- creating different divs for fields and their values ends -->
@@ -820,11 +777,21 @@
                   @foreach(var recent in data.RecentVolunteers){
                     <div class="col">
                       <div class="d-flex justify-content-center">
-                        <img
+                          @if(recent.Avatar == null){
+                              <img
                           src="~/assets/volunteer1.png"
                           class="img-fluid volunteer-img"
                           alt=""
                         />
+                          }
+                          else{
+                              <img
+                          src="~/assets/UserAvatar/@recent.Avatar"
+                          class="img-fluid volunteer-img"
+                          alt=""
+                        />
+                          }
+                        
                       </div>
                       <div class="d-flex justify-content-center">
                         <span>@recent.UserName</span>
@@ -835,6 +802,12 @@
             </div>
             <!-- main body of recently-voluntered starts here -->
             <!-- pagination starts -->
+
+            @*<div class="d-flex justify-content-between text-secondary mt-4 border-top p-2">
+                <span class="prev"></span>
+            </div>*@
+
+
             <div class="container-fluid">
               <nav aria-label="Page navigation example">
                 <ul class="pagination pg-blue justify-content-center m-0">
