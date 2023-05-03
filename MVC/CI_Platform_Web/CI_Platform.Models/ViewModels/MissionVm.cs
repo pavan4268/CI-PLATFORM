@@ -47,5 +47,17 @@ namespace CI_Platform.Entities.ViewModels
 
         public long? CountryId { get; set; }
         public List<MissionSkill>? MissionSkill { get; set; }
+
+        public int? Ratings { get; set; } = 0;
+
+        public int GoalValue { get; set; } = 0;
+
+        public string? GoalObjective { get; set; }
+
+        public int GoalAchieved { get; set; } = 0;
+
+        public float GoalPercentage { get; set; } = 0;
+
+        public int AlreadyVolunteered { get; set; } = 0;
     }
 }

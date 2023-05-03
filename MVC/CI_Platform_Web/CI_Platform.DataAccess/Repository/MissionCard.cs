@@ -52,14 +52,13 @@ namespace CI_Platform.Repository.Repository
                         StartDate = "From " + startdatetime[0],
                         EndDate = "Until" + enddatetime[0],
                         Img = "~/assets/Grow-Trees-On-the-path-to-environment-sustainability.png",
-                        Rating = 3,
-                        NumberOfSeats = 10,
-                        Deadline = startdatetime[0],
+                        
+                        //Deadline = mission.Deadline?.ToString("dd-MM-yyyy"),
                         CreatedAt = mission.CreatedAt,
                         MissionType = mission.MissionType,
                         //Seats = (int)mission.TotalSeats,
                         MissionId = mission.MissionId,
-                        RegistrationDeadline = mission.StartDate,
+                        //RegistrationDeadline = mission.Deadline,
                         //AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count(),
                         CountryId = mission.CountryId,
                         MissionSkill = missionSkill,
@@ -71,8 +70,33 @@ namespace CI_Platform.Repository.Repository
                     }
                     if (cardview.MissionType == "Time")
                     {
+                        cardview.RegistrationDeadline = mission.Deadline;
+                        cardview.Deadline = mission.Deadline?.ToString("dd-MM-yyyy");
                         cardview.Seats = (int)mission.TotalSeats;
                         cardview.AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count();
+                    }
+                    if(cardview.MissionType == "Goal")
+                    {
+                        GoalMission? getgoaldata = _db.GoalMissions.FirstOrDefault(goal=>goal.MissionId == mission.MissionId && goal.DeletedAt==null);
+                        if(getgoaldata != null)
+                        {
+                            cardview.GoalValue = getgoaldata.GoalValue;
+                            cardview.GoalObjective = getgoaldata.GoalObjectiveText;
+                            List<Timesheet>? getgoalachieved = _db.Timesheets.Where(timesheet=>timesheet.MissionId == mission.MissionId && timesheet.DeletedAt==null).ToList();
+                            if(getgoalachieved != null)
+                            {
+                                cardview.GoalAchieved = (int)getgoalachieved.Sum(goal => goal.Action) == null ?0 : (int)getgoalachieved.Sum(goal => goal.Action);
+                                cardview.GoalPercentage = (float)((float)cardview.GoalAchieved / (float)cardview.GoalValue) * 100;
+                                cardview.AlreadyVolunteered = _db.MissionApplications.Count(application => application.MissionId == mission.MissionId && application.ApprovalStatus == "Approve" && application.DeletedAt == null);
+                            }
+                        }
+                        
+                        
+                    }
+                    int? missionrating = (int?)_db.MissionRatings.Where(rating => rating.MissionId == mission.MissionId && rating.DeletedAt == null).Average(rating => rating.Rating);
+                    if(missionrating != null)
+                    {
+                        cardview.Ratings = missionrating;
                     }
                     getmissions.Add(cardview);
                 }

@@ -66,11 +66,21 @@
                 <!-- mission organization col div ends -->
                 <!-- rating col div starts -->
                 <div class="col mission-rating d-flex align-content-center">
-                  <img src="~/assets/selected-star.png" alt="" />
+                    @for(int j = 0; j < card.Ratings; j++)
+                    {
+                        <i class = "bi bi-star-fill text-warning m-2"></i>
+                                     
+                    }      
+                    @for(int? j = card.Ratings; j<5; j++)
+                    {
+                        <i class = "bi bi-star m-2"></i>
+                                     
+                    }
+                  @*<img src="~/assets/selected-star.png" alt="" />
                   <img src="~/assets/selected-star.png" alt="" />
                   <img src="~/assets/selected-star.png" alt="" />
                   <img src="~/assets/star.png" alt="" />
-                                <img src="~/assets/star.png" alt="" />
+                                <img src="~/assets/star.png" alt="" />*@
                 </div>
                 <!-- rating col div ends -->
               </div>
@@ -119,7 +129,7 @@
                     <!-- div containing seats details text starts -->
 
                     <div class="eventt">
-                      <span class="event-num d-block">@card.NumberOfSeats</span>
+                      <span class="event-num d-block">@card.AvailableSeats</span>
                       <span class="event-txt">Seats Left</span>
                     </div>
 
@@ -184,8 +194,8 @@
                     <!-- div containing seats details text starts -->
 
                     <div class="eventt">
-                      <span class="event-num d-block">@card.AvailableSeats</span>
-                      <span class="event-txt">Seats Left</span>
+                      <span class="event-num d-block">@card.AlreadyVolunteered</span>
+                      <span class="event-txt">Already Volunteered</span>
                     </div>
 
                     <!-- div containing seats details text ends -->
@@ -209,13 +219,13 @@
                       class="progress p-0 w-100 container"
                       role="progressbar"
                       aria-label="Basic example"
-                      aria-valuenow="75"
+                      aria-valuenow="@card.GoalPercentage"
                       aria-valuemin="0"
                       aria-valuemax="100"
                     >
-                      <div class="progress-bar w-75"></div>
+                      <div class="progress-bar" style="width:@card.GoalPercentage%;"></div>
                     </div>
-                    <span class="achieved-txt">8000 achieved</span>
+                    <span class="achieved-txt">@card.GoalAchieved achieved</span>
                   </div>
                 </div>
               </li>
@@ -235,7 +245,7 @@
                   class="btn text-lowercase apply-btn container-fluid align-items-center align-self-center" 
                 >
                   <a class="apply-btn-txt" asp-action="VolunteeringMissionPage" asp-controller="Mission" asp-route-id="@card.MissionId"
-                    >Already Applied&nbsp;
+                    >View Details&nbsp;
                     <img src="~/assets/right-arrow.png" alt=""
                   /></a>
                 </button>

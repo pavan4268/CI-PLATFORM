@@ -742,20 +742,12 @@
                                 @for(int j = 0; j < data.Rating; j++)
                                 {
                                     <i class = "bi bi-star-fill text-warning m-2"></i>
-                                     @*<img
-                                      class="imfo-rating-star img-fluid"
-                                      src="~/assets/selected-star.png"
-                                      alt=""
-                                    />*@
+                                     
                                 }      
                                 @for(int? j = data.Rating; j<5; j++)
                                 {
                                     <i class = "bi bi-star m-2"></i>
-                                     @*<img
-                                      class="imfo-rating-star"
-                                      src="~/assets/star-empty.png"
-                                      alt=""
-                                    />*@
+                                     
                                 }
                 <span class="rating-detail">(by @data.RatedbyUsers volunteers)</span>
               </div>
