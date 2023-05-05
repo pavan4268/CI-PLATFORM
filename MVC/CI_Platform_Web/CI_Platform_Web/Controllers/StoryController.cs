@@ -199,43 +199,88 @@ namespace CI_Platform_Web.Controllers
 
 
 
-        public JsonResult DraftedData(long missionid)
+        //public JsonResult DraftedData(long missionid)
+        //{
+        //    string? user = HttpContext.Session.GetString("UserId");
+        //    long? userid = long.Parse(user);
+        //    //ShareStoryVm draftedData = new ShareStoryVm();
+        //    ShareStoryVm draftdata = new ShareStoryVm();
+        //    var saveddata = _db.Stories.FirstOrDefault(x=> x.MissionId == missionid && x.UserId== userid && x.Status=="DRAFT");
+        //    if(saveddata != null)
+        //    {
+        //        draftdata.StoryTitle = saveddata.Title;
+        //        draftdata.StoryDesctiption = saveddata.Description;
+        //        draftdata.Date = saveddata.CreatedAt;
+
+        //        var savedmedia = _db.StoryMedia.Where(x => x.StoryId == saveddata.StoryId).ToList();
+        //        List<VideoListVm> videopaths = new List<VideoListVm>();
+        //        foreach (var media in savedmedia)
+        //        {
+        //            var video = new VideoListVm();
+        //            if (media.Type == "video")
+        //            {
+        //                video.VideoPath = media.Path;
+        //                videopaths.Add(video);
+        //            }
+        //            //else
+        //            //{
+        //            //    draftedData.ImagePath = media.Path;
+        //            //}
+        //        }
+        //        draftdata.VideoList = videopaths;
+
+        //        return new JsonResult(draftdata);
+        //    }
+        //    else { return new JsonResult(null); }
+
+
+        //}
+
+        public IActionResult DraftedData(long missionid)
         {
             string? user = HttpContext.Session.GetString("UserId");
-            long? userid = long.Parse(user);
+            long userid = long.Parse(user);
             //ShareStoryVm draftedData = new ShareStoryVm();
             ShareStoryVm draftdata = new ShareStoryVm();
-            var saveddata = _db.Stories.FirstOrDefault(x=> x.MissionId == missionid && x.UserId== userid && x.Status=="DRAFT");
-            if(saveddata != null)
+            ShareStoryVm? filldropdown = _storyCards.GetUserMissions(userid);
+            draftdata.UserAppliedMissions = filldropdown.UserAppliedMissions;
+            var saveddata = _db.Stories.FirstOrDefault(x => x.MissionId == missionid && x.UserId == userid && x.Status == "DRAFT");
+            if (saveddata != null)
             {
                 draftdata.StoryTitle = saveddata.Title;
                 draftdata.StoryDesctiption = saveddata.Description;
                 draftdata.Date = saveddata.CreatedAt;
 
                 var savedmedia = _db.StoryMedia.Where(x => x.StoryId == saveddata.StoryId).ToList();
+                List<string> yturls = new List<string>();
                 List<VideoListVm> videopaths = new List<VideoListVm>();
                 foreach (var media in savedmedia)
                 {
-                    var video = new VideoListVm();
+                    //var video = new VideoListVm();
                     if (media.Type == "video")
                     {
-                        video.VideoPath = media.Path;
-                        videopaths.Add(video);
+                        yturls.Add(media.Path);
+                        //video.VideoPath = media.Path;
+                        //videopaths.Add(video);
+                    
                     }
+
                     //else
                     //{
                     //    draftedData.ImagePath = media.Path;
                     //}
                 }
-                draftdata.VideoList = videopaths;
+                string[] youtubeurls = yturls.ToArray();
 
-                return new JsonResult(draftdata);
+                draftdata.VideoUrl= string.Join(Environment.NewLine,youtubeurls);
+                
+
+                return PartialView("_ShareYourStoryPartial", draftdata);
             }
-            else { return new JsonResult(null); }
+            else { return PartialView("_ShareYourStoryPartial", draftdata); }
 
 
         }
-
 
 
 

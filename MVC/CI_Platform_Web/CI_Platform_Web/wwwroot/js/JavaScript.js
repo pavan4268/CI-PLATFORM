@@ -52,7 +52,13 @@ $(document).ready(function () {
     //    "scrollY": "300px",
     //    "scrollCollapse": false,
     //});
-
+    $('#editor').summernote({
+        height: 200, // set the height of the editor
+        toolbar: [
+            // add formatting options to the toolbar
+            ['style', ['bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'underline']]
+        ]
+    });
 
 });
 
@@ -194,6 +200,68 @@ function ImgUpload() {
 
 //}
 
+//function getSavedData() {
+//    var missionid = $("#mission-select").find(":selected").val();
+//    console.log(missionid);
+//    $.ajax({
+//        url: "/Story/DraftedData",
+//        data: { "missionid": missionid },
+//        success: function (response) {
+//            console.log(response);
+//            if (response != null) {
+//                document.getElementById("submit-btn").disabled = false;
+//                $("#storydesc").val(response.storyTitle);
+//                const date = response.date;
+//                console.log(date);
+//                const newdate = new Date(date);
+//                const year = newdate.getFullYear();
+//                const month = ("0" + (newdate.getMonth() + 1)).slice(-2);
+//                const day = ("0" + newdate.getDate()).slice(-2);
+//                console.log(year);
+//                console.log(month);
+//                console.log(newdate);
+//                const dateinput = document.getElementById("date-select");
+//                const formattedDate = `${year}-${month}-${day}`;
+//                dateinput.value = formattedDate;
+                
+//                tinymce.get('editor').setContent(response.storyDesctiption);
+//                var videolist = response.videoList;
+//                console.log(videolist);
+//                const textarea = document.getElementById('videourl');
+                
+//                for (var i = 0; i < videolist.length; i++) {
+                    
+//                    textarea.value += videolist[i].videoPath + '\n';
+//                }
+//            }
+//            else {
+//                var inputs = document.querySelectorAll("input");
+                
+//                for (var i = 0; i < inputs.length; i++) {
+//                    inputs[i].value = null;
+//                    document.getElementById("submit-btn").disabled = true;
+//                }
+//                document.getElementById("videourl").value = '';
+//                var today = new Date();
+//                var day = today.getDate();
+//                var month = today.getMonth() + 1; // Add 1 to month because January is 0
+//                var year = today.getFullYear();
+
+//                // Format the date as YYYY-MM-DD
+//                var formattedDate = year + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
+
+//                // Set the formatted date as the value of the input field
+//                document.getElementById("date-select").value = formattedDate;
+//                document.getElementById("editor").value = null;
+                
+//            }
+
+            
+            
+            
+//        }
+//    })
+//}
 function getSavedData() {
     var missionid = $("#mission-select").find(":selected").val();
     console.log(missionid);
@@ -202,57 +270,11 @@ function getSavedData() {
         data: { "missionid": missionid },
         success: function (response) {
             console.log(response);
-            if (response != null) {
-                document.getElementById("submit-btn").disabled = false;
-                $("#storydesc").val(response.storyTitle);
-                const date = response.date;
-                console.log(date);
-                const newdate = new Date(date);
-                const year = newdate.getFullYear();
-                const month = ("0" + (newdate.getMonth() + 1)).slice(-2);
-                const day = ("0" + newdate.getDate()).slice(-2);
-                console.log(year);
-                console.log(month);
-                console.log(newdate);
-                const dateinput = document.getElementById("date-select");
-                const formattedDate = `${year}-${month}-${day}`;
-                dateinput.value = formattedDate;
-                
-                tinymce.get('editor').setContent(response.storyDesctiption);
-                var videolist = response.videoList;
-                console.log(videolist);
-                const textarea = document.getElementById('videourl');
-                
-                for (var i = 0; i < videolist.length; i++) {
-                    
-                    textarea.value += videolist[i].videoPath + '\n';
-                }
-            }
-            else {
-                var inputs = document.querySelectorAll("input");
-                
-                for (var i = 0; i < inputs.length; i++) {
-                    inputs[i].value = null;
-                    document.getElementById("submit-btn").disabled = true;
-                }
-                document.getElementById("videourl").value = '';
-                var today = new Date();
-                var day = today.getDate();
-                var month = today.getMonth() + 1; // Add 1 to month because January is 0
-                var year = today.getFullYear();
+            $("#sharestorypv").html(response);
 
-                // Format the date as YYYY-MM-DD
-                var formattedDate = year + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
 
-                // Set the formatted date as the value of the input field
-                document.getElementById("date-select").value = formattedDate;
-                document.getElementById("editor").value = null;
-                
-            }
 
-            
-            
-            
+
         }
     })
 }
