@@ -150,5 +150,27 @@ namespace CI_Platform.Repository.Repository
             return obj;
         }
 
+
+        public List<PrivacyPolicyVm> GetCMSData()
+        {
+            List<PrivacyPolicyVm> obj = new List<PrivacyPolicyVm>();
+            List<CmsPage> cms = _db.CmsPages.Where(cms => cms.DeletedAt == null && cms.Status == 1).ToList();
+            if(cms.Count > 0)
+            {
+               
+                foreach (var sec in cms)
+                {
+                    PrivacyPolicyVm section = new PrivacyPolicyVm();
+                    section.Title = sec.Title;
+                    section.Description = sec.Description;
+                    section.CmsPageId = sec.CmsPageId;
+                    section.Slug = sec.Slug;
+                    obj.Add(section);
+                }
+            }
+            return obj;
+            
+        }
+
     }
 }

@@ -19,7 +19,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public string VideoUrl { get; set; }
 
-        public string ImagePath { get; set; }
+        public List<string>? ImagePath { get; set; }
 
         public string StoryStatus { get; set; }
 
@@ -29,7 +29,7 @@ namespace CI_Platform.Entities.ViewModels
 
         public List<VideoListVm> VideoList { get; set; }
 
-        
+        public long StoryId { get; set; }
 
     }
 }

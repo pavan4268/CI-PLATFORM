@@ -85,10 +85,13 @@ function GetMissionSkillList() {
 }
 
 
+
+
 function FilterMission(e) {
 
     e.preventDefault();
     var filterFormData = $("#filterform").serialize();
+    //filterFormData.append("sort", $("#selectsort").val());
 
     $.ajax({
         method: 'Post',
@@ -134,7 +137,21 @@ function FilterMission(e) {
 
 }
 
+function getexploredata(value) {
+    var sort = value;
+    $.ajax({
+        method: 'Post',
+        url: '/Mission/FilterMissions',
+        data: { sort: sort },
+        success: function (response) {
+            $("#maindata").html(response);
 
+        },
+        error: function (xhr, status, error) {
+            console.log("ajax error" + xhr.responseText);
+        }
+    });
+}
 //$(document).ready(function () {
 
 //    $('input[type=checkbox][id=countrylist]').change(function () {
@@ -250,23 +267,7 @@ function sortFunction(sortvalue) {
 // sorting js ends here
 
 
-//search script goes here
 
-//var debounceTimer;
-
-//function debounce(func , delay) {
-//    clearTimeout(debounceTimer);
-//    debounceTimer = setTimeout(func , delay);
-//}
-
-//document.getElementById("myInput").addEventListener("input", function () {
-
-//})
-
-//search script ends here
-
-
-//add to fav ajax call
 /*document.getElementById("fav-div").addEventListener("click", AddToFavourite());*/
 function AddToFavourite(userid, missionid) {
     $.ajax

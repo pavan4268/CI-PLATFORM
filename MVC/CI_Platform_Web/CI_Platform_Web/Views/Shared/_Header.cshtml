@@ -30,6 +30,7 @@
                             <div class="collapse navbar-collapse"
                                  id="navbarRightAlignExample">
                                 <!-- Left links -->
+                                
                                 <ul class="navbar-nav mb-2">
 
 
@@ -47,19 +48,19 @@
                                         <ul class="dropdown-menu"
                                             aria-labelledby="ExploreDropdown">
                                             <li>
-                                                <a class="dropdown-item" href="#">Top Themes</a>
+                                                <a class="dropdown-item" onclick="getexploredata('Top Themes')">Top Themes</a>
                                             </li>
 
                                             <li>
-                                                <a class="dropdown-item" href="#">Most Ranked</a>
+                                                <a class="dropdown-item" onclick="getexploredata('Most Ranked')">Most Ranked</a>
                                             </li>
                                             
                                             <li>
-                                                <a class="dropdown-item" href="#">Top Favourite</a>
+                                                <a class="dropdown-item" onclick="getexploredata('Top Favourite')">Top Favourite</a>
                                             </li>
                                         </ul>
                                     </li>
-
+                                    
 
 
                                     <li class="nav-item">
@@ -100,7 +101,39 @@
                                 <!-- Left links -->
                             </div>
                             <!-- Collapsible wrapper -->
+                            
                             <ul class="navbar-nav">
+                                
+
+                                <li class="nav-item dropdown">
+                                        <a class="nav-link pt-0"
+                                           href="#"
+                                           id="navbarDropdown"
+                                           role="button"
+                                           data-mdb-toggle="dropdown"
+                                           aria-expanded="false">
+                                            <i class="bi bi-bell" style="font-size:27px;font-weight:700;"></i>
+                                        </a>
+                                        <!-- Dropdown menu -->
+                                        <ul class="dropdown-menu notification_dropdown p-2"
+                                            aria-labelledby="navbarDropdown">
+                                            <li>
+                                                <div class="d-flex justify-content-between">
+                                                    <div><i class="bi bi-gear-fill"></i></div>
+                                                    <div style="font-size:large">Notifications</div>
+                                                    <div><a href="#" class="text-decoration-none">Clear All</a></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                            </li>
+                                           
+                                            <li>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
                                 <!-- Avatar -->
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle d-flex align-items-center"
@@ -147,7 +180,7 @@
                              class="srch-img d-flex align-content-center justify-content-center mr-2"
                              alt="" />
                        
-                            <input class="srch-bar mr-sm-2 bg-transparent border-0" type="search" name="SearchText" id = "myInput" placeholder="Search" @*onkeyup="search()"*@/>
+                            <input class="srch-bar mr-sm-2 bg-transparent border-0" type="search" name="SearchText" id = "myInput" placeholder="Search"/>
                         
                     </nav>
                 </div>
@@ -179,36 +212,7 @@
                                            <option>Country</option>
                                        </select>
 
-                                    @*   <div class="dropdown text-center mt-1">
-                                            <button class="btn dropdown-toggle shadow-none text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Theme
-                                          </button>
-                                          <ul class="dropdown-menu" id="Theme">
-                                          </ul>
-                                      </div>
-                                   *@
-                                    <!-- nav-bar dropdown ends -->
-                                    <!-- Navbar dropdown -->
-                                   @* <li class="nav-item dropdown col">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="#"
-                                           id="navbarDropdown"
-                                           role="button"
-                                           data-mdb-toggle="dropdown"
-                                           aria-expanded="false">
-                                            City
-                                        </a>
-                                        <!-- Dropdown menu -->
-                                        <ul class="dropdown-menu"
-                                            aria-labelledby="navbarDropdown">
-                                           
-                                           
-
-                                            </ul>
-                                    </li>*@
-                                    @* <select id = "CityList" style="background-color:transparent;border:none">
-                                           <option>City</option>
-                                       </select>*@
+                                    
 
                                        <div class="dropdown nav-link col-lg-3 col-sm-12 col-md-6">
                                         <button class="btn dropdown-toggle bg-transparent shadow-none mt-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -220,36 +224,11 @@
                              
                                         </ul>
                                       </div>
-                                    <!-- nav-bar dropdown ends -->
-                                    <!-- Navbar dropdown -->
-                                    @*<li class="nav-item dropdown col">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="#"
-                                           id="navbarDropdown"
-                                           role="button"
-                                           data-mdb-toggle="dropdown"
-                                           aria-expanded="false">
-                                            Theme
-                                        </a>
-                                        <!-- Dropdown menu -->
-                                        <ul class="dropdown-menu"
-                                            aria-labelledby="navbarDropdown">
-                                            <li>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </li>
-                                        </ul>
-                                    </li>*@
+                                   
 
-                                     @*<select id = "MissionThemeList" style="background-color:transparent;border:none">
-                                           <option>Theme</option>
-                                       </select>*@
+
+
+
                                        <div class="dropdown  nav-link col-lg-3 col-sm-12 col-md-6 ">
                                             <button class="btn dropdown-toggle bg-transparent shadow-none mt-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Theme
@@ -260,37 +239,8 @@
                                                   </ul>
                                           </div>
 
-                                    <!-- nav-bar dropdown ends -->
-                                    <!-- Navbar dropdown -->
-                                    @*<li class="nav-item dropdown col">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="#"
-                                           id="navbarDropdown"
-                                           role="button"
-                                           data-mdb-toggle="dropdown"
-                                           aria-expanded="false">
-                                            Skills
-                                        </a>
-                                        <!-- Dropdown menu -->
-                                        <ul class="dropdown-menu"
-                                            aria-labelledby="navbarDropdown">
-                                            <li>
-                                                <a class="dropdown-item" href="#">Action</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </li>
-                                        </ul>
-                                    </li>*@
+                                    
 
-
-                                    @*<select id = "MissionSkillList" style="background-color:transparent;border:none">
-                                           <option>Skills</option>
-                                       </select>*@
 
                                        <div class="dropdown nav-link col-lg-3 col-sm-12 col-md-6  ">
                                             <button class="btn dropdown-toggle bg-transparent shadow-none mt-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">

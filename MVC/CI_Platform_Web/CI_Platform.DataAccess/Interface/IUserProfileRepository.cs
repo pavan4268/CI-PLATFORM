@@ -17,5 +17,7 @@ namespace CI_Platform.Repository.Interface
 
         public GoalBasedVm EditGoalTimeSheet(long timesheetid);
         //public UserProfileVm UpdateUser(UserProfileVm obj, long userid);
+
+        public List<PrivacyPolicyVm> GetCMSData();
     }
 }

@@ -46,6 +46,7 @@ namespace CI_Platform.Entities.ViewModels
         public DateTime? RegistrationDeadline { get; set; }
 
         public long? CountryId { get; set; }
+
         public List<MissionSkill>? MissionSkill { get; set; }
 
         public int? Ratings { get; set; } = 0;
@@ -59,5 +60,9 @@ namespace CI_Platform.Entities.ViewModels
         public float GoalPercentage { get; set; } = 0;
 
         public int AlreadyVolunteered { get; set; } = 0;
+
+        public int MostFavourite { get; set; } = 0;
+
+        public bool IsFavourite { get; set; } = false;
     }
 }

@@ -152,7 +152,7 @@ namespace CI_Platform_Web.Controllers
                             img.CopyTo(filestream);
                         }
                         storyMedia.Type = extension;
-                        storyMedia.Path = @"\assets\storyImages\" + fileName + extension;
+                        storyMedia.Path =  fileName + extension;
 
                         _db.Add(storyMedia);
                         _db.SaveChanges(true);
@@ -244,36 +244,39 @@ namespace CI_Platform_Web.Controllers
             ShareStoryVm draftdata = new ShareStoryVm();
             ShareStoryVm? filldropdown = _storyCards.GetUserMissions(userid);
             draftdata.UserAppliedMissions = filldropdown.UserAppliedMissions;
-            var saveddata = _db.Stories.FirstOrDefault(x => x.MissionId == missionid && x.UserId == userid && x.Status == "DRAFT");
+            Story? saveddata = _db.Stories.FirstOrDefault(x => x.MissionId == missionid && x.UserId == userid && x.Status == "DRAFT");
             if (saveddata != null)
             {
+                draftdata.StoryId = saveddata.StoryId;
                 draftdata.StoryTitle = saveddata.Title;
                 draftdata.StoryDesctiption = saveddata.Description;
                 draftdata.Date = saveddata.CreatedAt;
 
                 var savedmedia = _db.StoryMedia.Where(x => x.StoryId == saveddata.StoryId).ToList();
                 List<string> yturls = new List<string>();
-                List<VideoListVm> videopaths = new List<VideoListVm>();
+                List<string> savedimgs = new List<string>();
                 foreach (var media in savedmedia)
                 {
-                    //var video = new VideoListVm();
                     if (media.Type == "video")
                     {
                         yturls.Add(media.Path);
-                        //video.VideoPath = media.Path;
-                        //videopaths.Add(video);
-                    
                     }
 
-                    //else
-                    //{
-                    //    draftedData.ImagePath = media.Path;
-                    //}
+                    if(media.Type == ".png" || media.Type == ".jpg" || media.Type == ".jpeg")
+                    {
+                        savedimgs.Add(media.Path);
+                    }
                 }
                 string[] youtubeurls = yturls.ToArray();
 
                 draftdata.VideoUrl= string.Join(Environment.NewLine,youtubeurls);
+                if(savedimgs.Count > 0)
+                {
+                    draftdata.ImagePath = savedimgs;
+                }
+
                 
+
 
                 return PartialView("_ShareYourStoryPartial", draftdata);
             }

@@ -33,9 +33,10 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult PrivacyPolicy()
         {
-            string user = HttpContext.Session.GetString("UserId");
-            long userid = long.Parse(user);
-            return View();
+            //string user = HttpContext.Session.GetString("UserId");
+            //long userid = long.Parse(user);
+            List<PrivacyPolicyVm> cms = _userProfile.GetCMSData();
+            return View(cms);
         }
 
         public IActionResult VolunteeringTimesheet()
@@ -487,6 +488,9 @@ namespace CI_Platform_Web.Controllers
             result = "Some Error Occured";
             return result;
         }
+
+
+
 
 
 

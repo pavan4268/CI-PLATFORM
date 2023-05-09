@@ -57,7 +57,7 @@ namespace CI_Platform_Web.Controllers
 
 
        
-        public IActionResult PlatformLanding(string sortby/*,string searchquery*/, int pg=1)
+        public IActionResult PlatformLanding(string sortby, int pg=1)
         {
 
             if (HttpContext.Session.GetString("FirstName") != null)
@@ -103,6 +103,10 @@ namespace CI_Platform_Web.Controllers
                     else if (sortby == "Highest available seats")
                     {
                         data = cardmodel.OrderByDescending(x => x.AvailableSeats).ToList();
+                    }
+                    else if(sortby == "My favourites")
+                    {
+                        data = cardmodel.OrderBy(card=>card.IsFavourite).ToList();
                     }
                     
                     int recsCount1 = data.Count();
@@ -252,7 +256,20 @@ namespace CI_Platform_Web.Controllers
                     data = data.OrderBy(x => x.EndDate).ToList();
 
                 }
-
+                else if(sort == "Top Themes")
+                {
+                    var groupeddata = data.GroupBy(theme => theme.MissionThemes).ToList();
+                    var sortdata = groupeddata.OrderByDescending(data=> data.Count()).ToList();
+                    data = sortdata.SelectMany(group => group).ToList();
+                }
+                else if(sort == "Most Ranked")
+                {
+                    data = data.OrderByDescending(data=>data.Ratings).ToList();
+                }
+                else if(sort == "Top Favourite")
+                {
+                    data = data.OrderByDescending(data=>data.MostFavourite).ToList();
+                }
 
             }
 

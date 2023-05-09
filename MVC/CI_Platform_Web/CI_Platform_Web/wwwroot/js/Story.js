@@ -1,6 +1,20 @@
 ﻿$(document).ready(function () {
     ImgUpload();
+    
+    $('#editor').summernote({
+        height: 200, // set the height of the editor
+        toolbar: [
+            // add formatting options to the toolbar
+            ['style', ['bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'underline']]
+        ]
+    });
+
 });
+
+
+
+
+
 
 
 
@@ -20,9 +34,9 @@ function ImgUpload() {
             var iterator = 0;
             filesArr.forEach(function (f, index) {
 
-                //if (!f.type.match('image.*')) {
-                //    return;
-                //}
+                if (!f.type.match('image.*')) {
+                    return;
+                }
 
                 if (imgArray.length > maxLength) {
                     return false
@@ -50,6 +64,7 @@ function ImgUpload() {
             });
         });
     });
+
     $('body').on('click', ".upload__img-close", function (e) {
         var file = $(this).parent().data("file");
         for (var i = 0; i < imgArray.length; i++) {
@@ -63,76 +78,72 @@ function ImgUpload() {
 }
 
 
-//for time and goal div hide and display 
-
-const missionTypeSelect = document.querySelector('#mission-type');
-
-const timediv = document.querySelector('.time-div');
-const goaldiv = document.querySelector('.goal-div');
 
 
-missionTypeSelect.addEventListener('change', function () {
-    if (this.value == "Time") {
-        timediv.style.display = 'block';
-        goaldiv.style.display = 'none';
-    }
-    if (this.value == "Goal") {
-        timediv.style.display = 'none';
-        goaldiv.style.display = 'block';
-    }
-});
-//for time and goal div hida and display
-
-$(".img-delete").click(function () {
-    var src = $(this).data("source");
-    var ext = "img";
-    var parent = $(this).parent();
-    var missionId = $(this).data("missionid");
-
+function getSavedData() {
+    var missionid = $("#mission-select").find(":selected").val();
+    console.log(missionid);
     $.ajax({
-        
-        url: "/Admin/ImageDelete",
-        data: {
-            id: missionId,
-            source: src,
-            extension: ext,
-        },
+
+        url: "/Story/DraftedData",
+        data: { missionid: missionid },
         success: function (response) {
             console.log(response);
-            if (response) {
-                parent.addClass('d-none');
-            }
-        },
-        error: function (xhr, error) {
-            console.log(error);
+            $("#sharestorypv").html(response);
+
+
+
+
         }
     })
-});
+}
 
 
-$(".doc-delete").click(function () {
-    var src = $(this).data("source");
-    var ext = "doc";
-    var parent = $(this).parent();
-    var missionId = $(this).data("missionid");
+//$(".img-delete").click(function () {
+//    var src = $(this).data("source");
+//    var ext = "img";
+//    var parent = $(this).parent();
+//    var missionId = $(this).data("missionid");
 
-    $.ajax({
-        
-        url: "/Admin/DocumentDelete",
-        data: {
-            id: missionId,
-            source: src,
-            extension: ext,
-        },
-        success: function (response) {
-            console.log(response);
-            if (response) {
-                parent.addClass('d-none');
-            }
-        },
-        error: function (xhr, error) {
-            console.log(error);
-        }
+//    $.ajax({
+
+//        url: "/Admin/ImageDelete",
+//        data: {
+//            id: missionId,
+//            source: src,
+//            extension: ext,
+//        },
+//        success: function (response) {
+//            console.log(response);
+//            if (response) {
+//                parent.addClass('d-none');
+//            }
+//        },
+//        error: function (xhr, error) {
+//            console.log(error);
+//        }
+//    })
+//});
+
+
+function recommend(sid) {
+    var selecteduser = [];
+    $('#recommendtocoworker input:checkbox[id=rectoid]:checked').each(function () {
+        selecteduser.push($(this).val());
     })
-});
+    console.log(selecteduser);
+    if (selecteduser != null) {
+        $.ajax({
+            method: 'POST',
+            url: '/Story/StoryDetails',
+            data: {
+                "storyid": sid,
+                "selecteduser": selecteduser
 
+            },
+            success: function (response) {
+                console.log('mail sent');
+            }
+        })
+    }
+}

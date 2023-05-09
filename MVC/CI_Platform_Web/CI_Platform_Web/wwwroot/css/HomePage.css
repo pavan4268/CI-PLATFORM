@@ -198,3 +198,8 @@
     text-align: center;
     background-color:rgb(182, 182, 182);
 }
+.notification_dropdown {
+    max-height: 600px !important;
+    width: 500px !important;
+    transform: translate(30%, 45%) !important;
+}

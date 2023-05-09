@@ -52,13 +52,7 @@ $(document).ready(function () {
     //    "scrollY": "300px",
     //    "scrollCollapse": false,
     //});
-    $('#editor').summernote({
-        height: 200, // set the height of the editor
-        toolbar: [
-            // add formatting options to the toolbar
-            ['style', ['bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'underline']]
-        ]
-    });
+  
 
 });
 
@@ -70,237 +64,6 @@ $(document).ready(function () {
 
 
 
-
-function ImgUpload() {
-    var imgWrap = "";
-    var imgArray = [];
-
-    $('.upload__inputfile').each(function () {
-        $(this).on('change', function (e) {
-            imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
-            var maxLength = $(this).attr('data-max_length');
-
-            var files = e.target.files;
-            var filesArr = Array.prototype.slice.call(files);
-            var iterator = 0;
-            filesArr.forEach(function (f, index) {
-
-                if (!f.type.match('image.*')) {
-                    return;
-                }
-
-                if (imgArray.length > maxLength) {
-                    return false
-                } else {
-                    var len = 0;
-                    for (var i = 0; i < imgArray.length; i++) {
-                        if (imgArray[i] !== undefined) {
-                            len++;
-                        }
-                    }
-                    if (len > maxLength) {
-                        return false;
-                    } else {
-                        imgArray.push(f);
-
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
-                            imgWrap.append(html);
-                            iterator++;
-                        }
-                        reader.readAsDataURL(f);
-                    }
-                }
-            });
-        });
-    });
-
-    $('body').on('click', ".upload__img-close", function (e) {
-        var file = $(this).parent().data("file");
-        for (var i = 0; i < imgArray.length; i++) {
-            if (imgArray[i].name === file) {
-                imgArray.splice(i, 1);
-                break;
-            }
-        }
-        $(this).parent().parent().remove();
-    });
-}
-
-//function Title() {
-//    var selected = $("#mission-select").find(":selected").val();
-//    console.log(selected);
-//    $.ajax({
-//        type: 'Post',
-//        url: '/Story/Submit',
-//        data: { "missionId": selected },
-//        success: function (response) {
-//            console.log(response);$(3)
-
-//        }
-//    })
-//}
-//for drag and drop
-
-//function Save() {
-//    var missionid = $("#mission-select").find(":selected").val();
-//    console.log(missionid);
-//    var storytitle = $("#storydesc").val();
-//    console.log(storytitle);
-//    var date = $("#date-select").val();
-//    console.log(date);
-//    var text = $(".ck-blurred p").text();
-//    console.log(text);
-//    var url = $("#video-url").val();
-//    console.log(url);
-//    var img = $("#storyimg").val();
-//    console.log(img);
-//    $.ajax({
-//        type: 'Post',
-//        url: '/Story/Save',
-//        data: {
-//            "missionid": missionid,
-//            "StoryTitle": storytitle,
-//            "Date": date,
-//            "StoryDescription": text
-//        },
-//        success: function result() {
-//            console.log(result);
-//        }
-//    })
-
-    //$.ajax({
-    //    url: '/Story/SavedData',
-    //    data: { "missionid": missionid },
-    //    success: function (response) {
-    //        console.log(response);
-    //        $("#storydesc").val(response.title);
-            //const date = response.createdAt;
-            //console.log(date);
-            //const newdate = new Date(date);
-            //const year = newdate.getFullYear();
-            //const month = ("0" + (newdate.getMonth() + 1)).slice(-2);
-            //const day = ("0" + newdate.getDate()).slice(-2);
-            //console.log(year);
-            //console.log(month);
-            //console.log(newdate);
-            //const dateinput = document.getElementById("date-select");
-            //const formattedDate = `${year}-${month}-${day}`;
-            //dateinput.value = formattedDate;
-            
-            
-    //        console.log(formattedDate);
-
-            
-            
-            
-    //    }
-    //})
-
-//}
-
-//function getSavedData() {
-//    var missionid = $("#mission-select").find(":selected").val();
-//    console.log(missionid);
-//    $.ajax({
-//        url: "/Story/DraftedData",
-//        data: { "missionid": missionid },
-//        success: function (response) {
-//            console.log(response);
-//            if (response != null) {
-//                document.getElementById("submit-btn").disabled = false;
-//                $("#storydesc").val(response.storyTitle);
-//                const date = response.date;
-//                console.log(date);
-//                const newdate = new Date(date);
-//                const year = newdate.getFullYear();
-//                const month = ("0" + (newdate.getMonth() + 1)).slice(-2);
-//                const day = ("0" + newdate.getDate()).slice(-2);
-//                console.log(year);
-//                console.log(month);
-//                console.log(newdate);
-//                const dateinput = document.getElementById("date-select");
-//                const formattedDate = `${year}-${month}-${day}`;
-//                dateinput.value = formattedDate;
-                
-//                tinymce.get('editor').setContent(response.storyDesctiption);
-//                var videolist = response.videoList;
-//                console.log(videolist);
-//                const textarea = document.getElementById('videourl');
-                
-//                for (var i = 0; i < videolist.length; i++) {
-                    
-//                    textarea.value += videolist[i].videoPath + '\n';
-//                }
-//            }
-//            else {
-//                var inputs = document.querySelectorAll("input");
-                
-//                for (var i = 0; i < inputs.length; i++) {
-//                    inputs[i].value = null;
-//                    document.getElementById("submit-btn").disabled = true;
-//                }
-//                document.getElementById("videourl").value = '';
-//                var today = new Date();
-//                var day = today.getDate();
-//                var month = today.getMonth() + 1; // Add 1 to month because January is 0
-//                var year = today.getFullYear();
-
-//                // Format the date as YYYY-MM-DD
-//                var formattedDate = year + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
-
-//                // Set the formatted date as the value of the input field
-//                document.getElementById("date-select").value = formattedDate;
-//                document.getElementById("editor").value = null;
-                
-//            }
-
-            
-            
-            
-//        }
-//    })
-//}
-function getSavedData() {
-    var missionid = $("#mission-select").find(":selected").val();
-    console.log(missionid);
-    $.ajax({
-        url: "/Story/DraftedData",
-        data: { "missionid": missionid },
-        success: function (response) {
-            console.log(response);
-            $("#sharestorypv").html(response);
-
-
-
-
-        }
-    })
-}
-
-
-function recommend(sid) {
-    var selecteduser = [];
-    $('#recommendtocoworker input:checkbox[id=rectoid]:checked').each(function () {
-        selecteduser.push($(this).val());
-    })
-    console.log(selecteduser);
-    if (selecteduser != null) {
-        $.ajax({
-            method: 'POST',
-            url: '/Story/StoryDetails',
-            data: {
-                "storyid": sid,
-                "selecteduser": selecteduser
-
-            },
-            success: function (response) {
-                console.log('mail sent');
-            }
-        })
-    }
-}
 
 
 //profile picture change on frontend part
@@ -355,32 +118,32 @@ const passwordInput = document.getElementById("newpass");
 const passwordError = document.getElementById("password-validation");
 const passerror = document.getElementById("passerror");
 
-passwordInput.addEventListener('input', () =>
-{
-    const password = passwordInput.value;
+//passwordInput.addEventListener('input', () =>
+//{
+//    const password = passwordInput.value;
 
-    //minimum length
-    if (password.length < 6) {
-        passwordError.textContent = 'Password must be atleast 6 characters long';
-        return;
-    }
-    //minimum length
+//    //minimum length
+//    if (password.length < 6) {
+//        passwordError.textContent = 'Password must be atleast 6 characters long';
+//        return;
+//    }
+//    //minimum length
 
 
-    //character validations
-    const uppercaseRegex = /[A-Z]/;
-    const lowercaseRegex = /[a-z]/;
-    const numberRegex = /[0-9]/;
-    const specialRegex = /[$@$!%*?&]/;
+//    //character validations
+//    const uppercaseRegex = /[A-Z]/;
+//    const lowercaseRegex = /[a-z]/;
+//    const numberRegex = /[0-9]/;
+//    const specialRegex = /[$@$!%*?&]/;
 
-    if (!uppercaseRegex.test(password) || !lowercaseRegex.test(password) || !numberRegex.test(password) || !specialRegex.test(password)) {
-        passwordError.textContent = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
-        return;
-    }
-    //character validations
-    passwordError.textContent = ''; // Clear error message if validation passes
+//    if (!uppercaseRegex.test(password) || !lowercaseRegex.test(password) || !numberRegex.test(password) || !specialRegex.test(password)) {
+//        passwordError.textContent = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+//        return;
+//    }
+//    //character validations
+//    passwordError.textContent = ''; // Clear error message if validation passes
 
-});
+//});
 
 //password validations
 
@@ -536,7 +299,7 @@ function validateLinkedinUrl(input) {
 //onsubmit validations
 
 const submitButton = document.getElementById("form-submit");
-submitButton.addEventListener('click', (event) => {
+$("#form-submit").on('click', (event) => {
     var linkedInUrlInput = document.getElementById("linkedin");
     var linkedInUrl = linkedInUrlInput.value.trim();
     if (!validateLinkedinUrl(linkedInUrl)) {
@@ -544,7 +307,16 @@ submitButton.addEventListener('click', (event) => {
         alert('Please Enter a valid LinkedIn Url.');
         linkedInUrlInput.focus();
     }
-});
+})
+//submitButton.addEventListener('click', (event) => {
+//    var linkedInUrlInput = document.getElementById("linkedin");
+//    var linkedInUrl = linkedInUrlInput.value.trim();
+//    if (!validateLinkedinUrl(linkedInUrl)) {
+//        event.preventDefault();
+//        alert('Please Enter a valid LinkedIn Url.');
+//        linkedInUrlInput.focus();
+//    }
+//});
 
 //onsubmit validations
 

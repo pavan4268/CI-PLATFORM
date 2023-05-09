@@ -40,6 +40,8 @@ namespace CI_Platform.Repository.Repository
                 
                 missionSkill = missionSkill.Join(skills, ms => ms.SkillId, s => s.SkillId, (ms, s) => ms).ToList();
 
+                bool isfav = _db.FavoriteMissions.Any(fav=>fav.MissionId==mission.MissionId && fav.UserId == userid && fav.DeletedAt==null);
+
                 if (city != null)
                 {
                     var cardview = new MissionVm
@@ -62,7 +64,7 @@ namespace CI_Platform.Repository.Repository
                         //AvailableSeats = (int)mission.TotalSeats - _db.MissionApplications.Where(x => x.MissionId == mission.MissionId).Count(),
                         CountryId = mission.CountryId,
                         MissionSkill = missionSkill,
-
+                        IsFavourite = isfav,
                     };
                     if (applied != null)
                     {
@@ -98,6 +100,13 @@ namespace CI_Platform.Repository.Repository
                     {
                         cardview.Ratings = missionrating;
                     }
+
+                    int fav = _db.FavoriteMissions.Where(favourite=>favourite.MissionId == mission.MissionId).Count();
+                    if(fav != 0)
+                    {
+                        cardview.MostFavourite = fav;
+                    }
+
                     getmissions.Add(cardview);
                 }
             }
