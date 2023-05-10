@@ -90,6 +90,10 @@ namespace CI_Platform_Web.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("FirstName");
+            HttpContext.Session.Remove("UserId");
+            HttpContext.Session.Remove("Email");
+            HttpContext.Session.Remove("IsAdmin");
+            HttpContext.Session.Remove("Avtaar");
             return RedirectToAction("Index");
         }
 
@@ -122,6 +126,10 @@ namespace CI_Platform_Web.Controllers
                         _contextAccessor.HttpContext.Session.SetString("FirstName", issuccess.FirstName + " " + issuccess.LastName);
                         _contextAccessor.HttpContext.Session.SetString("UserId" , issuccess.UserId.ToString());
                         _contextAccessor.HttpContext.Session.SetString("Email" , issuccess.Email);
+                        if(issuccess.Role == "Admin")
+                        {
+                            _contextAccessor.HttpContext.Session.SetString("IsAdmin", "True");
+                        }
                         if(issuccess.Avatar != null)
                         {
                             _contextAccessor.HttpContext.Session.SetString("Avtaar", issuccess.Avatar);
@@ -186,6 +194,7 @@ namespace CI_Platform_Web.Controllers
                         //DeletedAt = DateTime.Now,
                         CityId = 2,
                         CountryId = 3,
+                        Role = "User",
                     };
                     _db.Users.Add(data);
                     _db.SaveChanges();

@@ -73,6 +73,9 @@ namespace CI_Platform.Entities.ViewModels
         public int Status { get; set; }
 
 
-        public List<Country> Countries { get; set; }
+        public List<Country>? Countries { get; set; }
+
+
+        public string Role { get; set; } = null!; 
     }
 }

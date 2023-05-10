@@ -107,7 +107,27 @@
         </div>
 
          @*drag and drop ends here*@
-
+        <div class="row mt-3">
+                    <label class="form-label">Uploaded Images</label><br />
+                    <div class="row border">
+                    @if(Model.ImagePath != null)
+                    {
+                        @foreach(var image in Model.ImagePath)
+                        {
+                            <div class="saved-img" style="margin-right:1rem;">
+                                <button class="save-cancel img-delete" type="button"@* data-source="@image" data-missionid="@Model.MissionId"*@ @*id="img-delete"*@><i class="bi bi-x"></i></button>
+                                <img src="~/assets/MissionMedia/Images/@image" />
+                            </div>
+                            
+                        }
+                    }
+                    
+                    else
+                    {
+                        <span>No Image Found</span>
+                    }
+                </div>
+                </div>
         
           @*data-max_length="20"*@
          @*cancel, save and submit button wrapper div starts here*@

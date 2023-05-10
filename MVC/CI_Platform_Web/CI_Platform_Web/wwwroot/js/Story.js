@@ -99,31 +99,31 @@ function getSavedData() {
 }
 
 
-//$(".img-delete").click(function () {
-//    var src = $(this).data("source");
-//    var ext = "img";
-//    var parent = $(this).parent();
-//    var missionId = $(this).data("missionid");
+$(".img-delete").click(function () {
+    var src = $(this).data("source");
+    
+    var parent = $(this).parent();
+    var storyId = $(this).data("storyid");
 
-//    $.ajax({
+    $.ajax({
 
-//        url: "/Admin/ImageDelete",
-//        data: {
-//            id: missionId,
-//            source: src,
-//            extension: ext,
-//        },
-//        success: function (response) {
-//            console.log(response);
-//            if (response) {
-//                parent.addClass('d-none');
-//            }
-//        },
-//        error: function (xhr, error) {
-//            console.log(error);
-//        }
-//    })
-//});
+        url: "/Story/ImageDelete",
+        data: {
+            id:storyId,
+            source: src,
+            
+        },
+        success: function (response) {
+            console.log(response);
+            if (response) {
+                parent.addClass('d-none');
+            }
+        },
+        error: function (xhr, error) {
+            console.log(error);
+        }
+    })
+});
 
 
 function recommend(sid) {

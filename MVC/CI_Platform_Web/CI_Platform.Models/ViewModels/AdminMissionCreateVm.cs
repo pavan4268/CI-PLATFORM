@@ -107,5 +107,7 @@ namespace CI_Platform.Entities.ViewModels
         public List<string>? Imagepaths { get; set; }
 
         public List<string>? Documentpaths { get; set; }
+
+        
     }
 }

@@ -22,8 +22,9 @@ namespace CI_Platform_Web.Controllers
         private readonly IAdminMissionApplicationRepository _adminMissionApplicationRepository;
         private readonly IAdminStoryRepository _adminStoryRepository;
         private readonly IAdminBannerRepository _adminBannerRepository;
+        private readonly IAdminTimeSheetRepository _adminTimeSheetRepository;
 
-        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment, IAdminStoryRepository adminStoryRepository, IAdminBannerRepository adminBannerRepository)
+        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment, IAdminStoryRepository adminStoryRepository, IAdminBannerRepository adminBannerRepository, IAdminTimeSheetRepository adminTimeSheetRepository)
         {
             _db = db;
             _hostEnvironment = webHostEnvironment;
@@ -35,17 +36,22 @@ namespace CI_Platform_Web.Controllers
             _adminMissionApplicationRepository = adminMissionApplicationRepository;
             _adminStoryRepository = adminStoryRepository;
             _adminBannerRepository = adminBannerRepository;
+            _adminTimeSheetRepository = adminTimeSheetRepository;
         }
 
 
 
 
-        //<--------------------------------------------------------------------User----------------------------------------------------------------------------->
+        //<-----------------------------------------------------------------------------User------------------------------------------------------------------------->
         #region User
         public IActionResult AdminUserHome()
         {
-            List<AdminUserDisplayVm> userdetails = _adminUserRepository.GetUsers();
-            return View(userdetails);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminUserDisplayVm> userdetails = _adminUserRepository.GetUsers();
+                return View(userdetails);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -54,9 +60,13 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult AdminUserAdd()
         {
-            AdminUserCreateVm vm = _adminUserRepository.Getcountry();
-            
-            return View(vm);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                AdminUserCreateVm vm = _adminUserRepository.Getcountry();
+
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -79,7 +89,7 @@ namespace CI_Platform_Web.Controllers
                     ModelState.AddModelError("EmployeeId", "Employee Id Already Exists");
                    
                     
-                    if(getcountries.Countries.Count > 0)
+                    if(getcountries.Countries?.Count > 0)
                     {
                         obj.Countries = getcountries.Countries;
                     }
@@ -98,7 +108,7 @@ namespace CI_Platform_Web.Controllers
                 if (ckeckemail != null)
                 {
                     ModelState.AddModelError("Email", "User with the above Email Already Exists.");
-                    if(getcountries.Countries.Count > 0)
+                    if(getcountries.Countries?.Count > 0)
                     {
                         obj.Countries= getcountries.Countries;  
 
@@ -151,8 +161,12 @@ namespace CI_Platform_Web.Controllers
         #region User Edit
         public IActionResult AdminUserEdit(long userid)
         {
-            AdminUserCreateVm userdetails = _adminUserRepository.GetUser(userid);
-            return View(userdetails);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                AdminUserCreateVm userdetails = _adminUserRepository.GetUser(userid);
+                return View(userdetails);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -250,14 +264,18 @@ namespace CI_Platform_Web.Controllers
 
         #endregion
 
-        //<---------------------------------------------------------------------------CMS------------------------------------------------------------------------>
+        //<-----------------------------------------------------------------------------CMS-------------------------------------------------------------------------->
 
 
         #region CMS
         public IActionResult AdminCMSHome()
         {
-            List<AdminCMSDisplayVm> cmspages = _adminCMSRepository.GetCms();
-            return View(cmspages);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminCMSDisplayVm> cmspages = _adminCMSRepository.GetCms();
+                return View(cmspages);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -268,7 +286,11 @@ namespace CI_Platform_Web.Controllers
         #region CMS ADD
         public IActionResult AdminCMSAdd()
         {
-            return View();
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Home"); 
         }
 
         [HttpPost]
@@ -286,12 +308,16 @@ namespace CI_Platform_Web.Controllers
         #region CMS EDIT
         public IActionResult AdminCMSEdit(long cmspageid)
         {
-            AdminCMSCreateVm cms = _adminCMSRepository.GetCMSDetails(cmspageid);
-            if (cms != null)
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
             {
-                return View(cms);
+                AdminCMSCreateVm cms = _adminCMSRepository.GetCMSDetails(cmspageid);
+                if (cms != null)
+                {
+                    return View(cms);
+                }
+                return View();
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         
@@ -328,15 +354,23 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult AdminMissionHome()
         {
-            List<AdminMissionDisplayVm> missions = _adminMissionRepository.GetMissions();
-            return View(missions);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminMissionDisplayVm> missions = _adminMissionRepository.GetMissions();
+                return View(missions);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         #region Mission Add
         public IActionResult AdminMissionAdd()
         {
-            AdminMissionCreateVm vm = _adminMissionRepository.FillDropDown();
-            return View(vm);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                AdminMissionCreateVm vm = _adminMissionRepository.FillDropDown();
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -457,17 +491,27 @@ namespace CI_Platform_Web.Controllers
         #region Mission Edit
         public IActionResult AdminMissionEdit(long missionid)
         {
-            AdminMissionCreateVm obj = _adminMissionRepository.GetData(missionid);
-            return View(obj);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                AdminMissionCreateVm obj = _adminMissionRepository.GetData(missionid);
+                return View(obj);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
 
         
         public bool ImageDelete(long id, string source, string extension)
         {
-            MissionMedium? image = _db.MissionMedia.FirstOrDefault(x=>x.MissionId==id && x.MediaPath == source && x.MediaType==extension);
+            MissionMedium? image = _db.MissionMedia.FirstOrDefault(x=>x.MissionId==id && x.MediaPath == source && x.MediaType==extension && x.DeletedAt == null);
             if (image != null)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\MissionMedia\Images\" + image.MediaPath));
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
                 image.DeletedAt = DateTime.Now;
                 _db.MissionMedia.Update(image);
                 _db.SaveChanges();
@@ -481,6 +525,12 @@ namespace CI_Platform_Web.Controllers
             MissionDocument? document = _db.MissionDocuments.FirstOrDefault(x => x.MissionId == id && x.DocumentPath == source && x.DocumentType == extension);
             if(document != null)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\MissionMedia\Documents\" + document.DocumentPath));
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
                 document.DeletedAt = DateTime.Now;
                 _db.MissionDocuments.Update(document);
                 _db.SaveChanges();
@@ -724,14 +774,23 @@ namespace CI_Platform_Web.Controllers
         #region Mission Theme
         public IActionResult AdminMissionThemeHome()
         {
-            List<AdminMissionThemeDisplayVm> themes = _adminMissionThemeRepository.GetMissionThemes();
-            return View(themes);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminMissionThemeDisplayVm> themes = _adminMissionThemeRepository.GetMissionThemes();
+                return View(themes);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         #region Theme Add
         public IActionResult AdminMissionThemeAdd()
         {
-            return View();
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                return View();
+
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -760,12 +819,17 @@ namespace CI_Platform_Web.Controllers
         #region Theme Edit
         public IActionResult AdminMissionThemeEdit(long themeid)
         {
-            AdminMissionThemeCreateVm vm =_adminMissionThemeRepository.GetTheme(themeid);
-            if (vm != null)
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
             {
-                return View(vm);
+                AdminMissionThemeCreateVm vm = _adminMissionThemeRepository.GetTheme(themeid);
+                if (vm != null)
+                {
+                    return View(vm);
+                }
+                return View();
+
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -812,14 +876,24 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult AdminMissionSkillsHome()
         {
-            List<AdminMissionSkillsDisplayVm> skills = _adminMissionSkillsRepository.GetMissionSkills();
-            return View(skills);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminMissionSkillsDisplayVm> skills = _adminMissionSkillsRepository.GetMissionSkills();
+                return View(skills);
+
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         #region Mission Skills Add
         public IActionResult AdminMissionSkillsAdd()
         {
-            return View();
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                return View();
+
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -848,14 +922,16 @@ namespace CI_Platform_Web.Controllers
         #region Mission Skills Edit
         public IActionResult AdminMissionSkillsEdit(long skillid)
         {
-            
-
-            AdminMissionSkillsCreateVm getskill = _adminMissionSkillsRepository.GetSkills(skillid);
-            if (getskill != null)
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
             {
-                return View(getskill);
+                AdminMissionSkillsCreateVm getskill = _adminMissionSkillsRepository.GetSkills(skillid);
+                if (getskill != null)
+                {
+                    return View(getskill);
+                }
+                return View();
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -901,8 +977,12 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult AdminMissionApplicationHome()
         {
-            List<AdminMissionApplicationDisplayVm> applications = _adminMissionApplicationRepository.GetMissionApplications();
-            return View(applications);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminMissionApplicationDisplayVm> applications = _adminMissionApplicationRepository.GetMissionApplications();
+                return View(applications);
+            }
+            return RedirectToAction("Index", "Home");
         }
         
         public IActionResult AdminApplicationApprove(long applicationid)
@@ -938,14 +1018,22 @@ namespace CI_Platform_Web.Controllers
         #region Story
         public IActionResult AdminStoryHome()
         {
-            List<AdminStoryDisplayVm>? stories = _adminStoryRepository.GetStories();
-            return View(stories);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminStoryDisplayVm>? stories = _adminStoryRepository.GetStories();
+                return View(stories);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult AdminStoryDetails(long storyid)
         {
-            AdminStoryDetailsVm details = _adminStoryRepository.GetDetails(storyid);
-            return View(details);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                AdminStoryDetailsVm details = _adminStoryRepository.GetDetails(storyid);
+                return View(details);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult ApproveStory(long storyid)
@@ -997,21 +1085,29 @@ namespace CI_Platform_Web.Controllers
         #endregion
 
 
-        //<--------------------------------------------------------------------------------Banner---------------------------------------------------------------------->
+        //<------------------------------------------------------------------------------Banner---------------------------------------------------------------------->
 
 
         #region Banner
         public IActionResult AdminBannerHome()
         {
-            List<AdminBannerDisplayVm>? banners = _adminBannerRepository.GetBanner();
-            return View(banners);
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                List<AdminBannerDisplayVm>? banners = _adminBannerRepository.GetBanner();
+                return View(banners);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
 
         #region Banner Add
         public IActionResult AdminBannerAdd()
         {
-            return View();
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -1049,13 +1145,17 @@ namespace CI_Platform_Web.Controllers
         #region Banner Edit
         public IActionResult AdminBannerEdit(long bannerid)
         {
-            AdminBannerCreateVm? banner = _adminBannerRepository.GetEditData(bannerid);
-            if (banner != null)
+            if (HttpContext.Session.GetString("IsAdmin") == "True")
             {
-                return View(banner);
+                AdminBannerCreateVm? banner = _adminBannerRepository.GetEditData(bannerid);
+                if (banner != null)
+                {
+                    return View(banner);
+                }
+                TempData["ErrorMessage"] = "Cannot Find Banner Data";
+                return RedirectToAction("AdminBannerHome");
             }
-            TempData["ErrorMessage"] = "Cannot Find Banner Data";
-            return RedirectToAction("AdminBannerHome");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -1108,6 +1208,36 @@ namespace CI_Platform_Web.Controllers
             return response;
         }
         #endregion
+
+
+        //<------------------------------------------------------------------------------TimeSheet------------------------------------------------------------------->
+
+        public IActionResult AdminTimeSheetHome()
+        {
+            List<AdminTimesheetDisplayVm> sheets = _adminTimeSheetRepository.GetTimeSheets();
+            return View(sheets);
+        }
+
+
+        public IActionResult AdminTimeSheetApprove(long timesheetid)
+        {
+            string? response = _adminTimeSheetRepository.ApproveTimeSheet(timesheetid);
+            if (string.IsNullOrEmpty(response))
+            {
+                response = "Some Error Occured";
+                ViewBag.Response = response;
+                return RedirectToAction("AdminTimeSheetHome");
+            }
+            
+                ViewBag.Response = response;
+                return RedirectToAction("AdminTimeSheetHome");
+            
+        }
+
+        public void AdminTimeSheetDecline(long timesheetid)
+        {
+
+        }
 
     }
 }

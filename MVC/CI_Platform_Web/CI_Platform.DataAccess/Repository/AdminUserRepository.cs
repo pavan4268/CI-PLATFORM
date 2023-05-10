@@ -92,6 +92,7 @@ namespace CI_Platform.Repository.Repository
             user.CountryId = obj.CountryId;
             user.ProfileText = obj.ProfileText;
             user.Status = obj.Status;
+            user.Role = obj.Role;
             _db.Users.Add(user);
             _db.SaveChanges();
             
@@ -115,6 +116,7 @@ namespace CI_Platform.Repository.Repository
             vm.EmployeeId = user.EmployeeId;
             vm.ProfileText = user.ProfileText;
             vm.Password = user.Password;
+            vm.Role = user.Role;
             List<Country> countries = _db.Countries.ToList();
             List<Country> fillcountries = new List<Country>();
             foreach (Country country in countries)
@@ -143,6 +145,7 @@ namespace CI_Platform.Repository.Repository
                 edituser.ProfileText = obj.ProfileText;
                 edituser.Department = obj.Department;
                 edituser.PhoneNumber = obj.PhoneNumber;
+                edituser.Role = obj.Role;
                 if(obj.Avatar != null)
                 {
                     edituser.Avatar = obj.Avatar;

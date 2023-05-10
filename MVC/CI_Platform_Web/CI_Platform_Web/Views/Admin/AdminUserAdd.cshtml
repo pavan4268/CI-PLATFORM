@@ -78,6 +78,7 @@
                             <span asp-validation-for="CountryId" class="text-danger"></span>
                         </div>
    </div>
+   
    <div class="row myprofile-div mt-4">
                         <div class="col profile-div">
                             <label class="required">My Profile</label><br />
@@ -104,6 +105,16 @@
         </div>
         
     </div>
+
+    <div class = "row role-div column-gap-2">
+                        <div class="col role-select-div mt-3">
+                            <label>Role</label><br />
+                            <select class="city-dropdown w-50" id="role-select" style="height:38px;" asp-for="Role">
+                                <option value = "User">User</option>
+                                <option value = "Admin">Admin</option>
+                            </select>
+                        </div>
+   </div>
     <div class="container w-100 pb-3 mt-4 d-flex justify-content-end">
                         <button class="submit-btn btn" id="form-submit" type="submit">Save</button>
     </div>

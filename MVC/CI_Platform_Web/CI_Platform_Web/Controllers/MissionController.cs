@@ -31,25 +31,25 @@ namespace CI_Platform_Web.Controllers
 
         public JsonResult Country()
         {
-            var cnt = _db.Countries.ToList();
+            var cnt = _db.Countries.Where(country => country.DeletedAt == null).ToList();
             return new JsonResult(cnt);
         }
 
         public JsonResult City(long id)
         {
-            var cityl = _db.Cities.Where(e => e.CountryId == id).ToList();
+            var cityl = _db.Cities.Where(e => e.CountryId == id && e.DeletedAt==null).ToList();
             return new JsonResult(cityl);
         }
 
         public JsonResult Theme()
         {
-            var missiontheme = _db.MissionThemes.ToList();
+            var missiontheme = _db.MissionThemes.Where(theme => theme.DeletedAt == null && theme.Status == 1).ToList();
             return new JsonResult(missiontheme);
         }
 
         public JsonResult Skills()
         {
-            var missionskill = _db.Skills.ToList();
+            var missionskill = _db.Skills.Where(skill => skill.DeletedAt == null && skill.Status == 1).ToList();
             return new JsonResult(missionskill);
         }
 
@@ -298,15 +298,19 @@ namespace CI_Platform_Web.Controllers
                 TempData["missionid"] = (Int32)id;
                 return RedirectToAction("Index", "Home");
             }
-            var missionid = _db.Missions.FirstOrDefault(x=>x.MissionId == id);
-            var email = HttpContext.Session.GetString("Email");
-            ViewBag.missionid = id;
-            string user = HttpContext.Session.GetString("UserId");
-            long userid = long.Parse(user);
-            ViewBag.UserId = userid;
-            var mission = _volunteerMissionCard.GetMission(id, userid);
-           
-            return View(mission);  
+            if (HttpContext.Session.GetString("FirstName") != null)
+            {
+                var missionid = _db.Missions.FirstOrDefault(x => x.MissionId == id);
+                var email = HttpContext.Session.GetString("Email");
+                ViewBag.missionid = id;
+                string user = HttpContext.Session.GetString("UserId");
+                long userid = long.Parse(user);
+                ViewBag.UserId = userid;
+                var mission = _volunteerMissionCard.GetMission(id, userid);
+
+                return View(mission);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         //Add to favourite
@@ -349,7 +353,7 @@ namespace CI_Platform_Web.Controllers
         public JsonResult DisplayComments(long? id, long UserId, string CommentText)
         {
             var comments = _db.Comments.ToList();
-            var commentsDisplay = comments.Where(t => t.MissionId == id).ToList();
+            var commentsDisplay = comments.Where(t => t.MissionId == id && t.DeletedAt == null).ToList();
             Comment comment = new Comment();
             comment.MissionId = (long)id;
             comment.UserId = UserId;
@@ -359,6 +363,8 @@ namespace CI_Platform_Web.Controllers
             
             return new JsonResult(commentsDisplay);
         }
+
+
         [HttpPost]
         public void ApplyToMission(long? missionid)
         {
@@ -382,6 +388,8 @@ namespace CI_Platform_Web.Controllers
             }
             
         }
+
+
 
         [HttpPost]
         public bool RecommendToCoWorker(long missionid, List<string> selecteduser)

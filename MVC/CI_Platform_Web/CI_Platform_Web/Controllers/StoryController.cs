@@ -25,18 +25,30 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult StoriesListing()
         {
-            var storylist = _storyCards.GetStories();
-            return View(storylist);
+            if (HttpContext.Session.GetString("FirstName") != null)
+            {
+                var storylist = _storyCards.GetStories();
+                return View(storylist);
+            }
+            return RedirectToAction("Index", "Home");
 
-            
+
         }
 
         public IActionResult ShareYourStory()
         {
-            string? user = HttpContext.Session.GetString("UserId");
-            long userid = long.Parse(user);
-            var usermissions = _storyCards.GetUserMissions(userid);
-            return View(usermissions);
+
+            if (HttpContext.Session.GetString("FirstName") != null)
+            {
+                string? user = HttpContext.Session.GetString("UserId");
+                long userid = long.Parse(user);
+                var usermissions = _storyCards.GetUserMissions(userid);
+                return View(usermissions);
+            }
+            return RedirectToAction("Index", "Home");
+
+
+            
         }
 
         
@@ -451,8 +463,30 @@ namespace CI_Platform_Web.Controllers
             
         }
 
-       
 
-        
+
+        public bool ImageDelete(long id, string source)
+        {
+            StoryMedium? image = _db.StoryMedia.FirstOrDefault(x => x.StoryId == id && x.Path == source && x.DeletedAt == null);
+            if (image != null)
+            {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                var filepath = Path.GetFullPath(Path.Combine(wwwRootPath, @"assets\MissionMedia\Images\" + image.Path));
+                if (System.IO.File.Exists(filepath))
+                {
+                    System.IO.File.Delete(filepath);
+                }
+                image.DeletedAt = DateTime.Now;
+                _db.StoryMedia.Update(image);
+                _db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+
+
+
+
     }
 }

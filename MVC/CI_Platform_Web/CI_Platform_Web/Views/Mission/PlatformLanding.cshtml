@@ -406,56 +406,39 @@
       <nav aria-label="Page navigation example">
           @if (pager.TotalPages > 0)
             {
-        <ul
-          class="pagination d-flex align-content-center justify-content-center"
-        >
-                @if(pager.CurrentPage > 1)
-                {
-                    <li class = "page-item">
-                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "1">First</a>
-                    </li>
-                    <li class = "page-item">
-                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.CurrentPage - 1)">Previous</a>
-                    </li>
-                }
+                <ul class="pagination d-flex align-content-center justify-content-center">
+                        @if(pager.CurrentPage > 1)
+                        {
+                            <li class = "page-item">
+                                <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "1">First</a>
+                            </li>
+                            <li class = "page-item">
+                                <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.CurrentPage - 1)">Previous</a>
+                            </li>
+                        }
 
 
 
 
-           @*
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>*@
-                @for(var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                {
                    
-                <li class="page-item @(pge == pager.CurrentPage ?  "active" : "")"><a class="page-link" asp-controller="Mission" asp-action = "PlatformLanding" asp-route-pg="@pge">@pge</a></li>
+                        @for(var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                        {
+                   
+                        <li class="page-item @(pge == pager.CurrentPage ?  "active" : "")"><a class="page-link" asp-controller="Mission" asp-action = "PlatformLanding" asp-route-pg="@pge">@pge</a></li>
           
-                }
+                        }
 
 
-                @if(pager.CurrentPage < pager.TotalPages)
-                {
-                    <li class = "page-item">
-                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.CurrentPage + 1)">Next</a>
-                    </li>
-                    <li class = "page-item">
-                        <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.TotalPages)">Last</a>
-                    </li>
-                }
-
-         @* <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>*@
-
-          
-        </ul>
+                        @if(pager.CurrentPage < pager.TotalPages)
+                        {
+                            <li class = "page-item">
+                                <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.CurrentPage + 1)">Next</a>
+                            </li>
+                            <li class = "page-item">
+                                <a class = "page-link" asp-controller = "Mission" asp-action = "PlatformLanding" asp-route-pg = "@(pager.TotalPages)">Last</a>
+                            </li>
+                        }
+                </ul>
          }
       </nav>
       @*pagination ends*@

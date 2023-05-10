@@ -25,27 +25,46 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult UserProfile()
         {
-            string user = HttpContext.Session.GetString("UserId");
-            long userid = long.Parse(user);
-            var userdetails = _userProfile.GetUserDetails(userid);
-            return View(userdetails);
+            if (HttpContext.Session.GetString("FirstName") != null)
+            {
+                string user = HttpContext.Session.GetString("UserId");
+                long userid = long.Parse(user);
+                var userdetails = _userProfile.GetUserDetails(userid);
+                return View(userdetails);
+            }
+            return RedirectToAction("Index", "Home");
+
+            
         }
+
+
 
         public IActionResult PrivacyPolicy()
         {
-            //string user = HttpContext.Session.GetString("UserId");
-            //long userid = long.Parse(user);
-            List<PrivacyPolicyVm> cms = _userProfile.GetCMSData();
-            return View(cms);
+            if (HttpContext.Session.GetString("FirstName") != null)
+            {
+                List<PrivacyPolicyVm> cms = _userProfile.GetCMSData();
+                return View(cms);
+            }
+            return RedirectToAction("Index", "Home");
         }
+
+
 
         public IActionResult VolunteeringTimesheet()
         {
-            string user = HttpContext.Session.GetString("UserId");
-            long userid = long.Parse(user);
-            var timesheets = _userProfile.GetTimesheets(userid);
-            return View(timesheets);
+            if (HttpContext.Session.GetString("FirstName") != null)
+            {
+                string user = HttpContext.Session.GetString("UserId");
+                long userid = long.Parse(user);
+                var timesheets = _userProfile.GetTimesheets(userid);
+                return View(timesheets);
+            }
+            return RedirectToAction("Index", "Home");
+            
         }
+
+
 
         public JsonResult GetCities(long countryid)
         {
@@ -67,8 +86,8 @@ namespace CI_Platform_Web.Controllers
             //             SkillName = s.SkillName
             //         }).ToList();
 
-                    
-                
+            
+
 
             var userskills = _db.UserSkills.Where(x => x.UserId == userid).Include(x => x.Skill).ToList();
             var skills = userskills.Select(us => new { SkillId = us.SkillId, SkillName = us.Skill.SkillName });

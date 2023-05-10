@@ -1,19 +1,11 @@
 ﻿@using CI_Platform.Entities.ViewModels
-@model List<AdminMissionApplicationDisplayVm>
+@model List<AdminTimesheetDisplayVm>
 @{
-    ViewData["Title"] = "AdminMissionApplicationHome";
+    ViewData["Title"] = "AdminTimeSheetHome";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    
-}
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-        alert("@ViewBag.Message");    
-    </script>
 }
 
-
-                <div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
+<div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
                     <h3 style="font-weight:400;">Mission Application</h3>
                 </div>
                 <div class="search-add-wrapper d-flex justify-content-between mt-3 p-2">
@@ -28,34 +20,45 @@
                         <thead style="height:80px;">
                             <tr>
                                 <th>Mission title</th>
-                                <th>Mission id</th>
-                                <th>User id</th>
-                                <th>Username</th>
-                                <th>Applied Date</th>
+                                <th>User Name</th>
+                                <th>Time</th>
+                                <th>Goal Action</th>
+                                <th>Date Volunteered</th>
                                 
                                 <th style="text-align:end"><span class="pe-2">Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(AdminMissionApplicationDisplayVm obj in Model){
+                            @foreach(AdminTimesheetDisplayVm obj in Model){
                                 <tr>
-                                <td>@obj.MissionName</td>
-                                <td>@obj.MissionId</td>
-                                <td>@obj.UserId</td>
-                                <td>@obj.UserName</td>
-                                <td>@obj.AppliedAt</td>
+                                <td>@obj.MissionTitle</td>
+                                <td>@obj.Username</td>
+                                @if(obj.Time == null){
+                                    <td>NULL</td>
+                                }
+                                else{
+                                    <td>@obj.Time</td>
+                                }
+                                @if(obj.Action == null){
+                                    <td>NULL</td>
+                                }
+                                else{
+                                    <td>@obj.Action</td>
+                                }
+                                
+                                <td>@obj.DateVolunteered</td>
                                 
                                 <td>
                                     <div class="icons-div d-flex justify-content-end">
                                         <div class="edit-icon-div me-2">
                                             
-                                            <a class="object-edit" asp-controller="Admin" asp-action="AdminApplicationApprove" asp-route-applicationid="@obj.MissionApplicationId">
+                                            <a class="object-edit" asp-controller="Admin" asp-action="AdminTimeSheetApprove" asp-route-timesheetid="@obj.TimesheetId">
                                                 <i class="bi bi-check-circle" style="color:green; font-size:x-large"></i>
                                             </a>
                                         </div>
 
                                         <div class="delete-icon-div">
-                                            <a class="object-delete" asp-controller="Admin" asp-action="AdminApplicationDecline" asp-route-applicationid="@obj.MissionApplicationId">
+                                            <a class="object-delete" asp-controller="Admin" asp-action="AdminTimeSheetDecline" asp-route-timesheetid="@obj.TimesheetId">
                                                 <i class="bi bi-x-circle" style="color:red; font-size:x-large"></i>
                                             </a>
                                         </div>

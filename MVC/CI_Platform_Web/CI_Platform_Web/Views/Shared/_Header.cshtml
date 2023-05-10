@@ -93,9 +93,13 @@
                                             </li>
                                         </ul>
                                     </li>
+                                @if(_contextAccessor.HttpContext.Session.GetString("IsAdmin") == "True")
+                                {
                                     <li class="nav-item">
                                         <a class="nav-link" aria-current="page" asp-action="AdminUserHome" asp-controller="Admin">Admin</a>
                                     </li>
+                                }
+                                
                                 </ul>
 
                                 <!-- Left links -->
