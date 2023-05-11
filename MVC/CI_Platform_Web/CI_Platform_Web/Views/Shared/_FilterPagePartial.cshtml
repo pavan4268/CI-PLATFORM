@@ -1,11 +1,11 @@
 ﻿@using CI_Platform.Entities.ViewModels
-@model List<MissionVm>
+@model MainViewModelVm
 
 <div id = "gridviewcontainer">
       <div class="row row-cols-1 row-cols-xl-3  pt-3 justify-content-center">
          @*row-cols-md-2*@
         <!-- first mission card -->
-        @foreach(var card in Model){
+        @foreach(var card in Model.Missions){
         <div class="card col p-2 m-2 d-flex" id = "card-bod">
           
             <!-- div wrapping img and buttons on it starts -->

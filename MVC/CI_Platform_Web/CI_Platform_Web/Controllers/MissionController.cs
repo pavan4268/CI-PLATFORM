@@ -14,16 +14,18 @@ namespace CI_Platform_Web.Controllers
         private readonly CiPlatformDbContext _db;
         private readonly IMissionCard _missionCard;
         private readonly IVolunteerMissionCard _volunteerMissionCard;
+        private readonly INotificationRepository _notification;
 
        
 
        
 
-        public MissionController(CiPlatformDbContext db, IMissionCard missionCard, IVolunteerMissionCard volunteerMissionCard)
+        public MissionController(CiPlatformDbContext db, IMissionCard missionCard, IVolunteerMissionCard volunteerMissionCard, INotificationRepository notification)
         {
             _db = db;
             _missionCard = missionCard;
             _volunteerMissionCard = volunteerMissionCard;
+            _notification = notification;
         }
 
         //filter dropdowns
@@ -65,8 +67,9 @@ namespace CI_Platform_Web.Controllers
                 string user = HttpContext.Session.GetString("UserId");
                 long userid = long.Parse(user);
                 var cardmodel = _missionCard.GetMissions(userid);
+                MainViewModelVm vm = new MainViewModelVm();
+                vm.Notification = _notification.GetNotifications(userid);
                 
-
                 const int pagesize = 3;
                 if (pg < 1)
                 {
@@ -115,11 +118,13 @@ namespace CI_Platform_Web.Controllers
                     int recSkip1 = (pg - 1) * pagesize;
                     var sortdata = data.Skip(recSkip1).Take(pager1.PageSize).ToList();
                     this.ViewBag.Pager = pager1;
-                    return View(sortdata);
+                    vm.Missions = sortdata;
+                    return View(vm);
                     //sorting logic ends here
                 }
                 ViewBag.NumberofMissions = recsCount;
-                return View(data1);
+                vm.Missions = data1;
+                return View(vm);
 
                 
                 //return View(cardmodel);
@@ -270,7 +275,11 @@ namespace CI_Platform_Web.Controllers
                 {
                     data = data.OrderByDescending(data=>data.MostFavourite).ToList();
                 }
-
+                else if(sort == "Random")
+                {
+                    Random random = new Random();
+                    data = data.OrderByDescending(data=>random.Next()).ToList();
+                }
             }
 
             if (SearchText != null)
@@ -402,6 +411,7 @@ namespace CI_Platform_Web.Controllers
             {
                 foreach(User coworker in usertomail)
                 {
+                    _notification.AddRecommendNotification(userid, coworker.UserId, missionid, 2);
                     try
                     {
                         string email = coworker.Email;

@@ -11,7 +11,7 @@
 
     var numberofmissions = ViewBag.NumberofMissions;
 }
-@model List<MissionVm>
+@model MainViewModelVm
 
 <!DOCTYPE html>
 <html lang="en">
@@ -150,7 +150,7 @@
 
         <div class="container" id="listviewcontainer" style = "display:none">
 
-            @foreach(var card in Model){
+            @foreach(var card in Model.Missions){
 
             @*card div starts herree*@
             <div class="card-list mb-3" style="max-width: 100%">

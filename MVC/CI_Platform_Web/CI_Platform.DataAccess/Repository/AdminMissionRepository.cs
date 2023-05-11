@@ -14,11 +14,13 @@ namespace CI_Platform.Repository.Repository
     public class AdminMissionRepository:IAdminMissionRepository
     {
         private readonly CiPlatformDbContext _db;
+        private readonly INotificationRepository _notification;
 
 
-        public AdminMissionRepository(CiPlatformDbContext db)
+        public AdminMissionRepository(CiPlatformDbContext db, INotificationRepository notification)
         {
             _db = db;
+            _notification = notification;
         }
 
 
@@ -80,6 +82,7 @@ namespace CI_Platform.Repository.Repository
                 }
                 _db.Missions.Add(addmission);
                 _db.SaveChanges(true);
+                _notification.AddMissionNotification(addmission.MissionId);
                 if(obj.SkillIds != null)
                 {
                     List<MissionSkill> AddSkills = new List<MissionSkill>();

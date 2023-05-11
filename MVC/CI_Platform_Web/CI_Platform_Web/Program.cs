@@ -27,6 +27,7 @@ builder.Services.AddScoped<IAdminMissionApplicationRepository, AdminMissionAppli
 builder.Services.AddScoped<IAdminStoryRepository, AdminStoryRepository>();
 builder.Services.AddScoped<IAdminBannerRepository, AdminBannerRepository>();
 builder.Services.AddScoped<IAdminTimeSheetRepository, AdminTimeSheetRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 

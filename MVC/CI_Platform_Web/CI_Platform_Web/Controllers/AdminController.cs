@@ -1225,18 +1225,26 @@ namespace CI_Platform_Web.Controllers
             if (string.IsNullOrEmpty(response))
             {
                 response = "Some Error Occured";
-                ViewBag.Response = response;
+                TempData["Message"] = response;
                 return RedirectToAction("AdminTimeSheetHome");
             }
-            
-                ViewBag.Response = response;
-                return RedirectToAction("AdminTimeSheetHome");
+
+            TempData["Message"] = response;
+            return RedirectToAction("AdminTimeSheetHome");
             
         }
 
-        public void AdminTimeSheetDecline(long timesheetid)
+        public IActionResult AdminTimeSheetDecline(long timesheetid)
         {
-
+            string? response = _adminTimeSheetRepository.DeclineTimeSheet(timesheetid);
+            if (string.IsNullOrEmpty(response))
+            {
+                response = "Some Error Occured";
+                TempData["Message"] = response;
+                return RedirectToAction("AdminTimeSheetHome");
+            }
+            TempData["Message"] = response;
+            return RedirectToAction("AdminTimeSheetHome");
         }
 
     }

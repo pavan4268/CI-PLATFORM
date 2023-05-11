@@ -128,9 +128,44 @@
                                                     <div><a href="#" class="text-decoration-none">Clear All</a></div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Another action</a>
+                                            @if(Model.Notification.Count > 0){
+                                                <li>
+                                                <ul class="ps-0" style="list-style:none">
+                                                    @foreach(var notification in Model.Notification){
+                                                        <li>
+                                                            <div class = "d-flex justify-content-between">
+                                                                @if(notification.NotifTypeId == 1){
+                                                                    <i class="bi bi-plus-circle me-2"></i>
+                                                                    <a class="me-2 text-decoration-none text-secondary" href="@notification.Url" onclick="readNotification(@notification.NotifId)"><span>@notification.Message</span></a>
+                                                                    @if(notification.Status == 1)
+                                                                    {
+                                                                        <i class="bi bi-circle-fill" style="color:orange"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="bi bi-check-circle-fill"></i>
+                                                                    }
+                                                                }
+                                                                @if(notification.NotifTypeId == 2 || notification.NotifTypeId == 3){
+                                                                    <img class="me-2" src="~/assets/UserAvatar/@notification.FromUserAvtaar" style="width:20px; height:20px; border-radius:50%" />
+                                                                    <a class="me-2 text-decoration-none text-secondary" href="@notification.Url" onclick="readNotification(@notification.NotifId)"><span>@notification.Message</span></a>
+                                                                    @if(notification.Status == 1)
+                                                                    {
+                                                                        <i class="bi bi-circle-fill" style="color:orange"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="bi bi-check-circle-fill"></i>
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    
+                                                </ul>
                                             </li>
+                                            }
+                                            
                                            
                                             <li>
                                                 <a class="dropdown-item" href="#">Something else here</a>

@@ -3,10 +3,16 @@
 @{
     ViewData["Title"] = "AdminTimeSheetHome";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    if(TempData["Message"] != null){
+        <script type="text/javascript">
+            alert('@TempData["Message"]');
+        </script>
+    }
 }
 
+
 <div class="title-div" style="border-bottom:solid 1px; border-bottom-color:gray">
-                    <h3 style="font-weight:400;">Mission Application</h3>
+                    <h3 style="font-weight:400;">TimeSheet</h3>
                 </div>
                 <div class="search-add-wrapper d-flex justify-content-between mt-3 p-2">
                     <div class="search-wrapper d-flex align-content-center p-2 w-25" style="border:solid 1px;">

@@ -50,6 +50,10 @@ public partial class CiPlatformDbContext : DbContext
 
     public virtual DbSet<MissionTheme> MissionThemes { get; set; }
 
+    public virtual DbSet<Notification> Notifications { get; set; }
+
+    public virtual DbSet<NotificationType> NotificationTypes { get; set; }
+
     public virtual DbSet<PasswordReset> PasswordResets { get; set; }
 
     public virtual DbSet<Skill> Skills { get; set; }
@@ -63,6 +67,8 @@ public partial class CiPlatformDbContext : DbContext
     public virtual DbSet<Timesheet> Timesheets { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UserSetting> UserSettings { get; set; }
 
     public virtual DbSet<UserSkill> UserSkills { get; set; }
 
@@ -728,6 +734,74 @@ public partial class CiPlatformDbContext : DbContext
                 .HasColumnName("updated_at");
         });
 
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.HasKey(e => e.NotifId);
+
+            entity.ToTable("notification");
+
+            entity.Property(e => e.NotifId).HasColumnName("notif_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("deleted_at");
+            entity.Property(e => e.FromUserId).HasColumnName("from_user_id");
+            entity.Property(e => e.Message)
+                .HasColumnType("text")
+                .HasColumnName("message");
+            entity.Property(e => e.NotifTypeId).HasColumnName("notif_type_id");
+            entity.Property(e => e.Status)
+                .HasDefaultValueSql("((1))")
+                .HasColumnName("status");
+            entity.Property(e => e.ToUserId).HasColumnName("to_user_id");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updated_at");
+            entity.Property(e => e.Url)
+                .HasColumnType("text")
+                .HasColumnName("url");
+
+            entity.HasOne(d => d.FromUser).WithMany(p => p.NotificationFromUsers)
+                .HasForeignKey(d => d.FromUserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__notificat__from___318258D2");
+
+            entity.HasOne(d => d.NotifType).WithMany(p => p.Notifications)
+                .HasForeignKey(d => d.NotifTypeId)
+                .HasConstraintName("FK__notificat__notif__336AA144");
+
+            entity.HasOne(d => d.ToUser).WithMany(p => p.NotificationToUsers)
+                .HasForeignKey(d => d.ToUserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__notificat__to_us__32767D0B");
+        });
+
+        modelBuilder.Entity<NotificationType>(entity =>
+        {
+            entity.HasKey(e => e.NotificationTypeId).HasName("PK__notifica__0BD11F11077E4D5D");
+
+            entity.ToTable("notification_type");
+
+            entity.Property(e => e.NotificationTypeId).HasColumnName("notification_type_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("deleted_at");
+            entity.Property(e => e.SettingsTitle).HasColumnName("settings_title");
+            entity.Property(e => e.Status)
+                .HasDefaultValueSql("((1))")
+                .HasColumnName("status");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updated_at");
+        });
+
         modelBuilder.Entity<PasswordReset>(entity =>
         {
             entity.HasKey(e => e.Token).HasName("PK__password__CA90DA7BE111B046");
@@ -1035,6 +1109,42 @@ public partial class CiPlatformDbContext : DbContext
                 .HasForeignKey(d => d.CountryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("user_countryID_fk");
+        });
+
+        modelBuilder.Entity<UserSetting>(entity =>
+        {
+            entity.HasKey(e => e.UserSettingsId).HasName("PK__user_set__842A74B0B539617E");
+
+            entity.ToTable("user_settings");
+
+            entity.Property(e => e.UserSettingsId).HasColumnName("user_settings_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
+            entity.Property(e => e.DeletedAt)
+                .HasMaxLength(10)
+                .IsFixedLength()
+                .HasColumnName("deleted_at");
+            entity.Property(e => e.NotifSettingId).HasColumnName("notif_setting_id");
+            entity.Property(e => e.Status)
+                .HasDefaultValueSql("((1))")
+                .HasColumnName("status");
+            entity.Property(e => e.UpdatedAt)
+                .HasMaxLength(10)
+                .IsFixedLength()
+                .HasColumnName("updated_at");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.NotifSetting).WithMany(p => p.UserSettings)
+                .HasForeignKey(d => d.NotifSettingId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__user_sett__notif__39237A9A");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserSettings)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__user_sett__user___382F5661");
         });
 
         modelBuilder.Entity<UserSkill>(entity =>

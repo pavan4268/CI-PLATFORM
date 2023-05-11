@@ -13,12 +13,14 @@ namespace CI_Platform_Web.Controllers
         private readonly CiPlatformDbContext _db;
         private readonly IStoryCardsRepository _storyCards;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly INotificationRepository _notification;
 
-        public StoryController(CiPlatformDbContext db, IStoryCardsRepository storyCards, IWebHostEnvironment hostEnvironment)
+        public StoryController(CiPlatformDbContext db, IStoryCardsRepository storyCards, IWebHostEnvironment hostEnvironment, INotificationRepository notification)
         {
             _db = db;
             _storyCards = storyCards;
             _hostEnvironment = hostEnvironment;
+            _notification = notification;
         }
 
 
@@ -83,6 +85,7 @@ namespace CI_Platform_Web.Controllers
             {
                 foreach(var users in usertomail)
                 {
+                    _notification.AddRecommendNotification(userid, users.UserId, storyid, 3);
                     try
                     {
                        
