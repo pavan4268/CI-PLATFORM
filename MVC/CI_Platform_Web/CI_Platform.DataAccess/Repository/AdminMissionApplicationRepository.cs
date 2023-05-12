@@ -14,11 +14,12 @@ namespace CI_Platform.Repository.Repository
     public class AdminMissionApplicationRepository: IAdminMissionApplicationRepository
     {
         private readonly CiPlatformDbContext _db;
+        private readonly INotificationRepository _notification;
 
-
-        public AdminMissionApplicationRepository(CiPlatformDbContext db)
+        public AdminMissionApplicationRepository(CiPlatformDbContext db, INotificationRepository notification)
         {
             _db = db;
+            _notification = notification;
         }
 
         public List<AdminMissionApplicationDisplayVm> GetMissionApplications()
@@ -42,7 +43,7 @@ namespace CI_Platform.Repository.Repository
         }
 
 
-        public string ApproveApplication(long applicationid)
+        public string ApproveApplication(long applicationid, long adminid)
         {
             string? reply = null;
             MissionApplication? approveuser = _db.MissionApplications.FirstOrDefault(x=>x.MissionApplicationId == applicationid);
@@ -52,6 +53,7 @@ namespace CI_Platform.Repository.Repository
                 approveuser.UpdatedAt = DateTime.Now;
                 _db.MissionApplications.Update(approveuser);
                 _db.SaveChanges();
+                _notification.AddMissionApplicationStatusNotification(approveuser.MissionApplicationId, adminid, "Approved");
                 reply = "Application Approved";
                 return reply;
             }
@@ -59,7 +61,7 @@ namespace CI_Platform.Repository.Repository
         }
 
 
-        public string DeclineApplication(long applicationid)
+        public string DeclineApplication(long applicationid, long adminid)
         {
             string? reply = null;
             MissionApplication? declineuser = _db.MissionApplications.FirstOrDefault(x=>x.MissionApplicationId == applicationid);
@@ -68,6 +70,7 @@ namespace CI_Platform.Repository.Repository
                 declineuser.ApprovalStatus = "Decline";
                 declineuser.UpdatedAt = DateTime.Now;
                 _db.SaveChanges();
+                _notification.AddMissionApplicationStatusNotification(declineuser.MissionApplicationId, adminid, "Declined");
                 reply = "Application Declined";
                 return reply;
             }

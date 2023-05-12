@@ -15,10 +15,12 @@ namespace CI_Platform.Repository.Repository
     {
 
         private readonly CiPlatformDbContext _db;
+        private readonly INotificationRepository _notification;
 
-        public AdminStoryRepository(CiPlatformDbContext db)
+        public AdminStoryRepository(CiPlatformDbContext db, INotificationRepository notification)
         {
             _db = db;
+            _notification = notification;
         }
 
 
@@ -78,7 +80,7 @@ namespace CI_Platform.Repository.Repository
             return vm;
         }
 
-        public string StoryApprove(long storyid)
+        public string StoryApprove(long storyid, long adminid)
         {
             string? reply = "";
             Story? approvestory = _db.Stories.FirstOrDefault(story=>story.StoryId == storyid);
@@ -89,13 +91,14 @@ namespace CI_Platform.Repository.Repository
                 approvestory.PublishedAt = DateTime.Now;
                 _db.Stories.Update(approvestory);
                 _db.SaveChanges();
+                _notification.AddStoryStatusNotification(storyid, adminid, "Published");
                 return reply;
             }
             reply = "Unable to Approve Story";
             return reply;
         }
 
-        public string StoryDecline(long storyid)
+        public string StoryDecline(long storyid, long adminid)
         {
             string? reply = "";
             Story? declinestory = _db.Stories.FirstOrDefault(story=>story.StoryId==storyid);
@@ -104,7 +107,8 @@ namespace CI_Platform.Repository.Repository
                 declinestory.Status = "DECLINED";
                 declinestory.UpdatedAt = DateTime.Now;
                 _db.Stories.Update(declinestory);
-                _db.SaveChanges(true);
+                _db.SaveChanges();
+                _notification.AddStoryStatusNotification(storyid, adminid, "Declined");
                 return reply;
 
             }

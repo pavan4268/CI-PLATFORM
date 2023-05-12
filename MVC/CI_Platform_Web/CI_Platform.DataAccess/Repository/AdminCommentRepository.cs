@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CI_Platform.Repository.Repository
 {
-    public class AdminCommentRepository
+    public class AdminCommentRepository : IAdminCommentRepository
     {
         private readonly CiPlatformDbContext _db;
 
@@ -20,6 +20,26 @@ namespace CI_Platform.Repository.Repository
             _db = db;
         }
 
+
+        public List<AdminCommentDisplayVm> GetComments()
+        {
+            List<AdminCommentDisplayVm> result = new List<AdminCommentDisplayVm>();
+            List<Comment>? comments = _db.Comments.Where(comment=>comment.DeletedAt == null).ToList();
+            foreach (Comment comment in comments)
+            {
+                Mission? findtitle = _db.Missions.FirstOrDefault(mission=>mission.MissionId == comment.MissionId);
+                User? findname = _db.Users.FirstOrDefault(user=>user.UserId == comment.UserId);
+                AdminCommentDisplayVm vm = new AdminCommentDisplayVm();
+                vm.UserId = comment.UserId;
+                vm.CommentId = comment.CommentId;
+                vm.CommentText = comment.CommentText;
+                vm.MissionId = comment.MissionId;
+                vm.MissionTitle = findtitle.Title;
+                vm.Username = findname.FirstName + " " + findname.LastName;
+                result.Add(vm);
+            }
+            return result;
+        }
 
     }
 }

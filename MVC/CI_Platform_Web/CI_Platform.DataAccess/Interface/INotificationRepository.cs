@@ -9,10 +9,18 @@ namespace CI_Platform.Repository.Interface
 {
     public interface INotificationRepository
     {
-        public void AddMissionNotification(long missionid);
+        public void AddMissionNotification(long missionid, long adminid);
 
         public List<NotificationVm> GetNotifications(long userid);
 
         public void AddRecommendNotification(long senderid, long receiverid, long id, int type);
+
+        public void AddTimeSheetApprovalNotification(long timesheetid, long adminid);
+
+        public void AddTimeSheetDeclineNotification(long timesheetid, long adminid);
+
+        public void AddStoryStatusNotification(long storyid, long adminid, string status);
+
+        public void AddMissionApplicationStatusNotification(long applicationid, long adminid, string status);
     }
 }

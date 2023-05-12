@@ -11,8 +11,8 @@ namespace CI_Platform.Repository.Interface
     {
         public List<AdminTimesheetDisplayVm> GetTimeSheets();
 
-        public string ApproveTimeSheet(long timesheetid);
+        public string ApproveTimeSheet(long timesheetid, long adminid);
 
-        public string DeclineTimeSheet(long timesheetid);
+        public string DeclineTimeSheet(long timesheetid, long adminid);
     }
 }

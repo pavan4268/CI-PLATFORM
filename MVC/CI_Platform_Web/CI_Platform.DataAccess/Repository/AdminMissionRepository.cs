@@ -55,7 +55,7 @@ namespace CI_Platform.Repository.Repository
         }
 
         #region Mission Add
-        public string AddMission(AdminMissionCreateVm obj)
+        public string AddMission(AdminMissionCreateVm obj, long adminid)
         {
             string reply = string.Empty;
             if (obj != null)
@@ -82,7 +82,7 @@ namespace CI_Platform.Repository.Repository
                 }
                 _db.Missions.Add(addmission);
                 _db.SaveChanges(true);
-                _notification.AddMissionNotification(addmission.MissionId);
+                _notification.AddMissionNotification(addmission.MissionId, adminid);
                 if(obj.SkillIds != null)
                 {
                     List<MissionSkill> AddSkills = new List<MissionSkill>();

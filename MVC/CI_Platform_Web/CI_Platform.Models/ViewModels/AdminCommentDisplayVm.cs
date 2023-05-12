@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Entities.ViewModels
 {
-    public class AdminCommentDisplay
+    public class AdminCommentDisplayVm
     {
         public long CommentId { get; set; }
 

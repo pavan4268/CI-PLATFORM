@@ -14,10 +14,12 @@ namespace CI_Platform.Repository.Repository
     public class UserProfileRepository : IUserProfileRepository
     {
         private readonly CiPlatformDbContext _db;
+        
 
         public UserProfileRepository(CiPlatformDbContext db)
         {
             _db = db;
+            
         }
 
 

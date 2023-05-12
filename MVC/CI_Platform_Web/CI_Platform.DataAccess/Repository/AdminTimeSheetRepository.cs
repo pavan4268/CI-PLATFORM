@@ -15,10 +15,13 @@ namespace CI_Platform.Repository.Repository
     public class AdminTimeSheetRepository : IAdminTimeSheetRepository
     {
         private readonly CiPlatformDbContext _db;
+        private readonly INotificationRepository _notification;
 
-        public AdminTimeSheetRepository(CiPlatformDbContext db)
+
+        public AdminTimeSheetRepository(CiPlatformDbContext db, INotificationRepository notification)
         {
             _db = db;
+            _notification = notification;
         }
 
         public List<AdminTimesheetDisplayVm> GetTimeSheets()
@@ -45,7 +48,7 @@ namespace CI_Platform.Repository.Repository
         }
 
 
-        public string ApproveTimeSheet(long timesheetid)
+        public string ApproveTimeSheet(long timesheetid, long adminid)
         {
             string? reply = string.Empty;
             Timesheet? approvesheet = _db.Timesheets.FirstOrDefault(timesheet => timesheet.TimesheetId == timesheetid && timesheet.DeletedAt == null);
@@ -54,6 +57,7 @@ namespace CI_Platform.Repository.Repository
                 approvesheet.Status = "APPROVED";
                 approvesheet.UpdatedAt = DateTime.Now;
                 _db.Timesheets.Update(approvesheet);
+                _notification.AddTimeSheetApprovalNotification(approvesheet.TimesheetId, adminid);
                 _db.SaveChanges();
                 reply = "Approved TimeSheet";
                 return reply;
@@ -61,7 +65,7 @@ namespace CI_Platform.Repository.Repository
             return reply;
         }
 
-        public string DeclineTimeSheet(long timesheetid)
+        public string DeclineTimeSheet(long timesheetid, long adminid)
         {
             string? reply = string.Empty;
             Timesheet? declinesheet = _db.Timesheets.FirstOrDefault(timesheet=>timesheet.TimesheetId==timesheetid && timesheet.DeletedAt == null);
@@ -70,6 +74,7 @@ namespace CI_Platform.Repository.Repository
                 declinesheet.Status = "DECLINED";
                 declinesheet.UpdatedAt = DateTime.Now;
                 _db.Timesheets.Update(declinesheet);
+                _notification.AddTimeSheetDeclineNotification(declinesheet.TimesheetId,adminid);
                 _db.SaveChanges();
                 reply = "Timesheet Declined";
                 return reply;

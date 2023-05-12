@@ -13,9 +13,9 @@ namespace CI_Platform.Repository.Interface
 
         public AdminStoryDetailsVm GetDetails(long storyid);
 
-        public string StoryApprove(long storyid);
+        public string StoryApprove(long storyid, long adminid);
 
-        public string StoryDecline(long storyid);
+        public string StoryDecline(long storyid, long adminid);
 
         public string StoryDelete(long storyid);
     }

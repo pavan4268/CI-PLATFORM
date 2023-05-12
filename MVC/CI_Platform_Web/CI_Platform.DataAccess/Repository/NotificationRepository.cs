@@ -49,7 +49,7 @@ namespace CI_Platform.Repository.Repository
         }
 
 
-        public void AddMissionNotification(long missionid)
+        public void AddMissionNotification(long missionid, long adminid)
         {
             
             Mission? findmission = _db.Missions.FirstOrDefault(mission=>mission.MissionId == missionid && mission.DeletedAt == null);
@@ -61,7 +61,7 @@ namespace CI_Platform.Repository.Repository
                     foreach (User notifyuser in findusers)
                     {
                         Notification newnotification = new Notification();
-                        newnotification.FromUserId = 3;
+                        newnotification.FromUserId = adminid;
                         newnotification.ToUserId = notifyuser.UserId;
                         newnotification.Message = "New Mission - " + findmission.Title;
                         newnotification.Url = "https://localhost:5001/Mission/VolunteeringMissionPage/" + findmission.MissionId;
@@ -108,9 +108,94 @@ namespace CI_Platform.Repository.Repository
         }
 
 
-        
+        public void AddTimeSheetApprovalNotification(long timesheetid, long adminid)
+        {
+            Timesheet? findsheet = _db.Timesheets.FirstOrDefault(sheet => sheet.TimesheetId == timesheetid && sheet.DeletedAt == null);
+            Mission? findtitle = _db.Missions.FirstOrDefault(mission => mission.MissionId==findsheet.MissionId);
+            if(findsheet != null)
+            {
+                Notification newnotification = new Notification();
+                newnotification.ToUserId = (long)findsheet.UserId;
+                if(findsheet.Action == null)
+                {
+                    newnotification.Message = "Volunteering Timesheet Request for Time-Based Mission - " + findtitle?.Title + " Is Approved";
+                    newnotification.NotifTypeId = 4;
+                }
+                else
+                {
+                    newnotification.Message = "Volunteering Timesheet Request for Goal-Based Mission - " + findtitle?.Title + " Is Approved";
+                    newnotification.NotifTypeId = 5;
+                }
+                newnotification.Url = "https://localhost:5001/User/VolunteeringTimesheet";
+                newnotification.FromUserId = adminid;
+                _db.Notifications.Add(newnotification);
+                _db.SaveChanges();
+            }
+        }
 
 
+
+        public void AddTimeSheetDeclineNotification(long timesheetid, long adminid)
+        {
+            Timesheet? findsheet = _db.Timesheets.FirstOrDefault(sheet => sheet.TimesheetId == timesheetid && sheet.DeletedAt == null);
+            Mission? findtitle = _db.Missions.FirstOrDefault(mission => mission.MissionId == findsheet.MissionId);
+            if (findsheet != null)
+            {
+                Notification newnotification = new Notification();
+                newnotification.ToUserId = (long)findsheet.UserId;
+                if (findsheet.Action == null)
+                {
+                    newnotification.Message = "Volunteering Timesheet Request for Time-Based Mission - " + findtitle?.Title + " Is Declined";
+                    newnotification.NotifTypeId = 4;
+                }
+                else
+                {
+                    newnotification.Message = "Volunteering Timesheet Request for Goal-Based Mission - " + findtitle?.Title + " Is Declined";
+                    newnotification.NotifTypeId = 5;
+                }
+                newnotification.Url = "https://localhost:5001/User/VolunteeringTimesheet";
+                newnotification.FromUserId = adminid;
+                _db.Notifications.Add(newnotification);
+                _db.SaveChanges();
+            }
+        }
+
+        public void AddStoryStatusNotification(long storyid, long adminid, string status)
+        {
+            Story? findstory = _db.Stories.FirstOrDefault(st => st.StoryId == storyid && st.DeletedAt == null);
+            Mission? findtitle = _db.Missions.FirstOrDefault(mission => mission.MissionId == findstory.MissionId && mission.DeletedAt == null);
+            if (findstory != null)
+            {
+                Notification newnotification = new Notification();
+                newnotification.ToUserId = findstory.UserId;
+                newnotification.NotifTypeId = 6;
+                newnotification.Message = "Story for Mission - " + findstory?.Title + " Has Been " + status;
+                newnotification.Url = "https://localhost:5001/Story/StoryDetails?storyid=" + findstory.StoryId;
+                newnotification.FromUserId = adminid;
+                _db.Notifications.Add(newnotification);
+                _db.SaveChanges();
+            }
+        }
+
+
+
+        public void AddMissionApplicationStatusNotification(long applicationid, long adminid, string status)
+        {
+            MissionApplication? findapplication = _db.MissionApplications.FirstOrDefault(application=>application.MissionApplicationId==applicationid && application.DeletedAt == null);
+            User? finduser = _db.Users.FirstOrDefault(user => user.UserId == findapplication.UserId && user.DeletedAt == null);
+            Mission? findtitle = _db.Missions.FirstOrDefault(mission=> mission.MissionId == findapplication.MissionId && mission.DeletedAt == null);
+            if(findapplication != null)
+            {
+                Notification newnotification = new Notification();
+                newnotification.ToUserId = findapplication.UserId;
+                newnotification.FromUserId = adminid;
+                newnotification.NotifTypeId = 7;
+                newnotification.Message = "Mission Application for the Mission - " + findtitle.Title + " Has Been " + status;
+                newnotification.Url = "https://localhost:5001/Mission/VolunteeringMissionPage/" + findtitle.MissionId;
+                _db.Notifications.Add(newnotification);
+                _db.SaveChanges();
+            }
+        }
 
     }
 }

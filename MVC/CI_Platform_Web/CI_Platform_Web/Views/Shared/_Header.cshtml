@@ -158,6 +158,42 @@
                                                                         <i class="bi bi-check-circle-fill"></i>
                                                                     }
                                                                 }
+                                                                @if(notification.NotifTypeId == 4 || notification.NotifTypeId == 5){
+                                                                    <i class="bi bi-check2-square me-2"></i>
+                                                                    <a class="me-2 text-decoration-none text-secondary" href="@notification.Url" onclick="readNotification(@notification.NotifId)"><span>@notification.Message</span></a>
+                                                                    @if(notification.Status == 1)
+                                                                    {
+                                                                        <i class="bi bi-circle-fill" style="color:orange"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="bi bi-check-circle-fill"></i>
+                                                                    }
+                                                                }
+                                                                @if(notification.NotifTypeId == 6){
+                                                                    <i class="bi bi-check2-square me-2"></i>
+                                                                    <a class="me-2 text-decoration-none text-secondary" href="@notification.Url" onclick="readNotification(@notification.NotifId)"><span>@notification.Message</span></a>
+                                                                    @if(notification.Status == 1)
+                                                                    {
+                                                                        <i class="bi bi-circle-fill" style="color:orange"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="bi bi-check-circle-fill"></i>
+                                                                    }
+                                                                }
+                                                                @if(notification.NotifTypeId == 7){
+                                                                    <i class="bi bi-check2-square me-2"></i>
+                                                                    <a class="me-2 text-decoration-none text-secondary" href="@notification.Url" onclick="readNotification(@notification.NotifId)"><span>@notification.Message</span></a>
+                                                                    @if(notification.Status == 1)
+                                                                    {
+                                                                        <i class="bi bi-circle-fill" style="color:orange"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="bi bi-check-circle-fill"></i>
+                                                                    }
+                                                                }
                                                             </div>
                                                         </li>
                                                     }

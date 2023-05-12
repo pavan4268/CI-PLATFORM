@@ -23,8 +23,9 @@ namespace CI_Platform_Web.Controllers
         private readonly IAdminStoryRepository _adminStoryRepository;
         private readonly IAdminBannerRepository _adminBannerRepository;
         private readonly IAdminTimeSheetRepository _adminTimeSheetRepository;
+        public readonly IAdminCommentRepository _adminCommentRepository;
 
-        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment, IAdminStoryRepository adminStoryRepository, IAdminBannerRepository adminBannerRepository, IAdminTimeSheetRepository adminTimeSheetRepository)
+        public AdminController(CiPlatformDbContext db, IAdminUserRepository adminUserRepository, IAdminCMSRepository adminCMSRepository, IAdminMissionRepository adminMissionRepository, IAdminMissionThemeRepository adminMissionThemeRepository, IAdminMissionSkillsRepository adminMissionSkillsRepository, IAdminMissionApplicationRepository adminMissionApplicationRepository, IWebHostEnvironment webHostEnvironment, IAdminStoryRepository adminStoryRepository, IAdminBannerRepository adminBannerRepository, IAdminTimeSheetRepository adminTimeSheetRepository, IAdminCommentRepository adminCommentRepository)
         {
             _db = db;
             _hostEnvironment = webHostEnvironment;
@@ -37,6 +38,7 @@ namespace CI_Platform_Web.Controllers
             _adminStoryRepository = adminStoryRepository;
             _adminBannerRepository = adminBannerRepository;
             _adminTimeSheetRepository = adminTimeSheetRepository;
+            _adminCommentRepository = adminCommentRepository;
         }
 
 
@@ -377,10 +379,12 @@ namespace CI_Platform_Web.Controllers
         [HttpPost]
         public IActionResult AdminMissionAdd(AdminMissionCreateVm obj)
         {
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
             #region Mission Add Date Validations
             if (obj.StartDate != null)
             {
-
+                
                 List<Country>? Countries = _db.Countries.Where(country => country.DeletedAt == null).ToList();
                 List<MissionTheme>? Themes = _db.MissionThemes.Where(theme => theme.Status == 1 && theme.DeletedAt == null).ToList();
                 List<Skill>? SkillList = _db.Skills.Where(skill => skill.DeletedAt == null && skill.Status == 1).ToList();
@@ -478,7 +482,7 @@ namespace CI_Platform_Web.Controllers
             }
             #endregion
 
-            string? response = _adminMissionRepository.AddMission(obj);
+            string? response = _adminMissionRepository.AddMission(obj, userid);
             if (string.IsNullOrEmpty(response))
             {
                 return RedirectToAction("AdminMissionHome");
@@ -987,7 +991,9 @@ namespace CI_Platform_Web.Controllers
         
         public IActionResult AdminApplicationApprove(long applicationid)
         {
-            string response = _adminMissionApplicationRepository.ApproveApplication(applicationid);
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            string response = _adminMissionApplicationRepository.ApproveApplication(applicationid, userid);
             if (string.IsNullOrEmpty(response))
             {
                 ViewBag.Message = "An Error occured";
@@ -1000,7 +1006,9 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult AdminApplicationDecline(long applicationid)
         {
-            string response = _adminMissionApplicationRepository.DeclineApplication(applicationid);
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            string response = _adminMissionApplicationRepository.DeclineApplication(applicationid, userid);
             if (string.IsNullOrEmpty(response))
             {
                 return RedirectToAction("AdminMissionApplicationHome");
@@ -1038,8 +1046,9 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult ApproveStory(long storyid)
         {
-            
-            string? response = _adminStoryRepository.StoryApprove(storyid);
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            string? response = _adminStoryRepository.StoryApprove(storyid, userid);
             if (string.IsNullOrEmpty(response))
             {
                 return RedirectToAction("AdminStoryHome");
@@ -1050,7 +1059,9 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult DeclineStory(long storyid)
         {
-            string? response = _adminStoryRepository.StoryDecline(storyid);
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            string? response = _adminStoryRepository.StoryDecline(storyid, userid);
             if (string.IsNullOrEmpty(response))
             {
                 return RedirectToAction("AdminStoryHome");
@@ -1221,7 +1232,9 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult AdminTimeSheetApprove(long timesheetid)
         {
-            string? response = _adminTimeSheetRepository.ApproveTimeSheet(timesheetid);
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            string? response = _adminTimeSheetRepository.ApproveTimeSheet(timesheetid, userid);
             if (string.IsNullOrEmpty(response))
             {
                 response = "Some Error Occured";
@@ -1236,7 +1249,9 @@ namespace CI_Platform_Web.Controllers
 
         public IActionResult AdminTimeSheetDecline(long timesheetid)
         {
-            string? response = _adminTimeSheetRepository.DeclineTimeSheet(timesheetid);
+            string user = HttpContext.Session.GetString("UserId");
+            long userid = long.Parse(user);
+            string? response = _adminTimeSheetRepository.DeclineTimeSheet(timesheetid, userid);
             if (string.IsNullOrEmpty(response))
             {
                 response = "Some Error Occured";
@@ -1246,6 +1261,31 @@ namespace CI_Platform_Web.Controllers
             TempData["Message"] = response;
             return RedirectToAction("AdminTimeSheetHome");
         }
+
+
+
+
+        //<------------------------------------------------------------------------------Comments------------------------------------------------------------------->
+
+        public IActionResult AdminCommentHome()
+        {
+            List<AdminCommentDisplayVm>? comments = _adminCommentRepository.GetComments();
+            return View(comments);
+        }
+
+        //public string AdminCommentDelete(long commentid)
+        //{
+        //    string result = "";
+
+        //    string? response = _adminUserRepository.DeleteUser(commentid);
+        //    if (response != "")
+        //    {
+        //        result = response;
+        //        return result;
+        //    }
+        //    return result;
+
+        //}
 
     }
 }

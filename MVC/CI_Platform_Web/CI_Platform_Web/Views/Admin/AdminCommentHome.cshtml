@@ -1,5 +1,5 @@
 ﻿@using CI_Platform.Entities.ViewModels
-@model List<AdminCommentDisplay>
+@model List<AdminCommentDisplayVm>
 @{
     ViewData["Title"] = "AdminCommentHome";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(AdminCommentDisplay comment in Model){
+                            @foreach(AdminCommentDisplayVm comment in Model){
                                 <tr>
                                 <td>@comment.Username</td>
                                 <td>@comment.MissionTitle</td>

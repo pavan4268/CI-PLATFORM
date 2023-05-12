@@ -13,7 +13,7 @@ namespace CI_Platform.Repository.Interface
 
         public AdminMissionCreateVm FillDropDown();
 
-        public string AddMission(AdminMissionCreateVm obj);
+        public string AddMission(AdminMissionCreateVm obj, long adminid);
 
         public AdminMissionCreateVm GetData(long missionid);
 

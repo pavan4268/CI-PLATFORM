@@ -14,12 +14,14 @@ namespace CI_Platform_Web.Controllers
         private readonly CiPlatformDbContext _db;
         private readonly IUserProfileRepository _userProfile;
         private readonly IWebHostEnvironment _hostEnvironment;
+        
 
         public UserController(CiPlatformDbContext db, IUserProfileRepository userProfile, IWebHostEnvironment hostEnvironment)
         {
             _db = db;
             _userProfile = userProfile;
             _hostEnvironment = hostEnvironment; 
+            
         }
 
 
@@ -328,6 +330,7 @@ namespace CI_Platform_Web.Controllers
 
 
                     _db.Timesheets.Add(obj);
+                    
                     _db.SaveChanges(true);
                 }
                 return error;
